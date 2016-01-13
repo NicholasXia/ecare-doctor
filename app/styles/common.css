@@ -1,0 +1,118 @@
+/*common.css*/
+.wrap{flex-wrap: wrap}
+
+/*Justify  and around*/
+.justify-lr{
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-justify-content:space-around;
+	-ms-flex-pack:distribute;
+	justify-content:space-around;	
+	-webkit-align-items: center;	
+	    -ms-flex-align: center;	
+	        align-items: center;
+}
+/*justify and between*/
+.justify-center-lr{
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	 -webkit-align-items: center;
+	     -ms-flex-align: center;
+	         align-items: center;
+}
+
+.justify-end{
+	display: flex;
+	justify-content: flex-end;
+}
+.align-center-right{
+	display:flex;
+	align-items: center;
+}
+/*accent color text  强调色*/
+.item .accent-text-color{
+	color:#33CD5F;
+}
+
+/*强调数字颜色*/
+.accent-number-color{
+	color:#E25B99;
+}
+/*item   text-indent首行缩进*/
+.item  .text-indent {
+	text-indent: 30px;
+}
+
+.item  .text-indent  > div{
+	padding:10px;
+	display: flex;
+	justify-content: center;
+}
+.item .pad-replate{
+	padding:0px;
+	font-size:14px;
+}
+
+.setting-footer{
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-items: flex-end;
+	    -ms-flex-align: end;
+	        align-items: flex-end;
+}
+.mine-info-my,.commenter,.news-from,.consent-agm{
+	color:rgba(0,0,0,.6);
+}
+
+/*@import url(./home.css);*/
+
+/*评论样式设置*/
+.commenter{
+	padding:10px 0px;
+	font-size: 16px;
+}
+.commenter > span,.new-from > span{
+	margin-right: 10px;
+}
+.commenter >span:last-child{
+	font-size: 14px;
+}
+/*新闻来源*/
+.news-from,.consent-agm{
+	font-size: 12px;
+}
+/*默认button的min-with 在苹果4\5中有问题  在这里修改最小宽度*/
+.button-min-width{
+	min-width: 100px;
+}
+
+/*协议*/
+.consent-agm{
+	border:0px;
+}
+/*相机*/
+.ion-android-camera{
+	font-size: 36px;
+	padding: 10px;
+}
+
+
+
+/*new_patient 按钮设置*/
+.patient-button > button{
+	min-width:55px;
+	margin-right: 10px;
+}
+
+
+/*image  min-width*/
+img.my-pictures{
+	width: 26px;
+	margin-right: 5px;
+}

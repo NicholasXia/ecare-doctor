@@ -1,0 +1,52 @@
+/*医生端首页css*/
+/*首页轮播图临时设定*/
+.home-lun .box img{
+	width: 100%;
+	height:200px;
+}
+
+/*新增患者数*/
+.new-bander-count{
+	color:#F9545E;
+	font-size: 22px;
+}
+
+/*功能按钮组*/
+.features-button  >  .button{
+	line-height: 30px;
+}
+.features-button > a > img{
+	width: 72px;
+}
+/*新闻动态时间*/
+
+
+/*新闻来源*/
+.home-news-feature :first-child{
+	color:#E25B99;
+	padding:10px;
+	border: 1px solid #E25B99;
+	border-radius: 20px;
+}
+.home-news-content span,.home-news-content div{
+	padding:5px 0px;
+
+}
+.home-news-title{
+	color:rgba(0,0,0,.8);
+}
+.home-news-from{
+	font-size: 12px;
+	color:rgba(0,0,0,.4);
+}
+
+/*底部二维码*/
+.home-qrcode .item{
+	text-align: center;
+}
+
+
+.home-feature-text,.home-feature-text > div{
+	font-size:13px;
+	color:rgba(0,0,0,.6);
+}
