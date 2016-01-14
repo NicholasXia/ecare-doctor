@@ -1,6 +1,11 @@
 <ion-view view-title="登陆" cache-view="false">
     <ion-header-bar class="bar-balanced">
         <h1 class="title">登陆</h1>
+        <div class="buttons">
+            <button ui-sref="sign_up" class="button button-balanced">注册</button>
+        </div>
+
+
     </ion-header-bar>
     <ion-content>
         <div class="list">
@@ -9,7 +14,7 @@
             </label>
             <label class="item item-input">
                 <input type="password" placeholder="密码">
-                <span style='margin-right:10px;'>忘记密码? </span>
+                <a ui-sref="forgot_pwd" class="button-pwd button button-balanced">忘记密码? </a>
             </label>
             <button class="button button-block button-balanced">
                 登陆

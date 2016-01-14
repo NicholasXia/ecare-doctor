@@ -1,0 +1,28 @@
+<ion-view view-title="发表心血管圈动态" cache-view="false">
+    <ion-header-bar class="bar-balanced">
+        <h1 class="title">发表心血管圈动态</h1>
+
+        <div class="buttons">
+            <button class="button button-balanced">发表</button>
+        </div>
+    </ion-header-bar>
+    <ion-content has-bouncing="true">
+        <div class="list card padding">
+
+                <textarea placeholder="这一刻的想法" class="textarea-height"></textarea>
+
+            <!--<i class='icon ion-android-camera'></i>-->
+            <form enctype="multipart/form-data" method="post" name="xinxuegRelease">
+                <input id="publishphoto"
+                       type="file"
+                       accept="image/*"
+                       multiple
+                       image="publishphoto"
+                       class="inputfile"
+                        />
+                <label for="publishphoto"></label>
+                <img ng-repeat="img in publishphoto" ng-src="{{img.url}}" type="{{img.file.type}}"/>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>

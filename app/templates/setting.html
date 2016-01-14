@@ -3,11 +3,14 @@
         <h1 class="title">设置</h1>
     </ion-header-bar>
     <ion-content>
-        <div class="list card">
-            <a href="" class='item  home-feature-in  justify-center-lr'>
+        <div class="list">
+            <a ui-sref="reset_pwd" class='item  home-feature-in  justify-center-lr'>
                 <div class='justify-lr my-span'><span class='commenter'>修改密码</span></div>
                 <div><img src="./images/shouyejinrujian.png" alt=""></div>
             </a>
+            <button class="button button-full button-balanced" ng-click="destroyU()">
+                退出登陆
+            </button>
         </div>
     </ion-content>
 </ion-view>

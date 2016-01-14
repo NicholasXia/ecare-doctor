@@ -1,5 +1,38 @@
 /*common.css*/
 .wrap{flex-wrap: wrap}
+.icon-size{font-size: 30px;}
+.textarea-height{height:300px;}
+.row-align{align-items: center;}
+.button-pwd{margin-right:10px;}
+.ion-record{ font-size: 10px; color:#ef473a; }
+#tabs-top > div{top:43px;}
+#tabs-top > .tab-nav.tabs{background-color: rgba(40,165,76,.3); color: #111;}
+.top-50{top:49px;}
+.features-button > .button{background-color: #fff;}
+.nounderlines{text-decoration: none;}
+.tab-item-active{  border-bottom: 2px solid #33CD5F; background-color:rgba(51,205,95,.2);}
+
+.patientdata-row > .row > .col {border:1px solid rgba(0,0,0,.4); font-size: 10px;}
+.record-point-parent{position: relative;padding: 5px;}
+.record-point{font-size: 10px;color:#F9545E; position: absolute; top:0px;right:0px;}
+
+
+.inputfile {/*width: 0.1px;height: 0.1px;*/opacity: 0;overflow: hidden; position: absolute;z-index: 99;}
+.inputfile + label {
+	font-size: 1.25em;
+	font-weight: 700;
+	display: inline-block;
+	background-image: url("../images/xiangji.png");
+	background-repeat: no-repeat;
+	background-size:contain;
+	height: 30px;
+	width: 100%;
+}
+.inputfile:focus + label,
+.inputfile + label:hover {
+	background-color: red;
+}
+
 
 /*Justify  and around*/
 .justify-lr{
@@ -7,8 +40,7 @@
 	display: -ms-flexbox;
 	display: flex;
 	-webkit-justify-content:space-around;
-	-ms-flex-pack:distribute;
-	justify-content:space-around;	
+	justify-content:space-around;
 	-webkit-align-items: center;	
 	    -ms-flex-align: center;	
 	        align-items: center;
@@ -106,8 +138,8 @@
 
 /*new_patient 按钮设置*/
 .patient-button > button{
-	min-width:55px;
-	margin-right: 10px;
+	min-width:45px;
+	margin-right: 5px;
 }
 
 
