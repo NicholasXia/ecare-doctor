@@ -10,13 +10,13 @@
     <ion-content>
         <div class="list">
             <label class="item item-input">
-                <input type="text" placeholder="手机号">
+                <input type="text" ng-model="signInMsg.username"  placeholder="手机号">
             </label>
             <label class="item item-input">
-                <input type="password" placeholder="密码">
+                <input type="password" ng-model="signInMsg.password"  placeholder="密码">
                 <a ui-sref="forgot_pwd" class="button-pwd button button-balanced">忘记密码? </a>
             </label>
-            <button class="button button-block button-balanced">
+            <button class="button button-block button-balanced"  ng-click="signIn()">
                 登陆
             </button>
         </div>

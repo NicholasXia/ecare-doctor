@@ -1,10 +1,21 @@
-angular.module('medicine', ['ionic'])
-
+angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services',  'medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
+    .constant('ionicLoadingConfig', {
+        template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>",/*正在加载中...*/
+        hideOnStateChange: true
+    })
+    .constant('SERVER', 'http://112.126.83.112:8080/hospital')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
         $ionicConfigProvider.navBar.alignTitle('center')
+        $ionicConfigProvider.views.maxCache(0);
         $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
     })
+
+    //.config(function ($ionicConfigProvider) {
+    //    $ionicConfigProvider.tabs.position('bottom')
+    //    $ionicConfigProvider.navBar.alignTitle('center')
+    //    $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
+    //})
 
     .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -19,6 +30,7 @@ angular.module('medicine', ['ionic'])
                 views: {
                     'home-tab': {
                         templateUrl: "templates/home.html",
+                        controller:'doctorHomeCtrl'
                     }
                 }
             })
@@ -79,12 +91,13 @@ angular.module('medicine', ['ionic'])
             .state('sign_in', {
                 url: "/sign_in",
                 templateUrl: "templates/sign_in.html",
-                //controller:'doctorSignInCtrl'
+                controller:'doctorSignInCtrl'
             })
             // 注册
             .state('sign_up', {
                 url: "/sign_up",
-                templateUrl: "templates/sign_up.html"
+                templateUrl: "templates/sign_up.html",
+                controller:'doctorSignUpCtrl'
             })
             //忘记密码
             .state('forgot_pwd', {

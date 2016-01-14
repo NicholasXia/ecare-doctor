@@ -4,13 +4,20 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <div class="list">
-            <div class="item">
-                <ul rn-carousel rn-carousel-auto-slide class="image" ng-if="carouselLists.length > 0"
-                    style="height:200px; width: 100%;">
-                    <li ng-repeat="item in carouselLists"><img ng-src={{item.coverImageUrl}}
-                                                               ng-click="goToActivity(item.h5Url)"/><span></span></li>
-                </ul>
-            </div>
+            <!--<div class="item">-->
+                <!--<ul rn-carousel rn-carousel-auto-slide class="image" ng-if="carouselLists.length > 0"-->
+                    <!--style="height:200px; width: 100%;">-->
+                    <!--<li ng-repeat="item in carouselLists">
+                    <img ng-src={{item.coverImageUrl}}ng-click="goToActivity(item.h5Url)"/>
+                    <span></span>
+                    </li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <ion-slide-box  ng-if="carouselLists.length > 0" ng-click="goToActivity(item.h5Url)">
+                <ion-slide ng-repeat="item in carouselLists">
+                    <div class="box blue"><img ng-src={{item.coverImageUrl}}  /></div>
+                </ion-slide>
+            </ion-slide-box>
             <div class="item item-text-wrap padding">
                 <div class="home-feature-text  justify-lr text-center">
                     <div>今日新增患者<span class="new-bander-count">2</span>人</div>
