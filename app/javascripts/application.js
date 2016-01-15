@@ -47,7 +47,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/mine",
                 views: {
                     'mine-tab': {
-                        templateUrl: "templates/mine.html"
+                        templateUrl: "templates/mine.html",
+                        controller: "doctorEndMineCtrl"
                     }
                 }
             })

@@ -48,7 +48,7 @@ angular.module('medicine.controllers', [])
         }
         $scope.signUp = function () {
             var user = {
-                registerType: 2,
+                registerType: 1,
                 mobile: $scope.account.phoneNum,
                 password: $scope.account.password,
                 verifycode: $scope.account.verCode
@@ -67,7 +67,7 @@ angular.module('medicine.controllers', [])
                 })
                 $timeout(function () {
                     popup.close()
-                    $window.location.href = '#/signup'
+                    $window.location.href = '#/sign_in'
                 }, 3000)
             })
         }
@@ -122,4 +122,14 @@ angular.module('medicine.controllers', [])
         getCarouselList.query({id:$stateParams.id},function(data){
             console.log(data)
         })
+    }])
+    .controller('doctorEndMineCtrl', ['$scope', 'checkLogin','$window','$ionicPopup',function ($scope,checkLogin,$window,$ionicPopup) {
+        $scope.ischeck = !!checkLogin.check()
+        $scope.letugo = function(){
+            if ($scope.ischeck){
+                $window.location.href = '#/mine_info'
+            }else{
+                $window.location.href = '#/sign_in'
+            }
+        }
     }])
