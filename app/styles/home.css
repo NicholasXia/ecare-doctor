@@ -21,14 +21,19 @@
 /*新闻动态时间*/
 
 
-/*新闻来源*/
+/*医疗动态数据*/
 .fl{float: left;}
 .fr{float: right;}
-.activity .header, .activity .footer{
+.activity{margin-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,.1)}
+.activity:last-child{border-bottom: none;}
+.activity .header div:first-child{border:1px solid #FF618F;border-radius: 30px; color:#FF618F;}
+.activity .header, .activity .footer ,.init{
 	overflow: hidden;
-	padding: 0 10px;
+	padding: 10px 0px;
 }
 .init{overflow: visible !important; text-overflow: clip !important; white-space: normal !important;}
+.activity .footer{color:rgba(0,0,0,.3);font-size: 10px;}
+.activity .footer span{margin-right: 10px;}
 
 /*底部二维码*/
 .home-qrcode{

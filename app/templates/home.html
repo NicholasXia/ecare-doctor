@@ -25,7 +25,7 @@
                     <a class="button" ui-sref='two'><img src="./images/dongtai.png" alt="">
 
                         <p>诊后心得</p></a>
-                    <a class="button" ui-sref='analysis' ng-click="goLogin()">
+                    <a class="button" ng-click="goLogin()">
                         <img src="./images/jingxi.png" alt="">
                         <p>病历精析</p>
                     </a>
@@ -51,19 +51,20 @@
                 </a>
 
             </div>
-                <div class='item'>
-                <div class='avtivity' ng-repeat="item in data" ui-sref="medical_detail({id:item.id})">
-                    <div class="header clearfix">
-                        <div ng-if="item.category == 1" class="fl">医疗动态</div>
+                <div class='item pad-replate'>
+
+                <div class='activity' ng-repeat="item in data" ui-sref="medical_detail({id:item.id})">
+                    <div class="header clearfix padding">
+                        <div ng-if="item.category == 1" class="fl padding">医疗动态</div>
                         <div class="fr">{{item.postTime}}</div>
                     </div>
-                    <div class="content">
-                        <h3>{{item.title}}</h3>
-                        <p class="init">{{item.content}}</p>
+                    <div class="content padding">
+                        <h2>{{item.title}}</h2>
+                        <p class="init text-indent">{{item.content}}</p>
                     </div>
                     <div class="footer clearfix">
-                        <span class="fl">来源:</span>
-                        <span class="fr">{{item.resource}}</span>
+                        <span class="fl">来源 :</span>
+                        <span> {{item.resource}} </span>
                     </div>
                 </div>
             </div>
