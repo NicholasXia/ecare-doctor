@@ -113,7 +113,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             //设置
             .state('setting', {
                 url: "/setting",
-                templateUrl: "templates/setting.html"
+                templateUrl: "templates/setting.html",
+                controller: "doctorEndSettingCtrl"
             })
             // my collection
             .state('mycollection', {
@@ -143,13 +144,14 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
 
             //医疗动态
             .state('medical', {
-                url: "/medical",
+                url: "/medical/:id",
                 templateUrl: "templates/medical.html"
             })
             //医疗动态详情
             .state('medical_detail', {
-                url: "/medical_detail",
-                templateUrl: "templates/medical_detail.html"
+                url: "/medical_detail/:id",
+                templateUrl: "templates/medical_detail.html",
+                controller: "doctorEndMedicineDetailCtrl"
             })
             //心血管圈
             .state('xinxueg', {

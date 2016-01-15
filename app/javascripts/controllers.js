@@ -1,16 +1,24 @@
 angular.module('medicine.controllers', [])
     .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', function ($scope, $window, getCarouselList, currentUser,healthLecture) {
-        getCarouselList.query({type:2,category:1},function (data) {
-            $scope.carouselLists = data
+        getCarouselList.query({type:1,category:1},function (data) {
+            $scope.data = data
+            console.log($scope.data)
         })
         healthLecture.query(function(data){
             $scope.healthLecture = data.heart_knowledge
-            console.log($scope.healthLecture)
         })
         $scope.goToActivity = function (activity) {
             $window.location.href = activity
         }
         $scope.isLogin = currentUser.hasAuthToken()
+
+        $scope.goLogin = function(){
+            if (!$scope.isLogin){
+                $window.location.href = '#/sign_in'
+            }else{
+                $window.location.href = '#/analysis'
+            }
+        }
     }])
 
 //医生注册
@@ -89,4 +97,29 @@ angular.module('medicine.controllers', [])
                 }
             })
         }
+    }])
+    .controller('doctorEndSettingCtrl', ['$scope', 'currentUser', '$window', '$ionicPopup', '$timeout', function ($scope, currentUser, $window, $ionicPopup, $timeout) {
+        $scope.isLogin = currentUser.hasAuthToken()
+        $scope.goLogin = function(){
+            $scope.isLogin = currentUser.hasAuthToken()
+            if (!$scope.isLogin){
+                $window.location.href = '#/sigin_in'
+            }
+        }
+        $scope.destroyU = function () {
+            currentUser.destroy()
+            var popup = $ionicPopup.alert({
+                title: '您已经注销',
+                template: '3秒后自动进入主页'
+            })
+            $timeout(function () {
+                popup.close()
+                $window.location.href = '#/'
+            }, 3000)
+        }
+    }])
+    .controller('doctorEndMedicineDetailCtrl',['$scope','getCarouselList','$stateParams',function($scope, getCarouselList, $stateParams){
+        getCarouselList.query({id:$stateParams.id},function(data){
+            console.log(data)
+        })
     }])

@@ -22,23 +22,13 @@
 
 
 /*新闻来源*/
-.home-news-feature :first-child{
-	color:#E25B99;
-	padding:10px;
-	border: 1px solid #E25B99;
-	border-radius: 20px;
+.fl{float: left;}
+.fr{float: right;}
+.activity .header, .activity .footer{
+	overflow: hidden;
+	padding: 0 10px;
 }
-.home-news-content span,.home-news-content div{
-	padding:5px 0px;
-
-}
-.home-news-title{
-	color:rgba(0,0,0,.8);
-}
-.home-news-from{
-	font-size: 12px;
-	color:rgba(0,0,0,.4);
-}
+.init{overflow: visible !important; text-overflow: clip !important; white-space: normal !important;}
 
 /*底部二维码*/
 .home-qrcode{
