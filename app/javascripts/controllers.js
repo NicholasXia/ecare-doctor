@@ -73,11 +73,13 @@ angular.module('medicine.controllers', [])
         }
     }])
 //医生登陆
-    .controller('doctorSignInCtrl', ['$scope', 'signUp', '$window', '$ionicPopup', '$timeout', 'currentUser', function ($scope, signUp, $window, $ionicPopup, $timeout, currentUser) {
+    .controller('doctorSignInCtrl', ['$scope', 'signUp', '$window', '$ionicPopup', '$timeout', 'currentUser',function ($scope, signUp, $window, $ionicPopup, $timeout, currentUser) {
         $scope.signInMsg = {'username': '', 'password': ''}
         $scope.signIn = function () {
             signUp.save({}, $scope.signInMsg, function (data) {
+                console.log(data)
                 currentUser.setAuthToken(data.accessToken)
+            /*    currentUser.setDoctorCode(data.user.doctorNo)*/
                 if (data.error) {
                     $ionicPopup.alert({
                         title: '错误提示',
@@ -146,10 +148,6 @@ angular.module('medicine.controllers', [])
 
 
     }])
-
-    //.controller('changeMsgCtrl', ['$scope', 'currentUser', '$window', '$ionicPopup', '$timeout','updateMsg', function ($scope, currentUser, $window, $ionicPopup, $timeout,changeName) {
-
-
     .controller('changeCtrl',['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
         $scope.patientData = {
             birthday: '',
