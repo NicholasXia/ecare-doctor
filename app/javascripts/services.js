@@ -1,5 +1,6 @@
 angular.module('medicine.services', ['ngResource'])
     .constant('CURRENT_USER', 'currentUser')
+    .constant('DOCTOR_CODE', 'doctorCode')
     /*轮播*/
     .factory('getCarouselList', ['$resource', 'SERVER',function ($resource,SERVER) {
         return $resource(SERVER +'/back/article/list/:type/:category', {}, {
@@ -64,7 +65,7 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
-    .factory('currentUser', ['localStorageService', 'CURRENT_USER', function (localStorageService, CURRENT_USER) {
+    .factory('currentUser', ['localStorageService', 'CURRENT_USER', 'DOCTOR_CODE', function (localStorageService, CURRENT_USER, DOCTOR_CODE) {
         var currentUser = {}
         currentUser.getAuthToken = function () {
             return localStorageService.get(CURRENT_USER)
@@ -77,6 +78,12 @@ angular.module('medicine.services', ['ngResource'])
         }
         currentUser.destroy = function () {
             localStorageService.remove(CURRENT_USER)
+        }
+        currentUser.setDoctorCode = function(doctorCode){
+            localStorageService.set(DOCTOR_CODE, doctorCode)
+        }
+        currentUser.getDoctorCode = function(){
+            localStorageService.get(DOCTOR_CODE)
         }
         return currentUser
     }])
