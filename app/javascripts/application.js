@@ -3,7 +3,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>",/*正在加载中...*/
         hideOnStateChange: true
     })
-    .constant('SERVER', 'http://112.126.83.112:8080/hospital')
+    .constant('SERVER', 'http://123.56.184.184:8080/hospital')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
         $ionicConfigProvider.navBar.alignTitle('center')
@@ -48,7 +48,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'mine-tab': {
                         templateUrl: "templates/mine.html",
-                        controller: "doctorEndMineCtrl"
+                        controller: 'doctorEndMineCtrl'
                     }
                 }
             })
@@ -130,7 +130,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             //个人资料
             .state('mine_info', {
                 url: "/mine_info",
-                templateUrl: "templates/mine_info.html"
+                templateUrl: "templates/mine_info.html",
+                controller:'mineInfoCtrl'
             })
             //病例精析
             .state('analysis', {

@@ -123,23 +123,38 @@ angular.module('medicine.controllers', [])
             console.log(data)
         })
     }])
-    .controller('doctorEndMineCtrl', ['$scope', 'checkLogin','$window','$ionicPopup',function ($scope,checkLogin,$window,$ionicPopup) {
+
+    .controller('doctorEndMineCtrl', ['$scope','mineInfo','currentUser','checkLogin','$window','$ionicPopup',function ($scope,mineInfo,currentUser,checkLogin,$window,$ionicPopup) {
+
         $scope.ischeck = !!checkLogin.check()
+
+        var accesstoken = currentUser.getAuthToken()
+        mineInfo.query({accessToken:accesstoken},function(data){
+            $scope.infodata = data
+            console.log(data)
+        })
+
         $scope.letugo = function(){
-            if ($scope.ischeck){
+
+            if (accesstoken){
                 $window.location.href = '#/mine_info'
             }else{
                 $window.location.href = '#/sign_in'
             }
         }
+
+
     }])
-    .controller('changeCtrl',['$scope',function($scope){
+
+    //.controller('changeMsgCtrl', ['$scope', 'currentUser', '$window', '$ionicPopup', '$timeout','updateMsg', function ($scope, currentUser, $window, $ionicPopup, $timeout,changeName) {
+
+
+    .controller('changeCtrl',['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
         $scope.patientData = {
             birthday: '',
             weight: '',
             name: '',
-            phone: '',
-            gender: ['男', '女']
+            agender:''
         }
 
         var monthList = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
@@ -172,4 +187,38 @@ angular.module('medicine.controllers', [])
             dateFormat: 'yyyy-MM-dd',
             closeOnSelect: false,
         };
+
+        $scope.saveMsg = function () {
+            var saveMsg = {
+                accessToken: currentUser.getAuthToken(),
+                name: $scope.patientData.name,
+                birthday: $scope.patientData.birthday,
+                agender: $scope.patientData.agender
+            }
+            console.log(saveMsg);
+            updateMsg.save({}, saveMsg, function (data) {
+                if (data.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '您的信息修改成功',
+                        template: '3秒后自动进入主页'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                        $window.location.href = '#/mine_info'
+                    }, 3000)
+                }
+                else {
+                    $window.location.href = '#/'
+                }
+            })
+        }
+    }])
+
+    .controller('mineInfoCtrl', ['$scope', '$window', 'mineInfo', 'currentUser', function ($scope, $window, mineInfo, currentUser) {
+        var accesstoken = currentUser.getAuthToken()
+        mineInfo.query({accessToken:accesstoken},function(data){
+            $scope.infodata = data
+            console.log(data)
+        })
+
     }])

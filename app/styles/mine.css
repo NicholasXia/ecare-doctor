@@ -10,10 +10,16 @@
 	font-size: 14px;
 	padding: 1px 0px;
 }
-.no-info{
+.no-verify{
 	padding:1px;
 	margin-left: 4px;
 	background-color: rgba(255,255,255,.6);
+}
+
+.yes-verify{
+	padding:1px;
+	margin-left: 4px;
+	background-color: #E25B99;
 }
 .add-info{
 	display: flex;
@@ -21,7 +27,7 @@
 }
 .add-info > span{
 	padding: 10px;
-	font-size: 14px;	
+	font-size: 14px;
 }
 
 .my-span > span{

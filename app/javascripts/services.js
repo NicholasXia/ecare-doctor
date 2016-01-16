@@ -80,6 +80,8 @@ angular.module('medicine.services', ['ngResource'])
         }
         return currentUser
     }])
+
+
     .factory('checkLogin',['currentUser',function(currentUser){
         var checkLogin = {}
         checkLogin.check = function(){
@@ -137,5 +139,28 @@ angular.module('medicine.services', ['ngResource'])
             query:{
                 method: 'GET'
             }
+        })
+    }])
+
+    .factory('updateMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/profile/update', {
+            accessToken: "@accessToken",
+            name: "@name",
+            agender: "@agender",
+            birthday: "@birthday",
+        }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+    .factory('patientProfile',['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/docotor/profile',{},{
+            query:{method: 'GET'}
+        })
+    }])
+    .factory('mineInfo',['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/doctor/profile',{},{
+            query:{method: 'GET'}
         })
     }])

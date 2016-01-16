@@ -2,12 +2,15 @@
     <ion-header-bar class="bar-balanced">
         <h1 class="title">个人资料</h1>
     </ion-header-bar>
-    <ion-content>
+    <ion-content >
+        <div>
         <div class="list card mine-info-my">
-            <a href="#/changeicon" class='item  home-feature-in   mine-info-image  justify-center-lr'>
+            <a href="#/changeicon" class='item home-feature-in   mine-info-image  justify-center-lr'>
                 <div class='justify-lr my-span'><span>头像</span></div>
-                <div class='align-center-right'><img src="./images/wode.png" alt=""> <img
-                        src="./images/shouyejinrujian.png" alt=""></div>
+                <div class='align-center-right'>
+                    <img src="./images/wode.png" alt="">
+                    <img src="./images/shouyejinrujian.png" alt="">
+                </div>
             </a>
         </div>
         <div class="list card mine-info-my" ui-sref="changerz">
@@ -16,20 +19,24 @@
                 <div class='align-center-right'><span>未认证</span><img src="./images/shouyejinrujian.png" alt=""></div>
             </a>
         </div>
-        <div class="list card mine-info-my">
+        <div class="list card mine-info-my" >
             <a class='item  home-feature-in  justify-center-lr' ui-sref="changename">
                 <div class='justify-lr my-span'><span>姓名</span></div>
-                <div class='justify-lr my-span'><span>abc</span></div>
+                <div class='justify-lr my-span'><span>{{infodata.name}}</span></div>
                 <div><img src="./images/shouyejinrujian.png" alt=""></div>
             </a>
             <a class='item  home-feature-in  justify-center-lr' ui-sref="changesex">
                 <div class='justify-lr my-span'><span>性别</span></div>
-                <div class='justify-lr my-span'><span>男</span></div>
+
+                <div class='justify-lr my-span'>
+                    <span ng-if="infodata.agender == 1">男</span>
+                    <span ng-if="infodata.agender == 2">女</span>
+                </div>
                 <div><img src="./images/shouyejinrujian.png" alt=""></div>
             </a>
             <a class='item  home-feature-in  justify-center-lr' ui-sref="changebirth">
                 <div class='justify-lr my-span'><span>出生日期</span></div>
-                <div class='justify-lr my-span'><span>2015-3-4</span></div>
+                <div class='justify-lr my-span'><span>{{infodata.birthday}}</span></div>
                 <div><img src="./images/shouyejinrujian.png" alt=""></div>
             </a>
         </div>
@@ -49,6 +56,8 @@
                 <div class='justify-lr my-span'><span>心内科</span></div>
                 <div><img src="./images/shouyejinrujian.png" alt=""></div>
             </a>
+        </div>
+
         </div>
     </ion-content>
 </ion-view>
