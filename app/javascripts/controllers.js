@@ -129,13 +129,14 @@ angular.module('medicine.controllers', [])
         $scope.ischeck = !!checkLogin.check()
 
         var accesstoken = currentUser.getAuthToken()
+        $scope.accesstoken = accesstoken
         mineInfo.query({accessToken:accesstoken},function(data){
             $scope.infodata = data
             console.log(data)
         })
 
-        $scope.letugo = function(){
 
+        $scope.letugo = function(){
             if (accesstoken){
                 $window.location.href = '#/mine_info'
             }else{
