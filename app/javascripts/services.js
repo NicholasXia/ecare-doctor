@@ -2,8 +2,8 @@ angular.module('medicine.services', ['ngResource'])
     .constant('CURRENT_USER', 'currentUser')
     .constant('DOCTOR_CODE', 'doctorCode')
     /*轮播*/
-    .factory('getCarouselList', ['$resource', 'SERVER',function ($resource,SERVER) {
-        return $resource(SERVER +'/back/article/list/:type/:category', {}, {
+    .factory('getCarouselList', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/patient/article/list/:type/:category', {}, {
             query: {
                 method: 'GET',
                 isArray: true
@@ -14,12 +14,12 @@ angular.module('medicine.services', ['ngResource'])
 
     /*首页新闻动态内容获取*/
     //未定义
-    .factory('getIndexMedical',['$resource','SERVER',function($resource,SERVER){
-        //接口未找到
-    }])
+    //.factory('getIndexMedical',['$resource','SERVER',function($resource,SERVER){
+    //    //接口未找到
+    //}])
 
 
-    .factory('getVerificationCode', ['$resource', 'SERVER', function ($resource,SERVER) {
+    .factory('getVerificationCode', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/u/verificationCode', {mobile: '@mobile'}, {
             query: {
                 method: 'GET',
@@ -79,19 +79,19 @@ angular.module('medicine.services', ['ngResource'])
         currentUser.destroy = function () {
             localStorageService.remove(CURRENT_USER)
         }
-        currentUser.setDoctorCode = function(doctorCode){
+        currentUser.setDoctorCode = function (doctorCode) {
             localStorageService.set(DOCTOR_CODE, doctorCode)
         }
-        currentUser.getDoctorCode = function(){
+        currentUser.getDoctorCode = function () {
             localStorageService.get(DOCTOR_CODE)
         }
         return currentUser
     }])
 
 
-    .factory('checkLogin',['currentUser',function(currentUser){
+    .factory('checkLogin', ['currentUser', function (currentUser) {
         var checkLogin = {}
-        checkLogin.check = function(){
+        checkLogin.check = function () {
             return currentUser.hasAuthToken()
         }
         return checkLogin
@@ -120,30 +120,38 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
-    .factory('threeKiller',['$resource', 'SERVER', function($resource, SERVER){
-        return $resource(SERVER + '/patient/ill/articles',{},{
-            get:{
+    .factory('threeKiller', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/patient/ill/articles', {}, {
+            get: {
                 method: 'GET'
             }
         })
     }])
-    .factory('addFeedback',['$resource', 'SERVER', function($resource, SERVER){
-        return $resource(SERVER + '/back/feedback/add',{content:'@content',accessToken:'@accessToken',contact:'@contact'},{
-            save:{
+    .factory('addFeedback', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/back/feedback/add', {
+            content: '@content',
+            accessToken: '@accessToken',
+            contact: '@contact'
+        }, {
+            save: {
                 method: 'POST'
             }
         })
     }])
-    .factory('publishdiscover',['$resource', 'SERVER', function($resource, SERVER){
-        return $resource(SERVER + '/patient/discovery/add',{imageBase64s:'@imageBase64s',content:'@content',accessToken:'@accessToken'},{
-            save:{
+    .factory('publishdiscover', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/patient/discovery/add', {
+            imageBase64s: '@imageBase64s',
+            content: '@content',
+            accessToken: '@accessToken'
+        }, {
+            save: {
                 method: 'POST'
             }
         })
     }])
-    .factory('healthLecture', ['$resource', 'SERVER', function($resource, SERVER){
-        return $resource(SERVER + '/patient/saveHeart/lecture',{},{
-            query:{
+    .factory('healthLecture', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/patient/saveHeart/lecture', {}, {
+            query: {
                 method: 'GET'
             }
         })
@@ -161,13 +169,90 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
-    .factory('patientProfile',['$resource', 'SERVER', function($resource, SERVER){
-        return $resource(SERVER + '/docotor/profile',{},{
-            query:{method: 'GET'}
+    .factory('patientProfile', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/docotor/profile', {}, {
+            query: {method: 'GET'}
         })
     }])
-    .factory('mineInfo',['$resource', 'SERVER', function($resource, SERVER){
-        return $resource(SERVER + '/doctor/profile',{},{
-            query:{method: 'GET'}
+    .factory('mineInfo', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/profile', {}, {
+            query: {method: 'GET'}
+        })
+    }])
+
+    .factory('analysisList', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/caseAnalysis/list', {}, {
+            query: {
+                method: 'GET',
+                isArray: true
+            }
+        })
+    }])
+    .factory('analysisDetail', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/caseAnalysis/detail/:id', {}, {
+            query: {
+                method: 'GET',
+            }
+        })
+    }])
+    .factory('analysisRemark', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/caseAnalysis/remark', {
+            accessToken: "@accessToken",
+            caseId: "@caseId",
+            content: "@content",
+        }, {
+            save: {
+                method: 'POST',
+                params: {}
+            }
+        })
+    }])
+
+//收藏
+    .factory('collection', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/caseAnalysis/collection', {
+            accessToken: "@accessToken",
+            caseId: "@caseId",
+        }, {
+            save: {
+                method: 'POST',
+                params: {}
+            }
+        })
+    }])
+    //收藏列表
+    .factory('collectionList', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/caseAnalysis/collection/list', {}, {
+            accessToken: "@accessToken",
+            caseId: "@caseId",
+        }, {
+            query: {
+                method: 'GET'
+            }
+        })
+    }])
+
+
+    .factory('Detail', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/patient/article/detail/:id', {}, {
+            query: {
+                method: 'GET'
+            }
+        })
+    }])
+
+    .factory('xinxueg', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/heartcircle/list', {}, {
+            query: {
+                method: 'GET',
+                isArray: true
+            }
+        })
+    }])
+    .factory('xinxuegDetail', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/heartcircle/detail/:id', {}, {
+            query: {
+                method: 'GET'
+            }
         })
     }])

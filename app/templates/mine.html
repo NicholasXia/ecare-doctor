@@ -8,9 +8,9 @@
             <div class="item justify-center-lr pad-replate item-balanced">
                 <div class='justify-center-lr'>
                     <img src="./images/morentouxiang.png" class='mine-image'>
-                    <div class='mine-info'>
-                        <div class='justify-center-lr'>
 
+                    <div class='mine-info' ng-if="accesstoken">
+                        <div class='justify-center-lr'>
                             <span ng-if="infodata.name">{{infodata.name}}</span>
                             <span ng-if="!infodata.name">未命名</span>
                             <span class='no-verify' ng-if="infodata.verifyed == 0">未认证</span>
@@ -20,45 +20,52 @@
                         <div ng-if="infodata.hospital">{{infodata.hospital}}</div>
                         <div><img src="./images/jifen.png" class='jifen-img' alt=""> 0</div>
                     </div>
+                    <div class='mine-info' ng-if="!accesstoken">
+                        <button class="button" ui-sref="sign_in">登陆</button>
+                        <button class="button" ui-sref="sign_up">注册</button>
+                    </div>
                 </div>
                 <div>
-                    <div class='add-info' ng-click="letugo()"><span>补充资料</span><img src="./images/baise.png" alt=""></div>
+                    <div class='add-info' ng-click="letugo()"><span ng-if="accesstoken">补充资料</span><img
+                            src="./images/baise.png" alt=""></div>
+
                 </div>
             </div>
 
             <div class="list">
-                <div ui-sref='myqrcode' class='home-feature-in item justify-center-lr'>
+                <div ng-click="myQrCode()" class='home-feature-in item justify-center-lr'>
                     <div class='justify-lr my-span'><img src="./images/wodeerweima.png" alt=""><span>我的二维码</span></div>
                     <div><img src="./images/shouyejinrujian.png" alt=""></div>
                 </div>
             </div>
 
         </div>
-            <div class="list">
+        <div class="list">
 
-                <div ui-sref='two' class='item  home-feature-in  justify-center-lr'>
-                    <div class='justify-lr my-span'><img src="./images/xinde.png" alt=""><span>心得笔记</span></div>
-                    <div><img src="./images/shouyejinrujian.png" alt=""></div>
-                </div>
-                <div ui-sref='mycollection' class='item  home-feature-in  justify-center-lr'>
-                    <div class='justify-lr my-span'><img src="./images/shoucang.png" alt=""><span>我的收藏</span></div>
-                    <div><img src="./images/shouyejinrujian.png" alt=""></div>
-                </div>
-
+            <div ui-sref='two' class='item  home-feature-in  justify-center-lr'>
+                <div class='justify-lr my-span'><img src="./images/xinde.png" alt=""><span>心得笔记</span></div>
+                <div><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
-            <div class="list">
+            <div ng-click="myCollection()" class='item  home-feature-in  justify-center-lr'>
+                <div class='justify-lr my-span'><img src="./images/shoucang.png" alt=""><span>我的收藏</span></div>
+                <div><img src="./images/shouyejinrujian.png" alt=""></div>
+            </div>
+
+        </div>
+        <div class="list">
 
             <div ui-sref='setting' class='item  home-feature-in  justify-center-lr'>
                 <div class='justify-lr my-span'><img src="./images/shezhi.png" alt=""><span>设置</span></div>
                 <div><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
+
             <div ui-sref='feedback' class='item  home-feature-in  justify-center-lr'>
                 <div class='justify-lr my-span'><img src="./images/yijian.png" alt=""><span>意见反馈</span></div>
                 <div><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
 
-            </div>
-            <div class="list">
+        </div>
+        <div class="list">
 
             <div ui-sref="about" class='item  home-feature-in  justify-center-lr'>
                 <div class='justify-lr my-span'><img src="./images/women.png" alt=""><span>关于我们</span></div>
@@ -68,7 +75,7 @@
                 <div class='justify-lr my-span'><img src="./images/guize.png" alt=""><span>积分规则</span></div>
                 <div><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
-            </div>
+        </div>
 
     </ion-content>
 </ion-view>

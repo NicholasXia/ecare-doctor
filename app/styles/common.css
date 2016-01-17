@@ -1,152 +1,227 @@
 /*common.css*/
-.wrap{flex-wrap: wrap}
-.icon-size{font-size: 30px;}
-.textarea-height{height:300px;}
-.row-align{align-items: center;}
-.button-pwd{margin-right:10px;}
-.ion-record{ font-size: 10px; color:#ef473a; }
-#tabs-top > div{top:43px;}
-#tabs-top > .tab-nav.tabs{background-color: rgba(40,165,76,.3); color: #111;}
-.top-50{top:49px;}
-.features-button > .button{background-color: #fff;}
-.nounderlines{text-decoration: none;}
-.tab-item-active{  border-bottom: 2px solid #33CD5F; background-color:rgba(51,205,95,.2);}
-
-.patientdata-row > .row > .col {border:1px solid rgba(0,0,0,.4); font-size: 10px;}
-.record-point-parent{position: relative;padding: 5px;}
-.record-point{font-size: 10px;color:#F9545E; position: absolute; top:0px;right:0px;}
-
-
-.inputfile {/*width: 0.1px;height: 0.1px;*/opacity: 0;overflow: hidden; position: absolute;z-index: 99;}
-.inputfile + label {
-	font-size: 1.25em;
-	font-weight: 700;
-	display: inline-block;
-	background-image: url("../images/xiangji.png");
-	background-repeat: no-repeat;
-	background-size:contain;
-	height: 30px;
-	width: 100%;
+.wrap {
+    flex-wrap: wrap
 }
+
+.icon-size {
+    font-size: 30px;
+}
+
+.textarea-height {
+    height: 300px;
+    width: 100%
+}
+
+.row-align {
+    align-items: center;
+}
+
+.button-pwd {
+    margin-right: 10px;
+}
+
+.ion-record {
+    font-size: 10px;
+    color: #ef473a;
+}
+
+#tabs-top > div {
+    top: 43px;
+}
+
+#tabs-top > .tab-nav.tabs {
+    background-color: rgba(40, 165, 76, .3);
+    color: #111;
+}
+
+.top-50 {
+    top: 49px;
+}
+
+.features-button > .button {
+    background-color: #fff;
+}
+
+.nounderlines {
+    text-decoration: none;
+}
+
+.tab-item-active {
+    border-bottom: 2px solid #33CD5F;
+    background-color: rgba(51, 205, 95, .2);
+}
+
+.patientdata-row > .row > .col {
+    border: 1px solid rgba(0, 0, 0, .4);
+    font-size: 10px;
+}
+
+.record-point-parent {
+    position: relative;
+    padding: 5px;
+}
+
+.record-point {
+    font-size: 10px;
+    color: #F9545E;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.inputfile {
+    /*width: 0.1px;height: 0.1px;*/
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 99;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    display: inline-block;
+    background-image: url("../images/xiangji.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 30px;
+    width: 100%;
+}
+
 .inputfile:focus + label,
 .inputfile + label:hover {
-	background-color: red;
+    background-color: red;
 }
-
 
 /*Justify  and around*/
-.justify-lr{
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-justify-content:space-around;
-	justify-content:space-around;
-	-webkit-align-items: center;
-	    -ms-flex-align: center;
-	        align-items: center;
+.justify-lr {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
+
 /*justify and between*/
-.justify-center-lr{
+.justify-center-lr {
 
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-justify-content: space-between;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
-	 -webkit-align-items: center;
-	     -ms-flex-align: center;
-	         align-items: center;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
-.justify-end{
-	display: flex;
-	justify-content: flex-end;
+.justify-end {
+    display: flex;
+    justify-content: flex-end;
 }
-.align-center-right{
-	display:flex;
-	align-items: center;
+
+.align-center-right {
+    display: flex;
+    align-items: center;
 }
+
 /*accent color text  强调色*/
-.item .accent-text-color{
-	color:#33CD5F;
+.item .accent-text-color {
+    color: #33CD5F;
 }
 
 /*强调数字颜色*/
-.accent-number-color{
-	color:#E25B99;
+.accent-number-color {
+    color: #E25B99;
 }
+
 /*item   text-indent首行缩进*/
-.item  .text-indent {
-	text-indent: 30px;
+.item .text-indent {
+    text-indent: 30px;
 }
 
-.item  .text-indent  > div{
-	padding:10px;
-	display: flex;
-	justify-content: center;
-}
-.item .pad-replate{
-	padding:0px;
-	font-size:14px;
+.item .text-indent > div {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
 }
 
-.setting-footer{
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-align-items: flex-end;
-	    -ms-flex-align: end;
-	        align-items: flex-end;
+.item .pad-replate {
+    padding: 0px;
+    font-size: 14px;
 }
-.mine-info-my,.commenter,.news-from,.consent-agm{
-	color:rgba(0,0,0,.6);
+
+.setting-footer {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
+
+.mine-info-my, .commenter, .news-from, .consent-agm {
+    color: rgba(0, 0, 0, .6);
 }
 
 /*@import url(./home.css);*/
 
 /*评论样式设置*/
-.commenter{
-	padding:10px 0px;
-	font-size: 16px;
+.commenter {
+    padding: 10px 0px;
+    font-size: 16px;
 }
-.commenter > span,.new-from > span{
-	margin-right: 10px;
+
+.commenter span, .new-from span {
+    margin-right: 10px;
 }
-.commenter >span:last-child{
-	font-size: 14px;
+
+.commenter span:last-child {
+    font-size: 14px;
 }
+
 /*新闻来源*/
-.news-from,.consent-agm{
-	font-size: 12px;
+.news-from, .consent-agm {
+    font-size: 12px;
 }
+
 /*默认button的min-with 在苹果4\5中有问题  在这里修改最小宽度*/
-.button-min-width{
-	min-width: 100px;
+.button-min-width {
+    min-width: 100px;
 }
 
 /*协议*/
-.consent-agm{
-	border:0px;
+.consent-agm {
+    border: 0px;
 }
+
 /*相机*/
-.ion-android-camera{
-	font-size: 36px;
-	padding: 10px;
+.ion-android-camera {
+    font-size: 36px;
+    padding: 10px;
 }
-
-
 
 /*new_patient 按钮设置*/
-.patient-button > button{
-	min-width:45px;
-	margin-right: 5px;
+.patient-button > button {
+    min-width: 45px;
+    margin-right: 5px;
 }
-
 
 /*image  min-width*/
-img.my-pictures{
-	width: 26px;
-	margin-right: 5px;
+img.my-pictures {
+    width: 26px;
+    margin-right: 5px;
 }
 
+.textent {
+    color: rgba(0, 0, 0, .5);
+    padding-bottom: 20px
+}
+
+.textcolor {
+    color: rgba(0, 0, 0, .7);
+}

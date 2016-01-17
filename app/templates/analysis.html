@@ -4,36 +4,20 @@
     </ion-header-bar>
     <ion-content>
         <div class="list analysis">
-            <a class="item item-avatar" ui-sref='analysis_detail'>
+            <a class="item item-avatar" ng-repeat="item in analysislist" ui-sref='analysis_detail({id:item.id})'>
                 <img src="./images/wode.png">
 
                 <div class='analysis-list-title '>
                     <div>
                         <p class='list-head'>金牌医生</p>
 
-                        <p>北京协和医院 张医生</p>
+                        <p>{{item.hospital}} {{item.doctorName}}</p>
                     </div>
-                    <span>35分钟前</span>
+                    <span>{{item.postTime}}</span>
                 </div>
                 <div class="">
-                    <img src="./images/zhichi.png">
-                </div>
-            </a>
-
-            <a class="item item-avatar">
-                <img src="./images/wode.png">
-
-                <div class='analysis-list-title'>
-                    <div>
-                        <p class='list-head'>金牌医生</p>
-
-                        <p>北京协和医院 张医生</p>
-                    </div>
-                    <span>2016-3-2</span>
-                </div>
-                <div class="">
-                    <p>感冒发烧流鼻涕.</p>
-                    <img src="./images/zhichi.png">
+                    <h2>{{item.title}}</h2>
+                    <img src={{item.illCaseImage}} width="100vh">
                 </div>
             </a>
         </div>
