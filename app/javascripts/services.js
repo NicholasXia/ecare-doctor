@@ -222,9 +222,8 @@ angular.module('medicine.services', ['ngResource'])
     }])
     //收藏列表
     .factory('collectionList', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/doctor/caseAnalysis/collection/list', {}, {
+        return $resource(SERVER + '/doctor/caseAnalysis/collection/list', {
             accessToken: "@accessToken",
-            caseId: "@caseId",
         }, {
             query: {
                 method: 'GET'
@@ -241,6 +240,19 @@ angular.module('medicine.services', ['ngResource'])
         })
     }])
 
+    .factory('Remark', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/patient/article/remark',{
+            accessToken: "@accessToken",
+            articleId :'@articleId',
+            remark : '@remark'
+        }, {
+            save:{
+                method: 'POST'
+            }
+        })
+    }])
+
+
     .factory('xinxueg', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/doctor/heartcircle/list', {}, {
             query: {
@@ -253,6 +265,39 @@ angular.module('medicine.services', ['ngResource'])
         return $resource(SERVER + '/doctor/heartcircle/detail/:id', {}, {
             query: {
                 method: 'GET'
+            }
+        })
+    }])
+    .factory('xinxuegRemark', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/heartcircle/remark',{
+            heartCircleId :'@heartCircleId',
+            remark : '@remark',
+            accessToken: "@accessToken"
+        }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+
+
+    .factory('gonggaoRelease', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/announcement/add',{
+            content:'@content',
+            accessToken: "@accessToken"
+        }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+
+
+    .factory('gonggaolist', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/announcement/list/:id',{},{
+            query: {
+                method: 'GET',
+                isArray:true
             }
         })
     }])

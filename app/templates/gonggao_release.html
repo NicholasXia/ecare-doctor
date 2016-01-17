@@ -3,13 +3,13 @@
         <h1 class="title">发布公告</h1>
 
         <div class="buttons">
-            <button class="button button-balanced">发布</button>
+            <button class="button button-balanced" ng-click="onRelease()">发布</button>
         </div>
     </ion-header-bar>
     <ion-content>
         <div class="list">
             <label class="item item-input">
-                <textarea placeholder="将公告内容写在此处" class="textarea-height"></textarea>
+                <textarea placeholder="将公告内容写在此处" class="textarea-height" ng-model="gongGao.info"></textarea>
             </label>
         </div>
     </ion-content>

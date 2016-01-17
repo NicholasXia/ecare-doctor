@@ -299,6 +299,8 @@ angular.module('medicine.controllers', [])
 
                 if (col.status == 'suc') {
                     var popup = $ionicPopup.alert({
+
+
                         title: '收藏成功',
                         template: '3秒后跳转'
                     })
@@ -306,10 +308,56 @@ angular.module('medicine.controllers', [])
                         popup.close()
                         $window.location.href = '#/mycollection'
                     }, 3000)
+                }else if(col.error_code== '12000'){
+                    $ionicPopup.alert({
+                        title:'收藏失败',
+                        template:'请不要重复收藏'
+                    })
                 }
             })
         }
+    }])
 
+    .controller('gongGaoListCtrl', ['$scope', 'gonggaolist','mineInfo','currentUser', function ($scope, gonggaolist,mineInfo,currentUser) {
+        var accesstoken = currentUser.getAuthToken()
+       mineInfo.query({accessToken:accesstoken},function(data){
+           var msg = {
+               id:data.id,
+               accessToken:accesstoken
+           }
+           gonggaolist.query(msg, function (info) {
+               $scope.gonggao = info
+           })
+
+        })
+
+    }])
+
+    .controller('gongGaoReleaseCtrl', ['$scope', '$window', '$stateParams', '$ionicPopup', 'gonggaoRelease','currentUser', '$timeout', function ($scope, $window, $stateParams, $ionicPopup, gonggaoRelease, currentUser, $timeout) {
+        var accesstoken = currentUser.getAuthToken()
+        $scope.gongGao = {'info': ''}
+        $scope.onRelease = function(){
+            var msg = {
+                content:$scope.gongGao.info,
+                accessToken:accesstoken
+            }
+            gonggaoRelease.save({},msg,function(rel){
+                if(rel.status = 'suc'){
+                    var popup = $ionicPopup.alert({
+                        title: '发表成功',
+                        template: '3秒后跳转'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                        $window.location.href = '#/gonggao'
+                    }, 3000)
+                }else{
+                    var popup = $ionicPopup.alert({
+                        title: '未知错误'
+                    })
+                }
+            })
+        }
     }])
 
 
@@ -333,15 +381,41 @@ angular.module('medicine.controllers', [])
         })
     }])
 
-    .controller('medicalDetailCtrl', ['$scope', 'Detail', '$stateParams', function ($scope, Detail, $stateParams) {
+    .controller('medicalDetailCtrl', ['$scope', 'Detail','currentUser','$window', '$stateParams','Remark','$ionicPopup', function ($scope, Detail,currentUser,$window, $stateParams,Remark,$ionicPopup) {
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.medicaldetail = data
+            //console.log(data)
         })
+
+        var accesstoken = currentUser.getAuthToken()
+        $scope.markinfo={'remak':''}
+        $scope.remark = function(){
+
+            var msg = {
+                accessToken : accesstoken,
+                articleId : $stateParams.id,
+                remark : $scope.markinfo.remak
+            }
+            Remark.save({},msg,function(data){
+                if (data.status == 'suc') {
+                    $ionicPopup.alert({
+                        title: '评论成功',
+                    });
+                    $window.location.href = '#/medical'
+                } else {
+                    $window.location.href = '#/'
+                }
+            })
+
+        }
+
+
 
     }])
     .controller('xinxuegCtrl', ['$scope', '$window', '$ionicPopup', 'currentUser', 'xinxueg', function ($scope, $window, $ionicPopup, currentUser, xinxueg) {
         xinxueg.query({}, function (data) {
             $scope.xinlist = data
+            console.log(data)
         })
         $scope.isLogin = currentUser.hasAuthToken()
         $scope.goPublish = function () {
@@ -357,11 +431,12 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('xinxuegDetailCtrl', ['$scope', 'xinxuegDetail', '$stateParams', 'currentUser', '$window', '$ionicPopup', function ($scope, xinxuegDetail, $stateParams, currentUser, $window, $ionicPopup) {
+    .controller('xinxuegDetailCtrl', ['$scope', 'xinxuegDetail', '$stateParams', 'currentUser', '$window', '$ionicPopup','xinxuegRemark', function ($scope, xinxuegDetail, $stateParams, currentUser, $window, $ionicPopup,xinxuegRemark) {
         var accesstoken = currentUser.getAuthToken()
         if (accesstoken) {
             xinxuegDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
                 $scope.xinxuegdetail = data
+                console.log(data)
             })
         } else {
             $ionicPopup.alert({
@@ -371,9 +446,30 @@ angular.module('medicine.controllers', [])
             $window.location.href = '#/sign_in'
         }
 
+        $scope.xinDmg = {'comment' :''}
+
         $scope.xinComment = function(){
-            console.log('aaaaa')
+            var comment = {
+                heartCircleId :$stateParams.id,
+                remark:$scope.xinDmg.comment,
+                accessToken : accesstoken
+            }
+            xinxuegRemark.save({},comment,function(data){
+                console.log(data)
+                if(data.status == 'suc'){
+                    console.log('成功')
+                }
+            })
+
         }
 
     }])
 
+
+    .controller('myCollectionListCtrl', ['$scope', 'collectionList','currentUser', function ($scope, collectionList,currentUser) {
+        var accesstoken = currentUser.getAuthToken()
+        collectionList.query({accessToken:accesstoken}, function (data) {
+            $scope.data = data
+            console.log(data)
+        })
+    }])

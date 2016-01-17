@@ -9,34 +9,20 @@
     </ion-header-bar>
     <ion-content>
         <div class="list">
-            <div class="item item-avatar item-text-wrap">
-                <img src="./images/wode.png">
+            <div class="item item-avatar item-text-wrap" ng-repeat="item in gonggao">
+                <img ng-src="{{item.imageUrl}}">
 
                 <div class='news-from justify-end'>
-                    <span>3分钟前</span>
+                    <span>{{item.postTime}}</span>
                 </div>
                 <div class='text-indent'>
-                    <p>内容简述内容简述内容简述内
-                        容简述内容简述...
-                        容简述内容简述...
-                        容简述内容简述...
+                    <p>
+                        {{item.content}}
                     </p>
-
-                    <div><img src="./images/zhichi.png" alt=""></div>
+                    <!--<div><img src="./images/zhichi.png" alt=""></div>-->
                 </div>
             </div>
-            <div class="item item-avatar item-text-wrap">
-                <img src="./images/wode.png">
 
-                <div class='news-from justify-end'>
-                    <span>3分钟前</span>
-                </div>
-                <div class='text-indent'>
-                    <p>内容简述内容简述内容简述内容简述内容简述...</p>
-
-                    <div><img src="./images/zhichi.png" alt=""></div>
-                </div>
-            </div>
         </div>
     </ion-content>
 </ion-view>

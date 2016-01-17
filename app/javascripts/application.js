@@ -12,12 +12,6 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
     })
 
-    //.config(function ($ionicConfigProvider) {
-    //    $ionicConfigProvider.tabs.position('bottom')
-    //    $ionicConfigProvider.navBar.alignTitle('center')
-    //    $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
-    //})
-
     .config(function ($stateProvider, $urlRouterProvider) {
 
         $stateProvider
@@ -119,7 +113,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             // my collection
             .state('mycollection', {
                 url: "/mycollection",
-                templateUrl: "templates/mycollection.html"
+                templateUrl: "templates/mycollection.html",
+                controller:'myCollectionListCtrl'
             })
             //意见反馈
             .state('feedback', {
@@ -210,13 +205,15 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
 
             //我的公告
             .state('gonggao', {
-                url: "/gonggao",
-                templateUrl: "templates/gonggao.html"
+                url: "/gonggao/:id",
+                templateUrl: "templates/gonggao.html",
+                controller:'gongGaoListCtrl'
             })
             //发布公告
             .state('gonggao_release', {
                 url: "/gonggao_release",
-                templateUrl: "templates/gonggao_release.html"
+                templateUrl: "templates/gonggao_release.html",
+                controller:'gongGaoReleaseCtrl'
             })
 
             //关于我们
