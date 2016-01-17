@@ -77,9 +77,8 @@ angular.module('medicine.controllers', [])
         $scope.signInMsg = {'username': '', 'password': ''}
         $scope.signIn = function () {
             signUp.save({}, $scope.signInMsg, function (data) {
-                console.log(data)
                 currentUser.setAuthToken(data.accessToken)
-            /*    currentUser.setDoctorCode(data.user.doctorNo)*/
+                currentUser.setDoctorCode(data.user.doctorNo)
                 if (data.error) {
                     $ionicPopup.alert({
                         title: '错误提示',
