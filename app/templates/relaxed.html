@@ -8,7 +8,7 @@
                 <h2>{{item.title}}</h2>
 
                 <div class='text-indent'>
-                    <p>{{item.content | limitTo:300}}...</p>
+                    <p>{{item.content | limitHtml:200}}...</p>
 
                     <div><img ng-src="{{item.coverImageUrl}}" alt=""></div>
                 </div>

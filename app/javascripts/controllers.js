@@ -12,6 +12,8 @@ angular.module('medicine.controllers', [])
         //healthLecture.query(function (data) {
         //    $scope.healthLecture = data.heart_knowledge
         //})
+        $scope.doctorCode = currentUser.getDoctorCode()
+        console.log($scope.doctorCode)
         $scope.goToActivity = function (activity) {
             $window.location.href = activity
         }

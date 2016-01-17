@@ -10,7 +10,7 @@
 
                     <h2 class="textcolor">{{item.title}}</h2>
                 </div>
-                <div class='text-indent item-text-wrap textent'>{{item.content | limitTo:200}}...</div>
+                <div class='text-indent item-text-wrap textent'>{{item.content | limitHtml: 100}}...</div>
                 <div class='news-from'>
                     <span>来源: <i>{{item.resource}}</i></span>
                     <span>{{item.postTime}}</span>

@@ -60,7 +60,7 @@
                     <div class="content padding">
                         <h2>{{item.title}}</h2>
 
-                        <p class="init text-indent">{{item.content | limitTo:200}}...</p>
+                        <p class="init text-indent" ng-bind-html="item.content">{{item.content}}...</p>
                     </div>
                     <div class="footer clearfix">
                         <span class="fl">来源 :</span>
@@ -70,9 +70,7 @@
             </div>
             <div class='item home-qrcode'>
                 <div>
-                    <p>医生码</p>
-
-                    <p>{{doctorno}}</p>
+                    <p>{{doctorCode}}</p>
                 </div>
             </div>
 
