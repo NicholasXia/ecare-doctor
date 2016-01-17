@@ -72,7 +72,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/patientlist",
                 views: {
                     'patientlist-tab': {
-                        templateUrl: "templates/patientlist_tab.html"
+                        templateUrl: "templates/patientlist_tab.html",
+                        controller: 'patientListCtrl'
                     }
                 }
             })
@@ -195,7 +196,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             //new患者验证
             .state('patient_check', {
                 url: "/patient_check",
-                templateUrl: "templates/patient_check.html"
+                templateUrl: "templates/patient_check.html",
+                controller: "patientCheckCtrl"
             })
             //已绑定患者详情
             .state('patient_detail', {

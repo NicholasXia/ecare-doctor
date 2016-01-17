@@ -256,3 +256,22 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('patientBindList',['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/doctor/bind/list',{},{
+            query:{
+                method: 'GET',
+                isArray: true
+            }
+        })
+    }])
+    .factory('acceptOrNot', ['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/doctor/bind/acceptOrNot',{
+            id: "@id",
+            acceptOrNot: "@acceptOrNot",
+            accessToken: "@accessToken"
+        },{
+            save:{
+                method: 'POST'
+            }
+        })
+    }])

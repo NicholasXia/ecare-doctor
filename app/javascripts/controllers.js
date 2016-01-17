@@ -376,4 +376,29 @@ angular.module('medicine.controllers', [])
         }
 
     }])
+    .controller('patientCheckCtrl',['$scope','patientBindList','currentUser','acceptOrNot', function($scope, patientBindList, currentUser, acceptOrNot){
+        patientBindList.query({accessToken:currentUser.getAuthToken()},function(data){
+            $scope.data = data
+            console.log(data)
+        })
+        $scope.accept = function(){
+            var msg = {
+                id: $scope.data[0].id,
+                acceptOrNot: 1,
+                accessToken: currentUser.getAuthToken()
+            }
+            acceptOrNot.save({},msg,function(data){
+                console.log(data)
+            })
+        }
+        $scope.noaccept = function(){
+          //$scope.data.splice($scope.data.indexOf($scope.data), 1);
+        }
+    }])
+    .controller('patientListCtrl',['$scope', 'patientBindList', 'currentUser', function($scope, patientBindList, currentUser){
+        patientBindList.query({accessToken:currentUser.getAuthToken()},function(data){
+            $scope.data = data
+            console.log(data)
+        })
+    }])
 

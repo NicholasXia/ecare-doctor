@@ -26,21 +26,19 @@
                 <p>今日新增: <span class="accent-number-color">50</span>积分</p>
             </div>
 
-            <div class="item item-avatar" ui-sref='patient_detail'>
+            <div class="item item-avatar" ui-sref='patient_detail' ng-repeat="item in data">
                 <img src="./images/wode.png">
 
                 <div class='new_patient justify-center-lr'>
                     <div class="justify-center-lr">
-                        <p>张美丽</p>
-                        <button class="button button-small button-assertive disabled">
+                        <p>{{item.patientName}}</p>
+                        <button class="button button-small button-assertive disabled" ng-if="item.checked == 1">
                             已绑定
                         </button>
                     </div>
                     <div class='justify-center-lr patient-button'>
-                        <p>50岁</p>
-
+                        <p>50</p>
                         <p> | </p>
-
                         <p>女</p>
                     </div>
                 </div>
