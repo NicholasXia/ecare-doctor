@@ -5,42 +5,37 @@
     <ion-content>
         <div class="list">
             <div class="item item-avatar">
-                <img src="./images/wode.png">
+                <img ng-src="{{xinxuegdetail.profileImage}}">
 
                 <div style='padding-top:10px'>
-                    <p>张医生</p>
+                    <p>{{xinxuegdetail.doctorName}}</p>
                 </div>
-                <div class='item-body pad-replate'>
+                <div class='item-body pad-replate' style="padding-bottom: 20px">
                     <p>
-                        天天做手术
-                        天天做手术
-                        天天做手术
-                        天天做手术
+                        {{xinxuegdetail.content}}
                     </p>
-                    <img src="./images/zhichi.png">
                 </div>
-                <p>1分钟前</p>
+                <p>{{xinxuegdetail.creTime}}</p>
             </div>
             <div class='item item-body'>
                 <div class="bar bar-header item-input-inset">
                     <label class="item-input-wrapper">
-                        <input type="text" placeholder="我也说两句吧">
+                        <input type="text" placeholder="我也说两句吧" required ng-model="xinDmg.comment">
                     </label>
-                    <button class="button button-clear">
+                    <button class="button button-clear" ng-click="xinComment()">
                         发表
                     </button>
                 </div>
             </div>
-            <div class="item item-avatar">
-                <img src="./images/wode.png">
+            <div class="item item-avatar" ng-repeat="item in xinxuegdetail.remarkList" ng-if="item.doctorName">
+                <img ng-src="{{item.profileImage}}">
 
                 <div class='commenter'>
-                    <span>张先生</span>
-                    <span>2016-2-3 08:08</span>
+                    <span>{{item.doctorName}}</span>
+                    <span>{{item.creTime}}</span>
                 </div>
                 <div class="item-body pad-replate">
-                    人生啊，有啥也别有病，看病很贵的。
-                    人生啊，有啥也别有病，看病很贵的。
+                    {{item.remark}}
                 </div>
             </div>
         </div>

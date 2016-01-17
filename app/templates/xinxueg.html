@@ -3,41 +3,29 @@
         <h1 class="title">心血管圈</h1>
 
         <div class="buttons">
-            <div ui-sref="xinxueg_release" class="ion-compose icon-size"></div>
+            <div ng-click="goPublish()" class="ion-compose icon-size"></div>
         </div>
     </ion-header-bar>
     <ion-content>
         <div class="list">
-            <a class="item item-avatar item-text-wrap" ui-sref='xinxueg_detail'>
-                <img src="./images/wode.png">
+            <a class="item item-avatar item-text-wrap" ng-repeat="item in xinlist"
+               ui-sref='xinxueg_detail({id:item.id})'>
+                <img ng-src="{{item.profileImage}}">
 
-                <h2>王志国</h2>
-
-                <div class='text-indent'>
-                    <p>内容简述内容简述内容简述内容简述内容简述...</p>
-
-                    <div><img src="./images/zhichi.png" alt=""></div>
-                </div>
-                <div class='news-from justify-center-lr'>
-                    <span>3分钟前</span>
-                    <span><i class="ion-ios-chatbubble-outline" style='font-size:20px'></i> 20</span>
-                </div>
-            </a>
-            <a class="item item-avatar item-text-wrap" href="#">
-                <img src="./images/wode.png">
-
-                <h2>张先生</h2>
+                <h2>{{item.doctorName}}</h2>
 
                 <div class='text-indent'>
-                    <p>内容简述内容简述内容简述内容简述内容简述...</p>
+                    <p>{{item.content}}
 
-                    <div><img src="./images/zhichi.png" alt=""></div>
+                    <p>
                 </div>
                 <div class='news-from justify-center-lr'>
-                    <span>2015-12-27 08:08</span>
-                    <span><i class="ion-ios-chatbubble-outline" style='font-size:20px'></i> 20</span>
+                    <span>{{item.creTime}}</span>
+                    <span><i class="ion-ios-chatbubble-outline"
+                             style='font-size:20px'></i>{{item.remarkList.length}}</span>
                 </div>
             </a>
+
         </div>
     </ion-content>
 </ion-view>

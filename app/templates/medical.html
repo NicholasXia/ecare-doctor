@@ -4,30 +4,16 @@
     </ion-header-bar>
     <ion-content>
         <div class="list">
-            <a class="item" ui-sref='medical_detail'>
+            <a class="item" ng-repeat="item in data" ui-sref='medical_detail({id:item.id})'>
                 <div class="item-thumbnail-right item-text-wrap">
-                    <img src="./images/zhichi.png">
+                    <img ng-src="{{item.coverImageUrl}}">
 
-                    <h2>医疗动态标题</h2>
-
-                    <p class='text-indent'>内容简述内容简述内容简述内容简述内容简述...</p>
+                    <h2 class="textcolor">{{item.title}}</h2>
                 </div>
+                <div class='text-indent item-text-wrap textent'>{{item.content | limitTo:200}}...</div>
                 <div class='news-from'>
-                    <span>来源: <i>sina</i></span>
-                    <span>2015-12-27 08:08</span>
-                </div>
-            </a>
-            <a class="item" href="">
-                <div class="item-thumbnail-right item-text-wrap">
-                    <img src="./images/zhichi.png">
-
-                    <h2>医疗动态标题</h2>
-
-                    <p>内容简述内容简述内容简述内容简述内容简述...</p>
-                </div>
-                <div class='news-from'>
-                    <span>来源: <i>sina</i></span>
-                    <span>2015-12-27 08:08</span>
+                    <span>来源: <i>{{item.resource}}</i></span>
+                    <span>{{item.postTime}}</span>
                 </div>
             </a>
         </div>

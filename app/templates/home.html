@@ -1,8 +1,8 @@
 <ion-view view-title="首页" cache-view='false' hide-nav-bar="isNavBarHide">
     <ion-content has-bouncing="true">
         <div class="list">
-            <ion-slide-box  ng-if="data.length > 0">
-                <ion-slide ng-repeat="item in data"  ng-click="goToActivity(item.linkUrl)">
+            <ion-slide-box ng-if="data.length > 0">
+                <ion-slide ng-repeat="item in data" ng-click="goToActivity(item.linkUrl)">
                     <div class="box blue"><img ng-src={{item.coverImageUrl}} width="100%" height="200px"/></div>
                 </ion-slide>
             </ion-slide-box>
@@ -24,6 +24,7 @@
                         <p>诊后心得</p></a>
                     <a class="button" ng-click="goLogin()">
                         <img src="./images/jingxi.png" alt="">
+
                         <p>病历精析</p>
                     </a>
                 </div>
@@ -34,7 +35,7 @@
                     <a class="button" ui-sref='two'><img src="./images/zhichi.png" alt="">
 
                         <p>学术支持</p></a>
-                    <a class="button" ui-sref='xinxueg'><img src="./images/quan.png" alt="">
+                    <a class="button" ui-sref="xinxueg"><img src="./images/quan.png" alt="">
 
                         <p>心血管圈</p></a>
                 </div>
@@ -48,16 +49,18 @@
                 </a>
 
             </div>
-                <div class='item pad-replate'>
+            <div class='item pad-replate'>
 
-                <div class='activity' ng-repeat="item in data" ui-sref="medical_detail({id:item.id})">
+                <div class='activity' ng-repeat="item in medicallist | limitTo:3"
+                     ui-sref="medical_detail({id:item.id})">
                     <div class="header clearfix padding">
-                        <div ng-if="item.category == 1" class="fl padding">医疗动态</div>
+                        <div ng-if="item.category == 2" class="fl padding">医疗动态</div>
                         <div class="fr">{{item.postTime}}</div>
                     </div>
                     <div class="content padding">
                         <h2>{{item.title}}</h2>
-                        <p class="init text-indent">{{item.content}}</p>
+
+                        <p class="init text-indent">{{item.content | limitTo:200}}...</p>
                     </div>
                     <div class="footer clearfix">
                         <span class="fl">来源 :</span>
@@ -66,8 +69,10 @@
                 </div>
             </div>
             <div class='item home-qrcode'>
-                <div><img src="./images/zhichi.png" alt="">
-                    <p>code</p>
+                <div>
+                    <p>医生码</p>
+
+                    <p>{{doctorno}}</p>
                 </div>
             </div>
 

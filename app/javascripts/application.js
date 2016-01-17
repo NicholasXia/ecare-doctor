@@ -1,9 +1,10 @@
-angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services',  'medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
+angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
     .constant('ionicLoadingConfig', {
-        template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>",/*正在加载中...*/
+        template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>", /*正在加载中...*/
         hideOnStateChange: true
     })
-    .constant('SERVER', 'http://123.56.184.184:8080/hospital')
+    //.constant('SERVER', 'http://123.56.184.184:8080/hospital')
+    .constant('SERVER', 'http://192.168.20.173:8080/hospital')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
         $ionicConfigProvider.navBar.alignTitle('center')
@@ -30,7 +31,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'home-tab': {
                         templateUrl: "templates/home.html",
-                        controller:'doctorHomeCtrl'
+                        controller: 'doctorHomeCtrl'
                     }
                 }
             })
@@ -62,7 +63,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/msgrecord",
                 views: {
                     'msgrecord-tab': {
-                         templateUrl: "templates/msgrecord_tab.html"
+                        templateUrl: "templates/msgrecord_tab.html"
                     }
                 }
             })
@@ -86,19 +87,17 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             })
 
 
-
-
             // 登陆
             .state('sign_in', {
                 url: "/sign_in",
                 templateUrl: "templates/sign_in.html",
-                controller:'doctorSignInCtrl'
+                controller: 'doctorSignInCtrl'
             })
             // 注册
             .state('sign_up', {
                 url: "/sign_up",
                 templateUrl: "templates/sign_up.html",
-                controller:'doctorSignUpCtrl'
+                controller: 'doctorSignUpCtrl'
             })
             //忘记密码
             .state('forgot_pwd', {
@@ -131,34 +130,39 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             .state('mine_info', {
                 url: "/mine_info",
                 templateUrl: "templates/mine_info.html",
-                controller:'mineInfoCtrl'
+                controller: 'mineInfoCtrl'
             })
             //病例精析
             .state('analysis', {
                 url: "/analysis",
-                templateUrl: "templates/analysis.html"
+                templateUrl: "templates/analysis.html",
+                controller: 'analysisCtrl'
             })
             //病例精析详情
             .state('analysis_detail', {
-                url: "/analysis_detail",
-                templateUrl: "templates/analysis_detail.html"
+                url: "/analysis_detail/:id",
+                templateUrl: "templates/analysis_detail.html",
+                controller: 'analysisDetailCtrl'
+
             })
 
             //医疗动态
             .state('medical', {
-                url: "/medical/:id",
-                templateUrl: "templates/medical.html"
+                url: "/medical",
+                templateUrl: "templates/medical.html",
+                controller: 'medicalCtrl'
             })
             //医疗动态详情
             .state('medical_detail', {
                 url: "/medical_detail/:id",
                 templateUrl: "templates/medical_detail.html",
-                controller: "doctorEndMedicineDetailCtrl"
+                controller: "medicalDetailCtrl"
             })
             //心血管圈
             .state('xinxueg', {
                 url: "/xinxueg",
-                templateUrl: "templates/xinxueg.html"
+                templateUrl: "templates/xinxueg.html",
+                controller: 'xinxuegCtrl'
             })
             //发表心血管圈消息
             .state('xinxueg_release', {
@@ -167,18 +171,21 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             })
             //心血管圈详情
             .state('xinxueg_detail', {
-                url: "/xinxueg_detail",
-                templateUrl: "templates/xinxueg_detail.html"
+                url: "/xinxueg_detail/:id",
+                templateUrl: "templates/xinxueg_detail.html",
+                controller: 'xinxuegDetailCtrl'
             })
             //轻松一刻
             .state('relaxed', {
                 url: "/relaxed",
-                templateUrl: "templates/relaxed.html"
+                templateUrl: "templates/relaxed.html",
+                controller: "relaxedCtrl"
             })
             //轻松一刻详情
             .state('relaxed_detail', {
-                url: "/relaxed_detail",
-                templateUrl: "templates/relaxed_detail.html"
+                url: "/relaxed_detail/:id",
+                templateUrl: "templates/relaxed_detail.html",
+                controller: "relaxedDetailCtrl"
             })
             //我的二维码
             .state('myqrcode', {
@@ -213,51 +220,51 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             })
 
             //关于我们
-            .state('about',{
-                url:'/about',
-                templateUrl:'templates/about.html'
+            .state('about', {
+                url: '/about',
+                templateUrl: 'templates/about.html'
             })
             //积分规则
-            .state('point_rule',{
-                url:'/point_rule',
-                templateUrl:'templates/point_rule.html'
+            .state('point_rule', {
+                url: '/point_rule',
+                templateUrl: 'templates/point_rule.html'
             })
             //二期内容
             .state('two', {
                 url: "/two",
                 templateUrl: "templates/two.html"
             })
-            .state('changeicon',{
+            .state('changeicon', {
                 url: "/changeicon",
                 templateUrl: "templates/changeicon.html",
                 controller: 'changeCtrl'
             })
-            .state('changename',{
+            .state('changename', {
                 url: "/changename",
                 templateUrl: "templates/changename.html",
                 controller: 'changeCtrl'
             })
-            .state('changesex',{
+            .state('changesex', {
                 url: "/changesex",
                 templateUrl: "templates/changesex.html",
                 controller: 'changeCtrl'
             })
-            .state('changebirth',{
+            .state('changebirth', {
                 url: "/changebirth",
                 templateUrl: "templates/changebirth.html",
                 controller: 'changeCtrl'
             })
-            .state('changeyy',{
+            .state('changeyy', {
                 url: "/changeyy",
                 templateUrl: "templates/changeyy.html",
                 controller: 'changeCtrl'
             })
-            .state('changezc',{
+            .state('changezc', {
                 url: "/changezc",
                 templateUrl: "templates/changezc.html",
                 controller: 'changeCtrl'
             })
-            .state('changeks',{
+            .state('changeks', {
                 url: "/changeks",
                 templateUrl: "templates/changeks.html",
                 controller: 'changeCtrl'

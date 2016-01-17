@@ -3,60 +3,41 @@
         <h1 class="title">病例精析详情</h1>
 
         <div class="buttons">
-            <div  ui-sref="mycollection" class="ion-ios-star-outline icon-size"></div>
+            <div class="ion-ios-star-outline icon-size" ng-click="addCollection()"></div>
         </div>
     </ion-header-bar>
     <ion-content>
         <div class="list">
-            <div class="item justify-center-lr">
-                <p>北京协和医院 张医生</p>
 
-                <p>3小时前</p>
+            <div class="item justify-center-lr">
+                <p>{{analysisdetail.hospital}} {{analysisdetail.doctorName}}</p>
+
+                <p>{{analysisdetail.postTime}}</p>
             </div>
             <div class='item item-body'>
-                <p class='accent-text-color'>病例解析</p>
-
-                <p class='text-indent'> 通常只有中老年人才会得心脏病
-                    通常只有中老年人才会得心脏病
-                    通常只有中老年人才会得心脏病
-                    通常只有中老年人才会得心脏病
-                    通常只有中老年人才会得心脏病
-                    通常只有中老年人才会得心脏病
-                    通常只有中老年人才会得心脏病
-                </p>
-
-                <p class='accent-text-color'>猜想和假设</p>
-
                 <p class='text-indent'>
-                    猜想和假设
-                    猜想和假设
-                    猜想和假设
-                    猜想和假设
-                    猜想和假设
-                    猜想和假设
-                    猜想和假设
+                    {{analysisdetail.analysis}}
                 </p>
 
                 <div class="bar bar-header item-input-inset">
                     <label class="item-input-wrapper">
-                        <input type="text" placeholder="我也说两句吧">
+                        <input type="text" placeholder="我也说两句吧" required ng-model="detailMsg.acomment">
                     </label>
-                    <button class="button button-clear">
+                    <button class="button button-clear" ng-click="aComment()">
                         发表
                     </button>
                 </div>
 
             </div>
-            <div class="item item-avatar">
-                <img src="./images/wode.png">
+            <div class="item item-avatar" ng-repeat="item in analysisdetail.remarkList">
+                <img ng-src="{{item.profileImageUrl}}">
 
                 <div class='commenter'>
-                    <span>张先生</span>
-                    <span>2016-2-3 08:08</span>
+                    <span>{{item.name}}</span>
+                    <span>{{item.postTime}}</span>
                 </div>
                 <div class="item-body pad-replate">
-                    人生啊，有啥也别有病，看病很贵的。
-                    人生啊，有啥也别有病，看病很贵的。
+                    {{item.content}}
                 </div>
             </div>
         </div>
