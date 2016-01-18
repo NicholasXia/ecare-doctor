@@ -226,7 +226,8 @@ angular.module('medicine.services', ['ngResource'])
             accessToken: "@accessToken",
         }, {
             query: {
-                method: 'GET'
+                method: 'GET',
+                isArray:true
             }
         })
     }])

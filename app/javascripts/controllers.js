@@ -1,5 +1,5 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', "$ionicPopup","bindinfo","mineInfo",function ($scope, $window, getCarouselList, currentUser, $ionicPopup,bindinfo,mineInfo) {
+    .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', "$ionicPopup", "bindinfo", "mineInfo", function ($scope, $window, getCarouselList, currentUser, $ionicPopup, bindinfo, mineInfo) {
         getCarouselList.query({type: 1, category: 1}, function (data) {
             $scope.data = data
             $scope.doctorno = currentUser.getDoctorCode()
@@ -21,9 +21,9 @@ angular.module('medicine.controllers', [])
             var msg = {
                 id: data.id,
             }
-              bindinfo.query(msg,function(count){
-                        $scope.count = count
-              })
+            bindinfo.query(msg, function (count) {
+                $scope.count = count
+            })
         })
 
         $scope.goLogin = function () {
@@ -182,10 +182,10 @@ angular.module('medicine.controllers', [])
                 $window.location.href = '#/sign_in'
             }
         }
-        $scope.gofeedBack = function(){
-            if(accesstoken){
+        $scope.gofeedBack = function () {
+            if (accesstoken) {
                 $window.location.href = '#/feedback'
-            }else{
+            } else {
                 $window.location.href = '#/sign_in'
             }
         }
@@ -324,7 +324,7 @@ angular.module('medicine.controllers', [])
         }
     }])
     //消息记录
-    .controller('msgRecordCtrl', ['$scope', 'gonggaolist', 'currentUser','mineInfo',function ($scope, gonggaolist, currentUser,mineInfo) {
+    .controller('msgRecordCtrl', ['$scope', 'gonggaolist', 'currentUser', 'mineInfo', function ($scope, gonggaolist, currentUser, mineInfo) {
         var accesstoken = currentUser.getAuthToken()
         mineInfo.query({accessToken: accesstoken}, function (data) {
             var msg = {
@@ -422,7 +422,11 @@ angular.module('medicine.controllers', [])
                 if (data.status == 'suc') {
                     $window.location.reload()
                 } else {
-                    $window.location.href = '#/'
+                    $ionicPopup.alert({
+                        title: '错误提示',
+                        template: '您还未登陆不能进行评论'
+                    });
+                    $window.location.href = '#/sign_in'
                 }
             })
 
@@ -516,17 +520,17 @@ angular.module('medicine.controllers', [])
         })
     }])
     //添加反馈
-    .controller('feedBackCtrl', ['$scope', 'feedBack','currentUser','$ionicPopup','$window','$timeout', function ($scope, feedBack , currentUser,$ionicPopup,$window,$timeout) {
+    .controller('feedBackCtrl', ['$scope', 'feedBack', 'currentUser', '$ionicPopup', '$window', '$timeout', function ($scope, feedBack, currentUser, $ionicPopup, $window, $timeout) {
         var accesstoken = currentUser.getAuthToken()
 
-        $scope.fbInfo = {'content':'','contact':''}
-        $scope.release=function(){
+        $scope.fbInfo = {'content': '', 'contact': ''}
+        $scope.release = function () {
             var info = {
-                content:$scope.fbInfo.content,
-                accessToken:accesstoken,
-                contact : $scope.fbInfo.contact
+                content: $scope.fbInfo.content,
+                accessToken: accesstoken,
+                contact: $scope.fbInfo.contact
             }
-            feedBack.save({},info, function (data) {
+            feedBack.save({}, info, function (data) {
                 if (data.status = 'suc') {
                     var popup = $ionicPopup.alert({
                         title: '评论成功',
@@ -546,11 +550,11 @@ angular.module('medicine.controllers', [])
     }])
 
 
-    .controller('patientDetailCtrl', ['$scope', 'patientDetail', 'currentUser','$stateParams', function ($scope, patientDetail, currentUser,$stateParams) {
+    .controller('patientDetailCtrl', ['$scope', 'patientDetail', 'currentUser', '$stateParams', function ($scope, patientDetail, currentUser, $stateParams) {
         var accesstoken = currentUser.getAuthToken()
         var params = {
-            accessToken:accesstoken,
-            patientId:$stateParams.id
+            accessToken: accesstoken,
+            patientId: $stateParams.id
         }
         patientDetail.query(params, function (data) {
             $scope.data = data
