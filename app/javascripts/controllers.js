@@ -284,17 +284,10 @@ angular.module('medicine.controllers', [])
             }
             analysisRemark.save({}, msg, function (detail) {
                 if (detail.status == 'suc') {
-                    var popup = $ionicPopup.alert({
-                        title: '评论成功',
-                        template: '3秒后跳转'
-                    })
-                    $timeout(function () {
-                        popup.close()
-                        $window.location.href = '#/analysis_detail/' + $stateParams.id
-                    }, 3000)
+                    $window.location.reload()
                 }
                 else {
-                    //$window.location.href = '#/'
+                    $window.location.href = '#/'
                 }
             })
         }
@@ -427,10 +420,7 @@ angular.module('medicine.controllers', [])
             }
             Remark.save({}, msg, function (data) {
                 if (data.status == 'suc') {
-                    $ionicPopup.alert({
-                        title: '评论成功',
-                    });
-                    $window.location.href = '#/medical'
+                    $window.location.reload()
                 } else {
                     $window.location.href = '#/'
                 }
@@ -483,9 +473,8 @@ angular.module('medicine.controllers', [])
                 accessToken: accesstoken
             }
             xinxuegRemark.save({}, comment, function (data) {
-                console.log(data)
                 if (data.status == 'suc') {
-                    console.log('成功')
+                    $window.location.reload()
                 }
             })
 
