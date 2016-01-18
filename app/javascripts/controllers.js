@@ -145,7 +145,7 @@ angular.module('medicine.controllers', [])
             })
             $timeout(function () {
                 popup.close()
-                $window.location.href = '#/'
+                $window.history.back();
             }, 3000)
         }
     }])
@@ -241,11 +241,11 @@ angular.module('medicine.controllers', [])
                 if (data.status == 'suc') {
                     var popup = $ionicPopup.alert({
                         title: '您的信息修改成功',
-                        template: '3秒后自动进入主页'
+                        template: '3秒后自动返回'
                     })
                     $timeout(function () {
                         popup.close()
-                        $window.location.href = '#/mine_info'
+                        $window.history.back();
                     }, 3000)
                 }
                 else {
@@ -259,6 +259,7 @@ angular.module('medicine.controllers', [])
         var accesstoken = currentUser.getAuthToken()
         mineInfo.query({accessToken: accesstoken}, function (data) {
             $scope.infodata = data
+            console.log(data)
         })
 
     }])
@@ -367,11 +368,11 @@ angular.module('medicine.controllers', [])
                 if (rel.status = 'suc') {
                     var popup = $ionicPopup.alert({
                         title: '发表成功',
-                        template: '3秒后跳转'
+                        template: '3秒后返回'
                     })
                     $timeout(function () {
                         popup.close()
-                        $window.location.href = '#/gonggao'
+                        $window.history.back();
                     }, 3000)
                 } else {
                     var popup = $ionicPopup.alert({
@@ -560,4 +561,27 @@ angular.module('medicine.controllers', [])
             $scope.data = data
             console.log(data)
         })
+    }])
+
+    .controller('myIconChangeCtrl', ['$scope', 'updateMsg', 'currentUser', function ($scope, updateMsg, currentUser) {
+        $scope.patientData = {
+            imageBase64s: '',
+            accessToken: ''
+        }
+        $scope.patientData = function (publishphoto) {
+            console.log(publishphoto)
+            $scope.patientData.imageBase64s = publishphoto[0].dataURL
+            var msg = {
+                imageBase64s: $scope.patientData.imageBase64s,
+                accessToken: currentUser.getAuthToken()
+            }
+            console.log(msg)
+            updateMsg.save({}, msg, function (data) {
+                console.log(data)
+            })
+        }
+    }])
+    //医生认证
+    .controller('doctorVerifyCtrl', ['$scope', 'updateVerifyMsg', 'currentUser', function ($scope, updateVerifyMsg, currentUser) {
+
     }])

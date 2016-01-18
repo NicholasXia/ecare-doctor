@@ -1,4 +1,4 @@
-angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
+angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.directive', 'medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
     .constant('ionicLoadingConfig', {
         template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>", /*正在加载中...*/
         hideOnStateChange: true
@@ -197,7 +197,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             })
             //已绑定患者详情
             .state('patient_detail', {
-                url: "/patient_detail/:id",
+                url: "/patient_detail/:",
                 templateUrl: "templates/patient_detail.html",
                 controller:'patientDetailCtrl'
             })
@@ -238,7 +238,13 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             .state('changeicon', {
                 url: "/changeicon",
                 templateUrl: "templates/changeicon.html",
-                controller: 'changeCtrl'
+                controller: 'myIconChangeCtrl'
+            })
+
+            .state('doctorverify', {
+                url: "/doctorverify",
+                templateUrl: "templates/doctorverify.html",
+                controller: 'doctorVerifyCtrl'
             })
             .state('changename', {
                 url: "/changename",

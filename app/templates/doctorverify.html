@@ -1,0 +1,38 @@
+<ion-view view-title="医生认证" cache-view="false">
+    <ion-header-bar class="bar-balanced">
+        <h1 class="title">医生认证</h1>
+
+    </ion-header-bar>
+    <ion-content has-bouncing="true" class="padding">
+        <form id="verifydoctorup" enctype="multipart/form-data" method="post" >
+            <button class="button button-block button-balanced myicon">
+                <input id="verifydoctor"
+                       type="file"
+                       accept="image/*"
+                       multiple
+                       image="verifydoctor"
+                       class="inputfile"
+                        />
+                上传医生证件
+            </button>
+            <img ng-repeat="img in verifydoctor" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
+        </form>
+        <form id="verifynameup" enctype=multipart/form-data" method="post" >
+            <button class="button button-block button-balanced myicon">
+                <input id="verifyname"
+                       type="file"
+                       accept="image/*"
+                       multiple
+                       image="verifyname"
+                       class="inputfile"
+                        />
+                上传身份证件
+            </button>
+            <img ng-repeat="img in verifyname" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
+        </form>
+        <div class="text-center">
+            <button class="button button-balanced "  ng-click="uploadVerify(verifydoctor,verifyname)" >上传认证</button>
+        </div>
+    </ion-content>
+
+</ion-view>

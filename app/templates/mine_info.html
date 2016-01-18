@@ -13,10 +13,23 @@
                     </div>
                 </a>
             </div>
-            <div class="list card mine-info-my" ui-sref="changerz">
+
+            <!-- 还未认证-->
+            <div class="list card mine-info-my" ui-sref="doctorverify" ng-if="infodata.verifyed==0">
                 <a class='item  home-feature-in  justify-center-lr'>
                     <div class='justify-lr my-span'><span>医生认证</span></div>
-                    <div class='align-center-right'><span>未认证</span><img src="./images/shouyejinrujian.png" alt="">
+                    <div class='align-center-right'>
+                        <span>未认证</span>
+                        <img  src="./images/shouyejinrujian.png" alt="">
+                    </div>
+                </a>
+            </div>
+            <!-- 已经认证-->
+            <div class="list card mine-info-my" ng-if="infodata.verifyed==1">
+                <a class='item  home-feature-in  justify-center-lr'>
+                    <div class='justify-lr my-span'><span>医生认证</span></div>
+                    <div class='align-center-right'>
+                        <span  class="yes-verify-text">已认证</span>
                     </div>
                 </a>
             </div>

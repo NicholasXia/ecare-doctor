@@ -87,7 +87,7 @@
     height: 30px;
     width: 100%;
 }
-
+.myicon input{width: 100%; left: 0px;}
 .inputfile:focus + label,
 .inputfile + label:hover {
     background-color: red;

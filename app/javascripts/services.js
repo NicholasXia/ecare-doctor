@@ -113,7 +113,8 @@ angular.module('medicine.services', ['ngResource'])
             agender: "@agender",
             birthday: "@birthday",
             mobile: "@mobile",
-            weight: "@weight"
+            weight: "@weight",
+            imageBase64s :"@imageBase64s"
         }, {
             save: {
                 method: 'POST'
@@ -156,7 +157,7 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
-
+    //头像上传
     .factory('updateMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/doctor/profile/update', {
             accessToken: "@accessToken",
@@ -169,6 +170,19 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    //证件上传
+    .factory('updateVerifyMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/verify/upload', {
+            crtWithPhoto: "@crtWithPhoto",
+            crtWithName: "@crtWithName",
+            accessToken: "@accessToken",
+        }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+
     .factory('patientProfile', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/docotor/profile', {}, {
             query: {method: 'GET'}

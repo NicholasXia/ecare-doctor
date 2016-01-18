@@ -24,6 +24,12 @@
     background-color: #E25B99;
 }
 
+.yes-verify-text {
+    padding: 1px;
+    margin-left: 4px;
+    color: #E25B99;
+}
+
 .add-info {
     display: flex;
     align-items: center;
