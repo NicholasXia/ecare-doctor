@@ -1,5 +1,5 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', "$ionicPopup", function ($scope, $window, getCarouselList, currentUser, $ionicPopup) {
+    .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', "$ionicPopup","bindinfo","mineInfo",function ($scope, $window, getCarouselList, currentUser, $ionicPopup,bindinfo,mineInfo) {
         getCarouselList.query({type: 1, category: 1}, function (data) {
             $scope.data = data
             $scope.doctorno = currentUser.getDoctorCode()
@@ -9,16 +9,22 @@ angular.module('medicine.controllers', [])
             $scope.medicallist = data
         })
 
-        //healthLecture.query(function (data) {
-        //    $scope.healthLecture = data.heart_knowledge
-        //})
         $scope.doctorCode = currentUser.getDoctorCode()
-        console.log($scope.doctorCode)
         $scope.goToActivity = function (activity) {
             $window.location.href = activity
         }
         $scope.isLogin = currentUser.hasAuthToken()
 
+        var accesstoken = currentUser.getAuthToken()
+
+        mineInfo.query({accessToken: accesstoken}, function (data) {
+            var msg = {
+                id: data.id,
+            }
+              bindinfo.query(msg,function(count){
+                        $scope.count = count
+              })
+        })
 
         $scope.goLogin = function () {
             if (!$scope.isLogin) {
@@ -176,6 +182,13 @@ angular.module('medicine.controllers', [])
                 $window.location.href = '#/sign_in'
             }
         }
+        $scope.gofeedBack = function(){
+            if(accesstoken){
+                $window.location.href = '#/feedback'
+            }else{
+                $window.location.href = '#/sign_in'
+            }
+        }
 
     }])
     .controller('changeCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
@@ -308,41 +321,57 @@ angular.module('medicine.controllers', [])
                         popup.close()
                         $window.location.href = '#/mycollection'
                     }, 3000)
-                }else if(col.error_code== '12000'){
+                } else if (col.error_code == '12000') {
                     $ionicPopup.alert({
-                        title:'收藏失败',
-                        template:'请不要重复收藏'
+                        title: '收藏失败',
+                        template: '请不要重复收藏'
                     })
                 }
             })
         }
     }])
-
-    .controller('gongGaoListCtrl', ['$scope', 'gonggaolist','mineInfo','currentUser', function ($scope, gonggaolist,mineInfo,currentUser) {
+    //消息记录
+    .controller('msgRecordCtrl', ['$scope', 'gonggaolist', 'currentUser','mineInfo',function ($scope, gonggaolist, currentUser,mineInfo) {
         var accesstoken = currentUser.getAuthToken()
-       mineInfo.query({accessToken:accesstoken},function(data){
-           var msg = {
-               id:data.id,
-               accessToken:accesstoken
-           }
-           gonggaolist.query(msg, function (info) {
-               $scope.gonggao = info
-           })
+        mineInfo.query({accessToken: accesstoken}, function (data) {
+            var msg = {
+                id: data.id,
+                accessToken: accesstoken
+            }
+            gonggaolist.query(msg, function (info) {
+                $scope.gonggao = info
+                console.log(info)
+            })
+
+        })
+    }])
+
+    .controller('gongGaoListCtrl', ['$scope', 'gonggaolist', 'mineInfo', 'currentUser', function ($scope, gonggaolist, mineInfo, currentUser) {
+        var accesstoken = currentUser.getAuthToken()
+        mineInfo.query({accessToken: accesstoken}, function (data) {
+            console.log(data)
+            var msg = {
+                id: data.id,
+                accessToken: accesstoken
+            }
+            gonggaolist.query(msg, function (info) {
+                $scope.gonggao = info
+            })
 
         })
 
     }])
 
-    .controller('gongGaoReleaseCtrl', ['$scope', '$window', '$stateParams', '$ionicPopup', 'gonggaoRelease','currentUser', '$timeout', function ($scope, $window, $stateParams, $ionicPopup, gonggaoRelease, currentUser, $timeout) {
+    .controller('gongGaoReleaseCtrl', ['$scope', '$window', '$stateParams', '$ionicPopup', 'gonggaoRelease', 'currentUser', '$timeout', function ($scope, $window, $stateParams, $ionicPopup, gonggaoRelease, currentUser, $timeout) {
         var accesstoken = currentUser.getAuthToken()
         $scope.gongGao = {'info': ''}
-        $scope.onRelease = function(){
+        $scope.onRelease = function () {
             var msg = {
-                content:$scope.gongGao.info,
-                accessToken:accesstoken
+                content: $scope.gongGao.info,
+                accessToken: accesstoken
             }
-            gonggaoRelease.save({},msg,function(rel){
-                if(rel.status = 'suc'){
+            gonggaoRelease.save({}, msg, function (rel) {
+                if (rel.status = 'suc') {
                     var popup = $ionicPopup.alert({
                         title: '发表成功',
                         template: '3秒后跳转'
@@ -351,7 +380,7 @@ angular.module('medicine.controllers', [])
                         popup.close()
                         $window.location.href = '#/gonggao'
                     }, 3000)
-                }else{
+                } else {
                     var popup = $ionicPopup.alert({
                         title: '未知错误'
                     })
@@ -381,22 +410,22 @@ angular.module('medicine.controllers', [])
         })
     }])
 
-    .controller('medicalDetailCtrl', ['$scope', 'Detail','currentUser','$window', '$stateParams','Remark','$ionicPopup', function ($scope, Detail,currentUser,$window, $stateParams,Remark,$ionicPopup) {
+    .controller('medicalDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.medicaldetail = data
             //console.log(data)
         })
 
         var accesstoken = currentUser.getAuthToken()
-        $scope.markinfo={'remak':''}
-        $scope.remark = function(){
+        $scope.markinfo = {'remak': ''}
+        $scope.remark = function () {
 
             var msg = {
-                accessToken : accesstoken,
-                articleId : $stateParams.id,
-                remark : $scope.markinfo.remak
+                accessToken: accesstoken,
+                articleId: $stateParams.id,
+                remark: $scope.markinfo.remak
             }
-            Remark.save({},msg,function(data){
+            Remark.save({}, msg, function (data) {
                 if (data.status == 'suc') {
                     $ionicPopup.alert({
                         title: '评论成功',
@@ -408,7 +437,6 @@ angular.module('medicine.controllers', [])
             })
 
         }
-
 
 
     }])
@@ -431,7 +459,7 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('xinxuegDetailCtrl', ['$scope', 'xinxuegDetail', '$stateParams', 'currentUser', '$window', '$ionicPopup','xinxuegRemark', function ($scope, xinxuegDetail, $stateParams, currentUser, $window, $ionicPopup,xinxuegRemark) {
+    .controller('xinxuegDetailCtrl', ['$scope', 'xinxuegDetail', '$stateParams', 'currentUser', '$window', '$ionicPopup', 'xinxuegRemark', function ($scope, xinxuegDetail, $stateParams, currentUser, $window, $ionicPopup, xinxuegRemark) {
         var accesstoken = currentUser.getAuthToken()
         if (accesstoken) {
             xinxuegDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
@@ -446,17 +474,17 @@ angular.module('medicine.controllers', [])
             $window.location.href = '#/sign_in'
         }
 
-        $scope.xinDmg = {'comment' :''}
+        $scope.xinDmg = {'comment': ''}
 
-        $scope.xinComment = function(){
+        $scope.xinComment = function () {
             var comment = {
-                heartCircleId :$stateParams.id,
-                remark:$scope.xinDmg.comment,
-                accessToken : accesstoken
+                heartCircleId: $stateParams.id,
+                remark: $scope.xinDmg.comment,
+                accessToken: accesstoken
             }
-            xinxuegRemark.save({},comment,function(data){
+            xinxuegRemark.save({}, comment, function (data) {
                 console.log(data)
-                if(data.status == 'suc'){
+                if (data.status == 'suc') {
                     console.log('成功')
                 }
             })
@@ -464,11 +492,78 @@ angular.module('medicine.controllers', [])
         }
 
     }])
+    .controller('patientCheckCtrl', ['$scope', 'patientBindList', 'currentUser', 'acceptOrNot', function ($scope, patientBindList, currentUser, acceptOrNot) {
+        patientBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
+            $scope.data = data
+            console.log(data)
+        })
+        $scope.accept = function () {
+            var msg = {
+                id: $scope.data[0].id,
+                acceptOrNot: 1,
+                accessToken: currentUser.getAuthToken()
+            }
+            acceptOrNot.save({}, msg, function (data) {
+                console.log(data)
+            })
+        }
+        $scope.noaccept = function () {
+            //$scope.data.splice($scope.data.indexOf($scope.data), 1);
+        }
+    }])
+    .controller('patientListCtrl', ['$scope', 'patientBindList', 'currentUser', function ($scope, patientBindList, currentUser) {
+        patientBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
+            $scope.data = data
+            console.log(data)
+        })
+    }])
 
 
-    .controller('myCollectionListCtrl', ['$scope', 'collectionList','currentUser', function ($scope, collectionList,currentUser) {
+    .controller('myCollectionListCtrl', ['$scope', 'collectionList', 'currentUser', function ($scope, collectionList, currentUser) {
         var accesstoken = currentUser.getAuthToken()
-        collectionList.query({accessToken:accesstoken}, function (data) {
+        collectionList.query({accessToken: accesstoken}, function (data) {
+            $scope.data = data
+            console.log(data)
+        })
+    }])
+    //添加反馈
+    .controller('feedBackCtrl', ['$scope', 'feedBack','currentUser','$ionicPopup','$window','$timeout', function ($scope, feedBack , currentUser,$ionicPopup,$window,$timeout) {
+        var accesstoken = currentUser.getAuthToken()
+
+        $scope.fbInfo = {'content':'','contact':''}
+        $scope.release=function(){
+            var info = {
+                content:$scope.fbInfo.content,
+                accessToken:accesstoken,
+                contact : $scope.fbInfo.contact
+            }
+            feedBack.save({},info, function (data) {
+                if (data.status = 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '评论成功',
+                        template: '感谢您的大力支持,3秒后跳转'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                        $window.location.href = '#/tab/mine'
+                    }, 3000)
+                } else {
+                    var popup = $ionicPopup.alert({
+                        title: '未知错误'
+                    })
+                }
+            })
+        }
+    }])
+
+
+    .controller('patientDetailCtrl', ['$scope', 'patientDetail', 'currentUser','$stateParams', function ($scope, patientDetail, currentUser,$stateParams) {
+        var accesstoken = currentUser.getAuthToken()
+        var params = {
+            accessToken:accesstoken,
+            patientId:$stateParams.id
+        }
+        patientDetail.query(params, function (data) {
             $scope.data = data
             console.log(data)
         })

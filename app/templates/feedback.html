@@ -3,18 +3,18 @@
         <h1 class="title">意见反馈</h1>
 
         <div class="buttons">
-            <button class="button button-balanced">提交</button>
+            <button class="button button-balanced" ng-click="release()">提交</button>
         </div>
     </ion-header-bar>
     <ion-content>
         <div class="list">
             <label class="item item-input">
-                <textarea placeholder="请留下您的宝贵意见" class="textarea-height"></textarea>
+                <textarea placeholder="请留下您的宝贵意见" class="textarea-height" ng-model="fbInfo.content"></textarea>
             </label>
         </div>
         <div class='list'>
             <label class="item item-input">
-                <input type="text" placeholder="联系方式">
+                <input type="text" placeholder="联系方式" ng-model="fbInfo.contact">
             </label>
         </div>
     </ion-content>

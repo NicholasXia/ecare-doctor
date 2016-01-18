@@ -4,7 +4,6 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         hideOnStateChange: true
     })
     .constant('SERVER', 'http://123.56.184.184:8080/hospital')
-    //.constant('SERVER', 'http://192.168.20.173:8080/hospital')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
         $ionicConfigProvider.navBar.alignTitle('center')
@@ -57,7 +56,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/msgrecord",
                 views: {
                     'msgrecord-tab': {
-                        templateUrl: "templates/msgrecord_tab.html"
+                        templateUrl: "templates/msgrecord_tab.html",
+                        controller:'msgRecordCtrl'
                     }
                 }
             })
@@ -66,7 +66,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/patientlist",
                 views: {
                     'patientlist-tab': {
-                        templateUrl: "templates/patientlist_tab.html"
+                        templateUrl: "templates/patientlist_tab.html",
+                        controller: 'patientListCtrl'
                     }
                 }
             })
@@ -119,7 +120,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             //意见反馈
             .state('feedback', {
                 url: "/feedback",
-                templateUrl: "templates/feedback.html"
+                templateUrl: "templates/feedback.html",
+                controller:'feedBackCtrl'
             })
             //个人资料
             .state('mine_info', {
@@ -190,12 +192,14 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             //new患者验证
             .state('patient_check', {
                 url: "/patient_check",
-                templateUrl: "templates/patient_check.html"
+                templateUrl: "templates/patient_check.html",
+                controller: "patientCheckCtrl"
             })
             //已绑定患者详情
             .state('patient_detail', {
-                url: "/patient_detail",
-                templateUrl: "templates/patient_detail.html"
+                url: "/patient_detail/:id",
+                templateUrl: "templates/patient_detail.html",
+                controller:'patientDetailCtrl'
             })
             //添加患者
             .state('patient_add', {

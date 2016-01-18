@@ -241,18 +241,16 @@ angular.module('medicine.services', ['ngResource'])
     }])
 
     .factory('Remark', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/patient/article/remark',{
+        return $resource(SERVER + '/patient/article/remark', {
             accessToken: "@accessToken",
-            articleId :'@articleId',
-            remark : '@remark'
+            articleId: '@articleId',
+            remark: '@remark'
         }, {
-            save:{
+            save: {
                 method: 'POST'
             }
         })
     }])
-
-
     .factory('xinxueg', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/doctor/heartcircle/list', {}, {
             query: {
@@ -269,9 +267,9 @@ angular.module('medicine.services', ['ngResource'])
         })
     }])
     .factory('xinxuegRemark', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/doctor/heartcircle/remark',{
-            heartCircleId :'@heartCircleId',
-            remark : '@remark',
+        return $resource(SERVER + '/doctor/heartcircle/remark', {
+            heartCircleId: '@heartCircleId',
+            remark: '@remark',
             accessToken: "@accessToken"
         }, {
             save: {
@@ -282,8 +280,8 @@ angular.module('medicine.services', ['ngResource'])
 
 
     .factory('gonggaoRelease', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/doctor/announcement/add',{
-            content:'@content',
+        return $resource(SERVER + '/doctor/announcement/add', {
+            content: '@content',
             accessToken: "@accessToken"
         }, {
             save: {
@@ -291,13 +289,58 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
-
-
     .factory('gonggaolist', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/doctor/announcement/list/:id',{},{
+        return $resource(SERVER + '/doctor/announcement/list/:id', {}, {
             query: {
                 method: 'GET',
-                isArray:true
+                isArray: true
+            }
+        })
+    }])
+    .factory('patientBindList', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/bind/list', {}, {
+            query: {
+                method: 'GET',
+                isArray: true
+            }
+        })
+    }])
+    .factory('acceptOrNot', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/bind/acceptOrNot', {
+            id: "@id",
+            acceptOrNot: "@acceptOrNot",
+            accessToken: "@accessToken"
+        }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+    //首页活跃用户数
+    .factory('bindinfo', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/bindinfo/:id', {}, {
+            query: {
+                method: 'GET',
+            }
+        })
+    }])
+    .factory('feedBack', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/back/feedback/add', {
+            content: "@content",
+            accessToken: "@accessToken",
+            contact: "@contact",
+
+        }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+
+    .factory('patientDetail', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/mypatient',{},{
+            query: {
+                method: 'GET'
             }
         })
     }])

@@ -6,13 +6,14 @@
                     <div class="box blue"><img ng-src={{item.coverImageUrl}} width="100%" height="200px"/></div>
                 </ion-slide>
             </ion-slide-box>
-            <div class="item item-text-wrap padding">
+             <!-- 用户登陆时显示-->
+            <a href="#/pat/patientlist" class="item item-text-wrap padding" ng-if="isLogin">
                 <div class="home-feature-text  justify-lr text-center">
-                    <div>今日新增患者<span class="new-bander-count">2</span>人</div>
-                    <div>绑定患者日活<span class="new-bander-count">5</span>人</div>
-                    <div>总绑定患者数<span class="new-bander-count">7</span>人</div>
+                    <div>今日新增患者<span class="new-bander-count">{{count.bindCountToday}}</span>人</div>
+                    <div>绑定患者日活<span class="new-bander-count">{{count.bindCountToday}}</span>人</div>
+                    <div>总绑定患者数<span class="new-bander-count">{{count.bindCountTotal}}</span>人</div>
                 </div>
-            </div>
+            </a>
             <div class="item pad-replate">
 
                 <div class="button-bar  features-button">
@@ -41,7 +42,9 @@
                 </div>
 
             </div>
-            <div class='item padding '>
+
+            <!-- 用户登陆时显示-->
+            <div class='item padding ' ng-if="isLogin">
                 <a href="#/pat/patientlist" class='home-feature-text justify-center-lr nounderlines'>
 
                     <div>你有<span class="new-bander-count">7</span>患者想你咨询,请查看</div>
