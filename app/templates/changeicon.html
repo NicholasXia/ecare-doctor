@@ -4,19 +4,20 @@
 
     </ion-header-bar>
     <ion-content has-bouncing="true" class="padding">
-        <form id="patientData" enctype="multipart/form-data" method="post" >
-            <button class="button button-block button-balanced myicon">
-                <input id="publishphoto"
-                       type="file"
-                       accept="image/*"
-                       multiple
-                       image="publishphoto"
-                       class="inputfile"
-                        />
-                上传
-            </button>
+        <form id="xinxuegimage" enctype="multipart/form-data" method="post">
+            <input id="publishphoto"
+                   type="file"
+                   accept="image/*"
+                   multiple
+                   image="publishphoto"
+                   class="inputfile myicon"
+                    />
+            <!--<label for="publishphoto"></label>-->
+            <button class="button button-full button-balanced myIcon">选择图片</button>
             <img ng-repeat="img in publishphoto" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
         </form>
-        <button class="button" form="patientData"  ng-click="patientData(publishphoto)" >确认修改</button>
+        <div class="buttons">
+            <button class="button button-balanced" ng-click="xinxuegRelease(publishphoto)">上传</button>
+        </div>
     </ion-content>
 </ion-view>

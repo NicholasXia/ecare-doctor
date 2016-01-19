@@ -4,7 +4,6 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         hideOnStateChange: true
     })
     //.constant('SERVER', 'http://123.56.184.184:8080/hospital')
-
     .constant('SERVER', 'http://192.168.20.173:8080/hospital')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
@@ -166,7 +165,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             //发表心血管圈消息
             .state('xinxueg_release', {
                 url: "/xinxueg_release",
-                templateUrl: "templates/xinxueg_release.html"
+                templateUrl: "templates/xinxueg_release.html",
+                controller:'xinxuegRemarkCtrl'
             })
             //心血管圈详情
             .state('xinxueg_detail', {

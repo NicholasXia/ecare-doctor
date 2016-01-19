@@ -32,17 +32,16 @@
                 <div class='new_patient justify-center-lr' >
                     <div class="justify-center-lr">
                         <p>{{item.patientName}}</p>
-                        <button class="button button-small button-assertive disabled" ng-if="item.checked == 1">
+                        <button class="button button-small button-assertive disabled">
                             已绑定
                         </button>
-                        <button class="button button-small button-energized disabled" ng-if="item.checked == 0">
-                            未绑定
-                        </button>
+
                     </div>
-                    <div class='justify-center-lr patient-button'>
-                        <p>50</p>
+                    <div class='justify-center-lr patient-button' ng-if="item.age">
+                        <p>{{item.age}} 岁</p>
                         <p> | </p>
-                        <p>女</p>
+                        <p ng-if="item.agender == 2">女</p>
+                        <p ng-if="item.agender == 1">男</p>
                     </div>
                 </div>
             </a>

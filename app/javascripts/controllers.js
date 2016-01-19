@@ -58,8 +58,12 @@ angular.module('medicine.controllers', [])
         //用户注册模块
         var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/
         $scope.account = {phoneNum: '', verCode: '', password: ''}
-        $scope.getVerificationCode = function () {
+        console.log('00000000')
+        console.log($scope)
+        //
+        $scope.getCode = function () {
             getVerificationCode.query({mobile: $scope.account.phoneNum}, function (data) {
+                console.log(data)
                 if (data.error || $scope.account.phoneNum.length == 0 || $scope.account.phoneNum.length < 11 || !reg.test($scope.account.phoneNum)) {
                     $ionicPopup.alert({
                         title: '错误提示',
@@ -78,6 +82,8 @@ angular.module('medicine.controllers', [])
                 });
             })
         }
+
+
         $scope.signUp = function () {
             var user = {
                 registerType: 1,
@@ -336,6 +342,7 @@ angular.module('medicine.controllers', [])
                 accessToken: accesstoken
             }
             gonggaolist.query(msg, function (info) {
+
                 $scope.gonggao = info
                 console.log(info)
             })
@@ -481,8 +488,9 @@ angular.module('medicine.controllers', [])
                 accessToken: accesstoken
             }
             xinxuegRemark.save({}, comment, function (data) {
+                console.log(data)
                 if (data.status == 'suc') {
-                    $window.location.reload()
+                    //$window.location.reload()
                 }
             })
 
@@ -509,16 +517,16 @@ angular.module('medicine.controllers', [])
         }
     }])
     //患者列表
-    .controller('patientListCtrl', ['$scope', 'patientBindList', 'patientCheckBindList','currentUser', function ($scope, patientBindList,patientCheckBindList, currentUser) {
+    .controller('patientListCtrl', ['$scope', 'patientBindList', 'patientCheckBindList', 'currentUser', function ($scope, patientBindList, patientCheckBindList, currentUser) {
         patientCheckBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.datacheck = data
             var num = 0
-            for(var i=0;i < data.length ;i++){
-                if(data[i].checked == 0){
-                    num ++
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].checked == 0) {
+                    num++
                 }
             }
-            $scope.nochecknum =num
+            $scope.nochecknum = num
             console.log($scope.nochecknum)
         })
 
@@ -582,21 +590,34 @@ angular.module('medicine.controllers', [])
     }])
 
     //更改头像
-    .controller('myIconChangeCtrl', ['$scope', 'updateMsg', 'currentUser', function ($scope, updateMsg, currentUser) {
-        $scope.patientData = {
+    .controller('myIconChangeCtrl', ['$scope', 'updateIcon', 'currentUser', function ($scope, updateIcon, currentUser) {
+
+        $scope.xinxuegimage = {
             imageBase64s: '',
-            accessToken: ''
-        }
-        $scope.patientData = function (publishphoto) {
-            console.log(publishphoto)
-            $scope.patientData.imageBase64s = publishphoto[0].dataURL
+        };
+        $scope.xinxuegRelease = function (publishphoto) {
+            $scope.xinxuegimage.imageBase64s = publishphoto[0].dataURL
             var msg = {
-                imageBase64s: $scope.patientData.imageBase64s,
+                imageBase64s: $scope.xinxuegimage.imageBase64s,
                 accessToken: currentUser.getAuthToken()
             }
-            console.log(msg)
-            updateMsg.save({}, msg, function (data) {
+            updateIcon.save(msg, function (data) {
                 console.log(data)
+                if(data.status == 'suc'){
+                    var popup = $ionicPopup.alert({
+                        title: '头像更换成功',
+                        template: '3秒钟后返回'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                        $window.history.back();
+                    }, 3000)
+                }else{
+                    var popup = $ionicPopup.alert({
+                        title: '错误',
+                        template: '请不要上传过大或无效的头像'
+                    })
+                }
             })
         }
     }])
@@ -606,7 +627,7 @@ angular.module('medicine.controllers', [])
     }])
 
     //绑定我的患者
-    .controller('patientAddCtrl', ['$window','$scope', 'patientadd', 'currentUser','$ionicPopup', '$stateParams', function ($window,$scope, patientadd, currentUser,$ionicPopup,$stateParams) {
+    .controller('patientAddCtrl', ['$window', '$scope', 'patientadd', 'currentUser', '$ionicPopup', '$stateParams', function ($window, $scope, patientadd, currentUser, $ionicPopup, $stateParams) {
         var accesstoken = currentUser.getAuthToken()
         $scope.invite = {'mobile': '',}
         $scope.Invite = function () {
@@ -619,19 +640,38 @@ angular.module('medicine.controllers', [])
                 $scope.data = data
                 if (data.status == 'suc') {
                     $window.history.back()
-                } else if(data.error_code == '11600'){
+                } else {
                     $ionicPopup.alert({
                         title: '提示',
-                        template: '她已经是您的好友了'
+                        template: data.error
                     });
                     $window.history.back()
-                }else{
-                    $ionicPopup.alert({
-                        title: '错误提示',
-                        template: '添加失败'
-                    });
-                    $window.location.href = '#/'
                 }
+                console.log(data)
+            })
+        }
+    }])
+
+ //   心血管圈发表
+ .controller('xinxuegRemarkCtrl', ['$scope', 'xinxuegRemark', 'currentUser', function ($scope, xinxuegRemark, currentUser) {
+        $scope.xinxueg = {
+            content:''
+        }
+
+        $scope.xinxuegimage = {
+            imageBase64s: '',
+        };
+        $scope.xinxuegRelease = function (publishphoto) {
+            $scope.xinxuegimage.imageBase64s = publishphoto[0].dataURL
+            var msg = {
+                content:$scope.xinxueg.content,
+                imageBase64s: $scope.xinxuegimage.imageBase64s,
+                //imageBase64s1: $scope.xinxuegimage.imageBase64s,
+                accessToken: currentUser.getAuthToken()
+            }
+            console.log(msg)
+            xinxuegRemark.save(msg, function (data) {
+                console.log(msg)
                 console.log(data)
             })
         }

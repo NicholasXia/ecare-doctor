@@ -87,7 +87,7 @@
     height: 30px;
     width: 100%;
 }
-.myicon input{width: 100%; left: 0px;}
+.myicon{line-height: 48px;  width: 100%;}
 .inputfile:focus + label,
 .inputfile + label:hover {
     background-color: red;
@@ -224,4 +224,7 @@ img.my-pictures {
 
 .textcolor {
     color: rgba(0, 0, 0, .7);
+}
+.myimageIcon{
+    width: 80px;
 }

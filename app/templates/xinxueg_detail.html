@@ -5,7 +5,8 @@
     <ion-content>
         <div class="list">
             <div class="item item-avatar">
-                <img ng-src="{{xinxuegdetail.profileImage}}">
+                <img ng-if="xinxuegdetail.profileImage" ng-src="{{xinxuegdetail.profileImage}}">
+                <img  ng-if="!xinxuegdetail.profileImage" src="./images/wode.png">
 
                 <div style='padding-top:10px'>
                     <p>{{xinxuegdetail.doctorName}}</p>
@@ -14,6 +15,7 @@
                     <p>
                         {{xinxuegdetail.content}}
                     </p>
+                    <img ng-repeat="item in xinxuegdetail.imageList" ng-src="{{item.imageUrl}}"/>
                 </div>
                 <p>{{xinxuegdetail.creTime}}</p>
             </div>

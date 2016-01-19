@@ -11,14 +11,6 @@ angular.module('medicine.services', ['ngResource'])
         })
     }])
 
-
-    /*首页新闻动态内容获取*/
-    //未定义
-    //.factory('getIndexMedical',['$resource','SERVER',function($resource,SERVER){
-    //    //接口未找到
-    //}])
-
-
     .factory('getVerificationCode', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/u/verificationCode', {mobile: '@mobile'}, {
             query: {
@@ -108,14 +100,25 @@ angular.module('medicine.services', ['ngResource'])
     }])
     .factory('updateMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/patient/profile/update', {
+            imageBase64s: "@imageBase64s",
             accessToken: "@accessToken",
             name: "@name",
             agender: "@agender",
             birthday: "@birthday",
             mobile: "@mobile",
-            weight: "@weight",
-            imageBase64s :"@imageBase64s"
+            weight: "@weight"
         }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+
+    .factory('updateIcon', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/profile/update', {
+            imageBase64s :"@imageBase64s",
+            accessToken: "@accessToken",
+        },{
             save: {
                 method: 'POST'
             }
@@ -158,18 +161,18 @@ angular.module('medicine.services', ['ngResource'])
         })
     }])
     //头像上传
-    .factory('updateMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/doctor/profile/update', {
-            accessToken: "@accessToken",
-            name: "@name",
-            agender: "@agender",
-            birthday: "@birthday",
-        }, {
-            save: {
-                method: 'POST'
-            }
-        })
-    }])
+    //.factory('updateMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
+    //    return $resource(SERVER + '/doctor/profile/update', {
+    //        accessToken: "@accessToken",
+    //        name: "@name",
+    //        agender: "@agender",
+    //        birthday: "@birthday",
+    //    }, {
+    //        save: {
+    //            method: 'POST'
+    //        }
+    //    })
+    //}])
     //证件上传
     .factory('updateVerifyMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/doctor/verify/upload', {
@@ -241,7 +244,7 @@ angular.module('medicine.services', ['ngResource'])
         }, {
             query: {
                 method: 'GET',
-                isArray:true
+                isArray: true
             }
         })
     }])
@@ -362,10 +365,10 @@ angular.module('medicine.services', ['ngResource'])
     }])
 
     .factory('patientDetail', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/doctor/mypatient/:id',{
-            patientId:"@patientId",
-            accessToken:"@accessToken"
-        },{
+        return $resource(SERVER + '/doctor/mypatient/:id', {
+            patientId: "@patientId",
+            accessToken: "@accessToken"
+        }, {
             query: {
                 method: 'GET'
             }
@@ -375,6 +378,20 @@ angular.module('medicine.services', ['ngResource'])
         return $resource(SERVER + '/doctor/doctorBindPatient', {
             accessToken: "@accessToken",
             mobile: "@mobile",
+
+        }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+ //   心血管圈发表
+ .factory('xinxuegRemark', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/heartcircle/add', {
+            content:'@content',
+            imageBase64s:"@imageBase64s",
+            //imageBase64s:"@imageBase64s1",
+            accessToken: "@accessToken"
 
         }, {
             save: {
