@@ -99,8 +99,7 @@ angular.module('medicine.services', ['ngResource'])
         })
     }])
     .factory('updateMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/patient/profile/update', {
-            imageBase64s: "@imageBase64s",
+        return $resource(SERVER + '/doctor/profile/update', {
             accessToken: "@accessToken",
             name: "@name",
             agender: "@agender",

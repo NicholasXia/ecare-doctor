@@ -7,7 +7,9 @@
 
             <div class="item justify-center-lr pad-replate item-balanced">
                 <div class='justify-center-lr'>
-                    <img src="./images/morentouxiang.png" class='mine-image'>
+                    <img ng-if="infodata.profileImageUrl" ng-src="{{infodata.profileImageUrl}}" class='mine-image'>
+                    <img ng-if='!infodata.profileImageUrl' src="./images/morentouxiang.png" class='mine-image'>
+
 
                     <div class='mine-info' ng-if="accesstoken">
                         <div class='justify-center-lr'>

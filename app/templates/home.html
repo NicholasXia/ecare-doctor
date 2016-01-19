@@ -54,16 +54,16 @@
             </div>
             <div class='item pad-replate'>
 
-                <div class='activity' ng-repeat="item in medicallist | limitTo:3"
+                <div class='activity' ng-repeat="item in medicallist | limitTo:5"
                      ui-sref="medical_detail({id:item.id})">
                     <div class="header clearfix padding">
                         <div ng-if="item.category == 2" class="fl padding">医疗动态</div>
                         <div class="fr">{{item.postTime}}</div>
                     </div>
-                    <div class="content padding">
+                    <div class="content">
                         <h2>{{item.title}}</h2>
 
-                        <p class="init text-indent" ng-bind-html="item.content">{{item.content}}...</p>
+                        <p class="init home" ng-bind-html="item.content">{{item.content | limitTo : 100}}...</p>
                     </div>
                     <div class="footer clearfix">
                         <span class="fl">来源 :</span>

@@ -240,13 +240,15 @@ angular.module('medicine.controllers', [])
         };
 
         $scope.saveMsg = function () {
+            console.log('111111')
             var saveMsg = {
                 accessToken: currentUser.getAuthToken(),
                 name: $scope.patientData.name,
                 birthday: $scope.patientData.birthday,
                 agender: $scope.patientData.agender
             }
-            updateMsg.save({}, saveMsg, function (data) {
+            console.log(saveMsg)
+            updateMsg.save(saveMsg, function (data) {
                 if (data.status == 'suc') {
                     var popup = $ionicPopup.alert({
                         title: '您的信息修改成功',
@@ -257,9 +259,9 @@ angular.module('medicine.controllers', [])
                         $window.history.back();
                     }, 3000)
                 }
-                else {
-                    $window.location.href = '#/'
-                }
+                //else {
+                //    $window.location.href = '#/'
+                //}
             })
         }
     }])
@@ -590,7 +592,7 @@ angular.module('medicine.controllers', [])
     }])
 
     //更改头像
-    .controller('myIconChangeCtrl', ['$scope', 'updateIcon', 'currentUser', function ($scope, updateIcon, currentUser) {
+.controller('myIconChangeCtrl', ['$scope', 'updateIcon', 'currentUser','$ionicPopup','$window','$timeout', function ($scope, updateIcon, currentUser,$ionicPopup,$window,$timeout) {
 
         $scope.xinxuegimage = {
             imageBase64s: '',
