@@ -312,8 +312,17 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
-    .factory('patientBindList', ['$resource', 'SERVER', function ($resource, SERVER) {
+    .factory('patientCheckBindList', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/doctor/bind/list', {}, {
+            query: {
+                method: 'GET',
+                isArray: true
+            }
+        })
+    }])
+
+    .factory('patientBindList', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/mypatients', {}, {
             query: {
                 method: 'GET',
                 isArray: true

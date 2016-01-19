@@ -489,8 +489,8 @@ angular.module('medicine.controllers', [])
         }
 
     }])
-    .controller('patientCheckCtrl', ['$scope', 'patientBindList', 'currentUser', 'acceptOrNot', function ($scope, patientBindList, currentUser, acceptOrNot) {
-        patientBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
+    .controller('patientCheckCtrl', ['$scope', 'patientCheckBindList', 'currentUser', 'acceptOrNot', function ($scope, patientCheckBindList, currentUser, acceptOrNot) {
+        patientCheckBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.data = data
             console.log(data)
         })
@@ -509,16 +509,21 @@ angular.module('medicine.controllers', [])
         }
     }])
     //患者列表
-    .controller('patientListCtrl', ['$scope', 'patientBindList', 'currentUser', function ($scope, patientBindList, currentUser) {
-        patientBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
-            $scope.data = data
+    .controller('patientListCtrl', ['$scope', 'patientBindList', 'patientCheckBindList','currentUser', function ($scope, patientBindList,patientCheckBindList, currentUser) {
+        patientCheckBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
+            $scope.datacheck = data
             var num = 0
             for(var i=0;i < data.length ;i++){
-                if(data[i].checked == 1){
+                if(data[i].checked == 0){
                     num ++
                 }
             }
-            $scope.data.num =num
+            $scope.nochecknum =num
+            console.log($scope.nochecknum)
+        })
+
+        patientBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
+            $scope.data = data
             console.log($scope.data)
         })
     }])

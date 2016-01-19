@@ -6,7 +6,7 @@
         <div class="list mine-info-my top-50">
             <div class="justify-center-lr item">
                 <div class='justify-lr my-span'><img src="./images/huanzheshu.png" class='my-pictures' alt="">共有患者<span
-                        class="accent-number-color">{{data.num}}</span>人
+                        class="accent-number-color">{{data.length}}</span>人
                 </div>
                 <div class='justify-center-lr patient-button'>
                     <button class="button button-small button-balanced" ui-sref="patient_add">
@@ -16,7 +16,7 @@
             </div>
             <div class='item justify-center-lr' ui-sref='patient_check'>
                 <div class='justify-lr my-span'><img class="my-pictures" src="./images/xiaoxi.png" alt="">有<span
-                        class="accent-number-color">0</span>心患者需要验证
+                        class="accent-number-color">{{nochecknum}}</span>心患者需要验证
                 </div>
                 <div><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
