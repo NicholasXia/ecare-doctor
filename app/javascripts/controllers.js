@@ -23,6 +23,8 @@ angular.module('medicine.controllers', [])
             }
             bindinfo.query(msg, function (count) {
                 $scope.count = count
+
+                console.log(count)
             })
         })
 
@@ -158,6 +160,7 @@ angular.module('medicine.controllers', [])
         $scope.accesstoken = accesstoken
         mineInfo.query({accessToken: accesstoken}, function (data) {
             $scope.infodata = data
+            console.log(data)
         })
 
 
@@ -505,14 +508,23 @@ angular.module('medicine.controllers', [])
             //$scope.data.splice($scope.data.indexOf($scope.data), 1);
         }
     }])
+    //患者列表
     .controller('patientListCtrl', ['$scope', 'patientBindList', 'currentUser', function ($scope, patientBindList, currentUser) {
         patientBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.data = data
-            console.log(data)
+            var num = 0
+            for(var i=0;i < data.length ;i++){
+                if(data[i].checked == 1){
+                    num ++
+                }
+            }
+            $scope.data.num =num
+            console.log($scope.data)
         })
     }])
 
 
+    //我的收藏列表
     .controller('myCollectionListCtrl', ['$scope', 'collectionList', 'currentUser', function ($scope, collectionList, currentUser) {
         var accesstoken = currentUser.getAuthToken()
         collectionList.query({accessToken: accesstoken}, function (data) {
@@ -550,10 +562,11 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-
+//我的患者详情
     .controller('patientDetailCtrl', ['$scope', 'patientDetail', 'currentUser', '$stateParams', function ($scope, patientDetail, currentUser, $stateParams) {
         var accesstoken = currentUser.getAuthToken()
         var params = {
+            id: $stateParams.id,
             accessToken: accesstoken,
             patientId: $stateParams.id
         }
@@ -563,6 +576,7 @@ angular.module('medicine.controllers', [])
         })
     }])
 
+    //更改头像
     .controller('myIconChangeCtrl', ['$scope', 'updateMsg', 'currentUser', function ($scope, updateMsg, currentUser) {
         $scope.patientData = {
             imageBase64s: '',
@@ -584,4 +598,36 @@ angular.module('medicine.controllers', [])
     //医生认证
     .controller('doctorVerifyCtrl', ['$scope', 'updateVerifyMsg', 'currentUser', function ($scope, updateVerifyMsg, currentUser) {
 
+    }])
+
+    //绑定我的患者
+    .controller('patientAddCtrl', ['$window','$scope', 'patientadd', 'currentUser','$ionicPopup', '$stateParams', function ($window,$scope, patientadd, currentUser,$ionicPopup,$stateParams) {
+        var accesstoken = currentUser.getAuthToken()
+        $scope.invite = {'mobile': '',}
+        $scope.Invite = function () {
+            var params = {
+                accessToken: accesstoken,
+                mobile: $scope.invite.mobile
+
+            }
+            patientadd.save(params, function (data) {
+                $scope.data = data
+                if (data.status == 'suc') {
+                    $window.history.back()
+                } else if(data.error_code == '11600'){
+                    $ionicPopup.alert({
+                        title: '提示',
+                        template: '她已经是您的好友了'
+                    });
+                    $window.history.back()
+                }else{
+                    $ionicPopup.alert({
+                        title: '错误提示',
+                        template: '添加失败'
+                    });
+                    $window.location.href = '#/'
+                }
+                console.log(data)
+            })
+        }
     }])

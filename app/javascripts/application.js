@@ -197,14 +197,15 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             })
             //已绑定患者详情
             .state('patient_detail', {
-                url: "/patient_detail/:",
+                url: "/patient_detail/:id",
                 templateUrl: "templates/patient_detail.html",
                 controller:'patientDetailCtrl'
             })
             //添加患者
             .state('patient_add', {
                 url: "/patient_add",
-                templateUrl: "templates/patient_add.html"
+                templateUrl: "templates/patient_add.html",
+                controller:'patientAddCtrl'
             })
 
             //我的公告

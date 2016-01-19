@@ -2,7 +2,7 @@
     <ion-content has-bouncing="true">
         <div class="list">
             <ion-slide-box ng-if="data.length > 0">
-                <ion-slide ng-repeat="item in data" ng-click="goToActivity(item.linkUrl)">
+                <ion-slide ng-repeat="item in data" ng-click="goToActivity('#/medical_detail/{{item.id}}')">
                     <div class="box blue"><img ng-src={{item.coverImageUrl}} width="100%" height="200px"/></div>
                 </ion-slide>
             </ion-slide-box>

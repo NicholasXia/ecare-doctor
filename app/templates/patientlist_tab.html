@@ -6,7 +6,7 @@
         <div class="list mine-info-my top-50">
             <div class="justify-center-lr item">
                 <div class='justify-lr my-span'><img src="./images/huanzheshu.png" class='my-pictures' alt="">共有患者<span
-                        class="accent-number-color">{{data.length}}</span>人
+                        class="accent-number-color">{{data.num}}</span>人
                 </div>
                 <div class='justify-center-lr patient-button'>
                     <button class="button button-small button-balanced" ui-sref="patient_add">
@@ -16,7 +16,7 @@
             </div>
             <div class='item justify-center-lr' ui-sref='patient_check'>
                 <div class='justify-lr my-span'><img class="my-pictures" src="./images/xiaoxi.png" alt="">有<span
-                        class="accent-number-color">1</span>心患者需要验证
+                        class="accent-number-color">0</span>心患者需要验证
                 </div>
                 <div><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
@@ -29,11 +29,14 @@
             <a class="item item-avatar" ng-repeat="item in data" href="#/patient_detail/{{item.patientId}}"  >
                 <img src="./images/wode.png">
 
-                <div class='new_patient justify-center-lr'>
+                <div class='new_patient justify-center-lr' >
                     <div class="justify-center-lr">
                         <p>{{item.patientName}}</p>
                         <button class="button button-small button-assertive disabled" ng-if="item.checked == 1">
                             已绑定
+                        </button>
+                        <button class="button button-small button-energized disabled" ng-if="item.checked == 0">
+                            未绑定
                         </button>
                     </div>
                     <div class='justify-center-lr patient-button'>

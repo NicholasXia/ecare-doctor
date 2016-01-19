@@ -5,15 +5,14 @@
     <ion-content>
         <div class="list">
             <div class="item item-avatar">
-                <img src="./images/wode.png">
-                <!-- 断点-->
+                <img ng-src="{{data.profileImageUrl}}">
                 <div class='analysis-list-title '>
                     <div>
-                        <p>张美丽</p>
+                        <p>{{data.userId}}</p>
 
-                        <p>联系电话：<span>15011532498</span></p>
+                        <p>联系电话：<span>{{data.mobile}}</span></p>
 
-                        <p><span>60</span>岁 <span>|</span> <span>女</span></p>
+                        <p><span>{{data.age}}</span>岁 <span>|</span> <span>{{data.agender}}</span></p>
                     </div>
                 </div>
             </div>
@@ -21,16 +20,14 @@
                 <p class='accent-text-color'>病史:</p>
 
                 <p>
-                    通常只有中老年人才会得心脏病
-                    通常只有中老年人才会得心脏病
+                    {{data.illProfile}}
                 </p>
             </div>
             <div class='item item-body'>
                 <p class='accent-text-color'>备注:</p>
 
                 <p>
-                    通常只有中老年人才会得心脏病
-                    通常只有中老年人才会得心脏病
+                   无
                 </p>
             </div>
         </div>
