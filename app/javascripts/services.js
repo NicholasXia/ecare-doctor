@@ -373,6 +373,18 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+
+    .factory('delMyPatient', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/doctorunBindPatient', {
+            patientId: "@patientId",
+            accessToken: "@accessToken"
+        }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+
     .factory('patientadd', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/doctor/doctorBindPatient', {
             accessToken: "@accessToken",

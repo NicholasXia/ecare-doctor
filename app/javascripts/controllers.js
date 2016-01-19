@@ -2,11 +2,14 @@ angular.module('medicine.controllers', [])
     .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', "$ionicPopup", "bindinfo", "mineInfo", function ($scope, $window, getCarouselList, currentUser, $ionicPopup, bindinfo, mineInfo) {
         getCarouselList.query({type: 1, category: 1}, function (data) {
             $scope.data = data
+
+            console.log(data)
             $scope.doctorno = currentUser.getDoctorCode()
         })
 
         getCarouselList.query({type: 1, category: 2}, function (data) {
             $scope.medicallist = data
+            console.log(data)
         })
 
         $scope.doctorCode = currentUser.getDoctorCode()
@@ -23,7 +26,6 @@ angular.module('medicine.controllers', [])
             }
             bindinfo.query(msg, function (count) {
                 $scope.count = count
-
                 console.log(count)
             })
         })
@@ -240,7 +242,6 @@ angular.module('medicine.controllers', [])
         };
 
         $scope.saveMsg = function () {
-            console.log('111111')
             var saveMsg = {
                 accessToken: currentUser.getAuthToken(),
                 name: $scope.patientData.name,
@@ -519,8 +520,9 @@ angular.module('medicine.controllers', [])
         }
     }])
     //患者列表
-    .controller('patientListCtrl', ['$scope', 'patientBindList', 'patientCheckBindList', 'currentUser', function ($scope, patientBindList, patientCheckBindList, currentUser) {
-        patientCheckBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
+    .controller('patientListCtrl', ['$scope', 'patientBindList', 'patientCheckBindList', 'currentUser','mineInfo','bindinfo', function ($scope, patientBindList, patientCheckBindList, currentUser,mineInfo,bindinfo) {
+        var accesstoken = currentUser.getAuthToken()
+        patientCheckBindList.query({accessToken: accesstoken}, function (data) {
             $scope.datacheck = data
             var num = 0
             for (var i = 0; i < data.length; i++) {
@@ -532,9 +534,18 @@ angular.module('medicine.controllers', [])
             console.log($scope.nochecknum)
         })
 
-        patientBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
+        patientBindList.query({accessToken: accesstoken}, function (data) {
             $scope.data = data
             console.log($scope.data)
+        })
+        mineInfo.query({accessToken:accesstoken}, function (rihuo) {
+            var msg = {
+                id: rihuo.id,
+            }
+            bindinfo.query(msg, function (count) {
+                $scope.count = count
+                console.log(count)
+            })
         })
     }])
 
@@ -578,7 +589,7 @@ angular.module('medicine.controllers', [])
     }])
 
 //我的患者详情
-    .controller('patientDetailCtrl', ['$scope', 'patientDetail', 'currentUser', '$stateParams', function ($scope, patientDetail, currentUser, $stateParams) {
+    .controller('patientDetailCtrl', ['$scope','$ionicPopup','$window','$timeout','delMyPatient', 'patientDetail', 'currentUser', '$stateParams', function ($scope,$ionicPopup,$window,$timeout, delMyPatient,patientDetail, currentUser, $stateParams) {
         var accesstoken = currentUser.getAuthToken()
         var params = {
             id: $stateParams.id,
@@ -589,6 +600,24 @@ angular.module('medicine.controllers', [])
             $scope.data = data
             console.log(data)
         })
+        $scope.delPatient = function(userid){
+            delMyPatient.save({accessToken:accesstoken,patientId:userid},function(data){
+                if (data.status = 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '解绑成功',
+                        template: '你们已经不是好友啦'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                        $window.history.back()
+                    }, 3000)
+                } else {
+                    var popup = $ionicPopup.alert({
+                        title: '未知错误'
+                    })
+                }
+            })
+        }
     }])
 
     //更改头像

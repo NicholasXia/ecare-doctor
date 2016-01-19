@@ -10,7 +10,7 @@
             <a href="#/pat/patientlist" class="item item-text-wrap padding" ng-if="isLogin">
                 <div class="home-feature-text  justify-lr text-center">
                     <div>今日新增患者<span class="new-bander-count">{{count.bindCountToday}}</span>人</div>
-                    <div>绑定患者日活<span class="new-bander-count">{{count.bindCountToday}}</span>人</div>
+                    <div>绑定患者日活<span class="new-bander-count">{{count.dayLiveTotal}}</span>人</div>
                     <div>总绑定患者数<span class="new-bander-count">{{count.bindCountTotal}}</span>人</div>
                 </div>
             </a>
@@ -63,7 +63,7 @@
                     <div class="content">
                         <h2>{{item.title}}</h2>
 
-                        <p class="init home" ng-bind-html="item.content">{{item.content | limitTo : 100}}...</p>
+                        <p class="init home"><img ng-src="{{item.coverImageUrl}}" /> </p>
                     </div>
                     <div class="footer clearfix">
                         <span class="fl">来源 :</span>
