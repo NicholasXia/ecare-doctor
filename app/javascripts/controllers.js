@@ -2,14 +2,11 @@ angular.module('medicine.controllers', [])
     .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', "$ionicPopup", "bindinfo", "mineInfo", function ($scope, $window, getCarouselList, currentUser, $ionicPopup, bindinfo, mineInfo) {
         getCarouselList.query({type: 1, category: 1}, function (data) {
             $scope.data = data
-
-            console.log(data)
             $scope.doctorno = currentUser.getDoctorCode()
         })
 
         getCarouselList.query({type: 1, category: 2}, function (data) {
             $scope.medicallist = data
-            console.log(data)
         })
 
         $scope.doctorCode = currentUser.getDoctorCode()
@@ -26,7 +23,6 @@ angular.module('medicine.controllers', [])
             }
             bindinfo.query(msg, function (count) {
                 $scope.count = count
-                console.log(count)
             })
         })
 
@@ -161,10 +157,10 @@ angular.module('medicine.controllers', [])
         $scope.ischeck = !!checkLogin.check()
 
         var accesstoken = currentUser.getAuthToken()
+
         $scope.accesstoken = accesstoken
         mineInfo.query({accessToken: accesstoken}, function (data) {
             $scope.infodata = data
-            console.log(data)
         })
 
 
@@ -244,7 +240,6 @@ angular.module('medicine.controllers', [])
                 birthday: $scope.patientData.birthday,
                 agender: $scope.patientData.agender
             }
-            console.log(saveMsg)
             updateMsg.save(saveMsg, function (data) {
                 if (data.status == 'suc') {
                     var popup = $ionicPopup.alert({
@@ -267,7 +262,6 @@ angular.module('medicine.controllers', [])
         var accesstoken = currentUser.getAuthToken()
         mineInfo.query({accessToken: accesstoken}, function (data) {
             $scope.infodata = data
-            console.log(data)
         })
 
     }])
@@ -275,7 +269,6 @@ angular.module('medicine.controllers', [])
         var accesstoken = currentUser.getAuthToken()
         analysisList.query({accessToken: accesstoken}, function (data) {
             $scope.analysislist = data
-            console.log(data)
         })
 
     }])
@@ -283,7 +276,6 @@ angular.module('medicine.controllers', [])
         var accesstoken = currentUser.getAuthToken()
         analysisDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
             $scope.analysisdetail = data
-            console.log(data)
         })
         //评论
         $scope.detailMsg = {'acomment': ''}
@@ -345,7 +337,6 @@ angular.module('medicine.controllers', [])
             gonggaolist.query(msg, function (info) {
 
                 $scope.gonggao = info
-                console.log(info)
             })
 
         })
@@ -354,14 +345,12 @@ angular.module('medicine.controllers', [])
     .controller('gongGaoListCtrl', ['$scope', 'gonggaolist', 'mineInfo', 'currentUser', function ($scope, gonggaolist, mineInfo, currentUser) {
         var accesstoken = currentUser.getAuthToken()
         mineInfo.query({accessToken: accesstoken}, function (data) {
-            console.log(data)
             var msg = {
                 id: data.id,
                 accessToken: accesstoken
             }
             gonggaolist.query(msg, function (info) {
                 $scope.gonggao = info
-                console.log(info)
             })
 
         })
@@ -400,7 +389,6 @@ angular.module('medicine.controllers', [])
     .controller('relaxedCtrl', ['$scope', 'getCarouselList', function ($scope, getCarouselList) {
         getCarouselList.query({type: 1, category: 3}, function (data) {
             $scope.data = data
-            console.log(data)
         })
 
     }])
@@ -420,7 +408,6 @@ angular.module('medicine.controllers', [])
     .controller('medicalDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.medicaldetail = data
-            //console.log(data)
         })
 
         var accesstoken = currentUser.getAuthToken()
@@ -451,7 +438,6 @@ angular.module('medicine.controllers', [])
     .controller('xinxuegCtrl', ['$scope', '$window', '$ionicPopup', 'currentUser', 'xinxueg', function ($scope, $window, $ionicPopup, currentUser, xinxueg) {
         xinxueg.query({}, function (data) {
             $scope.xinlist = data
-            console.log(data)
         })
         $scope.isLogin = currentUser.hasAuthToken()
         $scope.goPublish = function () {
@@ -472,7 +458,6 @@ angular.module('medicine.controllers', [])
         if (accesstoken) {
             xinxuegDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
                 $scope.xinxuegdetail = data
-                console.log(data)
             })
         } else {
             $ionicPopup.alert({
@@ -485,7 +470,6 @@ angular.module('medicine.controllers', [])
         $scope.xinDmg = {'comment': ''}
 
         $scope.xinComment = function () {
-            console.log('aaaaa');
             var comment = {
                 heartCircleId: $stateParams.id,
                 remark: $scope.xinDmg.comment,
@@ -504,7 +488,6 @@ angular.module('medicine.controllers', [])
     .controller('patientCheckCtrl', ['$scope', 'patientCheckBindList', 'currentUser', '$ionicPopup', '$window', 'acceptOrNot', function ($scope, patientCheckBindList, currentUser, $ionicPopup, $window, acceptOrNot) {
         patientCheckBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.data = data
-            console.log(data)
         })
         $scope.accept = function () {
             var msg = {
@@ -517,7 +500,6 @@ angular.module('medicine.controllers', [])
                     $window.location.reload()
 
                 }
-                console.log(data)
             })
         }
         $scope.noaccept = function () {
@@ -525,8 +507,19 @@ angular.module('medicine.controllers', [])
         }
     }])
     //患者列表
-    .controller('patientListCtrl', ['$scope', 'patientBindList', 'patientCheckBindList', 'currentUser', 'mineInfo', 'bindinfo', function ($scope, patientBindList, patientCheckBindList, currentUser, mineInfo, bindinfo) {
+    .controller('patientListCtrl', ['$scope', 'patientBindList', 'patientCheckBindList', 'currentUser', 'mineInfo', 'bindinfo','$ionicPopup','$window','$timeout', function ($scope, patientBindList, patientCheckBindList, currentUser, mineInfo, bindinfo,$ionicPopup,$window,$timeout) {
         var accesstoken = currentUser.getAuthToken()
+        if(!accesstoken){
+            var popup = $ionicPopup.alert({
+                title: '提示',
+                template: '登陆才能查看哟！！'
+            })
+            $timeout(function () {
+                popup.close()
+                $window.location.href = '#/sign_in'
+            }, 3000)
+            return
+        }
         patientCheckBindList.query({accessToken: accesstoken}, function (data) {
             $scope.datacheck = data
             var num = 0
@@ -536,7 +529,6 @@ angular.module('medicine.controllers', [])
                 }
             }
             $scope.nochecknum = num
-            console.log($scope.nochecknum)
         })
 
         patientBindList.query({accessToken: accesstoken}, function (data) {
@@ -549,7 +541,6 @@ angular.module('medicine.controllers', [])
             }
             bindinfo.query(msg, function (count) {
                 $scope.count = count
-                console.log(count)
             })
         })
     }])
@@ -560,7 +551,6 @@ angular.module('medicine.controllers', [])
         var accesstoken = currentUser.getAuthToken()
         collectionList.query({accessToken: accesstoken}, function (data) {
             $scope.data = data
-            console.log(data)
         })
     }])
     //添加反馈
@@ -603,7 +593,6 @@ angular.module('medicine.controllers', [])
         }
         patientDetail.query(params, function (data) {
             $scope.data = data
-            console.log(data)
         })
         $scope.delPatient = function (userid) {
             delMyPatient.save({accessToken: accesstoken, patientId: userid}, function (data) {
@@ -683,7 +672,6 @@ angular.module('medicine.controllers', [])
                     });
                     $window.history.back()
                 }
-                console.log(data)
             })
         }
     }])
@@ -723,7 +711,6 @@ angular.module('medicine.controllers', [])
                     });
                     $window.history.back()
                 }
-                console.log(data)
             })
         }
     }])

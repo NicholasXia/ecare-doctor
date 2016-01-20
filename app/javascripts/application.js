@@ -101,11 +101,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/forgot_pwd.html",
                 controller:"forgotPwdCtrl"
             })
-            .state('forgotreturn', {
-                url: "/forgotreturn",
-                templateUrl: "templates/forgot_pwd.html",
-                controller:"forgotReturnCtrl"
-            })
+
             //重置密码
             .state('changepwd', {
                 url: "/changepwd",
