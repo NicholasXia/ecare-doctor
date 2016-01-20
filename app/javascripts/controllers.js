@@ -14,7 +14,7 @@ angular.module('medicine.controllers', [])
             $window.location.href = activity
         }
         $scope.isLogin = currentUser.hasAuthToken()
-
+        console.log($scope.isLogin)
         var accesstoken = currentUser.getAuthToken()
 
         mineInfo.query({accessToken: accesstoken}, function (data) {
@@ -276,6 +276,7 @@ angular.module('medicine.controllers', [])
         var accesstoken = currentUser.getAuthToken()
         analysisDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
             $scope.analysisdetail = data
+            console.log(data)
         })
         //评论
         $scope.detailMsg = {'acomment': ''}
@@ -408,6 +409,7 @@ angular.module('medicine.controllers', [])
     .controller('medicalDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.medicaldetail = data
+            console.log(data)
         })
 
         var accesstoken = currentUser.getAuthToken()
@@ -438,6 +440,7 @@ angular.module('medicine.controllers', [])
     .controller('xinxuegCtrl', ['$scope', '$window', '$ionicPopup', 'currentUser', 'xinxueg', function ($scope, $window, $ionicPopup, currentUser, xinxueg) {
         xinxueg.query({}, function (data) {
             $scope.xinlist = data
+            console.log(data)
         })
         $scope.isLogin = currentUser.hasAuthToken()
         $scope.goPublish = function () {

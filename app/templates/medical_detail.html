@@ -16,8 +16,9 @@
                     <span>{{medicaldetail.postTime}}</span>
                 </p>
             </div>
-            <div class='item item-body '>
-                <p class='home' ng-bind-html="medicaldetail.content">
+            <div class='item item-body'>
+                <p class="home"><img ng-src="{{medicaldetail.coverImageUrl}}"/></p>
+                <p class='home padding' ng-bind-html="medicaldetail.content">
                     {{medicaldetail.content}}
                 </p>
 

@@ -9,13 +9,14 @@
     <ion-content>
         <div class="list">
 
-            <div class="item justify-center-lr">
+            <div class="item">
                 <p>{{analysisdetail.hospital}} {{analysisdetail.doctorName}}</p>
 
                 <p>{{analysisdetail.postTime}}</p>
             </div>
-            <div class='item item-body'>
-                <p  ng-bind-html="analysisdetail.analysis">
+            <div class='item item-body home'>
+                <p class="padding"> <img ng-src="{{analysisdetail.illCaseImage}}" alt=""/></p>
+                <p  ng-bind-html="analysisdetail.analysis" class="padding">
                     {{analysisdetail.analysis}}
                 </p>
 
