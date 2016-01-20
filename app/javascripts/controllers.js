@@ -546,7 +546,6 @@ angular.module('medicine.controllers', [])
         })
         dayIncrease.save({accessToken:currentUser.getAuthToken()},function(data){
             $scope.inScore = data.dayScore
-            console.log($scope.inScore)
 
         })
     }])
