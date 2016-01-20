@@ -3,8 +3,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>", /*正在加载中...*/
         hideOnStateChange: true
     })
-    //.constant('SERVER', 'http://work.e-care365.com/admin')
-    .constant('SERVER', 'http://192.168.20.173:8080/admin')
+    .constant('SERVER', 'http://work.e-care365.com/admin')
+    //.constant('SERVER', 'http://192.168.20.173:8080/admin')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
         $ionicConfigProvider.navBar.alignTitle('center')
