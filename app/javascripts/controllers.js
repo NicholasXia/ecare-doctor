@@ -518,6 +518,7 @@ angular.module('medicine.controllers', [])
             }
             acceptOrNot.save({}, msg, function (data) {
                 if(data.status == 'suc'){
+                    $window.location.reload()
 
                 }
                 console.log(data)
@@ -692,7 +693,7 @@ angular.module('medicine.controllers', [])
     }])
 
  //   心血管圈发表
- .controller('xinxuegRemarkCtrl', ['$scope','$window','$ionicPopup', 'xinxuegRemark', 'currentUser', function ($scope,$window,$ionicPopup, xinxuegRemark, currentUser) {
+ .controller('xinxuegRemarkCtrl', ['$scope','$window','$ionicPopup', 'xinxuegRemark', 'currentUser','$timeout', function ($scope,$window,$ionicPopup, xinxuegRemark, currentUser,$timeout) {
         $scope.xinxueg = {
             content:''
         }

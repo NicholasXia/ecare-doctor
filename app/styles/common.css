@@ -125,9 +125,11 @@
     top: 30%;
     right: 10px;
 }
-.fl-center-text{    position: absolute;
-    top: 35%;}
-
+.fl-center-text{
+    position: absolute;
+    top: 35%;
+}
+.fl-10{left: 10px;}
 .mlist .row{padding:10px 0px}
 .justify-end {
     display: flex;

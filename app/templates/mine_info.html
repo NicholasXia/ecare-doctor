@@ -3,15 +3,15 @@
         <h1 class="title">个人资料</h1>
     </ion-header-bar>
     <ion-content>
-        <div>
+        <div class="mine_infomy">
             <div class="list card mine-info-my">
                 <a href="#/changeicon" class='item home-feature-in   mine-info-image row'>
-                    <div class='justify-lr my-span col'><span>头像</span></div>
-                    <div class='align-center-right col-10'>
+                    <div class=' my-span col '><span class="fl-center-text">头像</span></div>
+                    <div class=' col-40'>
                         <img  ng-src="{{infodata.profileImageUrl}}" class='myimageIcon'alt="">
                         <img ng-if="!infodata.profileImageUrl" src="./images/wode.png" alt="">
                     </div>
-                    <div class="col col-10">
+                    <div class="col col-10 fl-div-right">
                         <img src="./images/shouyejinrujian.png" alt="">
                     </div>
                 </a>
@@ -21,7 +21,7 @@
             <div  ui-sref="doctorverify" ng-if="infodata.verifyed== 0" class="list card mine-info-my">
                 <a class='item  home-feature-in row'>
                     <div class='justify-lr my-span col'><span>医生认证</span></div>
-                    <div class='align-center-right col col-20'>
+                    <div class=' col col-40'>
                         <span>未认证</span>
                     </div>
                     <div class="col-10">
@@ -32,8 +32,8 @@
             <!-- 已经认证-->
             <div  ng-if="infodata.verifyed == 1" class="list card mine-info-my">
                 <a class='item  home-feature-in  row'>
-                    <div class='justify-lr my-span col'><span>医生认证</span></div>
-                    <div class='align-center-right col-20'>
+                    <div class=' my-span col'><span>医生认证</span></div>
+                    <div class='t col-20'>
                         <span  class="yes-verify-text">已认证</span>
                     </div>
                 </a>
@@ -42,21 +42,21 @@
             <div  ng-if="infodata.verifyed == -1"  class="list card mine-info-my" >
                 <a class='item  home-feature-in row'>
                     <div class='my-span col'><span>医生认证</span></div>
-                    <div class='align-center-right col col-20'>
+                    <div class=' col col-20'>
                         <span  class="yes-verify-text">未通过</span>
                     </div>
                 </a>
             </div>
             <div class="list card mine-info-my">
-                <a class='item  home-feature-in row' ui-sref="changename">
+                <a class='item home-feature-in row' ui-sref="changename">
                     <div class='my-span col col'><span>姓名</span></div>
-                    <div class='my-span col col-20'><span>{{infodata.name}}</span></div>
+                    <div class='my-span col col-40'><span>{{infodata.name}}</span></div>
                     <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </a>
                 <a class='item  home-feature-in row' ui-sref="changesex">
                     <div class=' my-span col '><span>性别</span></div>
 
-                    <div class=' my-span col col-20'>
+                    <div class=' my-span col col-40'>
                         <span ng-if="infodata.agender == 1">男</span>
                         <span ng-if="infodata.agender == 2">女</span>
                     </div>
@@ -64,24 +64,24 @@
                 </a>
                 <a class='item  home-feature-in row' ui-sref="changebirth">
                     <div class='my-span col '><span>出生日期</span></div>
-                    <div class='my-span col-33'><span>{{infodata.birthday}}</span></div>
+                    <div class='my-span col-40'><span>{{infodata.birthday}}</span></div>
                     <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </a>
             </div>
             <div class="list card mine-info-my">
                 <a class='item  home-feature-in row' ui-sref="changeyy">
                     <div class=' my-span col col'><span>所在医院</span></div>
-                    <div class=' my-span col col-33'><span>北京协和医院</span></div>
+                    <div class=' my-span col col-40'><span>北京协和医院</span></div>
                     <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </a>
-                <a class='item  home-feature-ina row' ui-sref="changezc">
+                <a class='item  home-feature-in row' ui-sref="changezc">
                     <div class='my-span col'><span>职称</span></div>
-                    <div class='my-span col col-33'><span>主治医师</span></div>
+                    <div class='my-span col col-40'><span>主治医师</span></div>
                     <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </a>
                 <a class='item  home-feature-in  row' ui-sref="changeks">
                     <div class=' my-span col'><span>科室</span></div>
-                    <div class='my-span col col-33'><span>心内科</span></div>
+                    <div class='my-span col col-40'><span>心内科</span></div>
                     <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </a>
             </div>

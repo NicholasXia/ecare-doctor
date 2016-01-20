@@ -40,12 +40,16 @@
     font-size: 14px;
 }
 
-.my-span > span {
-    padding: 0px 10px;
-    font-size: 20px;
+/*.my-span > span {*/
+    /*padding: 0px 10px;*/
+    /*font-size: 20px;*/
 
+/*}*/
+.row + .row{
+    margin-top: -5px;
+    padding-top: 15px;
 }
-
+.mine_infomy div > a {padding:10px;}
 .mine-image {
     width: 60px;
     border-radius: 60px;
