@@ -10,13 +10,14 @@
     <ion-content>
         <div class="list">
             <div class="item item-avatar item-text-wrap" ng-repeat="item in gonggao">
-                <img ng-src="{{item.imageUrl}}">
+                <img ng-if="item.profileImageUrl" ng-src="{{item.profileImageUrl}}">
+                <img ng-if="!item.profileImageUrl" src="./images/wode.png">
 
                 <div class='news-from justify-end'>
                     <span>{{item.postTime}}</span>
                 </div>
-                <div class='text-indent'>
-                    <p>
+                <div class='text-indent '>
+                    <p class="padding-top20">
                         {{item.content}}
                     </p>
                     <!--<div><img src="./images/zhichi.png" alt=""></div>-->

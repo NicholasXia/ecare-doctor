@@ -410,3 +410,15 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('xinxuegMyRemark', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/heartcircle/remark', {
+            heartCircleId:'@heartCircleId',
+            remark:'@remark',
+            accessToken: "@accessToken"
+
+        }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])

@@ -228,3 +228,7 @@ img.my-pictures {
 .myimageIcon{
     width: 80px;
 }
+.padding-top20{
+    padding:20px 0px;
+    font-size: 15px;
+}

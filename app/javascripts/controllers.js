@@ -279,6 +279,7 @@ angular.module('medicine.controllers', [])
         var accesstoken = currentUser.getAuthToken()
         analysisList.query({accessToken: accesstoken}, function (data) {
             $scope.analysislist = data
+            console.log(data)
         })
 
     }])
@@ -286,6 +287,7 @@ angular.module('medicine.controllers', [])
         var accesstoken = currentUser.getAuthToken()
         analysisDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
             $scope.analysisdetail = data
+            console.log(data)
         })
         //评论
         $scope.detailMsg = {'acomment': ''}
@@ -363,6 +365,7 @@ angular.module('medicine.controllers', [])
             }
             gonggaolist.query(msg, function (info) {
                 $scope.gonggao = info
+                console.log(info)
             })
 
         })
@@ -467,7 +470,7 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('xinxuegDetailCtrl', ['$scope', 'xinxuegDetail', '$stateParams', 'currentUser', '$window', '$ionicPopup', 'xinxuegRemark', function ($scope, xinxuegDetail, $stateParams, currentUser, $window, $ionicPopup, xinxuegRemark) {
+    .controller('xinxuegDetailCtrl', ['$scope', 'xinxuegDetail', '$stateParams', 'currentUser', '$window', '$ionicPopup','xinxuegMyRemark', function ($scope, xinxuegDetail, $stateParams, currentUser, $window, $ionicPopup,xinxuegMyRemark) {
         var accesstoken = currentUser.getAuthToken()
         if (accesstoken) {
             xinxuegDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
@@ -485,15 +488,16 @@ angular.module('medicine.controllers', [])
         $scope.xinDmg = {'comment': ''}
 
         $scope.xinComment = function () {
+            console.log('aaaaa');
             var comment = {
                 heartCircleId: $stateParams.id,
                 remark: $scope.xinDmg.comment,
                 accessToken: accesstoken
             }
-            xinxuegRemark.save({}, comment, function (data) {
+            xinxuegMyRemark.save({}, comment, function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
-                    //$window.location.reload()
+                    $window.location.reload()
                 }
             })
 
@@ -684,7 +688,7 @@ angular.module('medicine.controllers', [])
     }])
 
  //   心血管圈发表
- .controller('xinxuegRemarkCtrl', ['$scope', 'xinxuegRemark', 'currentUser', function ($scope, xinxuegRemark, currentUser) {
+ .controller('xinxuegRemarkCtrl', ['$scope','$window','$ionicPopup', 'xinxuegRemark', 'currentUser', function ($scope,$window,$ionicPopup, xinxuegRemark, currentUser) {
         $scope.xinxueg = {
             content:''
         }
@@ -702,7 +706,15 @@ angular.module('medicine.controllers', [])
             }
             console.log(msg)
             xinxuegRemark.save(msg, function (data) {
-                console.log(msg)
+                 if (data.status == 'suc') {
+                    $window.history.back()
+                } else {
+                    $ionicPopup.alert({
+                        title: '提示',
+                        template: data.error
+                    });
+                    $window.history.back()
+                }
                 console.log(data)
             })
         }

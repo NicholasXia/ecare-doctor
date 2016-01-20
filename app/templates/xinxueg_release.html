@@ -6,7 +6,7 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <div class="list card padding">
-            <textarea placeholder="这一刻的想法" class="textarea-height" ng-model="xinxueg.content"></textarea>
+            <textarea placeholder="这一刻的想法" class="textarea-height home" ng-model="xinxueg.content"></textarea>
             <!--<i class='icon ion-android-camera'></i>-->
             <!--<form enctype="multipart/form-data" method="post" name="xinxuegRelease">-->
                 <!--<input id="publishphoto"-->
@@ -27,7 +27,7 @@
                            image="publishphoto"
                            class="inputfile"
                             />
-                    <!--<label for="publishphoto"></label>-->
+                    <label for="publishphoto"></label>
                 <img ng-repeat="img in publishphoto" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
             </form>
         </div>
