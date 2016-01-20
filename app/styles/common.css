@@ -1,4 +1,6 @@
 /*common.css*/
+.home{padding:10px 0px;}
+
 .wrap {
     flex-wrap: wrap
 }
@@ -95,35 +97,44 @@
 
 /*Justify  and around*/
 .justify-lr {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-justify-content: space-around;
-    justify-content: space-around;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
+    /*display: -webkit-flex;*/
+    /*display: -ms-flexbox;*/
+    /*display: flex;*/
+    /*-webkit-justify-content: space-around;*/
+    /*justify-content: space-around;*/
+    /*-webkit-align-items: center;*/
+    /*-ms-flex-align: center;*/
+    /*align-items: center;*/
 }
 
 /*justify and between*/
 .justify-center-lr {
 
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
+    /*display: -webkit-flex;*/
+    /*display: -ms-flexbox;*/
+    /*display: flex;*/
+    /*-webkit-justify-content: space-between;*/
+    /*-ms-flex-pack: justify;*/
+    /*justify-content: space-between;*/
+    /*-webkit-align-items: center;*/
+    /*-ms-flex-align: center;*/
+    /*align-items: center;*/
 }
+.fl-div-right{
+    position: absolute;
+    top: 30%;
+    right: 10px;
+}
+.fl-center-text{    position: absolute;
+    top: 35%;}
 
+.mlist .row{padding:10px 0px}
 .justify-end {
     display: flex;
     justify-content: flex-end;
 }
-
+.button-sign{    position: absolute;
+    top: 26%;}
 .align-center-right {
     display: flex;
     align-items: center;
@@ -143,8 +154,7 @@
 .item .text-indent {
     text-indent: 30px;
 }
-
-.item .text-indent > div {
+.item .text-indent > div  {
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -167,6 +177,7 @@
 .mine-info-my, .commenter, .news-from, .consent-agm {
     color: rgba(0, 0, 0, .6);
 }
+.bb{border-bottom: 1px solid rgba(0,0,0,.2)}
 
 /*@import url(./home.css);*/
 

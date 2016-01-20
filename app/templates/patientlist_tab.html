@@ -9,7 +9,7 @@
                         class="accent-number-color">{{data.length}}</span>人
                 </div>
                 <div class='justify-center-lr patient-button'>
-                    <button class="button button-small button-balanced" ui-sref="patient_add">
+                    <button class="button button-small button-balanced fl-div-right" ui-sref="patient_add">
                         添加
                     </button>
                 </div>
@@ -18,31 +18,31 @@
                 <div class='justify-lr my-span'><img class="my-pictures" src="./images/xiaoxi.png" alt="">有<span
                         class="accent-number-color">{{nochecknum}}</span>心患者需要验证
                 </div>
-                <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                <div class="fl-div-right"><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
             <div class="item item-divider button-full justify-center-lr">
                 <p>绑定患者日活 <span class="accent-number-color">{{count.dayLiveTotal}}</span>人</p>
 
-                <p>今日新增: <span class="accent-number-color">50</span>积分</p>
+                <p class="fl-div-right">今日新增: <span class="accent-number-color">50</span>积分</p>
             </div>
 
             <a class="item item-avatar" ng-repeat="item in data" href="#/patient_detail/{{item.patientId}}"  >
                 <img src="./images/wode.png">
 
-                <div class='new_patient justify-center-lr' >
-                    <div class="justify-center-lr">
+                <div class='new_patient row' >
+                    <div class="col-33">
                         <p>{{item.patientName}}</p>
-                        <button class="button button-small button-assertive disabled">
+                        <button class="button button-small button-assertive fl-div-right disabled">
                             已绑定
                         </button>
 
                     </div>
-                    <div class='justify-center-lr patient-button' ng-if="item.age">
-                        <p>{{item.age}} 岁</p>
-                        <p> | </p>
-                        <p ng-if="item.agender == 2">女</p>
-                        <p ng-if="item.agender == 1">男</p>
-                    </div>
+                    <!--<div class=' patient-button' ng-if="item.age">-->
+                        <!--<p>{{item.age}} 岁</p>-->
+                        <!--<p> | </p>-->
+                        <!--<p ng-if="item.agender == 2">女</p>-->
+                        <!--<p ng-if="item.agender == 1">男</p>-->
+                    <!--</div>-->
                 </div>
             </a>
 

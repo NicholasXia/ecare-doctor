@@ -7,12 +7,12 @@
             <div class="item item-avatar" ng-repeat="item in data">
                 <img src="./images/wode.png">
 
-                <div class='new_patient justify-center-lr'>
-                    <div>
+                <div class='new_patient row'>
+                    <div class="col col-50">
                         <p>{{item.patientName}}</p>
                         <p>向您发送了验证请求</p>
                     </div>
-                    <div class='justify-center-lr patient-button'>
+                    <div class='col col-50 patient-button'>
                         <button class="button button-small button-assertive" ng-click="noaccept()" ng-if="item.checked == 0">
                             不允许
                         </button>

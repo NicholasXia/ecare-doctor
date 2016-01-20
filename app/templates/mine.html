@@ -6,12 +6,14 @@
         <div class="list">
 
             <div class="item justify-center-lr pad-replate item-balanced">
-                <div class='justify-center-lr'>
-                    <img ng-if="infodata.profileImageUrl" ng-src="{{infodata.profileImageUrl}}" class='mine-image'>
-                    <img ng-if='!infodata.profileImageUrl' src="./images/morentouxiang.png" class='mine-image'>
-
-
-                    <div class='mine-info' ng-if="accesstoken">
+                <div class='justify-center-lr row'>
+                    <div ng-if="infodata.profileImageUrl" class="col col-20">
+                        <img ng-src="{{infodata.profileImageUrl}}" class='mine-image'>
+                    </div>
+                    <div ng-if='!infodata.profileImageUrl'  class="col col-20">
+                        <img src="./images/morentouxiang.png" class='mine-image'>
+                    </div>
+                    <div class='mine-info col' style="margin-left: 10px" ng-if="accesstoken">
                         <div class='justify-center-lr'>
                             <span ng-if="infodata.name">{{infodata.name}}</span>
                             <span ng-if="!infodata.name">未命名</span>
@@ -24,22 +26,21 @@
                         <div ng-if="infodata.hospital">{{infodata.hospital}}</div>
                         <div><img src="./images/jifen.png" class='jifen-img' alt=""> 0</div>
                     </div>
-                    <div class='mine-info' ng-if="!accesstoken">
+                    <div class='mine-info col col-20 button-sign' ng-if="!accesstoken">
                         <button class="button" ui-sref="sign_in">登陆</button>
                         <button class="button" ui-sref="sign_up">注册</button>
                     </div>
                 </div>
                 <div>
-                    <div class='add-info' ng-click="letugo()"><span ng-if="accesstoken">补充资料</span><img
-                            src="./images/baise.png" alt=""></div>
+                    <div class='add-info fl-div-right' ng-click="letugo()"><span ng-if="accesstoken">补充资料</span><img  src="./images/baise.png" alt=""></div>
 
                 </div>
             </div>
 
             <div class="list">
                 <div ng-click="myQrCode()" class='home-feature-in item justify-center-lr'>
-                    <div class='justify-lr my-span'><img src="./images/wodeerweima.png" alt=""><span>我的二维码</span></div>
-                    <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                    <div class='justify-lr my-span'><img src="./images/wodeerweima.png" alt=""><span class="fl-center-text">我的二维码</span></div>
+                    <div class="fl-div-right"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </div>
             </div>
 
@@ -47,37 +48,37 @@
         <div class="list">
 
             <div ui-sref='two' class='item  home-feature-in  justify-center-lr'>
-                <div class='justify-lr my-span'><img src="./images/xinde.png" alt=""><span>心得笔记</span></div>
-                <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                <div class='justify-lr my-span'><img src="./images/xinde.png" alt=""><span  class="fl-center-text">心得笔记</span></div>
+                <div class="fl-div-right"><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
             <div ng-click="myCollection()" class='item  home-feature-in  justify-center-lr'>
-                <div class='justify-lr my-span'><img src="./images/shoucang.png" alt=""><span>我的收藏</span></div>
-                <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                <div class='justify-lr my-span'><img src="./images/shoucang.png" alt=""><span class="fl-center-text">我的收藏</span></div>
+                <div class="fl-div-right"><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
 
         </div>
         <div class="list">
 
             <div ui-sref='setting' class='item  home-feature-in  justify-center-lr'>
-                <div class='justify-lr my-span'><img src="./images/shezhi.png" alt=""><span>设置</span></div>
-                <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                <div class='justify-lr my-span'><img src="./images/shezhi.png" alt=""><span class="fl-center-text">设置</span></div>
+                <div class="fl-div-right"><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
 
             <div class='item  home-feature-in  justify-center-lr' ng-click="gofeedBack()">
-                <div class='justify-lr my-span'><img src="./images/yijian.png" alt=""><span>意见反馈</span></div>
-                <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                <div class='justify-lr my-span'><img src="./images/yijian.png" alt=""><span class="fl-center-text">意见反馈</span></div>
+                <div class="fl-div-right"><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
 
         </div>
         <div class="list">
 
             <div ui-sref="about" class='item  home-feature-in  justify-center-lr'>
-                <div class='justify-lr my-span'><img src="./images/women.png" alt=""><span>关于我们</span></div>
-                <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                <div class='justify-lr my-span'><img src="./images/women.png" alt=""><span class="fl-center-text">关于我们</span></div>
+                <div class="fl-div-right"><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
             <div ui-sref="point_rule" class='item  home-feature-in  justify-center-lr'>
-                <div class='justify-lr my-span'><img src="./images/guize.png" alt=""><span>积分规则</span></div>
-                <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                <div class='justify-lr my-span'><img src="./images/guize.png" alt=""><span class="fl-center-text">积分规则</span></div>
+                <div class="fl-div-right"><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
         </div>
 

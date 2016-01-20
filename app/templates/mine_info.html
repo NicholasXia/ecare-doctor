@@ -5,80 +5,84 @@
     <ion-content>
         <div>
             <div class="list card mine-info-my">
-                <a href="#/changeicon" class='item home-feature-in   mine-info-image  justify-center-lr'>
-                    <div class='justify-lr my-span'><span>头像</span></div>
-                    <div class='align-center-right'>
-                        <img ng-src="{{infodata.profileImageUrl}}" class='myimageIcon'alt="">
+                <a href="#/changeicon" class='item home-feature-in   mine-info-image row'>
+                    <div class='justify-lr my-span col'><span>头像</span></div>
+                    <div class='align-center-right col-10'>
+                        <img  ng-src="{{infodata.profileImageUrl}}" class='myimageIcon'alt="">
                         <img ng-if="!infodata.profileImageUrl" src="./images/wode.png" alt="">
+                    </div>
+                    <div class="col col-10">
                         <img src="./images/shouyejinrujian.png" alt="">
                     </div>
                 </a>
             </div>
 
             <!-- 还未认证-->
-            <div class="list card mine-info-my" ui-sref="doctorverify" ng-if="infodata.verifyed== 0">
-                <a class='item  home-feature-in  justify-center-lr'>
-                    <div class='justify-lr my-span'><span>医生认证</span></div>
-                    <div class='align-center-right'>
+            <div  ui-sref="doctorverify" ng-if="infodata.verifyed== 0" class="list card mine-info-my">
+                <a class='item  home-feature-in row'>
+                    <div class='justify-lr my-span col'><span>医生认证</span></div>
+                    <div class='align-center-right col col-20'>
                         <span>未认证</span>
+                    </div>
+                    <div class="col-10">
                         <img  src="./images/shouyejinrujian.png" alt="">
                     </div>
                 </a>
             </div>
             <!-- 已经认证-->
-            <div class="list card mine-info-my" ng-if="infodata.verifyed == 1">
-                <a class='item  home-feature-in  justify-center-lr'>
-                    <div class='justify-lr my-span'><span>医生认证</span></div>
-                    <div class='align-center-right'>
+            <div  ng-if="infodata.verifyed == 1" class="list card mine-info-my">
+                <a class='item  home-feature-in  row'>
+                    <div class='justify-lr my-span col'><span>医生认证</span></div>
+                    <div class='align-center-right col-20'>
                         <span  class="yes-verify-text">已认证</span>
                     </div>
                 </a>
             </div>
             <!-- 认证未通过-->
-            <div class="list card mine-info-my" ng-if="infodata.verifyed == -1">
-                <a class='item  home-feature-in  justify-center-lr'>
-                    <div class='justify-lr my-span'><span>医生认证</span></div>
-                    <div class='align-center-right'>
+            <div  ng-if="infodata.verifyed == -1"  class="list card mine-info-my" >
+                <a class='item  home-feature-in row'>
+                    <div class='my-span col'><span>医生认证</span></div>
+                    <div class='align-center-right col col-20'>
                         <span  class="yes-verify-text">未通过</span>
                     </div>
                 </a>
             </div>
             <div class="list card mine-info-my">
-                <a class='item  home-feature-in  justify-center-lr' ui-sref="changename">
-                    <div class='justify-lr my-span'><span>姓名</span></div>
-                    <div class='justify-lr my-span'><span>{{infodata.name}}</span></div>
-                    <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                <a class='item  home-feature-in row' ui-sref="changename">
+                    <div class='my-span col col'><span>姓名</span></div>
+                    <div class='my-span col col-20'><span>{{infodata.name}}</span></div>
+                    <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </a>
-                <a class='item  home-feature-in  justify-center-lr' ui-sref="changesex">
-                    <div class='justify-lr my-span'><span>性别</span></div>
+                <a class='item  home-feature-in row' ui-sref="changesex">
+                    <div class=' my-span col '><span>性别</span></div>
 
-                    <div class='justify-lr my-span'>
+                    <div class=' my-span col col-20'>
                         <span ng-if="infodata.agender == 1">男</span>
                         <span ng-if="infodata.agender == 2">女</span>
                     </div>
-                    <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                    <div  class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </a>
-                <a class='item  home-feature-in  justify-center-lr' ui-sref="changebirth">
-                    <div class='justify-lr my-span'><span>出生日期</span></div>
-                    <div class='justify-lr my-span'><span>{{infodata.birthday}}</span></div>
-                    <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                <a class='item  home-feature-in row' ui-sref="changebirth">
+                    <div class='my-span col '><span>出生日期</span></div>
+                    <div class='my-span col-33'><span>{{infodata.birthday}}</span></div>
+                    <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </a>
             </div>
             <div class="list card mine-info-my">
-                <a class='item  home-feature-in  justify-center-lr' ui-sref="changeyy">
-                    <div class='justify-lr my-span'><span>所在医院</span></div>
-                    <div class='justify-lr my-span'><span>北京协和医院</span></div>
-                    <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                <a class='item  home-feature-in row' ui-sref="changeyy">
+                    <div class=' my-span col col'><span>所在医院</span></div>
+                    <div class=' my-span col col-33'><span>北京协和医院</span></div>
+                    <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </a>
-                <a class='item  home-feature-in  justify-center-lr' ui-sref="changezc">
-                    <div class='justify-lr my-span'><span>职称</span></div>
-                    <div class='justify-lr my-span'><span>主治医师</span></div>
-                    <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                <a class='item  home-feature-ina row' ui-sref="changezc">
+                    <div class='my-span col'><span>职称</span></div>
+                    <div class='my-span col col-33'><span>主治医师</span></div>
+                    <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </a>
-                <a class='item  home-feature-in  justify-center-lr' ui-sref="changeks">
-                    <div class='justify-lr my-span'><span>科室</span></div>
-                    <div class='justify-lr my-span'><span>心内科</span></div>
-                    <div><img src="./images/shouyejinrujian.png" alt=""></div>
+                <a class='item  home-feature-in  row' ui-sref="changeks">
+                    <div class=' my-span col'><span>科室</span></div>
+                    <div class='my-span col col-33'><span>心内科</span></div>
+                    <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </a>
             </div>
 

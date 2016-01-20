@@ -8,10 +8,10 @@
     </ion-header-bar>
     <ion-content>
         <div class="list">
-            <div class="item item-text-wrap  justify-center-lr">
-                <span>{{relaxed.title}}</span> <span>{{relaxed.postTime}}</span>
+            <div class="item item-text-wrap row">
+                <span class="col col-50">{{relaxed.title}}</span> <span class="col col-50">{{relaxed.postTime}}</span>
             </div>
-            <div class="item item-text-wrap home" ng-bind-html="relaxed.content">
+            <div class="item item-text-wrap padding" ng-bind-html="relaxed.content">
                 {{relaxed.content}}
             </div>
 
