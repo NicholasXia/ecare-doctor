@@ -57,7 +57,7 @@
                 <div class='activity' ng-repeat="item in medicallist | limitTo:5"
                      ui-sref="medical_detail({id:item.id})">
                     <div class="header clearfix padding">
-                        <div ng-if="item.category == 2" class="fl padding">医疗动态</div>
+                        <div ng-if="item.category == 2 && $index == 0" class="fl index padding">医疗动态</div>
                         <div class="fr">{{item.postTime}}</div>
                     </div>
                     <div class="content">

@@ -404,6 +404,7 @@ angular.module('medicine.controllers', [])
     .controller('relaxedCtrl', ['$scope', 'getCarouselList', function ($scope, getCarouselList) {
         getCarouselList.query({type: 1, category: 3}, function (data) {
             $scope.data = data
+            console.log(data)
         })
 
     }])

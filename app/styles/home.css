@@ -40,7 +40,7 @@
     border-bottom: none;
 }
 
-.activity .header div:first-child {
+.activity .header .index {
     border: 1px solid #FF618F;
     border-radius: 30px;
     color: #FF618F;
