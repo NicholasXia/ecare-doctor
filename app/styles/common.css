@@ -72,7 +72,6 @@
 }
 
 .inputfile {
-    /*width: 0.1px;height: 0.1px;*/
     opacity: 0;
     overflow: hidden;
     position: absolute;
@@ -95,31 +94,6 @@
     background-color: red;
 }
 
-/*Justify  and around*/
-.justify-lr {
-    /*display: -webkit-flex;*/
-    /*display: -ms-flexbox;*/
-    /*display: flex;*/
-    /*-webkit-justify-content: space-around;*/
-    /*justify-content: space-around;*/
-    /*-webkit-align-items: center;*/
-    /*-ms-flex-align: center;*/
-    /*align-items: center;*/
-}
-
-/*justify and between*/
-.justify-center-lr {
-
-    /*display: -webkit-flex;*/
-    /*display: -ms-flexbox;*/
-    /*display: flex;*/
-    /*-webkit-justify-content: space-between;*/
-    /*-ms-flex-pack: justify;*/
-    /*justify-content: space-between;*/
-    /*-webkit-align-items: center;*/
-    /*-ms-flex-align: center;*/
-    /*align-items: center;*/
-}
 .fl-div-right{
     position: absolute;
     top: 35%;
@@ -180,9 +154,6 @@
     color: rgba(0, 0, 0, .6);
 }
 .bb{border-bottom: 1px solid rgba(0,0,0,.2)}
-
-/*@import url(./home.css);*/
-
 /*评论样式设置*/
 .commenter {
     padding: 10px 0px;
@@ -206,7 +177,6 @@
 .button-min-width {
     min-width: 100px;
 }
-
 /*协议*/
 .consent-agm {
     border: 0px;
