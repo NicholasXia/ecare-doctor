@@ -505,9 +505,10 @@ angular.module('medicine.controllers', [])
         $scope.noaccept = function () {
             $scope.data.splice($scope.data.indexOf($scope.data), 0);
         }
+
     }])
     //患者列表
-    .controller('patientListCtrl', ['$scope', 'patientBindList', 'patientCheckBindList', 'currentUser', 'mineInfo', 'bindinfo','$ionicPopup','$window','$timeout', function ($scope, patientBindList, patientCheckBindList, currentUser, mineInfo, bindinfo,$ionicPopup,$window,$timeout) {
+    .controller('patientListCtrl', ['$scope','dayIncrease', 'patientBindList', 'patientCheckBindList', 'currentUser', 'mineInfo', 'bindinfo','$ionicPopup','$window','$timeout', function ($scope, dayIncrease,patientBindList, patientCheckBindList, currentUser, mineInfo, bindinfo,$ionicPopup,$window,$timeout) {
         var accesstoken = currentUser.getAuthToken()
         if(!accesstoken){
             var popup = $ionicPopup.alert({
@@ -542,6 +543,11 @@ angular.module('medicine.controllers', [])
             bindinfo.query(msg, function (count) {
                 $scope.count = count
             })
+        })
+        dayIncrease.save({accessToken:currentUser.getAuthToken()},function(data){
+            $scope.inScore = data.dayScore
+            console.log($scope.inScore)
+
         })
     }])
 

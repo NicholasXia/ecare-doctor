@@ -459,3 +459,13 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+
+    .factory('dayIncrease', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/score/dayincrease', {
+            accessToken: "@accessToken",
+        }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])

@@ -20,10 +20,13 @@
                 </div>
                 <div class="fl-div-right"><img src="./images/shouyejinrujian.png" alt=""></div>
             </div>
-            <div class="item item-divider button-full justify-center-lr">
-                <p>绑定患者日活 <span class="accent-number-color">{{count.dayLiveTotal}}</span>人</p>
+            <div class="item item-divider button-full row">
+                <p class="col col-50">绑定患者日活 <span class="accent-number-color">{{count.dayLiveTotal}}</span>人</p>
 
-                <p class="fl-div-right">今日新增: <span class="accent-number-color">50</span>积分</p>
+                <p class=" col col-50">今日新增:
+                    <span ng-if="inScore" class="accent-number-color">{{inScore}}</span>
+                    <span ng-if="!inScore" class="accent-number-color">0</span>
+                    积分</p>
             </div>
 
             <a class="item item-avatar" ng-repeat="item in data" href="#/patient_detail/{{item.patientId}}"  >
