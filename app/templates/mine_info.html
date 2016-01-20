@@ -16,7 +16,7 @@
             </div>
 
             <!-- 还未认证-->
-            <div class="list card mine-info-my" ui-sref="doctorverify" ng-if="infodata.verifyed==0">
+            <div class="list card mine-info-my" ui-sref="doctorverify" ng-if="infodata.verifyed== 0">
                 <a class='item  home-feature-in  justify-center-lr'>
                     <div class='justify-lr my-span'><span>医生认证</span></div>
                     <div class='align-center-right'>
@@ -26,11 +26,20 @@
                 </a>
             </div>
             <!-- 已经认证-->
-            <div class="list card mine-info-my" ng-if="infodata.verifyed==1">
+            <div class="list card mine-info-my" ng-if="infodata.verifyed == 1">
                 <a class='item  home-feature-in  justify-center-lr'>
                     <div class='justify-lr my-span'><span>医生认证</span></div>
                     <div class='align-center-right'>
                         <span  class="yes-verify-text">已认证</span>
+                    </div>
+                </a>
+            </div>
+            <!-- 认证未通过-->
+            <div class="list card mine-info-my" ng-if="infodata.verifyed == -1">
+                <a class='item  home-feature-in  justify-center-lr'>
+                    <div class='justify-lr my-span'><span>医生认证</span></div>
+                    <div class='align-center-right'>
+                        <span  class="yes-verify-text">未通过</span>
                     </div>
                 </a>
             </div>

@@ -173,17 +173,17 @@ angular.module('medicine.services', ['ngResource'])
     //    })
     //}])
     //证件上传
-    .factory('updateVerifyMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/doctor/verify/upload', {
-            crtWithPhoto: "@crtWithPhoto",
-            crtWithName: "@crtWithName",
-            accessToken: "@accessToken",
-        }, {
-            save: {
-                method: 'POST'
-            }
-        })
-    }])
+    //.factory('updateVerifyMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
+    //    return $resource(SERVER + '/doctor/verify/upload', {
+    //        crtWithPhoto: "@crtWithPhoto",
+    //        crtWithName: "@crtWithName",
+    //        accessToken: "@accessToken",
+    //    }, {
+    //        save: {
+    //            method: 'POST'
+    //        }
+    //    })
+    //}])
 
     .factory('patientProfile', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/docotor/profile', {}, {
@@ -401,7 +401,6 @@ angular.module('medicine.services', ['ngResource'])
         return $resource(SERVER + '/doctor/heartcircle/add', {
             content:'@content',
             imageBase64s:"@imageBase64s",
-            //imageBase64s:"@imageBase64s1",
             accessToken: "@accessToken"
 
         }, {
@@ -410,6 +409,21 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+//上传证件
+    .factory('doctorVerifyUpload', ['$resource', 'SERVER', function ($resource, SERVER) {
+
+        return $resource(SERVER + '/doctor/verify/upload', {
+            crtWithPhoto:"@crtWithPhoto",
+            crtWithName:"@crtWithName",
+            accessToken: "@accessToken"
+        }, {
+            save: {
+                method:'POST',
+                params: {}
+            }
+        })
+    }])
+
     .factory('xinxuegMyRemark', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/doctor/heartcircle/remark', {
             heartCircleId:'@heartCircleId',
@@ -418,7 +432,7 @@ angular.module('medicine.services', ['ngResource'])
 
         }, {
             save: {
-                method: 'POST'
+                method: 'POST',
             }
         })
     }])

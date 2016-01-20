@@ -3,7 +3,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>", /*正在加载中...*/
         hideOnStateChange: true
     })
-    .constant('SERVER', 'http://123.56.184.184:8080/hospital')
+    .constant('SERVER', 'http://m.e-care365.com/admin')
     //.constant('SERVER', 'http://192.168.20.173:8080/hospital')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
@@ -101,9 +101,10 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/forgot_pwd.html"
             })
             //重置密码
-            .state('reset_pwd', {
-                url: "/reset_pwd",
-                templateUrl: "templates/reset_pwd.html"
+            .state('changepwd', {
+                url: "/changepwd",
+                templateUrl: "templates/reset_pwd.html",
+                controller: "doctorEndChangePwdCtrl"
             })
 
             //设置
@@ -279,5 +280,6 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/changeks.html",
                 controller: 'changeCtrl'
             })
+
         $urlRouterProvider.otherwise("/tab/home");
     })

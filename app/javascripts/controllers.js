@@ -118,7 +118,6 @@ angular.module('medicine.controllers', [])
         $scope.signIn = function () {
             signUp.save({}, $scope.signInMsg, function (data) {
                 currentUser.setAuthToken(data.accessToken)
-                currentUser.setDoctorCode(data.user.doctorNo)
                 if (data.error) {
                     $ionicPopup.alert({
                         title: '错误提示',
@@ -127,6 +126,7 @@ angular.module('medicine.controllers', [])
                     ;
                     return
                 } else {
+                    currentUser.setDoctorCode(data.user.doctorNo);
                     var popup = $ionicPopup.alert({
                         title: '登陆成功',
                         template: '3秒后自动进入主页'
@@ -505,7 +505,7 @@ angular.module('medicine.controllers', [])
         }
 
     }])
-    .controller('patientCheckCtrl', ['$scope', 'patientCheckBindList', 'currentUser', 'acceptOrNot', function ($scope, patientCheckBindList, currentUser, acceptOrNot) {
+    .controller('patientCheckCtrl', ['$scope', 'patientCheckBindList', 'currentUser','$ionicPopup','$window', 'acceptOrNot', function ($scope, patientCheckBindList, currentUser,$ionicPopup,$window, acceptOrNot) {
         patientCheckBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.data = data
             console.log(data)
@@ -517,11 +517,14 @@ angular.module('medicine.controllers', [])
                 accessToken: currentUser.getAuthToken()
             }
             acceptOrNot.save({}, msg, function (data) {
+                if(data.status == 'suc'){
+
+                }
                 console.log(data)
             })
         }
         $scope.noaccept = function () {
-            //$scope.data.splice($scope.data.indexOf($scope.data), 1);
+            $scope.data.splice($scope.data.indexOf($scope.data), 0);
         }
     }])
     //患者列表
@@ -657,10 +660,6 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
-    //医生认证
-    .controller('doctorVerifyCtrl', ['$scope', 'updateVerifyMsg', 'currentUser', function ($scope, updateVerifyMsg, currentUser) {
-
-    }])
 
     //绑定我的患者
     .controller('patientAddCtrl', ['$window', '$scope', 'patientadd', 'currentUser', '$ionicPopup', '$stateParams', function ($window, $scope, patientadd, currentUser, $ionicPopup, $stateParams) {
@@ -675,7 +674,11 @@ angular.module('medicine.controllers', [])
             patientadd.save(params, function (data) {
                 $scope.data = data
                 if (data.status == 'suc') {
-                    $window.history.back()
+                    $ionicPopup.alert({
+                        title: '提示',
+                        template: "绑定成功"
+                    })
+                        $window.history.back()
                 } else {
                     $ionicPopup.alert({
                         title: '提示',
@@ -708,7 +711,71 @@ angular.module('medicine.controllers', [])
             console.log(msg)
             xinxuegRemark.save(msg, function (data) {
                  if (data.status == 'suc') {
+                     var popup = $ionicPopup.alert({
+                         title: '发表成功',
+                         template: '3秒钟后返回'
+                     })
+                     $timeout(function () {
+                         popup.close()
+                         $window.history.back();
+                     }, 3000)
+                } else {
+                    $ionicPopup.alert({
+                        title: '提示',
+                        template: data.error
+                    });
                     $window.history.back()
+                }
+                console.log(data)
+            })
+        }
+    }])
+
+    .controller('doctorEndChangePwdCtrl', ['$scope', 'currentUser', 'resetPwd', '$ionicPopup', '$timeout', '$window', function ($scope, currentUser, resetPwd, $ionicPopup, $timeout, $window) {
+
+        $scope.newMsg = {oldPwd: '', newPwd: '', accessToken: ''}
+        $scope.resetPwd = function () {
+            var newMsg = {
+                oldPwd: $scope.newMsg.oldPwd,
+                newPwd: $scope.newMsg.newPwd,
+                accessToken: currentUser.getAuthToken()
+            }
+            console.log(newMsg)
+            resetPwd.save({}, newMsg, function (data) {
+                console.log(data)
+                if (data.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '密码修改成功',
+                        template: '3秒后进入登陆界面'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                        $window.location.href = '#/sign_in'
+                    }, 3000)
+                }
+            })
+        }
+    }])
+
+
+
+    .controller('doctorVerifyCtrl', ['$scope','$window','$ionicPopup', 'doctorVerifyUpload', 'currentUser', function ($scope,$window,$ionicPopup, doctorVerifyUpload, currentUser) {
+        $scope.verifyimage = {
+            crtWithPhoto: "",
+            crtWithName:""
+        };
+        $scope.uploadVerify = function (crtWithPhoto,crtWithName) {
+            $scope.verifyimage.crtWithPhoto = crtWithPhoto[0].dataURL
+            $scope.verifyimage.crtWithName = crtWithName[0].dataURL
+            var msg = {
+                crtWithPhoto:$scope.verifyimage.crtWithPhoto,
+                crtWithName: $scope.verifyimage.crtWithName,
+                accessToken: currentUser.getAuthToken()
+            }
+            console.log(msg)
+            doctorVerifyUpload.save({},msg, function (data) {
+                if (data.status == 'suc') {
+                    console.log('suc')
                 } else {
                     $ionicPopup.alert({
                         title: '提示',
