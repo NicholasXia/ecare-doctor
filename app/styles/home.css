@@ -69,6 +69,7 @@
 /*底部二维码*/
 .home-qrcode {
     text-align: center;
+    padding:70px;
 }
 
 .home-feature-text, .home-feature-text > div {

@@ -8,8 +8,8 @@
                 <a href="#/changeicon" class='item home-feature-in   mine-info-image row'>
                     <div class=' my-span col '><span class="fl-center-text">头像</span></div>
                     <div class=' col-40'>
-                        <img  ng-src="{{infodata.profileImageUrl}}" class='myimageIcon'alt="">
-                        <img ng-if="!infodata.profileImageUrl" src="./images/wode.png" alt="">
+                        <img  ng-if="infodata.profileImageUrl" ng-src="{{infodata.profileImageUrl}}" class='myimageIcon'>
+                        <img  ng-if="!infodata.profileImageUrl"   src="./images/wode.png">
                     </div>
                     <div class="col col-10 fl-div-right">
                         <img src="./images/shouyejinrujian.png" alt="">

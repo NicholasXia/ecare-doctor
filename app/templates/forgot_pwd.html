@@ -5,16 +5,22 @@
     <ion-content>
         <div class="list">
             <label class="item item-input">
-                <input type="text" placeholder="手机号">
+                <input type="text" placeholder="手机号" ng-model="forgot.mobile">
             </label>
             <label class="item item-input">
                 <label class="item-input-wrapper">
-                    <input type="text" placeholder="请输入短息验证码">
+                    <input type="text" placeholder="请输入短息验证码" ng-model="forgot.verifycode">
                 </label>
-                <button class='button button-balanced button-small button-min-width button-pwd'>获取验证码</button>
+                <button class='button button-balanced button-small button-min-width button-pwd' ng-click="pwdCheck()" >获取验证码</button>
             </label>
-            <button class="button button-block button-balanced">
-                下一步
+            <label class="item item-input">
+                <input type="password" placeholder="新密码" ng-model="forgot.newpwd">
+            </label>
+            <label class="item item-input">
+                <input type="password" placeholder="确认新密码" ng-model="forgot.confirmPwd">
+            </label>
+            <button class="button button-block button-balanced" ng-click="pwdNext()">
+                确定
             </button>
         </div>
     </ion-content>

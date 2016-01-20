@@ -60,12 +60,8 @@ angular.module('medicine.controllers', [])
         //用户注册模块
         var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/
         $scope.account = {phoneNum: '', verCode: '', password: ''}
-        console.log('00000000')
-        console.log($scope)
-        //
         $scope.getCode = function () {
             getVerificationCode.query({mobile: $scope.account.phoneNum}, function (data) {
-                console.log(data)
                 if (data.error || $scope.account.phoneNum.length == 0 || $scope.account.phoneNum.length < 11 || !reg.test($scope.account.phoneNum)) {
                     $ionicPopup.alert({
                         title: '错误提示',
@@ -471,7 +467,7 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('xinxuegDetailCtrl', ['$scope', 'xinxuegDetail', '$stateParams', 'currentUser', '$window', '$ionicPopup','xinxuegMyRemark', function ($scope, xinxuegDetail, $stateParams, currentUser, $window, $ionicPopup,xinxuegMyRemark) {
+    .controller('xinxuegDetailCtrl', ['$scope', 'xinxuegDetail', '$stateParams', 'currentUser', '$window', '$ionicPopup', 'xinxuegMyRemark', function ($scope, xinxuegDetail, $stateParams, currentUser, $window, $ionicPopup, xinxuegMyRemark) {
         var accesstoken = currentUser.getAuthToken()
         if (accesstoken) {
             xinxuegDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
@@ -505,7 +501,7 @@ angular.module('medicine.controllers', [])
         }
 
     }])
-    .controller('patientCheckCtrl', ['$scope', 'patientCheckBindList', 'currentUser','$ionicPopup','$window', 'acceptOrNot', function ($scope, patientCheckBindList, currentUser,$ionicPopup,$window, acceptOrNot) {
+    .controller('patientCheckCtrl', ['$scope', 'patientCheckBindList', 'currentUser', '$ionicPopup', '$window', 'acceptOrNot', function ($scope, patientCheckBindList, currentUser, $ionicPopup, $window, acceptOrNot) {
         patientCheckBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.data = data
             console.log(data)
@@ -517,7 +513,7 @@ angular.module('medicine.controllers', [])
                 accessToken: currentUser.getAuthToken()
             }
             acceptOrNot.save({}, msg, function (data) {
-                if(data.status == 'suc'){
+                if (data.status == 'suc') {
                     $window.location.reload()
 
                 }
@@ -529,7 +525,7 @@ angular.module('medicine.controllers', [])
         }
     }])
     //患者列表
-    .controller('patientListCtrl', ['$scope', 'patientBindList', 'patientCheckBindList', 'currentUser','mineInfo','bindinfo', function ($scope, patientBindList, patientCheckBindList, currentUser,mineInfo,bindinfo) {
+    .controller('patientListCtrl', ['$scope', 'patientBindList', 'patientCheckBindList', 'currentUser', 'mineInfo', 'bindinfo', function ($scope, patientBindList, patientCheckBindList, currentUser, mineInfo, bindinfo) {
         var accesstoken = currentUser.getAuthToken()
         patientCheckBindList.query({accessToken: accesstoken}, function (data) {
             $scope.datacheck = data
@@ -547,7 +543,7 @@ angular.module('medicine.controllers', [])
             $scope.data = data
             console.log($scope.data)
         })
-        mineInfo.query({accessToken:accesstoken}, function (rihuo) {
+        mineInfo.query({accessToken: accesstoken}, function (rihuo) {
             var msg = {
                 id: rihuo.id,
             }
@@ -598,7 +594,7 @@ angular.module('medicine.controllers', [])
     }])
 
 //我的患者详情
-    .controller('patientDetailCtrl', ['$scope','$ionicPopup','$window','$timeout','delMyPatient', 'patientDetail', 'currentUser', '$stateParams', function ($scope,$ionicPopup,$window,$timeout, delMyPatient,patientDetail, currentUser, $stateParams) {
+    .controller('patientDetailCtrl', ['$scope', '$ionicPopup', '$window', '$timeout', 'delMyPatient', 'patientDetail', 'currentUser', '$stateParams', function ($scope, $ionicPopup, $window, $timeout, delMyPatient, patientDetail, currentUser, $stateParams) {
         var accesstoken = currentUser.getAuthToken()
         var params = {
             id: $stateParams.id,
@@ -609,8 +605,8 @@ angular.module('medicine.controllers', [])
             $scope.data = data
             console.log(data)
         })
-        $scope.delPatient = function(userid){
-            delMyPatient.save({accessToken:accesstoken,patientId:userid},function(data){
+        $scope.delPatient = function (userid) {
+            delMyPatient.save({accessToken: accesstoken, patientId: userid}, function (data) {
                 if (data.status = 'suc') {
                     var popup = $ionicPopup.alert({
                         title: '解绑成功',
@@ -630,7 +626,7 @@ angular.module('medicine.controllers', [])
     }])
 
     //更改头像
-.controller('myIconChangeCtrl', ['$scope', 'updateIcon', 'currentUser','$ionicPopup','$window','$timeout', function ($scope, updateIcon, currentUser,$ionicPopup,$window,$timeout) {
+    .controller('myIconChangeCtrl', ['$scope', 'updateIcon', 'currentUser', '$ionicPopup', '$window', '$timeout', function ($scope, updateIcon, currentUser, $ionicPopup, $window, $timeout) {
 
         $scope.xinxuegimage = {
             imageBase64s: '',
@@ -643,7 +639,7 @@ angular.module('medicine.controllers', [])
             }
             updateIcon.save(msg, function (data) {
                 console.log(data)
-                if(data.status == 'suc'){
+                if (data.status == 'suc') {
                     var popup = $ionicPopup.alert({
                         title: '头像更换成功',
                         template: '3秒钟后返回'
@@ -652,7 +648,7 @@ angular.module('medicine.controllers', [])
                         popup.close()
                         $window.history.back();
                     }, 3000)
-                }else{
+                } else {
                     var popup = $ionicPopup.alert({
                         title: '错误',
                         template: '请不要上传过大或无效的头像'
@@ -679,7 +675,7 @@ angular.module('medicine.controllers', [])
                         title: '提示',
                         template: "绑定成功"
                     })
-                        $window.history.back()
+                    $window.history.back()
                 } else {
                     $ionicPopup.alert({
                         title: '提示',
@@ -692,10 +688,10 @@ angular.module('medicine.controllers', [])
         }
     }])
 
- //   心血管圈发表
- .controller('xinxuegRemarkCtrl', ['$scope','$window','$ionicPopup', 'xinxuegRemark', 'currentUser','$timeout', function ($scope,$window,$ionicPopup, xinxuegRemark, currentUser,$timeout) {
+    //   心血管圈发表
+    .controller('xinxuegRemarkCtrl', ['$scope', '$window', '$ionicPopup', 'xinxuegRemark', 'currentUser', '$timeout', function ($scope, $window, $ionicPopup, xinxuegRemark, currentUser, $timeout) {
         $scope.xinxueg = {
-            content:''
+            content: ''
         }
 
         $scope.xinxuegimage = {
@@ -704,22 +700,22 @@ angular.module('medicine.controllers', [])
         $scope.xinxuegRelease = function (publishphoto) {
             $scope.xinxuegimage.imageBase64s = publishphoto[0].dataURL
             var msg = {
-                content:$scope.xinxueg.content,
+                content: $scope.xinxueg.content,
                 imageBase64s: $scope.xinxuegimage.imageBase64s,
                 //imageBase64s1: $scope.xinxuegimage.imageBase64s,
                 accessToken: currentUser.getAuthToken()
             }
             console.log(msg)
             xinxuegRemark.save(msg, function (data) {
-                 if (data.status == 'suc') {
-                     var popup = $ionicPopup.alert({
-                         title: '发表成功',
-                         template: '3秒钟后返回'
-                     })
-                     $timeout(function () {
-                         popup.close()
-                         $window.history.back();
-                     }, 3000)
+                if (data.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '发表成功',
+                        template: '3秒钟后返回'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                        $window.history.back();
+                    }, 3000)
                 } else {
                     $ionicPopup.alert({
                         title: '提示',
@@ -759,22 +755,21 @@ angular.module('medicine.controllers', [])
     }])
 
 
-
-    .controller('doctorVerifyCtrl', ['$scope','$window','$ionicPopup', 'doctorVerifyUpload', 'currentUser', function ($scope,$window,$ionicPopup, doctorVerifyUpload, currentUser) {
+    .controller('doctorVerifyCtrl', ['$scope', '$window', '$ionicPopup', 'doctorVerifyUpload', 'currentUser', function ($scope, $window, $ionicPopup, doctorVerifyUpload, currentUser) {
         $scope.verifyimage = {
             crtWithPhoto: "",
-            crtWithName:""
+            crtWithName: ""
         };
-        $scope.uploadVerify = function (crtWithPhoto,crtWithName) {
+        $scope.uploadVerify = function (crtWithPhoto, crtWithName) {
             $scope.verifyimage.crtWithPhoto = crtWithPhoto[0].dataURL
             $scope.verifyimage.crtWithName = crtWithName[0].dataURL
             var msg = {
-                crtWithPhoto:$scope.verifyimage.crtWithPhoto,
+                crtWithPhoto: $scope.verifyimage.crtWithPhoto,
                 crtWithName: $scope.verifyimage.crtWithName,
                 accessToken: currentUser.getAuthToken()
             }
             console.log(msg)
-            doctorVerifyUpload.save({},msg, function (data) {
+            doctorVerifyUpload.save({}, msg, function (data) {
                 if (data.status == 'suc') {
                     console.log('suc')
                 } else {
@@ -788,3 +783,61 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
+    .controller('forgotPwdCtrl', ['$scope', '$window', '$ionicPopup', 'forgotpwd', 'forgotReturn', 'currentUser', function ($scope, $window, $ionicPopup, forgotpwd, forgotReturn, currentUser) {
+        $scope.forgot = {
+            mobile: '',
+            verifycode: '',
+            newpwd: '',
+            confirmPwd: '',
+        };
+        var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/
+        $scope.pwdCheck = function () {
+            var msg = {
+                mobile: $scope.forgot.mobile
+            }
+            console.log(msg)
+            forgotpwd.query(msg, function (data) {
+                if (data.error || $scope.forgot.mobile == 0 || $scope.forgot.mobileh < 11 || !reg.test($scope.forgot.mobile)) {
+                    $ionicPopup.alert({
+                        title: '错误提示',
+                        template: '手机号输入有误，请重新输入'
+                    });
+                } else {
+                    $ionicPopup.alert({
+                        title: '成功提示',
+                        template: '验证码已经发送，请稍后'
+                    });
+                }
+            }, function () {
+                $ionicPopup.alert({
+                    title: '错误提示',
+                    template: '未知错误，请稍后重试'
+                });
+            })
+        }
+        $scope.pwdNext = function () {
+            var msg = {
+                mobile: $scope.forgot.mobile,
+                verifycode: $scope.forgot.verifycode,
+                newPwd: $scope.forgot.newpwd,
+                confirmPwd: $scope.forgot.confirmPwd,
+            }
+            console.log(msg)
+            forgotReturn.save({}, msg, function (data) {
+                if(data.status == 'suc'){
+                    $ionicPopup.alert({
+                        title: '提示',
+                        template: '密码修改成功'
+                    });
+                    $window.history.back()
+                }else{
+                    $ionicPopup.alert({
+                        title: '提示',
+                        template: data.error
+                    });
+
+                }
+            })
+        }
+    }])
+

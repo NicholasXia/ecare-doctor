@@ -14,7 +14,7 @@
                     />
             <!--<label for="publishphoto"></label>-->
             <button class="button button-full button-balanced myIcon">选择图片</button>
-            <img ng-repeat="img in publishphoto" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
+            <img ng-repeat="img in publishphoto"  width="100px" height="100px" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
         </form>
         <div class="buttons">
             <button class="button button-balanced" ng-click="xinxuegRelease(publishphoto)">上传</button>

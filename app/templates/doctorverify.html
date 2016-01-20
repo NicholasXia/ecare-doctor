@@ -15,7 +15,7 @@
                         />
                 上传医生证件
             </button>
-            <img ng-repeat="img in verifydoctor" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
+            <img ng-repeat="img in verifydoctor"  width="100px" height="100px" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
         </form>
         <form id="crtWithName" enctype=multipart/form-data" method="post" >
             <button class="button button-block button-balanced myicon">
@@ -28,7 +28,7 @@
                         />
                 上传身份证件
             </button>
-            <img ng-repeat="img in verifyname" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
+            <img ng-repeat="img in verifyname"   width="100px" height="100px" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
         </form>
         <div class="text-center">
             <button class="button button-balanced "  ng-click="uploadVerify(verifydoctor,verifyname)" >上传认证</button>
