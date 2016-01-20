@@ -52,6 +52,9 @@
                 </a>
 
             </div>
+
+
+            <div style="height:10px; background: #ddd;"></div>
             <div class='item pad-replate'>
 
                 <div class='activity' ng-repeat="item in medicallist | limitTo:5"
@@ -63,12 +66,13 @@
                     <div class="content">
                         <h2>{{item.title}}</h2>
 
-                        <p class="init home"><img ng-src="{{item.coverImageUrl}}" /> </p>
+                        <p class="init home"><img ng-src="{{item.coverImageUrl}}" height="80px"/> </p>
                     </div>
                     <div class="footer clearfix">
                         <span class="fl">来源 :</span>
                         <span> {{item.resource}} </span>
                     </div>
+                    <div style="height:10px; background: #ddd; margin:0 -15px;"></div>
                 </div>
             </div>
             <div class='item home-qrcode'>
