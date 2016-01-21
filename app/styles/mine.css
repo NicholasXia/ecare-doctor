@@ -52,3 +52,5 @@
 .align-center-right > img {
     padding: 5px;
 }
+.vertical{vertical-align:middle;}
+.myicon-mine{position: absolute;top:7%;}

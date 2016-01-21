@@ -93,14 +93,15 @@ angular.module('medicine.controllers', [])
                 return
             }
             createUser.save({}, user, function (userdata) {
-                var popup = $ionicPopup.alert({
-                    title: '注册成功',
-                    template: '进入登陆页'
-                })
-                $timeout(function () {
-                    popup.close()
-                    $window.location.href = '#/sign_in'
-                }, 3000)
+                console.log(userdata)
+                //var popup = $ionicPopup.alert({
+                //    title: '注册成功',
+                //    template: '进入登陆页'
+                //})
+                //$timeout(function () {
+                //    popup.close()
+                //    $window.location.href = '#/sign_in'
+                //}, 3000)
             })
         }
     }])
@@ -628,12 +629,14 @@ angular.module('medicine.controllers', [])
         $scope.xinxuegimage = {
             imageBase64s: '',
         };
+        $scope.accesstoken=currentUser.getAuthToken()
         $scope.xinxuegRelease = function (publishphoto) {
             $scope.xinxuegimage.imageBase64s = publishphoto[0].dataURL
             var msg = {
                 imageBase64s: $scope.xinxuegimage.imageBase64s,
                 accessToken: currentUser.getAuthToken()
             }
+            console.log(msg)
             updateIcon.save(msg, function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
