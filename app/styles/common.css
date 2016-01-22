@@ -50,7 +50,7 @@
 }
 
 .tab-item-active {
-    border-bottom: 2px solid #33CD5F;
+    border-bottom: 2px solid #2bce84;
     background-color: rgba(51, 205, 95, .2);
 }
 
@@ -126,7 +126,7 @@ form .myicon{line-height: 60px;  width: 100%;}
 .yisheng{width: 45px;}
 /*accent color text  强调色*/
 .item .accent-text-color {
-    color: #33CD5F;
+    color: #2bce84;
 }
 
 /*强调数字颜色*/

@@ -1,5 +1,5 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', "$ionicPopup", "bindinfo", "mineInfo", function ($scope, $window, getCarouselList, currentUser, $ionicPopup, bindinfo, mineInfo) {
+    .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', "$ionicPopup", "bindinfo", "mineInfo",'$ionicLoading','ionicLoadingConfig',function ($scope, $window, getCarouselList, currentUser, $ionicPopup, bindinfo, mineInfo,$ionicLoading,ionicLoadingConfig) {
 
 
         $ionicLoading.show({
@@ -12,6 +12,10 @@ angular.module('medicine.controllers', [])
 
         getCarouselList.query({type: 1, category: 2}, function (data) {
             $scope.medicallist = data
+            if(data){
+
+                $ionicLoading.hide()
+            }
         })
 
         $scope.doctorCode = currentUser.getDoctorCode()
