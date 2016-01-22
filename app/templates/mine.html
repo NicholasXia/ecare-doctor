@@ -11,7 +11,7 @@
                         <img ng-src="{{infodata.profileImageUrl}}" class='mine-image'>
                     </div>
                     <div ng-if='!infodata.profileImageUrl'  class="col col-20">
-                        <img src="./images/morentouxiang.png" class='mine-image'>
+                        <img src="./images/yisheng.png" class='mine-image yisheng'>
                     </div>
                     <div class='mine-info col' style="margin-left: 10px" ng-if="accesstoken">
                         <div>
@@ -19,6 +19,7 @@
                             <span ng-if="!infodata.name">未命名</span>
                             <span class='no-verify' ng-if="infodata.verifyed == 0">未认证</span>
                             <span class='yes-verify' ng-if="infodata.verifyed == 1">已认证</span>
+                            <span class='no-verify' ng-if="infodata.verifyed == -1">未通过</span>
                         </div>
                         <!--<div ng-if="!infodata.hospital">未填写</div>-->
 

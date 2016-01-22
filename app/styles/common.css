@@ -117,18 +117,13 @@ form .myicon{line-height: 60px;  width: 100%;}
     top: 35%;
 }
 .fl-10{left: 10px;}
-.mlist .row{padding:10px 0px}
-.justify-end {
-    display: flex;
-    justify-content: flex-end;
-}
+.mlist .row{padding:0px}
+
 .button-sign{    position: absolute;
     top: 26%;}
-.align-center-right {
-    display: flex;
-    align-items: center;
-}
 
+
+.yisheng{width: 45px;}
 /*accent color text  强调色*/
 .item .accent-text-color {
     color: #33CD5F;

@@ -1,5 +1,10 @@
 angular.module('medicine.controllers', [])
     .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', "$ionicPopup", "bindinfo", "mineInfo", function ($scope, $window, getCarouselList, currentUser, $ionicPopup, bindinfo, mineInfo) {
+
+
+        $ionicLoading.show({
+            template:ionicLoadingConfig.template,
+        });
         getCarouselList.query({type: 1, category: 1}, function (data) {
             $scope.data = data
             $scope.doctorno = currentUser.getDoctorCode()
@@ -48,6 +53,7 @@ angular.module('medicine.controllers', [])
                 $window.location.href = '#/xinxueg'
             }
         }
+
     }])
 
 //医生注册
@@ -162,6 +168,7 @@ angular.module('medicine.controllers', [])
         $scope.accesstoken = accesstoken
         mineInfo.query({accessToken: accesstoken}, function (data) {
             $scope.infodata = data
+            console.log(data)
         })
 
 
@@ -259,10 +266,14 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('mineInfoCtrl', ['$scope', '$window', 'mineInfo', 'currentUser', function ($scope, $window, mineInfo, currentUser) {
+    .controller('mineInfoCtrl', ['$scope', '$window', 'mineInfo', 'currentUser','ionicLoadingConfig','$ionicLoading', function ($scope, $window, mineInfo, currentUser,ionicLoadingConfig,$ionicLoading) {
         var accesstoken = currentUser.getAuthToken()
+        $ionicLoading.show({
+            template:ionicLoadingConfig.template,
+        });
         mineInfo.query({accessToken: accesstoken}, function (data) {
             $scope.infodata = data
+            $ionicLoading.hide()
             console.log(data)
         })
 
@@ -311,8 +322,6 @@ angular.module('medicine.controllers', [])
 
                 if (col.status == 'suc') {
                     var popup = $ionicPopup.alert({
-
-
                         title: '收藏成功',
                         template: '即将跳转'
                     })
@@ -672,9 +681,9 @@ angular.module('medicine.controllers', [])
                 if (data.status == 'suc') {
                     $ionicPopup.alert({
                         title:'提示',
-                        template:'发表成功'
+                        template:'上传成功'
                     })
-                    $window.location.href = '#/xinxueg'
+                    $window.history.back()
                 }else{
                     console.log('error')
                 }
@@ -765,7 +774,7 @@ angular.module('medicine.controllers', [])
                         title:'提示',
                         template:'发表成功'
                     })
-                    $window.location.href = '#/xinxueg'
+                    $window.history.back()
                 }else{
                     console.log('error')
                 }
@@ -848,7 +857,7 @@ angular.module('medicine.controllers', [])
                         title:'提示',
                         template:'上传认证信息成功'
                     })
-                    $window.location.href = '#/mine_info'
+                    $window.history.back()
                 }
             })
         }

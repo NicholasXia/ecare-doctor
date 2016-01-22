@@ -8,7 +8,7 @@
                 <div class='col'><span class="myicon-mine">头像</span></div>
                 <div class='col col-20'>
                     <img  ng-if="infodata.profileImageUrl" ng-src="{{infodata.profileImageUrl}}" class='myimageIcon'>
-                    <img  ng-if="!infodata.profileImageUrl"   src="./images/wode.png">
+                    <img  ng-if="!infodata.profileImageUrl"  class='myimageIcon yisheng' src="./images/yisheng.png">
                 </div>
                 <div class="col col-10">
                     <img class="myicon-mine" src="./images/shouyejinrujian.png" alt="">
@@ -31,12 +31,16 @@
                 <div class='col col-20 yes-verify-text'>
                     已认证
                 </div>
+
             </div>
             <!-- 认证未通过-->
-            <div ng-if="infodata.verifyed == -1"  class='card row'>
+            <div ui-sref="doctorverify"  ng-if="infodata.verifyed == -1"  class='card row'>
                 <div class='col'>医生认证</div>
                 <div class=' col col-20 yes-verify-text '>
-                    未通过
+                    <span>未通过</span>
+                </div>
+                <div class="col col-10">
+                    <img  src="./images/shouyejinrujian.png" alt="">
                 </div>
             </div>
             <div class="card bordercar">

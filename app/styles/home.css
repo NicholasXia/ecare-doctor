@@ -35,9 +35,9 @@
 }
 
 .activity .header .index {
-    border: 1px solid #FF618F;
+    border: 1px solid #DF4D91;
     border-radius: 30px;
-    color: #FF618F;
+    color: #DF4D91;
 }
 
 .activity .header, .activity .footer, .init {
@@ -51,9 +51,9 @@
     white-space: normal !important;
 }
 
-.activity .footer {
+.activity .footer ,.activity .fr{
     color: rgba(0, 0, 0, .3);
-    font-size: 10px;
+    font-size: 14px;
 }
 
 .activity .footer span {
