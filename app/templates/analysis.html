@@ -2,7 +2,7 @@
     <ion-header-bar class="bar-balanced">
         <h1 class="title">病例精析</h1>
     </ion-header-bar>
-    <ion-content>
+    <ion-content class="backcolormine">
         <div class="list analysis">
             <a class="item item-avatar" ng-repeat="item in analysislist" ui-sref='analysis_detail({id:item.id})'>
                 <img src="./images/wode.png">
@@ -13,10 +13,10 @@
 
                         <p>{{item.hospital}} {{item.doctorName}}</p>
                     </div>
-                    <span >{{item.postTime}}</span>
+                    <span>{{item.postTime}}</span>
                 </div>
                 <div class="home">
-                    <h2>{{item.title}}</h2>
+                    <p style="color:#444">{{item.title}}</p>
                     <img src={{item.illCaseImage}}>
                 </div>
             </a>

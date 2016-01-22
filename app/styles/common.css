@@ -37,7 +37,7 @@
 }
 
 .top-50 {
-    top: 49px;
+    top: 48px;
 }
 
 .features-button > .button {
@@ -97,10 +97,14 @@ form .myicon{line-height: 60px;  width: 100%;}
 
 .mine_infomy .card{margin: 20px 0px}
 
-.backcolormine{background-color: rgba(0,0,0,.1);
-    font-size: 20px; color:rgba(0,0,0,.7)}
-.bordercar .row{border-top:1px solid rgba(0,0,0,.1);
-    padding: 15px 0px;}
+.backcolormine{background-color: rgb(245,245,245);
+    font-size: 20px; color:rgba(0,0,0,.7);
+}
+.bordercar .row{border-top:1px solid rgb(245,245,245);
+    padding: 15px 0px 15px 5px;}
+
+.home-feature-in img{padding-right: 10px}
+.addcolor{height:10px; background: rgb(245,245,245); border:none}
 
 .bordercar .row .col-20 ,.bordercar  .row .col-40 ,.bordercar .row .col-10 ,.verify .col-20 {color:rgba(0,0,0,.3)}
 .fl-div-right{

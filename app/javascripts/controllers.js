@@ -602,24 +602,38 @@ angular.module('medicine.controllers', [])
         }
         patientDetail.query(params, function (data) {
             $scope.data = data
+            console.log(data)
         })
+
+//解绑确定g
+
         $scope.delPatient = function (userid) {
-            delMyPatient.save({accessToken: accesstoken, patientId: userid}, function (data) {
-                if (data.status = 'suc') {
-                    var popup = $ionicPopup.alert({
-                        title: '解绑成功',
-                        template: '你们已经不是好友啦'
+            $ionicPopup.confirm({
+                title: '友情提示',
+                template: '您确定要解绑患者：<span class="textcolor">'+$scope.data.name +'</span> 吗？'
+
+            }).then(function(res) {
+                if(res == true){
+                    delMyPatient.save({accessToken: accesstoken, patientId: userid}, function (data) {
+                        if (data.status = 'suc') {
+                            var popup = $ionicPopup.alert({
+                                title: '解绑成功',
+                                template: '你们已经不是好友啦'
+                            })
+                            $timeout(function () {
+                                popup.close()
+                                $window.history.back()
+                            }, 3000)
+                        } else {
+                            var popup = $ionicPopup.alert({
+                                title: '未知错误'
+                            })
+                        }
                     })
-                    $timeout(function () {
-                        popup.close()
-                        $window.history.back()
-                    }, 3000)
-                } else {
-                    var popup = $ionicPopup.alert({
-                        title: '未知错误'
-                    })
+                }else{
+                    console.log(res)
                 }
-            })
+            });
         }
     }])
 
@@ -659,8 +673,18 @@ angular.module('medicine.controllers', [])
     }])
 
     //绑定我的患者
-    .controller('patientAddCtrl', ['$window', '$scope', 'patientadd', 'currentUser', '$ionicPopup', '$stateParams', function ($window, $scope, patientadd, currentUser, $ionicPopup, $stateParams) {
+    .controller('patientAddCtrl', ['$window', '$scope', 'patientadd', 'currentUser', '$ionicPopup', '$stateParams','$ionicLoading','ionicLoadingConfig',function ($window, $scope, patientadd, currentUser, $ionicPopup, $stateParams,$ionicLoading,ionicLoadingConfig) {
         var accesstoken = currentUser.getAuthToken()
+
+        //$scope.show = function() {
+        //    $ionicLoading.show({
+        //        template: ionicLoadingConfig.template
+        //    });
+        //};
+        //$scope.hide = function(){
+        //    $ionicLoading.hide();
+        //};
+
         $scope.invite = {'mobile': '',}
         $scope.Invite = function () {
             var params = {
@@ -668,22 +692,32 @@ angular.module('medicine.controllers', [])
                 mobile: $scope.invite.mobile
 
             }
-            patientadd.save(params, function (data) {
-                $scope.data = data
-                if (data.status == 'suc') {
-                    $ionicPopup.alert({
-                        title: '提示',
-                        template: "绑定成功"
+            $ionicPopup.confirm({
+                title: '友情提示',
+                template: $scope.invite.mobile
+
+            }).then(function(res) {
+                if(res == true){
+                    patientadd.save(params, function (data) {
+                        $scope.data = data
+                        if (data.status == 'suc') {
+                            $ionicPopup.alert({
+                                title: '提示',
+                                template: "绑定成功"
+                            })
+                            $window.history.back()
+                        } else {
+                            $ionicPopup.alert({
+                                title: '提示',
+                                template: data.error
+                            });
+                        }
                     })
-                    $window.history.back()
-                } else {
-                    $ionicPopup.alert({
-                        title: '提示',
-                        template: data.error
-                    });
-                    $window.history.back()
+                }else{
+                    console.log(res)
                 }
-            })
+            });
+
         }
     }])
 
