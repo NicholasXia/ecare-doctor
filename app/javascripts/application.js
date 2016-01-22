@@ -1,7 +1,7 @@
 angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.directive', 'medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
     .constant('ionicLoadingConfig', {
         template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>", /*正在加载中...*/
-        hideOnStateChange: true
+        hideOnStateChange: true,
     })
     .constant('SERVER', 'http://work.e-care365.com/hospital')
     //.constant('SERVER', 'http://192.168.20.173:8080/admin')

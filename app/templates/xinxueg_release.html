@@ -1,26 +1,11 @@
 <ion-view view-title="发表心血管圈动态" cache-view="false">
     <ion-header-bar class="bar-balanced">
         <h1 class="title">发表心血管圈动态</h1>
-        <div class="buttons">
-            <button class="button button-balanced fl-10" ng-click="xinxuegRelease(publishphoto)">发表</button>
-        </div>
 
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <div class="list card padding">
             <textarea placeholder="这一刻的想法" class="textarea-height home" ng-model="xinxueg.content"></textarea>
-            <!--<i class='icon ion-android-camera'></i>-->
-            <!--<form enctype="multipart/form-data" method="post" name="xinxuegRelease">-->
-                <!--<input id="publishphoto"-->
-                       <!--type="file"-->
-                       <!--accept="image/*"-->
-                       <!--multiple-->
-                       <!--image="publishphoto"-->
-                       <!--class="inputfile"-->
-                        <!--/>-->
-                <!--<label for="publishphoto"></label>-->
-                <!--<img ng-repeat="img in publishphoto" ng-src="{{img.url}}" type="{{img.file.type}}"/>-->
-            <!--</form>-->
             <form id="xinxuegimage" enctype="multipart/form-data" method="post" >
                     <input id="publishphoto"
                            type="file"
@@ -29,12 +14,11 @@
                            image="publishphoto"
                            class="inputfile"
                             />
-                    <label for="publishphoto"></label>
-                <img ng-repeat="img in publishphoto" width="100px" height="100px" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
+                <label for="publishphoto"></label>
+                <button class="button button-balanced" ng-click="xinxuegRelease(publishphoto)">发表</button>
+                <img width="50" height="50" ng-repeat="img in publishphoto" title="{{img.url}}" ng-src="{{img.url}}"
             </form>
         </div>
-        <div class="buttons">
-            <button class="button button-balanced fl-10" ng-click="xinxuegRelease(publishphoto)">发表</button>
-        </div>
+
     </ion-content>
 </ion-view>

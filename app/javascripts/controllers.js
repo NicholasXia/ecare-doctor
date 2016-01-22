@@ -263,6 +263,7 @@ angular.module('medicine.controllers', [])
         var accesstoken = currentUser.getAuthToken()
         mineInfo.query({accessToken: accesstoken}, function (data) {
             $scope.infodata = data
+            console.log(data)
         })
 
     }])
@@ -605,7 +606,7 @@ angular.module('medicine.controllers', [])
             console.log(data)
         })
 
-//解绑确定g
+//解绑确定
 
         $scope.delPatient = function (userid) {
             $ionicPopup.confirm({
@@ -638,35 +639,44 @@ angular.module('medicine.controllers', [])
     }])
 
     //更改头像
-    .controller('myIconChangeCtrl', ['$scope', 'updateIcon', 'currentUser', '$ionicPopup', '$window', '$timeout', function ($scope, updateIcon, currentUser, $ionicPopup, $window, $timeout) {
+    .controller('myIconChangeCtrl', ['$scope','$http','updateIcon', 'currentUser', '$ionicPopup', '$window', '$timeout', function ($scope,$http, updateIcon, currentUser, $ionicPopup, $window, $timeout) {
 
         $scope.xinxuegimage = {
             imageBase64s: '',
         };
-        $scope.accesstoken=currentUser.getAuthToken()
         $scope.xinxuegRelease = function (publishphoto) {
-            $scope.xinxuegimage.imageBase64s = publishphoto[0].dataURL
-            var msg = {
-                imageBase64s: $scope.xinxuegimage.imageBase64s,
-                accessToken: currentUser.getAuthToken()
+            if (publishphoto) {
+                $scope.xinxuegimage.imageBase64s = publishphoto[0].dataURL
+            } else {
+
             }
-            console.log(msg)
-            updateIcon.save(msg, function (data) {
+
+            var getbase64arr = function() {
+                var temp = []
+                for (var i=0, len=publishphoto.length; i < len; i++) {
+                    temp[i] = publishphoto[i].dataURL
+                }
+                console.log(temp)
+                return temp
+            }
+
+            var formData = new FormData()
+            formData.append('imageBase64s',getbase64arr())
+            formData.append('accessToken',currentUser.getAuthToken())
+
+            $http.post('http://work.e-care365.com/hospital/doctor/profile/update', formData, {
+                headers: { 'Content-Type': undefined },
+                transformRequest: angular.identity
+            }).success(function(data){
                 console.log(data)
                 if (data.status == 'suc') {
-                    var popup = $ionicPopup.alert({
-                        title: '头像更换成功',
-                        template: '3秒钟后返回'
+                    $ionicPopup.alert({
+                        title:'提示',
+                        template:'发表成功'
                     })
-                    $timeout(function () {
-                        popup.close()
-                        $window.history.back();
-                    }, 3000)
-                } else {
-                    var popup = $ionicPopup.alert({
-                        title: '错误',
-                        template: '请不要上传过大或无效的头像'
-                    })
+                    $window.location.href = '#/xinxueg'
+                }else{
+                    console.log('error')
                 }
             })
         }
@@ -675,15 +685,6 @@ angular.module('medicine.controllers', [])
     //绑定我的患者
     .controller('patientAddCtrl', ['$window', '$scope', 'patientadd', 'currentUser', '$ionicPopup', '$stateParams','$ionicLoading','ionicLoadingConfig',function ($window, $scope, patientadd, currentUser, $ionicPopup, $stateParams,$ionicLoading,ionicLoadingConfig) {
         var accesstoken = currentUser.getAuthToken()
-
-        //$scope.show = function() {
-        //    $ionicLoading.show({
-        //        template: ionicLoadingConfig.template
-        //    });
-        //};
-        //$scope.hide = function(){
-        //    $ionicLoading.hide();
-        //};
 
         $scope.invite = {'mobile': '',}
         $scope.Invite = function () {
@@ -722,7 +723,7 @@ angular.module('medicine.controllers', [])
     }])
 
     //   心血管圈发表
-    .controller('xinxuegRemarkCtrl', ['$scope', '$window', '$ionicPopup', 'xinxuegRemark', 'currentUser', '$timeout', function ($scope, $window, $ionicPopup, xinxuegRemark, currentUser, $timeout) {
+    .controller('xinxuegRemarkCtrl', ['$scope', '$window', '$http','$ionicPopup', 'xinxuegRemark', 'currentUser', '$timeout', function ($scope, $window,$http, $ionicPopup, xinxuegRemark, currentUser, $timeout) {
         $scope.xinxueg = {
             content: ''
         }
@@ -730,33 +731,47 @@ angular.module('medicine.controllers', [])
         $scope.xinxuegimage = {
             imageBase64s: '',
         };
+
+
         $scope.xinxuegRelease = function (publishphoto) {
-            $scope.xinxuegimage.imageBase64s = publishphoto[0].dataURL
-            var msg = {
-                content: $scope.xinxueg.content,
-                imageBase64s: $scope.xinxuegimage.imageBase64s,
-                //imageBase64s1: $scope.xinxuegimage.imageBase64s,
-                accessToken: currentUser.getAuthToken()
+            //
+            if (publishphoto) {
+                $scope.xinxuegimage.imageBase64s = publishphoto[0].dataURL
+            } else {
+
             }
-            console.log(msg)
-            xinxuegRemark.save(msg, function (data) {
+
+            var getbase64arr = function() {
+                var temp = []
+                for (var i=0, len=publishphoto.length; i < len; i++) {
+                    temp[i] = publishphoto[i].dataURL
+                }
+                console.log(temp)
+                return temp
+            }
+
+            var formData = new FormData()
+            formData.append('content', $scope.xinxueg.content)
+            formData.append('imageBase64s',getbase64arr())
+            formData.append('accessToken',currentUser.getAuthToken())
+
+            $http.post('http://work.e-care365.com/hospital/doctor/heartcircle/add', formData, {
+                headers: { 'Content-Type': undefined },
+                transformRequest: angular.identity
+            }).success(function(data){
+                console.log(data)
                 if (data.status == 'suc') {
-                    var popup = $ionicPopup.alert({
-                        title: '发表成功',
-                        template: '3秒钟后返回'
-                    })
-                    $timeout(function () {
-                        popup.close()
-                        $window.history.back();
-                    }, 3000)
-                } else {
                     $ionicPopup.alert({
-                        title: '提示',
-                        template: data.error
-                    });
-                    $window.history.back()
+                        title:'提示',
+                        template:'发表成功'
+                    })
+                    $window.location.href = '#/xinxueg'
+                }else{
+                    console.log('error')
                 }
             })
+
+
         }
     }])
 
@@ -787,31 +802,54 @@ angular.module('medicine.controllers', [])
     }])
 
 
-    .controller('doctorVerifyCtrl', ['$scope', '$window', '$ionicPopup', 'doctorVerifyUpload', 'currentUser', function ($scope, $window, $ionicPopup, doctorVerifyUpload, currentUser) {
+    .controller('doctorVerifyCtrl', ['$scope', '$window','$http','$ionicPopup', 'doctorVerifyUpload', 'currentUser','ionicLoadingConfig','$ionicLoading', function ($scope, $window,$http, $ionicPopup, doctorVerifyUpload, currentUser,ionicLoadingConfig,$ionicLoading) {
+
+        //$scope.show = function() {
+        //    $ionicLoading.show({
+        //        template:ionicLoadingConfig.template,
+        //    });
+        //};
+        //$scope.hide = function(){
+        //    $ionicLoading.hide();
+        //};
+
         $scope.verifyimage = {
             crtWithPhoto: "",
             crtWithName: ""
         };
         $scope.uploadVerify = function (crtWithPhoto, crtWithName) {
-            $scope.verifyimage.crtWithPhoto = crtWithPhoto[0].dataURL
-            $scope.verifyimage.crtWithName = crtWithName[0].dataURL
-            var msg = {
-                crtWithPhoto: $scope.verifyimage.crtWithPhoto,
-                crtWithName: $scope.verifyimage.crtWithName,
-                accessToken: currentUser.getAuthToken()
+            $ionicLoading.show({
+                template:ionicLoadingConfig.template,
+            });
+            console.log(crtWithPhoto)
+            console.log(crtWithName)
+            if (crtWithPhoto || crtWithName) {
+                $scope.verifyimage.crtWithPhoto = crtWithPhoto[0].dataURL
+                $scope.verifyimage.crtWithName = crtWithName[0].dataURL
+            } else {
+                $ionicPopup.alert({
+                    title:'提示',
+                    template:'请你上传完整信息'
+                })
+
             }
-            console.log(msg)
-            doctorVerifyUpload.save({}, msg, function (data) {
+            var formData = new FormData()
+            formData.append('crtWithPhoto', $scope.verifyimage.crtWithPhoto)
+            formData.append('crtWithName',$scope.verifyimage.crtWithName)
+            formData.append('accessToken',currentUser.getAuthToken())
+
+            $http.post('http://work.e-care365.com/hospital/doctor/verify/upload', formData, {
+                headers: { 'Content-Type': undefined },
+                transformRequest: angular.identity
+            }).success(function(data){
                 if (data.status == 'suc') {
-                    console.log('suc')
-                } else {
+                    $ionicLoading.hide();
                     $ionicPopup.alert({
-                        title: '提示',
-                        template: data.error
-                    });
-                    $window.history.back()
+                        title:'提示',
+                        template:'上传认证信息成功'
+                    })
+                    $window.location.href = '#/mine_info'
                 }
-                console.log(data)
             })
         }
     }])

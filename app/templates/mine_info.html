@@ -6,7 +6,7 @@
         <div class="mine_infomy">
             <div ui-sref="changeicon" class='card row'>
                 <div class='col'><span class="myicon-mine">头像</span></div>
-                <div class='col col-40'>
+                <div class='col col-20'>
                     <img  ng-if="infodata.profileImageUrl" ng-src="{{infodata.profileImageUrl}}" class='myimageIcon'>
                     <img  ng-if="!infodata.profileImageUrl"   src="./images/wode.png">
                 </div>
@@ -27,16 +27,16 @@
             </div>
             <!-- 已经认证-->
             <div ng-if="infodata.verifyed == 1" class='card row'>
-                <div class='col'>医生认证`</div>
-                <div class='col col-20'>
-                    <span  class="yes-verify-text">已认证</span>
+                <div class='col'>医生认证</div>
+                <div class='col col-20 yes-verify-text'>
+                    已认证
                 </div>
             </div>
             <!-- 认证未通过-->
             <div ng-if="infodata.verifyed == -1"  class='card row'>
                 <div class='col'>医生认证</div>
-                <div class=' col col-20'>
-                    <span  class="yes-verify-text">未通过</span>
+                <div class=' col col-20 yes-verify-text '>
+                    未通过
                 </div>
             </div>
             <div class="card bordercar">
