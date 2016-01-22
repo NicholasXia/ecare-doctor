@@ -14,7 +14,6 @@ angular.module('medicine.controllers', [])
             $window.location.href = activity
         }
         $scope.isLogin = currentUser.hasAuthToken()
-        console.log($scope.isLogin)
         var accesstoken = currentUser.getAuthToken()
 
         mineInfo.query({accessToken: accesstoken}, function (data) {
@@ -94,14 +93,15 @@ angular.module('medicine.controllers', [])
             }
             createUser.save({}, user, function (userdata) {
                 console.log(userdata)
-                //var popup = $ionicPopup.alert({
-                //    title: '注册成功',
-                //    template: '进入登陆页'
-                //})
-                //$timeout(function () {
-                //    popup.close()
-                //    $window.location.href = '#/sign_in'
-                //}, 3000)
+                currentUser.setAuthToken(userdata.accessToken)
+                var popup = $ionicPopup.alert({
+                    title: '注册成功',
+                    template: '即将进入首页'
+                })
+                $timeout(function () {
+                    popup.close()
+                    $window.location.href = '#/sign_in'
+                }, 3000)
             })
         }
     }])
@@ -122,7 +122,7 @@ angular.module('medicine.controllers', [])
                     currentUser.setDoctorCode(data.user.doctorNo);
                     var popup = $ionicPopup.alert({
                         title: '登陆成功',
-                        template: '3秒后自动进入主页'
+                        template: '即将自动进入主页'
                     })
                     $timeout(function () {
                         popup.close()
@@ -144,7 +144,7 @@ angular.module('medicine.controllers', [])
             currentUser.destroy()
             var popup = $ionicPopup.alert({
                 title: '您已经注销',
-                template: '3秒后自动进入主页'
+                template: '即将自动进入主页'
             })
             $timeout(function () {
                 popup.close()
@@ -313,7 +313,7 @@ angular.module('medicine.controllers', [])
 
 
                         title: '收藏成功',
-                        template: '3秒后跳转'
+                        template: '即将跳转'
                     })
                     $timeout(function () {
                         popup.close()
@@ -371,7 +371,7 @@ angular.module('medicine.controllers', [])
                 if (rel.status = 'suc') {
                     var popup = $ionicPopup.alert({
                         title: '发表成功',
-                        template: '3秒后返回'
+                        template: '即将返回'
                     })
                     $timeout(function () {
                         popup.close()

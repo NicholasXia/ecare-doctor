@@ -43,6 +43,7 @@
 .features-button > .button {
     background-color: #fff;
 }
+.bw .button{color:#fff;}
 
 .nounderlines {
     text-decoration: none;
@@ -88,12 +89,20 @@
     height: 30px;
     width: 100%;
 }
-.myicon{line-height: 48px;  width: 100%;}
+form .myicon{line-height: 60px;  width: 100%;}
 .inputfile:focus + label,
 .inputfile + label:hover {
     background-color: red;
 }
 
+.mine_infomy .card{margin: 20px 0px}
+
+.backcolormine{background-color: rgba(0,0,0,.1);
+    font-size: 20px; color:rgba(0,0,0,.7)}
+.bordercar .row{border-top:1px solid rgba(0,0,0,.1);
+    padding: 15px 0px;}
+
+.bordercar .row .col-20 ,.bordercar  .row .col-40 ,.bordercar .row .col-10 ,.verify .col-20 {color:rgba(0,0,0,.3)}
 .fl-div-right{
     position: absolute;
     top: 35%;

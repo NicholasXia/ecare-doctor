@@ -2,7 +2,7 @@
     <ion-header-bar class="bar-balanced">
         <h1 class="title">个人资料</h1>
     </ion-header-bar>
-    <ion-content>
+    <ion-content class="backcolormine">
         <div class="mine_infomy">
             <div ui-sref="changeicon" class='card row'>
                 <div class='col'><span class="myicon-mine">头像</span></div>
@@ -16,9 +16,9 @@
             </div>
 
             <!-- 还未认证-->
-            <div ui-sref="doctorverify"  ng-if="infodata.verifyed== 0"  class='card row'>
+            <div ui-sref="doctorverify"  ng-if="infodata.verifyed== 0"  class='card row verify'>
                 <div class='col'>医生认证</div>
-                <div class=' col col-40'>
+                <div class=' col col-20'>
                     <span>未认证</span>
                 </div>
                 <div class="col col-10">
@@ -39,42 +39,50 @@
                     <span  class="yes-verify-text">未通过</span>
                 </div>
             </div>
-            <div class='card row' ui-sref="changename">
-                <div class='col col'>姓名</div>
-                <div class='col col-40'>{{infodata.name}}</div>
-                <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
-            </div>
-            <div class='card row' ui-sref="changesex">
-                <div class='col'>性别</div>
-
-                <div class='col col-40'>
-                    <span ng-if="infodata.agender == 1">男</span>
-                    <span ng-if="infodata.agender == 2">女</span>
+            <div class="card bordercar">
+                <div class='row' ui-sref="changename">
+                    <div class='col col'>姓名</div>
+                    <div class='col col-40'>{{infodata.name}}</div>
+                    <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </div>
-                <div  class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
+                <div class='row' ui-sref="changesex">
+                    <div class='col'>性别</div>
+
+                    <div class='col col-40'>
+                        <span ng-if="infodata.agender == 1">男</span>
+                        <span ng-if="infodata.agender == 2">女</span>
+                    </div>
+                    <div  class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
+                </div>
+
+                <div class='row' ui-sref="changebirth">
+                    <div class=' col '>出生日期</div>
+                    <div class='col col-40'>{{infodata.birthday}}</div>
+                    <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
+                </div>
+
             </div>
 
-            <div class='card row ' ui-sref="changebirth">
-                <div class=' col '>出生日期</div>
-                <div class='col col-40'>{{infodata.birthday}}</div>
-                <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
-            </div>
-            <div class='card row' ui-sref="changeyy">
-                <div class='col'>所在医院</div>
-                <div class='col col-40'>北京协和医院</div>
-                <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
-            </div>
-            <div class='card row' ui-sref="changezc">
-                <div class='col'>职称</div>
-                <div class='col col-40'>主治医师</div>
-                <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
-            </div>
-                <div class='card row' ui-sref="changeks">
+            <div class="card bordercar">
+                <div class='row' ui-sref="changeyy">
+                    <div class='col'>所在医院</div>
+                    <div class='col col-40'>北京协和医院</div>
+                    <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
+                </div>
+                <div class='row' ui-sref="changezc">
+                    <div class='col'>职称</div>
+                    <div class='col col-40'>主治医师</div>
+                    <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
+                </div>
+                <div class='row' ui-sref="changeks">
                     <div class='col'>科室</div>
                     <div class='col col-40'>心内科</div>
                     <div class="col col-10"><img src="./images/shouyejinrujian.png" alt=""></div>
                 </div>
 
-        </div>
+            </div>
+
+            </div>
+
     </ion-content>
 </ion-view>
