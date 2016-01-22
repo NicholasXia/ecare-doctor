@@ -469,3 +469,25 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('addillHistory', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/mypatient/updateIllProfile/:userId', {
+            accessToken: "@accessToken",
+            userId:"@userId",
+            illProfile:'@illProfile'
+        }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+    .factory('addbeizhu', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/mypatient/updateRemark', {
+            accessToken: "@accessToken",
+            userId:"@userId",
+            remark:'@remark'
+        }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])

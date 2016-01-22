@@ -12,6 +12,12 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
     })
 
+    .config(function(localStorageServiceProvider){
+        localStorageServiceProvider
+            .setStorageType('sessionStorage')
+            .setNotify(true, true)
+    })
+
     .config(function ($stateProvider, $urlRouterProvider) {
 
         $stateProvider
@@ -281,6 +287,16 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/changeks",
                 templateUrl: "templates/changeks.html",
                 controller: 'changeCtrl'
+            })
+            .state('addillhistory', {
+                url: "/addillhistory/:userId",
+                templateUrl: "templates/addillhistory.html",
+                controller: 'addIllHistoryCtrl'
+            })
+            .state('addbeizhu', {
+                url: "/addbeizhu/:userId",
+                templateUrl: "templates/beizhu.html",
+                controller: 'addBeizhuCtrl'
             })
 
         $urlRouterProvider.otherwise("/tab/home");

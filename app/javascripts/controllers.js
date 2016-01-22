@@ -331,7 +331,7 @@ angular.module('medicine.controllers', [])
                     })
                     $timeout(function () {
                         popup.close()
-                        $window.location.href = '#/mycollection'
+                        $window.history.back()
                     }, 3000)
                 } else if (col.error_code == '12000') {
                     $ionicPopup.alert({
@@ -924,3 +924,56 @@ angular.module('medicine.controllers', [])
         }
     }])
 
+    .controller('addIllHistoryCtrl', ['$scope', 'currentUser','addillHistory','$stateParams','$ionicPopup', '$timeout', '$window', function ($scope, currentUser,addillHistory,$stateParams, $ionicPopup, $timeout, $window) {
+
+        $scope.history = {content: ''}
+
+        $scope.reillhistory = function () {
+            var Msg = {
+
+                illProfile: $scope.history.content,
+                userId : $stateParams.userId,
+                accessToken: currentUser.getAuthToken()
+            }
+            console.log(Msg)
+            addillHistory.save({}, Msg, function (data) {
+                console.log(data)
+                if (data.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '添加成功',
+                        template: '3秒后返回'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                        $window.history.back()
+                    }, 3000)
+                }
+            })
+        }
+    }])
+
+    .controller('addBeizhuCtrl', ['$scope', 'currentUser','addbeizhu','$stateParams','$ionicPopup', '$timeout', '$window', function ($scope, currentUser,addbeizhu,$stateParams, $ionicPopup, $timeout, $window) {
+
+        $scope.addbeizhu = {remark: ''}
+        $scope.relbeizhu = function () {
+            var Msg = {
+                remark: $scope.addbeizhu.remark,
+                userId : $stateParams.userId,
+                accessToken: currentUser.getAuthToken()
+            }
+            console.log(Msg)
+            addbeizhu.save({}, Msg, function (data) {
+                console.log(data)
+                if (data.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '添加成功',
+                        template: '3秒后返回'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                        $window.history.back()
+                    }, 3000)
+                }
+            })
+        }
+    }])
