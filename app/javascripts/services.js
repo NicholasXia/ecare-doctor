@@ -186,7 +186,7 @@ angular.module('medicine.services', ['ngResource'])
     //}])
 
     .factory('patientProfile', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/docotor/profile', {}, {
+        return $resource(SERVER + '/doctor/profile', {}, {
             query: {method: 'GET'}
         })
     }])
@@ -498,8 +498,7 @@ angular.module('medicine.services', ['ngResource'])
             accessToken: '@accessToken',
             fromUserId: '@fromUserId',
             toUserID: '@toUserID',
-            fromChat: '@fromChat',
-            toChat: '@toChat'
+            toChat: '@toChat',
         },{
             save: {
                 method : 'POST'

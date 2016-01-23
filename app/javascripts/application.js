@@ -300,7 +300,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             })
 
             .state('chart', {
-                url: "/chart",
+                url: "/chart/:userId",
                 templateUrl: "templates/chart.html",
                 controller: "Messages"
             })

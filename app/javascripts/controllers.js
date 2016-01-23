@@ -989,19 +989,30 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('Messages', ['$scope', '$timeout', '$ionicScrollDelegate', 'chart','getChart', 'currentUser', 'patientProfile', function($scope, $timeout, $ionicScrollDelegate, chart,getChart, currentUser, patientProfile) {
+    .controller('Messages', ['$scope', '$timeout', '$ionicScrollDelegate', 'chart','getChart', 'currentUser', 'patientProfile','$stateParams', function($scope, $timeout, $ionicScrollDelegate, chart,getChart, currentUser, patientProfile,$stateParams) {
         $scope.hideTime = true;
 
-        patientProfile.query({accessToken: currentUser.getAuthToken()}, function(data){
-            console.log(data)
-            $scope.myId = data.userId
-        })
         var alternate,
             isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
 
-        getChart.query({accessToken:currentUser.getAuthToken(),fromUserId:10077,toUserID:10076},function(data){
-            console.log(data)
+        console.log('patientId:'+$stateParams.userId)
+        $scope.myId = patientProfile.query({accessToken: currentUser.getAuthToken()}, function (data) {
+            console.log(data.id)
+            console.log('doctorid:' + data.id)
+            getChart.query({
+                accessToken: currentUser.getAuthToken(),
+                fromUserId: $stateParams.userId,
+                toUserID: data.id
+            }, function (data) {
+                console.log(data)
+                $scope.getchart = data
+            })
+
+
         })
+
+
+
         $scope.sendMessage = function() {
             alternate = !alternate;
 
@@ -1009,18 +1020,19 @@ angular.module('medicine.controllers', [])
                 userId: alternate ? $scope.myId : '10077',
                 text: $scope.data.message,
                 accessToken : currentUser.getAuthToken(),
-                fromChat : $scope.data.message,
-                fromUserId : '10077'
+                toChat : $scope.data.message,
+                fromUserId : $stateParams.userId
             });
 
             var msg = {
                 accessToken : currentUser.getAuthToken(),
-                fromChat : $scope.data.message,
-                fromUserId : 10077,
-                toUserID: 10076
+                toChat : $scope.data.message,
+                fromUserId : $stateParams.userId,
+                toUserID: $scope.myId
             }
             chart.save({},msg,function(data){
                 console.log(data)
+                $scope.putchart = data
             })
 
             delete $scope.data.message;
