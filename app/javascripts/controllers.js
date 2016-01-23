@@ -938,16 +938,14 @@ angular.module('medicine.controllers', [])
     }])
 
     .controller('addIllHistoryCtrl', ['$scope', 'currentUser','addillHistory','$stateParams','$ionicPopup', '$timeout', '$window', function ($scope, currentUser,addillHistory,$stateParams, $ionicPopup, $timeout, $window) {
-
         $scope.history = {content: ''}
-
         $scope.reillhistory = function () {
             var Msg = {
-
                 illProfile: $scope.history.content,
                 userId : $stateParams.userId,
                 accessToken: currentUser.getAuthToken()
             }
+
             console.log(Msg)
             addillHistory.save({}, Msg, function (data) {
                 console.log(data)
@@ -967,10 +965,10 @@ angular.module('medicine.controllers', [])
 
     .controller('addBeizhuCtrl', ['$scope', 'currentUser','addbeizhu','$stateParams','$ionicPopup', '$timeout', '$window', function ($scope, currentUser,addbeizhu,$stateParams, $ionicPopup, $timeout, $window) {
 
-        $scope.addbeizhu = {remark: ''}
+        $scope.beizhu = {remark: ''}
         $scope.relbeizhu = function () {
             var Msg = {
-                remark: $scope.addbeizhu.remark,
+                remark: $scope.beizhu.remark,
                 userId : $stateParams.userId,
                 accessToken: currentUser.getAuthToken()
             }

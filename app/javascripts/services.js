@@ -470,7 +470,7 @@ angular.module('medicine.services', ['ngResource'])
         })
     }])
     .factory('addillHistory', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/doctor/mypatient/updateIllProfile/:userId', {
+        return $resource(SERVER + '/doctor/mypatient/updateIllProfile', {
             accessToken: "@accessToken",
             userId:"@userId",
             illProfile:'@illProfile'
