@@ -3,8 +3,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>", /*正在加载中...*/
         hideOnStateChange: true,
     })
-    //.constant('SERVER', 'http://work.e-care365.com/hospital')
-    .constant('SERVER', 'http://192.168.20.173:8080/hospital')
+    .constant('SERVER', 'http://work.e-care365.com/hospital')
+    //.constant('SERVER', 'http://192.168.20.173:8080/hospital')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
         $ionicConfigProvider.navBar.alignTitle('center')
@@ -297,6 +297,11 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/addbeizhu/:userId",
                 templateUrl: "templates/beizhu.html",
                 controller: 'addBeizhuCtrl'
+            })
+            .state('chart', {
+                url: "/chart",
+                templateUrl: "templates/chart.html",
+                controller: 'UserMessagesCtrl'
             })
 
         $urlRouterProvider.otherwise("/tab/home");

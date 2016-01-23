@@ -11,3 +11,5 @@ angular.module('medicine.filters', [])
             return changedString.length > limit ? changedString.substr(0, limit - 1) : changedString;
         }
     }])
+
+

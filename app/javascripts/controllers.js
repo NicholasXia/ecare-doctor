@@ -988,3 +988,10 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
+
+    .controller('UserMessagesCtrl', ['$scope', 'currentUser','addbeizhu','$stateParams','$ionicPopup', '$timeout', '$window', function ($scope, currentUser,addbeizhu,$stateParams, $ionicPopup, $timeout, $window) {
+
+
+    }])
+
+
