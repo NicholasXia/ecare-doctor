@@ -270,11 +270,24 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('mineInfoCtrl', ['$scope', '$window', 'mineInfo', 'currentUser','ionicLoadingConfig','$ionicLoading', function ($scope, $window, mineInfo, currentUser,ionicLoadingConfig,$ionicLoading) {
+    .controller('mineInfoCtrl', ['$scope','$ionicPopup','$timeout', '$window', 'mineInfo', 'currentUser','ionicLoadingConfig','$ionicLoading', function ($scope,$ionicPopup,$timeout, $window, mineInfo, currentUser,ionicLoadingConfig,$ionicLoading) {
         var accesstoken = currentUser.getAuthToken()
+        if(!accesstoken){
+            var popup = $ionicPopup.alert({
+                title: '提示',
+                template: '登陆才能查看哟！！'
+            })
+            $timeout(function () {
+                popup.close()
+                $window.location.href = '#/sign_in'
+            }, 3000)
+            return
+        }
         $ionicLoading.show({
             template:ionicLoadingConfig.template,
         });
+
+
         mineInfo.query({accessToken: accesstoken}, function (data) {
             $scope.infodata = data
             $ionicLoading.hide()

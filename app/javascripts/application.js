@@ -4,7 +4,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         hideOnStateChange: true,
     })
     .constant('SERVER', 'http://work.e-care365.com/hospital')
-    //.constant('SERVER', 'http://192.168.20.173:8080/admin')
+    //.constant('SERVER', 'http://192.168.20.173:8080/hospital')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
         $ionicConfigProvider.navBar.alignTitle('center')
