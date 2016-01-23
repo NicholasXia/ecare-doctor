@@ -989,9 +989,69 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('UserMessagesCtrl', ['$scope', 'currentUser','addbeizhu','$stateParams','$ionicPopup', '$timeout', '$window', function ($scope, currentUser,addbeizhu,$stateParams, $ionicPopup, $timeout, $window) {
+    .controller('Messages', ['$scope', '$timeout', '$ionicScrollDelegate', 'chart','getChart', 'currentUser', 'patientProfile', function($scope, $timeout, $ionicScrollDelegate, chart,getChart, currentUser, patientProfile) {
+        $scope.hideTime = true;
+
+        patientProfile.query({accessToken: currentUser.getAuthToken()}, function(data){
+            console.log(data)
+            $scope.myId = data.userId
+        })
+        var alternate,
+            isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+
+        getChart.query({accessToken:currentUser.getAuthToken(),fromUserId:10077,toUserID:10076},function(data){
+            console.log(data)
+        })
+        $scope.sendMessage = function() {
+            alternate = !alternate;
+
+            $scope.messages.push({
+                userId: alternate ? $scope.myId : '10077',
+                text: $scope.data.message,
+                accessToken : currentUser.getAuthToken(),
+                fromChat : $scope.data.message,
+                fromUserId : '10077'
+            });
+
+            var msg = {
+                accessToken : currentUser.getAuthToken(),
+                fromChat : $scope.data.message,
+                fromUserId : 10077,
+                toUserID: 10076
+            }
+            chart.save({},msg,function(data){
+                console.log(data)
+            })
+
+            delete $scope.data.message;
+            $ionicScrollDelegate.scrollBottom(true);
+
+        };
 
 
-    }])
+        $scope.inputUp = function() {
+            if (isIOS) $scope.data.keyboardHeight = 216;
+            $timeout(function() {
+                $ionicScrollDelegate.scrollBottom(true);
+            }, 300);
+
+        };
+
+        $scope.inputDown = function() {
+            if (isIOS) $scope.data.keyboardHeight = 0;
+            $ionicScrollDelegate.resize();
+        };
+
+        $scope.closeKeyboard = function() {
+            // cordova.plugins.Keyboard.close();
+        };
+
+
+        $scope.data = {};
+        $scope.myId = '12345';
+        $scope.messages = [];
+
+
+    }]);
 
 
