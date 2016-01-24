@@ -11,7 +11,6 @@ angular.module('medicine.controllers', [])
             $scope.medicallist = data
         })
         getCountAsk.query({accessToken:accesstoken},function(data){
-            console.log(data)
             $scope.askCount = data.askCount
         })
         $scope.doctorCode = currentUser.getDoctorCode()
@@ -106,7 +105,7 @@ angular.module('medicine.controllers', [])
                 })
                 $timeout(function () {
                     popup.close()
-                    $window.location.href = '#/sign_in'
+                    $window.location.href = '#/'
                 }, 3000)
             })
         }
@@ -1005,8 +1004,7 @@ angular.module('medicine.controllers', [])
                                 text: $scope.toChar
                             })
                         })
-                },
-                2000)
+                },2000)
         })
 
         $scope.data = {};
