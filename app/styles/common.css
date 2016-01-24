@@ -140,8 +140,6 @@ form .myicon{line-height: 60px;  width: 100%;}
 }
 .item .text-indent > div  {
     padding: 10px;
-    display: flex;
-    justify-content: center;
 }
 
 .item .pad-replate {

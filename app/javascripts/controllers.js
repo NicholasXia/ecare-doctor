@@ -2,9 +2,6 @@ angular.module('medicine.controllers', [])
     .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', "$ionicPopup", "bindinfo", "mineInfo",'$ionicLoading','ionicLoadingConfig',function ($scope, $window, getCarouselList, currentUser, $ionicPopup, bindinfo, mineInfo,$ionicLoading,ionicLoadingConfig) {
 
 
-        $ionicLoading.show({
-            template:ionicLoadingConfig.template,
-        });
         getCarouselList.query({type: 1, category: 1}, function (data) {
             $scope.data = data
             $scope.doctorno = currentUser.getDoctorCode()
@@ -12,10 +9,6 @@ angular.module('medicine.controllers', [])
 
         getCarouselList.query({type: 1, category: 2}, function (data) {
             $scope.medicallist = data
-            if(data){
-
-                $ionicLoading.hide()
-            }
         })
 
         $scope.doctorCode = currentUser.getDoctorCode()
@@ -830,19 +823,11 @@ angular.module('medicine.controllers', [])
 
     .controller('doctorVerifyCtrl', ['$scope', '$window','$http','$ionicPopup', 'doctorVerifyUpload', 'currentUser','ionicLoadingConfig','$ionicLoading', function ($scope, $window,$http, $ionicPopup, doctorVerifyUpload, currentUser,ionicLoadingConfig,$ionicLoading) {
 
-        //$scope.show = function() {
-        //    $ionicLoading.show({
-        //        template:ionicLoadingConfig.template,
-        //    });
-        //};
-        //$scope.hide = function(){
-        //    $ionicLoading.hide();
-        //};
-
         $scope.verifyimage = {
             crtWithPhoto: "",
             crtWithName: ""
         };
+
         $scope.uploadVerify = function (crtWithPhoto, crtWithName) {
             $ionicLoading.show({
                 template:ionicLoadingConfig.template,
@@ -984,55 +969,55 @@ angular.module('medicine.controllers', [])
                         popup.close()
                         $window.history.back()
                     }, 3000)
+
                 }
             })
         }
     }])
 
-    .controller('Messages', ['$scope', '$timeout', '$ionicScrollDelegate', 'chart','getChart', 'currentUser', 'patientProfile','$stateParams', function($scope, $timeout, $ionicScrollDelegate, chart,getChart, currentUser, patientProfile,$stateParams) {
+    .controller('Messages', ['$scope','$timeout', '$interval', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart','$stateParams','$window',function ($scope,$timeout, $interval, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart,$stateParams,$window) {
+
         $scope.hideTime = true;
-
-        var alternate,
-            isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
-
-        console.log('patientId:'+$stateParams.userId)
-        $scope.myId = patientProfile.query({accessToken: currentUser.getAuthToken()}, function (data) {
-            console.log(data.id)
-            console.log('doctorid:' + data.id)
-            getChart.query({
-                accessToken: currentUser.getAuthToken(),
-                fromUserId: $stateParams.userId,
-                toUserID: data.id
-            }, function (data) {
-                console.log(data)
-                $scope.getchart = data
-            })
-
-
+        var isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+        var patientId = $stateParams.userId
+        patientProfile.query({accessToken: currentUser.getAuthToken()}, function (data) {
+            $scope.myId=data.id
+            var doctorId = data.id
+            $interval(
+                function () {
+                    //console.log(patientId+'----'+ doctorId)
+                    getChart.query(
+                        {accessToken: currentUser.getAuthToken(), fromUserId: patientId, toUserID: doctorId},
+                        function (data) {
+                            console.log(data)
+                            $scope.toChar = data[0].fromChat
+                            $scope.messages.push({
+                                userId: patientId,
+                                text: $scope.toChar
+                            })
+                        })
+                },
+                2000)
         })
 
+        $scope.data = {};
+        $scope.messages = [];
 
-
-        $scope.sendMessage = function() {
-            alternate = !alternate;
+        $scope.sendMessage = function () {
 
             $scope.messages.push({
-                userId: alternate ? $scope.myId : '10077',
-                text: $scope.data.message,
-                accessToken : currentUser.getAuthToken(),
-                toChat : $scope.data.message,
-                fromUserId : $stateParams.userId
+                userId: $scope.myId,
+                text: $scope.data.message
             });
 
             var msg = {
-                accessToken : currentUser.getAuthToken(),
-                toChat : $scope.data.message,
-                fromUserId : $stateParams.userId,
+                accessToken: currentUser.getAuthToken(),
+                toChat: $scope.data.message,
+                fromUserId: patientId,
                 toUserID: $scope.myId
             }
-            chart.save({},msg,function(data){
+            chart.save({}, msg, function (data) {
                 console.log(data)
-                $scope.putchart = data
             })
 
             delete $scope.data.message;
@@ -1040,30 +1025,21 @@ angular.module('medicine.controllers', [])
 
         };
 
-
-        $scope.inputUp = function() {
+        $scope.inputUp = function () {
             if (isIOS) $scope.data.keyboardHeight = 216;
-            $timeout(function() {
+            $timeout(function () {
                 $ionicScrollDelegate.scrollBottom(true);
             }, 300);
 
         };
 
-        $scope.inputDown = function() {
+        $scope.inputDown = function () {
             if (isIOS) $scope.data.keyboardHeight = 0;
             $ionicScrollDelegate.resize();
         };
 
-        $scope.closeKeyboard = function() {
+        $scope.closeKeyboard = function () {
             // cordova.plugins.Keyboard.close();
         };
-
-
-        $scope.data = {};
-        $scope.myId = '12345';
-        $scope.messages = [];
-
-
     }]);
-
 

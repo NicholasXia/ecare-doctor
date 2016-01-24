@@ -66,10 +66,14 @@
                      ui-sref="medical_detail({id:item.id})">
                     <div class="header clearfix padding">
                         <div ng-if="item.category == 2 && $index == 0" class="fl index padding">医疗动态</div>
-                        <div class="fr">{{item.postTime}}</div>
                     </div>
                     <div class="content">
-                        <p>{{item.title}}</p>
+                        <div class="padding">
+                            <span>
+                                {{item.title}}
+                            <p class="fr">{{item.postTime}}</p>
+                            </span>
+                        </div>
 
                         <p class="init home"><img ng-src="{{item.coverImageUrl}}" height="80px"/> </p>
                     </div>
