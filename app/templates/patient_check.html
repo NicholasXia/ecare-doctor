@@ -13,10 +13,10 @@
                         <p>向您发送了验证请求</p>
                     </div>
                     <div class='col col-50 patient-button'>
-                        <button class="button button-small button-assertive" ng-click="noaccept()" ng-if="item.checked == 0">
+                        <button class="button button-small button-assertive" ng-click="accept(0)" ng-if="item.checked == 0">
                             不允许
                         </button>
-                        <button class="button button-small button-balanced" ng-click="accept()" ng-if="item.checked == 0">
+                        <button class="button button-small button-balanced" ng-click="accept(1)" ng-if="item.checked == 0">
                             允许
                         </button>
                         <button class="button button-small button-balanced" ng-if="item.checked == 1">

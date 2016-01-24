@@ -513,21 +513,17 @@ angular.module('medicine.controllers', [])
         patientCheckBindList.query({accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.data = data
         })
-        $scope.accept = function () {
+        $scope.accept = function (acceptornot) {
             var msg = {
                 id: $scope.data[0].id,
-                acceptOrNot: 1,
+                acceptOrNot: acceptornot,
                 accessToken: currentUser.getAuthToken()
             }
             acceptOrNot.save({}, msg, function (data) {
                 if (data.status == 'suc') {
                     $window.location.reload()
-
                 }
             })
-        }
-        $scope.noaccept = function () {
-            $scope.data.splice($scope.data.indexOf($scope.data), 0);
         }
 
     }])
