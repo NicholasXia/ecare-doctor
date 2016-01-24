@@ -42,7 +42,7 @@
 .mine_infomy div > a {padding:10px;}
 .mine-image {
     width: 60px;
-    border-radius: 60px;
+    border-radius: 50%;
 }
 
 .jifen-img {
