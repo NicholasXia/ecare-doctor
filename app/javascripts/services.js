@@ -517,3 +517,25 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+
+    //获取来自患者的消息列表
+    .factory('getPatientAsk',['$resource','SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/doctor/mypatient/ask',{
+            accessToken: "@accessToken",
+        },{
+            query:{
+                method:'GET',
+                isArray: true
+            }
+        })
+    }])
+
+    .factory('getCountAsk',['$resource','SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/doctor/mypatient/ask/count',{
+            accessToken: "@accessToken",
+        },{
+            query:{
+                method:'GET',
+            }
+        })
+    }])

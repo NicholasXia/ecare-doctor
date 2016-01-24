@@ -1,22 +1,25 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', "$ionicPopup", "bindinfo", "mineInfo",'$ionicLoading','ionicLoadingConfig',function ($scope, $window, getCarouselList, currentUser, $ionicPopup, bindinfo, mineInfo,$ionicLoading,ionicLoadingConfig) {
+    .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', "$ionicPopup", "bindinfo", "mineInfo",'$ionicLoading','ionicLoadingConfig','getCountAsk',function ($scope, $window, getCarouselList, currentUser, $ionicPopup, bindinfo, mineInfo,$ionicLoading,ionicLoadingConfig,getCountAsk) {
 
-
+        var accesstoken = currentUser.getAuthToken()
         getCarouselList.query({type: 1, category: 1}, function (data) {
             $scope.data = data
-            $scope.doctorno = currentUser.getDoctorCode()
+            $scope.doctorno = accesstoken
         })
 
         getCarouselList.query({type: 1, category: 2}, function (data) {
             $scope.medicallist = data
         })
-
+        getCountAsk.query({accessToken:accesstoken},function(data){
+            console.log(data)
+            $scope.askCount = data.askCount
+        })
         $scope.doctorCode = currentUser.getDoctorCode()
         $scope.goToActivity = function (activity) {
             $window.location.href = activity
         }
         $scope.isLogin = currentUser.hasAuthToken()
-        var accesstoken = currentUser.getAuthToken()
+
 
         mineInfo.query({accessToken: accesstoken}, function (data) {
             var msg = {
@@ -299,7 +302,6 @@ angular.module('medicine.controllers', [])
         var accesstoken = currentUser.getAuthToken()
         analysisDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
             $scope.analysisdetail = data
-            console.log(data)
         })
         //评论
         $scope.detailMsg = {'acomment': ''}
@@ -311,7 +313,10 @@ angular.module('medicine.controllers', [])
             }
             analysisRemark.save({}, msg, function (detail) {
                 if (detail.status == 'suc') {
-                    $window.location.reload()
+                    analysisDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
+                        $scope.analysisdetail = data
+                        console.log(data)
+                    })
                 }
                 else {
                     $window.location.href = '#/'
@@ -349,7 +354,7 @@ angular.module('medicine.controllers', [])
         }
     }])
     //消息记录
-    .controller('msgRecordCtrl', ['$scope', 'gonggaolist', 'currentUser', 'mineInfo', function ($scope, gonggaolist, currentUser, mineInfo) {
+    .controller('msgRecordCtrl', ['$scope', 'gonggaolist','getPatientAsk', 'currentUser', 'mineInfo', function ($scope, gonggaolist,getPatientAsk, currentUser, mineInfo) {
         var accesstoken = currentUser.getAuthToken()
         mineInfo.query({accessToken: accesstoken}, function (data) {
             var msg = {
@@ -357,10 +362,13 @@ angular.module('medicine.controllers', [])
                 accessToken: accesstoken
             }
             gonggaolist.query(msg, function (info) {
-
                 $scope.gonggao = info
+                console.log(info)
             })
-
+            getPatientAsk.query({accessToken:accesstoken},function(data){
+                console.log(data)
+                $scope.mynews = data
+            })
         })
     }])
 
@@ -444,7 +452,10 @@ angular.module('medicine.controllers', [])
             }
             Remark.save({}, msg, function (data) {
                 if (data.status == 'suc') {
-                    $window.location.reload()
+                    Detail.query({id: $stateParams.id}, function (data) {
+                        $scope.medicaldetail = data
+                        console.log(data)
+                    })
                 } else {
                     $ionicPopup.alert({
                         title: '错误提示',
@@ -502,7 +513,9 @@ angular.module('medicine.controllers', [])
             xinxuegMyRemark.save({}, comment, function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
-                    $window.location.reload()
+                    xinxuegDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
+                        $scope.xinxuegdetail = data
+                    })
                 }
             })
 
@@ -592,13 +605,13 @@ angular.module('medicine.controllers', [])
             feedBack.save({}, info, function (data) {
                 if (data.status = 'suc') {
                     var popup = $ionicPopup.alert({
-                        title: '评论成功',
-                        template: '感谢您的大力支持,3秒后跳转'
+                        title: '反馈成功',
+                        template: '感谢您的大力支持'
                     })
-                    $timeout(function () {
-                        popup.close()
-                        $window.location.href = '#/tab/mine'
-                    }, 3000)
+                    //$timeout(function () {
+                    //    popup.close()
+                    //    $window.location.href = '#/tab/mine'
+                    //}, 3000)
                 } else {
                     var popup = $ionicPopup.alert({
                         title: '未知错误'

@@ -33,19 +33,18 @@
                 <img class="yisheng" src="./images/yisheng.png">
 
                 <div class='new_patient row' >
-                    <div class="col-33">
-                        <p>{{item.patientName}}</p>
-                        <button class="button button-small button-assertive fl-div-right disabled">
+                    <div class="col">
+                        <span>{{item.patientName}}</span>
+                        <span class="button button-small button-assertive disabled" style="margin-left: 10px">
                             已绑定
-                        </button>
-
+                        </span>
                     </div>
-                    <!--<div class=' patient-button' ng-if="item.age">-->
-                        <!--<p>{{item.age}} 岁</p>-->
-                        <!--<p> | </p>-->
-                        <!--<p ng-if="item.agender == 2">女</p>-->
-                        <!--<p ng-if="item.agender == 1">男</p>-->
-                    <!--</div>-->
+                    <div class='patient-button col col-20' ng-if="item.age">
+                        <span>{{item.age}} 岁</span>
+                        <span> | </span>
+                        <span ng-if="item.agender == 2">女</span>
+                        <span ng-if="item.agender == 1">男</span>
+                    </div>
                 </div>
             </a>
 
