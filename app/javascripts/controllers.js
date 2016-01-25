@@ -101,11 +101,11 @@ angular.module('medicine.controllers', [])
                 currentUser.setAuthToken(userdata.accessToken)
                 var popup = $ionicPopup.alert({
                     title: '注册成功',
-                    template: '即将进入首页'
+                    template: '请先补充下资料吧'
                 })
                 $timeout(function () {
                     popup.close()
-                    $window.location.href = '#/'
+                    $window.location.href = '#/mine_info'
                 }, 3000)
             })
         }
@@ -312,6 +312,7 @@ angular.module('medicine.controllers', [])
             }
             analysisRemark.save({}, msg, function (detail) {
                 if (detail.status == 'suc') {
+                    $scope.detailMsg.acomment = ''
                     analysisDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
                         $scope.analysisdetail = data
                         console.log(data)
@@ -450,6 +451,7 @@ angular.module('medicine.controllers', [])
                 remark: $scope.markinfo.remak
             }
             Remark.save({}, msg, function (data) {
+                $scope.markinfo.remak = ''
                 if (data.status == 'suc') {
                     Detail.query({id: $stateParams.id}, function (data) {
                         $scope.medicaldetail = data
@@ -512,6 +514,7 @@ angular.module('medicine.controllers', [])
             xinxuegMyRemark.save({}, comment, function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
+                    $scope.xinDmg.comment = ''
                     xinxuegDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
                         $scope.xinxuegdetail = data
                     })
