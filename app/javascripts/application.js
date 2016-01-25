@@ -34,15 +34,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                     }
                 }
             })
-            //我的患者
-            .state('tabs.patient', {
-                url: "/patient",
-                views: {
-                    'patient-tab': {
-                        templateUrl: "templates/patient.html"
-                    }
-                }
-            })
+
             .state('tabs.mine', {
                 url: "/mine",
                 views: {
@@ -57,8 +49,17 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/pat",
                 templateUrl: "templates/patient.html"
             })
-            //消息记录
-            .state('patienttabs.msgrecord', {
+
+
+            ///////////
+
+
+            .state('msgtab',{
+                url:"/msgtab",
+                templateUrl:"templates/msg.html"
+            })
+
+            .state('msgtab.msgrecord', {
                 url: "/msgrecord",
                 views: {
                     'msgrecord-tab': {
@@ -67,7 +68,21 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                     }
                 }
             })
-            //我的患者
+
+            .state('datatab',{
+                url:"/datatab",
+                templateUrl:"templates/data.html"
+            })
+
+            .state('datatab.patientdata', {
+                url: "/patientdata",
+                views: {
+                    'patientdata-tab': {
+                        templateUrl: "templates/patientdata_tab.html"
+                    }
+                }
+            })
+
             .state('patienttabs.patientlist', {
                 url: "/patientlist",
                 views: {
@@ -77,16 +92,6 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                     }
                 }
             })
-            //患者数据
-            .state('patienttabs.patientdata', {
-                url: "/patientdata",
-                views: {
-                    'patientdata-tab': {
-                        templateUrl: "templates/patientdata_tab.html"
-                    }
-                }
-            })
-
 
             // 登陆
             .state('sign_in', {

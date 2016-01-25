@@ -207,7 +207,11 @@ angular.module('medicine.controllers', [])
             birthday: '',
             weight: '',
             name: '',
-            agender: ''
+            agender: '',
+            zc :'',
+            yy : '',
+            ks:'',
+            jszc: ''
         }
 
         var monthList = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
@@ -246,7 +250,11 @@ angular.module('medicine.controllers', [])
                 accessToken: currentUser.getAuthToken(),
                 name: $scope.patientData.name,
                 birthday: $scope.patientData.birthday,
-                agender: $scope.patientData.agender
+                agender: $scope.patientData.agender,
+                hospital :$scope.patientData.yy,
+                department:$scope.patientData.ks,
+                technicalTitle :$scope.patientData.zc,
+                teachingTitle:$scope.patientData.jszc
             }
             updateMsg.save(saveMsg, function (data) {
                 if (data.status == 'suc') {
@@ -258,6 +266,11 @@ angular.module('medicine.controllers', [])
                         popup.close()
                         $window.history.back();
                     }, 3000)
+                }else{
+                    var popup = $ionicPopup.alert({
+                        title: '错误信息',
+                        template: data.error
+                    })
                 }
                 //else {
                 //    $window.location.href = '#/'
@@ -268,17 +281,17 @@ angular.module('medicine.controllers', [])
 
     .controller('mineInfoCtrl', ['$scope','$ionicPopup','$timeout', '$window', 'mineInfo', 'currentUser','ionicLoadingConfig','$ionicLoading', function ($scope,$ionicPopup,$timeout, $window, mineInfo, currentUser,ionicLoadingConfig,$ionicLoading) {
         var accesstoken = currentUser.getAuthToken()
-        if(!accesstoken){
-            var popup = $ionicPopup.alert({
-                title: '提示',
-                template: '登陆才能查看哟！！'
-            })
-            $timeout(function () {
-                popup.close()
-                $window.location.href = '#/sign_in'
-            }, 3000)
-            return
-        }
+        //if(!accesstoken){
+        //    var popup = $ionicPopup.alert({
+        //        title: '提示',
+        //        template: '登陆才能查看哟！！'
+        //    })
+        //    $timeout(function () {
+        //        popup.close()
+        //        $window.location.href = '#/sign_in'
+        //    }, 3000)
+        //    return
+        //}
 
 
 

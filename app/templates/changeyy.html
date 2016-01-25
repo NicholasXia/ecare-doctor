@@ -1,11 +1,13 @@
-<ion-view view-title="修改生日" cache-view="false">
+<ion-view view-title="修改姓名" cache-view="false">
     <ion-header-bar class="bar-balanced">
-        <h1 class="title">修改生日</h1>
-        <button class="button">确认修改</button>
+        <h1 class="title">请填写自己的医院名称</h1>
+        <button class="button" ng-click="saveMsg()">确认修改</button>
     </ion-header-bar>
     <ion-content has-bouncing="true" class="padding">
-        <ion-list>
-            <ion-radio ng-model="choice" ng-value="'0'">医院名称</ion-radio>
-        </ion-list>
+        <div class="list">
+            <label class="item item-input">
+                <input type="text" ng-model="patientData.yy" placeholder="医院名称">
+            </label>
+        </div>
     </ion-content>
 </ion-view>
