@@ -105,7 +105,7 @@ angular.module('medicine.controllers', [])
                 })
                 $timeout(function () {
                     popup.close()
-                    $window.location.href = '#/'
+                    $window.location.href = '#/mine_info'
                 }, 3000)
             })
         }
