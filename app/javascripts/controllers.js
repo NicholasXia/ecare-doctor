@@ -116,14 +116,7 @@ angular.module('medicine.controllers', [])
         $scope.signIn = function () {
             signUp.save({}, $scope.signInMsg, function (data) {
                 currentUser.setAuthToken(data.accessToken)
-                if (data.error) {
-                    $ionicPopup.alert({
-                        title: '错误提示',
-                        template: data.error
-                    })
-                    ;
-                    return
-                } else {
+                if (data.status == "suc") {
                     currentUser.setDoctorCode(data.user.doctorNo);
                     var popup = $ionicPopup.alert({
                         title: '登陆成功',
@@ -133,6 +126,14 @@ angular.module('medicine.controllers', [])
                         popup.close()
                         $window.location.href = '#/'
                     }, 3000)
+
+                } else {
+                    $ionicPopup.alert({
+                        title: '错误提示',
+                        template: data.error
+                    })
+                    ;
+                    return
                 }
             })
         }
@@ -278,14 +279,11 @@ angular.module('medicine.controllers', [])
             }, 3000)
             return
         }
-        $ionicLoading.show({
-            template:ionicLoadingConfig.template,
-        });
+
 
 
         mineInfo.query({accessToken: accesstoken}, function (data) {
             $scope.infodata = data
-            $ionicLoading.hide()
             console.log(data)
         })
 

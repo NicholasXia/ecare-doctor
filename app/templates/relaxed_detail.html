@@ -8,13 +8,15 @@
     </ion-header-bar>
     <ion-content>
         <div class="list">
-            <div class="item item-text-wrap row">
-                <span class="col col-50">{{relaxed.title}}</span> <span class="col col-50">{{relaxed.postTime}}</span>
+            <div class="item ">
+                <span class="">{{relaxed.title}}</span> <span class="fr">{{relaxed.postTime}}</span>
             </div>
-            <div class="item item-text-wrap padding" ng-bind-html="relaxed.content">
-                {{relaxed.content}}
+            <div class="padding item item-text-wrap home">
+                <img ng-src="{{relaxed.coverImageUrl}}" alt=""/>
+                <div  ng-bind-html="relaxed.content">
+                    {{relaxed.content}}
+                </div>
             </div>
-
         </div>
     </ion-content>
 </ion-view>
