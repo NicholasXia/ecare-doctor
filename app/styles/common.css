@@ -52,10 +52,10 @@
     text-decoration: none;
 }
 
-.tab-item-active {
-    border-bottom: 2px solid #2bce84;
-    background-color: rgba(51, 205, 95, .2);
-}
+/*.tab-item-active {*/
+    /*border-bottom: 2px solid #2bce84;*/
+    /*background-color: rgba(51, 205, 95, .2);*/
+/*}*/
 
 .patientdata-row > .row > .col {
     border: 1px solid rgba(0, 0, 0, .4);

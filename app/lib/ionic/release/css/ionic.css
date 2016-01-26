@@ -1938,7 +1938,8 @@
   content: ""; }
 
 .ion-ios-information:before {
-  content: ""; }
+  content: "";
+}
 
 .ion-ios-information-empty:before {
   content: ""; }
@@ -2343,7 +2344,9 @@
   content: ""; }
 
 .ion-ios-world:before {
-  content: ""; }
+  content: "";
+
+}
 
 .ion-ios-world-outline:before {
   content: ""; }
@@ -2499,7 +2502,8 @@
   content: ""; }
 
 .ion-person:before {
-  content: ""; }
+  content: "";
+}
 
 .ion-person-add:before {
   content: ""; }
@@ -5723,8 +5727,8 @@ ion-tabs.tabs-color-active-dark .tab-item {
     background-color: #ef473a;
     color: #fff; }
   .item.item-balanced {
-    border-color: #2bce84;
-    background-color: #2bce84;
+    border-color: #28a54c;
+    background-color: #33cd5f;
     color: #fff; }
   .item.item-energized {
     border-color: #e6b500;
