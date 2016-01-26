@@ -919,8 +919,8 @@ angular.module('medicine.controllers', [])
             forgotpwd.query(msg, function (data) {
                 if (data.error || $scope.forgot.mobile == 0 || $scope.forgot.mobileh < 11 || !reg.test($scope.forgot.mobile)) {
                     $ionicPopup.alert({
-                        title: '错误提示',
-                        template: '手机号输入有误，请重新输入'
+                        title: '提示',
+                        template: data.error
                     });
                 } else {
                     $ionicPopup.alert({
