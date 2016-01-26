@@ -517,3 +517,31 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+
+    .factory('districtGet', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/back/district/get', {
+            accessToken: "@accessToken",
+            orgId:"@orgId",
+            type:"@type"
+        }, {
+            query: {
+                method: 'GET',
+                isArray:true
+
+            }
+        })
+    }])
+    .factory('getYy', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/back/district/hospitals', {
+            accessToken: "@accessToken",
+            provinceId:"@provinceId",
+            cityId:"@cityId",
+            countyId:"@countyId"
+        }, {
+            query: {
+                method: 'GET',
+                isArray:true
+
+            }
+        })
+    }])

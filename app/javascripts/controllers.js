@@ -202,7 +202,7 @@ angular.module('medicine.controllers', [])
         }
 
     }])
-    .controller('changeCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
+    .controller('changeCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile','districtGet','getYy', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile,districtGet,getYy) {
         $scope.patientData = {
             birthday: '',
             weight: '',
@@ -244,6 +244,55 @@ angular.module('medicine.controllers', [])
             dateFormat: 'yyyy-MM-dd',
             closeOnSelect: false,
         };
+        //省市县
+        var select = {
+            accessToken:currentUser.getAuthToken(),
+            type :1
+
+        }
+        districtGet.query(select,function(data){
+            $scope.shenglist=data
+        })
+        $scope.showSelectSheng = function(select){
+                var shi={
+                    accessToken:currentUser.getAuthToken(),
+                    orgId:select,
+                    type:2
+                }
+            districtGet.query(shi,function(data){
+                $scope.shilist=data
+            })
+            $scope.shengId=select
+
+        }
+        $scope.showSelectShi = function(select){
+            console.log(select)
+            var xian={
+                accessToken:currentUser.getAuthToken(),
+                orgId:select,
+                type:3
+            }
+            districtGet.query(xian,function(data){
+                $scope.xianlist=data
+                //console.log(data)
+            })
+            $scope.shiId=select
+
+        }
+        $scope.showSelectyy = function(select){
+            console.log(select)
+            var info={
+                accessToken: currentUser.getAuthToken(),
+                provinceId:$scope.shengId,
+                cityId:$scope.shiId,
+                countyId:select
+            }
+            getYy.query(info,function(data){
+                console.log(data)
+                $scope.yylist = data
+            })
+
+        }
 
         $scope.saveMsg = function () {
             var saveMsg = {
@@ -762,7 +811,9 @@ angular.module('medicine.controllers', [])
             formData.append('imageBase64s', getbase64arr())
             formData.append('accessToken', currentUser.getAuthToken())
 
-            $http.post('http://work.e-care365.com/hospital/doctor/heartcircle/add', formData, {
+            //$http.post('http://work.e-care365.com/hospital/doctor/heartcircle/add', formData, {
+
+            $http.post('http://192.168.20.173:8080/hospital/doctor/heartcircle/add', formData, {
                 headers: {'Content-Type': undefined},
                 transformRequest: angular.identity
             }).success(function (data) {

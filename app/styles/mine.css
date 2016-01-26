@@ -37,7 +37,7 @@
 
 .row + .row{
     margin-top: -5px;
-    padding-top: 15px;
+    padding: 15px 0px;
 }
 .mine_infomy div > a {padding:10px;}
 .mine-image {
@@ -58,4 +58,4 @@
     padding: 5px;
 }
 .vertical{vertical-align:middle;}
-.myicon-mine{position: absolute;top:5%;}
+.myicon-mine{position: absolute;top:6%;}
