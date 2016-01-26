@@ -36,6 +36,17 @@ angular.module('medicine.controllers', [])
                 $window.location.href = '#/medical_detail/' + artiacleid
             }
         }
+        $scope.gotLogin = function(){
+            if (!$scope.isLogin) {
+                $ionicPopup.alert({
+                    title: '错误提示',
+                    template: '您还未登陆'
+                });
+                $window.location.href = '#/sign_in'
+            } else {
+                $window.location.href = '#/analysis'
+            }
+        }
 
         $scope.goXinxueg = function () {
             if (!$scope.isLogin) {
