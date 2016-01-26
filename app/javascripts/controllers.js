@@ -80,10 +80,10 @@ angular.module('medicine.controllers', [])
                 password: $scope.account.password,
                 verifycode: $scope.account.verCode
             }
-            if ($scope.account.verCode.length !== 4 || $scope.account.password.length == 0) {
+            if ($scope.account.verCode.length !== 4 || $scope.account.password.length < 0) {
                 $ionicPopup.alert({
                     title: '错误提示',
-                    template: '请输入个人正确的信息'
+                    template: '请输入正确验证码和手机号'
                 })
                 return
             }

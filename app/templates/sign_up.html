@@ -24,15 +24,15 @@
                 <!--<span class="input-label">手机</span>-->
                 <input type="tel" required ng-model="account.phoneNum" placeholder="手机号">
             </label>
-            <label class="item item-input">
+            <div class="item item-input">
                 <!--<span class="input-label">输入短信验证码</span>-->
                 <label class="item-input-wrapper">
-                    <input type="password" required ng-model="account.verCode" placeholder="输入短信验证码"/>
+                    <input type="text" required ng-model="account.verCode" placeholder="输入短信验证码"/>
                 </label>
                 <button class="button button-small button-balanced" ng-click="getCode()">
                     获取验证码
                 </button>
-            </label>
+            </div>
             <label class="item item-input">
                 <!--<span class="input-label">请输入6~0位数字密码</span>-->
                 <input type="password" required ng-model="account.password" placeholder="请输入6~20位数字密码"/>
