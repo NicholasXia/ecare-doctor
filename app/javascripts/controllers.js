@@ -348,17 +348,17 @@ angular.module('medicine.controllers', [])
 
                 if (col.status == 'suc') {
                     var popup = $ionicPopup.alert({
-                        title: '收藏成功',
-                        template: '即将跳转'
+                        title: '成功提示',
+                        template: '收藏成功'
                     })
-                    $timeout(function () {
-                        popup.close()
-                        $window.history.back()
-                    }, 3000)
-                } else if (col.error_code == '12000') {
+                    //$timeout(function () {
+                    //    popup.close()
+                    //    $window.history.back()
+                    //}, 3000)
+                } else{
                     $ionicPopup.alert({
-                        title: '收藏失败',
-                        template: '请不要重复收藏'
+                        title: '错误提示',
+                        template: col.error
                     })
                 }
             })
@@ -418,7 +418,8 @@ angular.module('medicine.controllers', [])
                     }, 3000)
                 } else {
                     var popup = $ionicPopup.alert({
-                        title: '未知错误'
+                        title: '错误提示',
+                        template:rel.error
                     })
                 }
             })
@@ -776,21 +777,16 @@ angular.module('medicine.controllers', [])
 
 
         $scope.xinxuegRelease = function (publishphoto) {
-            //
-            if (publishphoto) {
-                $scope.xinxuegimage.imageBase64s = publishphoto[0].dataURL
-            } else {
 
-            }
 
             var getbase64arr = function() {
                 var temp = []
                 for (var i=0, len=publishphoto.length; i < len; i++) {
                     temp[i] = publishphoto[i].dataURL
                 }
-                console.log(temp)
                 return temp
             }
+            console.log(getbase64arr())
 
             var formData = new FormData()
             formData.append('content', $scope.xinxueg.content)
@@ -809,7 +805,10 @@ angular.module('medicine.controllers', [])
                     })
                     $window.history.back()
                 }else{
-                    console.log('error')
+                    $ionicPopup.alert({
+                        title:'错误提示',
+                        template:data.error
+                    })
                 }
             })
 
