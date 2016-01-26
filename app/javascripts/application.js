@@ -11,11 +11,11 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
     })
 
-    .config(function(localStorageServiceProvider){
-        localStorageServiceProvider
-            .setStorageType('sessionStorage')
-            .setNotify(true, true)
-    })
+    //.config(function(localStorageServiceProvider){
+    //    localStorageServiceProvider
+    //        .setStorageType('sessionStorage')
+    //        .setNotify(true, true)
+    //})
 
     .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -50,13 +50,9 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/patient.html"
             })
 
-
-            ///////////
-
-
-            .state('msgtab',{
-                url:"/msgtab",
-                templateUrl:"templates/msg.html"
+            .state('msgtab', {
+                url: "/msgtab",
+                templateUrl: "templates/msg.html"
             })
 
             .state('msgtab.msgrecord', {
@@ -64,14 +60,14 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'msgrecord-tab': {
                         templateUrl: "templates/msgrecord_tab.html",
-                        controller:'msgRecordCtrl'
+                        controller: 'msgRecordCtrl'
                     }
                 }
             })
 
-            .state('datatab',{
-                url:"/datatab",
-                templateUrl:"templates/data.html"
+            .state('datatab', {
+                url: "/datatab",
+                templateUrl: "templates/data.html"
             })
 
             .state('datatab.patientdata', {
@@ -92,64 +88,53 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                     }
                 }
             })
-
-            // 登陆
             .state('sign_in', {
                 url: "/sign_in",
                 templateUrl: "templates/sign_in.html",
                 controller: 'doctorSignInCtrl'
             })
-            // 注册
             .state('sign_up', {
                 url: "/sign_up",
                 templateUrl: "templates/sign_up.html",
                 controller: 'doctorSignUpCtrl'
             })
-            //忘记密码
             .state('forgot_pwd', {
                 url: "/forgot_pwd",
                 templateUrl: "templates/forgot_pwd.html",
-                controller:"forgotPwdCtrl"
+                controller: "forgotPwdCtrl"
             })
 
-            //重置密码
             .state('changepwd', {
                 url: "/changepwd",
                 templateUrl: "templates/reset_pwd.html",
                 controller: "doctorEndChangePwdCtrl"
             })
 
-            //设置
             .state('setting', {
                 url: "/setting",
                 templateUrl: "templates/setting.html",
                 controller: "doctorEndSettingCtrl"
             })
-            // my collection
             .state('mycollection', {
                 url: "/mycollection",
                 templateUrl: "templates/mycollection.html",
-                controller:'myCollectionListCtrl'
+                controller: 'myCollectionListCtrl'
             })
-            //意见反馈
             .state('feedback', {
                 url: "/feedback",
                 templateUrl: "templates/feedback.html",
-                controller:'feedBackCtrl'
+                controller: 'feedBackCtrl'
             })
-            //个人资料
             .state('mine_info', {
                 url: "/mine_info",
                 templateUrl: "templates/mine_info.html",
                 controller: 'mineInfoCtrl'
             })
-            //病例精析
             .state('analysis', {
                 url: "/analysis",
                 templateUrl: "templates/analysis.html",
                 controller: 'analysisCtrl'
             })
-            //病例精析详情
             .state('analysis_detail', {
                 url: "/analysis_detail/:id",
                 templateUrl: "templates/analysis_detail.html",
@@ -157,96 +142,80 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
 
             })
 
-            //医疗动态
             .state('medical', {
                 url: "/medical",
                 templateUrl: "templates/medical.html",
                 controller: 'medicalCtrl'
             })
-            //医疗动态详情
             .state('medical_detail', {
                 url: "/medical_detail/:id",
                 templateUrl: "templates/medical_detail.html",
                 controller: "medicalDetailCtrl"
             })
-            //心血管圈
             .state('xinxueg', {
                 url: "/xinxueg",
                 templateUrl: "templates/xinxueg.html",
                 controller: 'xinxuegCtrl'
             })
-            //发表心血管圈消息
             .state('xinxueg_release', {
                 url: "/xinxueg_release",
                 templateUrl: "templates/xinxueg_release.html",
-                controller:'xinxuegRemarkCtrl'
+                controller: 'xinxuegRemarkCtrl'
             })
-            //心血管圈详情
             .state('xinxueg_detail', {
                 url: "/xinxueg_detail/:id",
                 templateUrl: "templates/xinxueg_detail.html",
                 controller: 'xinxuegDetailCtrl'
             })
-            //轻松一刻
             .state('relaxed', {
                 url: "/relaxed",
                 templateUrl: "templates/relaxed.html",
                 controller: "relaxedCtrl"
             })
-            //轻松一刻详情
             .state('relaxed_detail', {
                 url: "/relaxed_detail/:id",
                 templateUrl: "templates/relaxed_detail.html",
                 controller: "relaxedDetailCtrl"
             })
-            //我的二维码
             .state('myqrcode', {
                 url: "/myqrcode",
                 templateUrl: "templates/myqrcode.html"
             })
-            //new患者验证
             .state('patient_check', {
                 url: "/patient_check",
                 templateUrl: "templates/patient_check.html",
                 controller: "patientCheckCtrl"
             })
-            //已绑定患者详情
             .state('patient_detail', {
                 url: "/patient_detail/:id",
                 templateUrl: "templates/patient_detail.html",
-                controller:'patientDetailCtrl'
+                controller: 'patientDetailCtrl'
             })
-            //添加患者
             .state('patient_add', {
                 url: "/patient_add",
                 templateUrl: "templates/patient_add.html",
-                controller:'patientAddCtrl'
+                controller: 'patientAddCtrl'
             })
 
-            //我的公告
             .state('gonggao', {
                 url: "/gonggao/:id",
                 templateUrl: "templates/gonggao.html",
-                controller:'gongGaoListCtrl'
+                controller: 'gongGaoListCtrl'
             })
-            //发布公告
             .state('gonggao_release', {
                 url: "/gonggao_release",
                 templateUrl: "templates/gonggao_release.html",
-                controller:'gongGaoReleaseCtrl'
+                controller: 'gongGaoReleaseCtrl'
             })
 
-            //关于我们
             .state('about', {
                 url: '/about',
                 templateUrl: 'templates/about.html'
             })
-            //积分规则
             .state('point_rule', {
                 url: '/point_rule',
                 templateUrl: 'templates/point_rule.html'
             })
-            //二期内容
             .state('two', {
                 url: "/two",
                 templateUrl: "templates/two.html"

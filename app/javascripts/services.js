@@ -106,10 +106,10 @@ angular.module('medicine.services', ['ngResource'])
             birthday: "@birthday",
             mobile: "@mobile",
             weight: "@weight",
-            hospital:"@hospital",
-            technicalTitle:"@technicalTitle",
-            department:"@department",
-            teachingTitle:"@teachingTitle"
+            hospital: "@hospital",
+            technicalTitle: "@technicalTitle",
+            department: "@department",
+            teachingTitle: "@teachingTitle"
         }, {
             save: {
                 method: 'POST'
@@ -119,9 +119,9 @@ angular.module('medicine.services', ['ngResource'])
 
     .factory('updateIcon', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/doctor/profile/update', {
-            imageBase64s :"@imageBase64s",
+            imageBase64s: "@imageBase64s",
             accessToken: "@accessToken",
-        },{
+        }, {
             save: {
                 method: 'POST'
             }
@@ -163,31 +163,7 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
-    //头像上传
-    //.factory('updateMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
-    //    return $resource(SERVER + '/doctor/profile/update', {
-    //        accessToken: "@accessToken",
-    //        name: "@name",
-    //        agender: "@agender",
-    //        birthday: "@birthday",
-    //    }, {
-    //        save: {
-    //            method: 'POST'
-    //        }
-    //    })
-    //}])
-    //证件上传
-    //.factory('updateVerifyMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
-    //    return $resource(SERVER + '/doctor/verify/upload', {
-    //        crtWithPhoto: "@crtWithPhoto",
-    //        crtWithName: "@crtWithName",
-    //        accessToken: "@accessToken",
-    //    }, {
-    //        save: {
-    //            method: 'POST'
-    //        }
-    //    })
-    //}])
+
 
     .factory('patientProfile', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/doctor/profile', {}, {
@@ -400,11 +376,11 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
- //   心血管圈发表
- .factory('xinxuegRemark', ['$resource', 'SERVER', function ($resource, SERVER) {
+    //   心血管圈发表
+    .factory('xinxuegRemark', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/doctor/heartcircle/add', {
-            content:'@content',
-            imageBase64s:"@imageBase64s",
+            content: '@content',
+            imageBase64s: "@imageBase64s",
             accessToken: "@accessToken"
 
         }, {
@@ -417,12 +393,12 @@ angular.module('medicine.services', ['ngResource'])
     .factory('doctorVerifyUpload', ['$resource', 'SERVER', function ($resource, SERVER) {
 
         return $resource(SERVER + '/doctor/verify/upload', {
-            crtWithPhoto:"@crtWithPhoto",
-            crtWithName:"@crtWithName",
+            crtWithPhoto: "@crtWithPhoto",
+            crtWithName: "@crtWithName",
             accessToken: "@accessToken"
         }, {
             save: {
-                method:'POST',
+                method: 'POST',
                 params: {}
             }
         })
@@ -430,8 +406,8 @@ angular.module('medicine.services', ['ngResource'])
 
     .factory('xinxuegMyRemark', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/doctor/heartcircle/remark', {
-            heartCircleId:'@heartCircleId',
-            remark:'@remark',
+            heartCircleId: '@heartCircleId',
+            remark: '@remark',
             accessToken: "@accessToken"
 
         }, {
@@ -452,9 +428,9 @@ angular.module('medicine.services', ['ngResource'])
     }])
     .factory('forgotReturn', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/u/pwd/forget', {
-            mobile:'@mobile',
-            verifycode:'@verifycode',
-            newPwd:'@newPwd',
+            mobile: '@mobile',
+            verifycode: '@verifycode',
+            newPwd: '@newPwd',
             confirmPwd: "@confirmPwd"
 
         }, {
@@ -476,8 +452,8 @@ angular.module('medicine.services', ['ngResource'])
     .factory('addillHistory', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/doctor/mypatient/updateIllProfile', {
             accessToken: "@accessToken",
-            userId:"@userId",
-            illProfile:'@illProfile'
+            userId: "@userId",
+            illProfile: '@illProfile'
         }, {
             save: {
                 method: 'POST'
@@ -487,8 +463,8 @@ angular.module('medicine.services', ['ngResource'])
     .factory('addbeizhu', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/doctor/mypatient/updateRemark', {
             accessToken: "@accessToken",
-            userId:"@userId",
-            remark:'@remark'
+            userId: "@userId",
+            remark: '@remark'
         }, {
             save: {
                 method: 'POST'
@@ -496,50 +472,48 @@ angular.module('medicine.services', ['ngResource'])
         })
     }])
 
-
-    .factory('chart',['$resource','SERVER', function($resource, SERVER){
-        return $resource(SERVER + '/u/chatonline',{
+    .factory('chart', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/u/chatonline', {
             accessToken: '@accessToken',
             fromUserId: '@fromUserId',
             toUserID: '@toUserID',
             toChat: '@toChat',
-        },{
+        }, {
             save: {
-                method : 'POST'
+                method: 'POST'
             }
         })
     }])
-    .factory('getChart',['$resource','SERVER', function($resource, SERVER){
-        return $resource(SERVER + '/u/chatonline/info',{
+    .factory('getChart', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/u/chatonline/info', {
             accessToken: "@accessToken",
             fromUserId: "@fromUserId",
             toUserID: "@toUserID"
-        },{
-            query:{
-                method:'GET',
+        }, {
+            query: {
+                method: 'GET',
                 isArray: true
             }
         })
     }])
 
-    //获取来自患者的消息列表
-    .factory('getPatientAsk',['$resource','SERVER', function($resource, SERVER){
-        return $resource(SERVER + '/doctor/mypatient/ask',{
+    .factory('getPatientAsk', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/mypatient/ask', {
             accessToken: "@accessToken",
-        },{
-            query:{
-                method:'GET',
+        }, {
+            query: {
+                method: 'GET',
                 isArray: true
             }
         })
     }])
 
-    .factory('getCountAsk',['$resource','SERVER', function($resource, SERVER){
-        return $resource(SERVER + '/doctor/mypatient/ask/count',{
+    .factory('getCountAsk', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/mypatient/ask/count', {
             accessToken: "@accessToken",
-        },{
-            query:{
-                method:'GET',
+        }, {
+            query: {
+                method: 'GET',
             }
         })
     }])
