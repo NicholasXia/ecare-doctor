@@ -105,7 +105,11 @@ angular.module('medicine.services', ['ngResource'])
             agender: "@agender",
             birthday: "@birthday",
             mobile: "@mobile",
-            weight: "@weight"
+            weight: "@weight",
+            hospital:"@hospital",
+            technicalTitle:"@technicalTitle",
+            department:"@department",
+            teachingTitle:"@teachingTitle"
         }, {
             save: {
                 method: 'POST'

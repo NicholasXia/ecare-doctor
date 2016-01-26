@@ -252,8 +252,8 @@ angular.module('medicine.controllers', [])
                 birthday: $scope.patientData.birthday,
                 agender: $scope.patientData.agender,
                 hospital :$scope.patientData.yy,
-                department:$scope.patientData.ks,
                 technicalTitle :$scope.patientData.zc,
+                department:$scope.patientData.ks,
                 teachingTitle:$scope.patientData.jszc
             }
             updateMsg.save(saveMsg, function (data) {
@@ -430,6 +430,7 @@ angular.module('medicine.controllers', [])
     .controller('relaxedCtrl', ['$scope', 'getCarouselList', function ($scope, getCarouselList) {
         getCarouselList.query({type: 1, category: 3}, function (data) {
             $scope.data = data
+            console.log(data)
         })
 
     }])

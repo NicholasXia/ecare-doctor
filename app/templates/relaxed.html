@@ -4,8 +4,8 @@
     </ion-header-bar>
     <ion-content>
         <div class="list">
-            <a class="item item-text-wrap" ng-repeat="item in data" ui-sref='relaxed_detail({id:item.id})'>
-                <h2 class="mine-info-my padding bb">{{item.title}}</h2>
+            <a class="item" ng-repeat="item in data" ui-sref='relaxed_detail({id:item.id})'>
+                <h2 class="mine-info-my">{{item.title}}</h2>
 
                 <div class='home'>
                     <!--<p>{{item.content | limitHtml:200}}...</p>-->
@@ -13,9 +13,11 @@
                 </div>
                 <div class='news-from justify-center-lr'>
                     <span>{{item.postTime}}</span>
-                    <span>来源: <i>{{item.resource}}</i></span>
+                    <span class="fr">来源: <i>{{item.resource}}</i></span>
                 </div>
             </a>
+
+
         </div>
     </ion-content>
 </ion-view>
