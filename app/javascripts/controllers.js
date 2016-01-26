@@ -60,11 +60,6 @@ angular.module('medicine.controllers', [])
             getVerificationCode.query({mobile: $scope.account.phoneNum}, function (data) {
                 if (data.error || $scope.account.phoneNum.length == 0 || $scope.account.phoneNum.length < 11 || !reg.test($scope.account.phoneNum)) {
                     $ionicPopup.alert({
-                        title: '错误提示',
-                        template: '手机号输入有误，请重新输入'
-                    });
-                } else {
-                    $ionicPopup.alert({
                         title: '成功提示',
                         template: '验证码已经发送，请稍后'
                     });
