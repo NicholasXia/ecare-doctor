@@ -3,7 +3,7 @@ angular.module('medicine.services', ['ngResource'])
     .constant('DOCTOR_CODE', 'doctorCode')
     /*轮播*/
     .factory('getCarouselList', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/patient/article/list/:type/:category', {}, {
+        return $resource(SERVER + '/patient/article/list/:type/:illType', {}, {
             query: {
                 method: 'GET',
                 isArray: true

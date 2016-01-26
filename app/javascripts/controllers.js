@@ -2,12 +2,13 @@ angular.module('medicine.controllers', [])
     .controller('doctorHomeCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', "$ionicPopup", "bindinfo", "mineInfo", '$ionicLoading', 'ionicLoadingConfig', 'getCountAsk', function ($scope, $window, getCarouselList, currentUser, $ionicPopup, bindinfo, mineInfo, $ionicLoading, ionicLoadingConfig, getCountAsk) {
 
         var accesstoken = currentUser.getAuthToken()
-        getCarouselList.query({type: 1, category: 1}, function (data) {
+        getCarouselList.query({type: 1, illType: 1}, function (data) {
             $scope.data = data
             $scope.doctorno = accesstoken
+            console.log(data)
         })
 
-        getCarouselList.query({type: 1, category: 2}, function (data) {
+        getCarouselList.query({type: 1, illType: 2}, function (data) {
             $scope.medicallist = data
         })
         getCountAsk.query({accessToken: accesstoken}, function (data) {
@@ -28,16 +29,11 @@ angular.module('medicine.controllers', [])
                 $scope.count = count
             })
         })
-
-        $scope.goLogin = function () {
-            if (!$scope.isLogin) {
-                $ionicPopup.alert({
-                    title: '错误提示',
-                    template: '您还未登陆'
-                });
-                $window.location.href = '#/sign_in'
+        $scope.goToActivity = function (artiacleid,linkUrl) {
+            if (linkUrl) {
+                $window.location.href = linkUrl
             } else {
-                $window.location.href = '#/analysis'
+                $window.location.href = '#/medical_detail/' + artiacleid
             }
         }
 

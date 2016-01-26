@@ -7,16 +7,21 @@
         <div class="list padding">
             <div class="row" style="padding:0px">
                 <select ng-model="selectsheng" ng-change='showSelectSheng(selectsheng)' class="item col col-33 padding">
+                    <option value="" selected="selected">请选择省份</option>
                     <option ng-repeat="sheng in shenglist" value="{{sheng.id}}">
                         {{sheng.name}}
                     </option>
                 </select>
                 <select ng-model="selectshi" ng-change="showSelectShi(selectshi)" class="item col col-33 padding">
+
+                    <option value="" selected="selected">请选择市</option>
                     <option ng-repeat="shi in shilist" value="{{shi.id}}">
                         {{shi.name}}
                     </option>
                 </select>
                 <select  ng-model="selectxian" ng-change="showSelectyy(selectxian)" class="item col padding">
+
+                    <option value="" selected="selected">请选择区县</option>
                     <option ng-repeat="xian in xianlist" value="{{xian.id}}">
                         {{xian.name}}
                     </option>
