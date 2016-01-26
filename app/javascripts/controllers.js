@@ -346,6 +346,7 @@ angular.module('medicine.controllers', [])
         var accesstoken = currentUser.getAuthToken()
         analysisList.query({accessToken: accesstoken}, function (data) {
             $scope.analysislist = data
+            console.log(data)
         })
 
     }])
@@ -633,11 +634,25 @@ angular.module('medicine.controllers', [])
 
 
     //我的收藏列表
-    .controller('myCollectionListCtrl', ['$scope', 'collectionList', 'currentUser', function ($scope, collectionList, currentUser) {
+    .controller('myCollectionListCtrl', ['$scope', 'collectionList', 'collectionDel','currentUser', function ($scope, collectionList,collectionDel, currentUser) {
         var accesstoken = currentUser.getAuthToken()
         collectionList.query({accessToken: accesstoken}, function (data) {
             $scope.data = data
+            console.log(data)
         })
+        $scope.del = function(id){
+            collectionDel.save({},{accessToke:accesstoken,collectId :id},function(data){
+                if(data.status == 'suc'){
+                    collectionList.query({accessToken: accesstoken}, function (data) {
+                        $scope.data = data
+                        console.log(data)
+                    })
+                }else{
+                    console.log(data.error)
+                }
+            })
+        }
+
     }])
     //添加反馈
     .controller('feedBackCtrl', ['$scope', 'feedBack', 'currentUser', '$ionicPopup', '$window', '$timeout', function ($scope, feedBack, currentUser, $ionicPopup, $window, $timeout) {
@@ -725,6 +740,14 @@ angular.module('medicine.controllers', [])
                 var temp = []
                 for (var i = 0, len = publishphoto.length; i < len; i++) {
                     temp[i] = publishphoto[i].dataURL
+                    if (publishphoto[i].file.size > 1024000) {
+                        $ionicPopup.alert({
+                            'title':'提示',
+                            'template': '图片尺寸太大'
+                        })
+                        $scope.isLarge = true
+                        return
+                    }
                 }
                 console.log(temp)
                 return temp
@@ -809,6 +832,14 @@ angular.module('medicine.controllers', [])
                     var temp = []
                     for (var i = 0, len = publishphoto.length; i < len; i++) {
                         temp[i] = publishphoto[i].dataURL
+                        if (publishphoto[i].file.size > 1024000) {
+                            $ionicPopup.alert({
+                                'title':'提示',
+                                'template': '图片尺寸太大'
+                            })
+                            $scope.isLarge = true
+                            return
+                        }
                     }
                     return temp
                 }

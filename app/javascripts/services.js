@@ -545,3 +545,13 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('collectionDel', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/doctor/caseAnalysis/collection/del', {
+            accessToken: "@accessToken",
+            collectId:"@collectId"
+        }, {
+            save: {
+                method: 'POST',
+            }
+        })
+    }])
