@@ -588,8 +588,7 @@ angular.module('medicine.controllers', [])
             })
             $timeout(function () {
                 popup.close()
-                $window.location.href = '#/sign_in'
-            }, 3000)
+            }, 2000)
             return
         }
         patientCheckBindList.query({accessToken: accesstoken}, function (data) {
@@ -794,24 +793,24 @@ angular.module('medicine.controllers', [])
 
         $scope.xinxuegRelease = function (publishphoto) {
 
-
-            var getbase64arr = function () {
-                var temp = []
-                for (var i = 0, len = publishphoto.length; i < len; i++) {
-                    temp[i] = publishphoto[i].dataURL
+            if(publishphoto) {
+                var getbase64arr = function () {
+                    var temp = []
+                    for (var i = 0, len = publishphoto.length; i < len; i++) {
+                        temp[i] = publishphoto[i].dataURL
+                    }
+                    return temp
                 }
-                return temp
+                console.log(getbase64arr())
             }
-            console.log(getbase64arr())
-
             var formData = new FormData()
             formData.append('content', $scope.xinxueg.content)
-            formData.append('imageBase64s', getbase64arr())
+            if(getbase64arr) {
+                formData.append('imageBase64s', getbase64arr())
+            }
             formData.append('accessToken', currentUser.getAuthToken())
 
-            //$http.post('http://work.e-care365.com/hospital/doctor/heartcircle/add', formData, {
-
-            $http.post('http://192.168.20.173:8080/hospital/doctor/heartcircle/add', formData, {
+            $http.post('http://work.e-care365.com/hospital/doctor/heartcircle/add', formData, {
                 headers: {'Content-Type': undefined},
                 transformRequest: angular.identity
             }).success(function (data) {
