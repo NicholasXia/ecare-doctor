@@ -31,7 +31,7 @@
 
             </div>
             <div class="item item-avatar" ng-repeat="item in analysisdetail.remarkList">
-                <img ng-src="{{item.profileImageUrl}}">
+                <img ng-if="item.profileImageUrl" ng-src="{{item.profileImageUrl}}"onerror="this.src='./images/yisheng.png'" />
 
                 <div class='commenter'>
                     <span>{{item.name}}</span>

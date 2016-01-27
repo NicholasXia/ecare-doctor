@@ -10,10 +10,8 @@
     <ion-content>
         <div class="list">
             <div class="item item-avatar item-text-wrap" ng-repeat="item in gonggao">
-                <img ng-if="item.imageUrl" ng-src="{{item.imageUrl}}">
-                <img ng-if="!item.imageUrl" class="yisheng"  src="./images/yisheng.png">
-<!---->
-                <div class='news-from justify-end'>
+                <img ng-if="item.imageUrl" ng-src="{{item.imageUrl}}" onerror="this.src='./images/yisheng.png'" />
+                <div class='news-from'>
                     <span>{{item.postTime}}</span>
                 </div>
                 <div class='text-indent '>
