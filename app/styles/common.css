@@ -5,6 +5,11 @@
     flex-wrap: wrap
 }
 
+.item.item-balanced{
+    border-color: #2bce84;
+    background-color: #2bce84;
+    color: #fff;
+}
 .icon-size {
     font-size: 30px;
 }
