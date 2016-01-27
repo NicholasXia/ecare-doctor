@@ -29,14 +29,14 @@ angular.module('medicine.controllers', [])
                 $scope.count = count
             })
         })
-        $scope.goToActivity = function (artiacleid,linkUrl) {
+        $scope.goToActivity = function (artiacleid, linkUrl) {
             if (linkUrl) {
                 $window.location.href = linkUrl
             } else {
                 $window.location.href = '#/medical_detail/' + artiacleid
             }
         }
-        $scope.gotLogin = function(){
+        $scope.gotLogin = function () {
             if (!$scope.isLogin) {
                 $ionicPopup.alert({
                     title: '错误提示',
@@ -71,15 +71,15 @@ angular.module('medicine.controllers', [])
             getVerificationCode.query({mobile: $scope.account.phoneNum}, function (data) {
                 if (data.error || $scope.account.phoneNum.length == 0 || $scope.account.phoneNum.length < 11 || !reg.test($scope.account.phoneNum)) {
                     $ionicPopup.alert({
+                        title: '提示',
+                        template: data.error
+                    });
+                } else {
+                    $ionicPopup.alert({
                         title: '成功提示',
                         template: '验证码已经发送，请稍后'
                     });
                 }
-            }, function () {
-                $ionicPopup.alert({
-                    title: '错误提示',
-                    template: '未知错误，请稍后重试'
-                });
             })
         }
 
@@ -91,30 +91,30 @@ angular.module('medicine.controllers', [])
                 password: $scope.account.password,
                 verifycode: $scope.account.verCode
             }
-            if ($scope.account.verCode.length !== 4 || $scope.account.password.length < 0) {
+            if ($scope.account.verCode.length !== 4 || $scope.account.password.length == 0) {
                 $ionicPopup.alert({
-                    title: '错误提示',
-                    template: '请输入正确验证码和手机号'
+                    title: '提示',
+                    template: '请输入个人正确的信息'
                 })
                 return
             }
-            createUser.save({}, user, function (userdata) {
-                console.log(userdata)
-                if(userdata.status == 'suc'){
-                    currentUser.setAuthToken(userdata.accessToken)
+            createUser.save({}, user, function (data) {
+                if (data.error) {
+                    $ionicPopup.alert({
+                        'title' : '提示',
+                        'template' : data.error
+                    })
+                }else{
+                    currentUser.setAuthToken(data.accessToken)
                     var popup = $ionicPopup.alert({
                         title: '注册成功',
-                        template: '请先补充下资料吧'
+                        template: '即将进入首页'
                     })
                     $timeout(function () {
                         popup.close()
-                        $window.location.href = '#/mine_info'
+                        $window.location.href = '#/'
                     }, 3000)
-                }else{
-                    var popup = $ionicPopup.alert({
-                        title: '注册失败',
-                        template: userdata.error
-                    })
+
                 }
             })
         }
@@ -211,7 +211,7 @@ angular.module('medicine.controllers', [])
         }
 
     }])
-    .controller('changeCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile','districtGet','getYy', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile,districtGet,getYy) {
+    .controller('changeCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', 'districtGet', 'getYy', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile, districtGet, getYy) {
         $scope.patientData = {
             birthday: '',
             weight: '',
@@ -255,48 +255,48 @@ angular.module('medicine.controllers', [])
         };
         //省市县
         var select = {
-            accessToken:currentUser.getAuthToken(),
-            type :1
+            accessToken: currentUser.getAuthToken(),
+            type: 1
 
         }
-        districtGet.query(select,function(data){
-            $scope.shenglist=data
+        districtGet.query(select, function (data) {
+            $scope.shenglist = data
         })
-        $scope.showSelectSheng = function(select){
-                var shi={
-                    accessToken:currentUser.getAuthToken(),
-                    orgId:select,
-                    type:2
-                }
-            districtGet.query(shi,function(data){
-                $scope.shilist=data
+        $scope.showSelectSheng = function (select) {
+            var shi = {
+                accessToken: currentUser.getAuthToken(),
+                orgId: select,
+                type: 2
+            }
+            districtGet.query(shi, function (data) {
+                $scope.shilist = data
             })
-            $scope.shengId=select
+            $scope.shengId = select
 
         }
-        $scope.showSelectShi = function(select){
+        $scope.showSelectShi = function (select) {
             console.log(select)
-            var xian={
-                accessToken:currentUser.getAuthToken(),
-                orgId:select,
-                type:3
+            var xian = {
+                accessToken: currentUser.getAuthToken(),
+                orgId: select,
+                type: 3
             }
-            districtGet.query(xian,function(data){
-                $scope.xianlist=data
+            districtGet.query(xian, function (data) {
+                $scope.xianlist = data
                 //console.log(data)
             })
-            $scope.shiId=select
+            $scope.shiId = select
 
         }
-        $scope.showSelectyy = function(select){
+        $scope.showSelectyy = function (select) {
             console.log(select)
-            var info={
+            var info = {
                 accessToken: currentUser.getAuthToken(),
-                provinceId:$scope.shengId,
-                cityId:$scope.shiId,
-                countyId:select
+                provinceId: $scope.shengId,
+                cityId: $scope.shiId,
+                countyId: select
             }
-            getYy.query(info,function(data){
+            getYy.query(info, function (data) {
                 console.log(data)
                 $scope.yylist = data
             })
@@ -634,20 +634,20 @@ angular.module('medicine.controllers', [])
 
 
     //我的收藏列表
-    .controller('myCollectionListCtrl', ['$scope', 'collectionList', 'collectionDel','currentUser', function ($scope, collectionList,collectionDel, currentUser) {
+    .controller('myCollectionListCtrl', ['$scope', 'collectionList', 'collectionDel', 'currentUser', function ($scope, collectionList, collectionDel, currentUser) {
         var accesstoken = currentUser.getAuthToken()
         collectionList.query({accessToken: accesstoken}, function (data) {
             $scope.data = data
             console.log(data)
         })
-        $scope.del = function(id){
-            collectionDel.save({},{accessToke:accesstoken,collectId :id},function(data){
-                if(data.status == 'suc'){
+        $scope.del = function (id) {
+            collectionDel.save({}, {accessToke: accesstoken, collectId: id}, function (data) {
+                if (data.status == 'suc') {
                     collectionList.query({accessToken: accesstoken}, function (data) {
                         $scope.data = data
                         console.log(data)
                     })
-                }else{
+                } else {
                     console.log(data.error)
                 }
             })
@@ -742,7 +742,7 @@ angular.module('medicine.controllers', [])
                     temp[i] = publishphoto[i].dataURL
                     if (publishphoto[i].file.size > 1024000) {
                         $ionicPopup.alert({
-                            'title':'提示',
+                            'title': '提示',
                             'template': '图片尺寸太大'
                         })
                         $scope.isLarge = true
@@ -827,14 +827,14 @@ angular.module('medicine.controllers', [])
 
         $scope.xinxuegRelease = function (publishphoto) {
 
-            if(publishphoto) {
+            if (publishphoto) {
                 var getbase64arr = function () {
                     var temp = []
                     for (var i = 0, len = publishphoto.length; i < len; i++) {
                         temp[i] = publishphoto[i].dataURL
                         if (publishphoto[i].file.size > 1024000) {
                             $ionicPopup.alert({
-                                'title':'提示',
+                                'title': '提示',
                                 'template': '图片尺寸太大'
                             })
                             $scope.isLarge = true
@@ -847,7 +847,7 @@ angular.module('medicine.controllers', [])
             }
             var formData = new FormData()
             formData.append('content', $scope.xinxueg.content)
-            if(getbase64arr) {
+            if (getbase64arr) {
                 formData.append('imageBase64s', getbase64arr())
             }
             formData.append('accessToken', currentUser.getAuthToken())
