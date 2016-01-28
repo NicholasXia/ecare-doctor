@@ -7,6 +7,8 @@
             <div class="item  row padding" ui-sref="gonggao">
                 <div col col-20>
                     <img class="tou-img" ng-src="{{gonggao[0].imageUrl}}">
+                    <img class="tou-img" ng-if="!gonggao[0].imageUrl" ng-src="./images/yisheng.png" ">
+
                 </div>
                 <div class="col">
                     <div class="">
