@@ -740,14 +740,14 @@ angular.module('medicine.controllers', [])
                 var temp = []
                 for (var i = 0, len = publishphoto.length; i < len; i++) {
                     temp[i] = publishphoto[i].dataURL
-                    if (publishphoto[i].file.size > 1024000) {
-                        $ionicPopup.alert({
-                            'title': '提示',
-                            'template': '图片尺寸太大'
-                        })
-                        $scope.isLarge = true
-                        return
-                    }
+                    //if (publishphoto[i].file.size > 1024000) {
+                    //    $ionicPopup.alert({
+                    //        'title': '提示',
+                    //        'template': '图片尺寸太大'
+                    //    })
+                    //    $scope.isLarge = true
+                    //    return
+                    //}
                 }
                 console.log(temp)
                 return temp
@@ -832,14 +832,14 @@ angular.module('medicine.controllers', [])
                     var temp = []
                     for (var i = 0, len = publishphoto.length; i < len; i++) {
                         temp[i] = publishphoto[i].dataURL
-                        if (publishphoto[i].file.size > 1024000) {
-                            $ionicPopup.alert({
-                                'title': '提示',
-                                'template': '图片尺寸太大'
-                            })
-                            $scope.isLarge = true
-                            return
-                        }
+                        //if (publishphoto[i].file.size > 1024000) {
+                        //    $ionicPopup.alert({
+                        //        'title': '提示',
+                        //        'template': '图片尺寸太大'
+                        //    })
+                        //    $scope.isLarge = true
+                        //    return
+                        //}
                     }
                     return temp
                 }

@@ -18,7 +18,7 @@
         <div class="buttons">
             <button class="button button-balanced" ng-click="xinxuegRelease(publishphoto)">上传</button>
         </div>
-        <img ng-if="!isLarge" ng-repeat="img in publishphoto"  width="100px" height="100px" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
+        <img  ng-repeat="img in publishphoto"  width="100px" height="100px" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
     </ion-content>
 </ion-view>
 
