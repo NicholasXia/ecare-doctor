@@ -98,22 +98,31 @@ angular.module('medicine.controllers', [])
                 })
                 return
             }
+            console.log(user)
             createUser.save({}, user, function (data) {
-                if (data.error) {
+
+                if(data.status == 'suc'){
+                    currentUser.setAuthToken(data.accessToken)
+                    var popup = $ionicPopup.alert({
+                        title: '注册成功',
+                        template: '赶快去完善下个人信息吧！'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                        $window.location.href = '#/mine_info'
+                    }, 3000)
+                }else{
                     $ionicPopup.alert({
                         'title' : '提示',
                         'template' : data.error
                     })
+                }
+
+
+                if (data.error) {
+
                 }else{
-                    currentUser.setAuthToken(data.accessToken)
-                    var popup = $ionicPopup.alert({
-                        title: '注册成功',
-                        template: '即将进入首页'
-                    })
-                    $timeout(function () {
-                        popup.close()
-                        $window.location.href = '#/'
-                    }, 3000)
+
 
                 }
             })
