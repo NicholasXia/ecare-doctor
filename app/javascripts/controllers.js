@@ -474,7 +474,7 @@ angular.module('medicine.controllers', [])
 
     //轻松一刻
     .controller('relaxedCtrl', ['$scope', 'getCarouselList', function ($scope, getCarouselList) {
-        getCarouselList.query({type: 1, category: 3}, function (data) {
+        getCarouselList.query({type: 1, illType: 3}, function (data) {
             $scope.data = data
             console.log(data)
         })
@@ -488,8 +488,9 @@ angular.module('medicine.controllers', [])
     }])
 
     .controller('medicalCtrl', ['$scope', 'getCarouselList', function ($scope, getCarouselList) {
-        getCarouselList.query({type: 1, category: 2}, function (data) {
+        getCarouselList.query({type: 1, illType: 2}, function (data) {
             $scope.data = data
+            console.log(data)
         })
     }])
 
