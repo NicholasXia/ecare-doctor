@@ -650,8 +650,10 @@ angular.module('medicine.controllers', [])
             $scope.data = data
             console.log(data)
         })
+
+
         $scope.del = function (id) {
-            collectionDel.save({}, {accessToke: accesstoken, collectId: id}, function (data) {
+            collectionDel.save({}, {accessToken: accesstoken, collectId: id}, function (data) {
                 if (data.status == 'suc') {
                     collectionList.query({accessToken: accesstoken}, function (data) {
                         $scope.data = data
