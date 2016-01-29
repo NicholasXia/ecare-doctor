@@ -16,7 +16,7 @@
             <button class="button button-full button-balanced myIcon">选择图片</button>
         </form>
         <div class="buttons">
-            <button class="button button-balanced" ng-click="xinxuegRelease(publishphoto)">上传</button>
+            <button class="button button-balanced button-full" ng-click="xinxuegRelease(publishphoto)">上传</button>
         </div>
         <img  ng-repeat="img in publishphoto"  width="100px" height="100px" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
     </ion-content>
