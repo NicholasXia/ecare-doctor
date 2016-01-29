@@ -782,7 +782,7 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('myIconChangeCtrl', ['$scope', '$http', 'updateIcon', 'currentUser', '$ionicPopup', '$window', '$timeout', function ($scope, $http, updateIcon, currentUser, $ionicPopup, $window, $timeout) {
+    .controller('myIconChangeCtrl', ['$scope', '$http', 'updateIcon', 'currentUser', '$ionicPopup', '$window', '$timeout','$ionicLoading', function ($scope, $http, updateIcon, currentUser, $ionicPopup, $window, $timeout,$ionicLoading) {
 
         $scope.xinxuegimage = {
             imageBase64s: '',
@@ -810,7 +810,9 @@ angular.module('medicine.controllers', [])
                 console.log(temp)
                 return temp
             }
-
+            $ionicLoading.show({
+                template: '图片正在上传，请稍等'
+            });
             var formData = new FormData()
             formData.append('imageBase64s', getbase64arr())
             formData.append('accessToken', currentUser.getAuthToken())
@@ -819,6 +821,7 @@ angular.module('medicine.controllers', [])
                 headers: {'Content-Type': undefined},
                 transformRequest: angular.identity
             }).success(function (data) {
+                $ionicLoading.hide()
                 console.log(data)
                 if (data.status == 'suc') {
                     $ionicPopup.alert({
