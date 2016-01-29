@@ -18,6 +18,9 @@
                     <p>
                         {{item.content}}
                     <p>
+                    <p>
+                         <span ng-repeat="img in item.imageList"><img ng-src="{{img.imageUrl}}" width="100" alt=""/></span>
+                    </p>
                 </div>
 
                 <p class="home">
