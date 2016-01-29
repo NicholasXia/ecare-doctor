@@ -603,6 +603,7 @@ angular.module('medicine.controllers', [])
         if (accesstoken) {
             xinxuegDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
                 $scope.xinxuegdetail = data
+                console.log(data)
             })
         } else {
             $ionicPopup.alert({
