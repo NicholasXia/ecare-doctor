@@ -220,7 +220,7 @@ angular.module('medicine.controllers', [])
         }
 
     }])
-    .controller('changeCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', 'districtGet', 'getYy', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile, districtGet, getYy) {
+    .controller('changeCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', 'districtGet', 'getYy', 'mineInfo',function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile, districtGet, getYy,mineInfo) {
         $scope.patientData = {
             birthday: '',
             weight: '',
@@ -311,7 +311,10 @@ angular.module('medicine.controllers', [])
             })
 
         }
-
+        mineInfo.query({accessToken: currentUser.getAuthToken()}, function (data) {
+            $scope.infodata = data
+            console.log(data)
+        })
         $scope.saveMsg = function () {
             var saveMsg = {
                 accessToken: currentUser.getAuthToken(),
@@ -323,6 +326,7 @@ angular.module('medicine.controllers', [])
                 department: $scope.patientData.ks,
                 teachingTitle: $scope.patientData.jszc
             }
+
             updateMsg.save(saveMsg, function (data) {
                 if (data.status == 'suc') {
                     var popup = $ionicPopup.alert({
