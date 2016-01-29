@@ -18,7 +18,7 @@
             </div>
             <div class='item  item-text-wrap'>
                 <p class="home"><img ng-src="{{medicaldetail.coverImageUrl}}"/></p>
-                <p class='home padding' ng-bind-html="medicaldetail.content">
+                <p class='home padding' ng-bind-html="medicaldetail.content | trustHtml">
                     {{medicaldetail.content}}
                 </p>
 

@@ -4,6 +4,8 @@ angular.module('medicine.filters', [])
             return $sce.trustAsResourceUrl(url)
         }
     }])
+
+
     .filter('limitHtml',[function(){
         return function (text, limit) {
             var changedString = String(text).replace(/<[^>]+>/gm, '');
@@ -11,5 +13,9 @@ angular.module('medicine.filters', [])
             return changedString.length > limit ? changedString.substr(0, limit - 1) : changedString;
         }
     }])
-
+    .filter('trustHtml',['$sce', function($sce) {
+        return function (html) {
+            return $sce.trustAsHtml(html);
+        }
+    }])
 

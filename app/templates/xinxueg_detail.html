@@ -13,7 +13,8 @@
                 </div>
                 <div class='item-body pad-replate home ' style="padding-bottom: 20px">
                     <p class="home">
-                        {{xinxuegdetail.content}}
+                        {{xinxuegdetail.content | trustHtml}}
+
                     </p>
                     <img ng-repeat="item in xinxuegdetail.imageList" ng-src="{{item.imageUrl}}"/>
                 </div>
