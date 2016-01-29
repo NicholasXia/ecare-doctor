@@ -12,8 +12,8 @@
             </div>
             <div class="item item-text-wrap home">
                 <!--<img ng-src="{{relaxed.coverImageUrl}}" alt=""/>-->
-                <div class="padding" ng-bind-html="relaxed.content">
-                    {{relaxed.content}}
+                <div class="padding" ng-bind-html="relaxed.content | trustHtml">
+                    {{relaxed.content }}
                 </div>
             </div>
         </div>
