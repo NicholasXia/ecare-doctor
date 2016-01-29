@@ -184,7 +184,7 @@ form .myicon{line-height: 60px;  width: 100%;}
 
 /*新闻来源*/
 .news-from, .consent-agm {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 /*默认button的min-with 在苹果4\5中有问题  在这里修改最小宽度*/
