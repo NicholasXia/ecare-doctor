@@ -481,10 +481,34 @@ angular.module('medicine.controllers', [])
 
     }])
 
-    .controller('relaxedDetailCtrl', ['$scope', 'Detail', '$stateParams', function ($scope, Detail, $stateParams) {
+    .controller('relaxedDetailCtrl', ['$scope', 'Detail', '$stateParams','collection','$ionicPopup','currentUser', function ($scope, Detail, $stateParams,collection,$ionicPopup,currentUser) {
+        var accesstoken =currentUser.getAuthToken()
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.relaxed = data
         })
+
+        $scope.addCollection = function () {
+
+            var colMsg = {
+                accessToken: accesstoken,
+                caseId: $stateParams.id
+            }
+
+            collection.save({}, colMsg, function (col) {
+
+                if (col.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '成功提示',
+                        template: '收藏成功'
+                    })
+                } else {
+                    $ionicPopup.alert({
+                        title: '错误提示',
+                        template: col.error
+                    })
+                }
+            })
+        }
     }])
 
     .controller('medicalCtrl', ['$scope', 'getCarouselList', function ($scope, getCarouselList) {
@@ -494,7 +518,7 @@ angular.module('medicine.controllers', [])
         })
     }])
 
-    .controller('medicalDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
+    .controller('medicalDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup','collection', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup,collection) {
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.medicaldetail = data
             console.log(data)
@@ -525,6 +549,28 @@ angular.module('medicine.controllers', [])
                 }
             })
 
+        }
+        $scope.addCollection = function () {
+
+            var colMsg = {
+                accessToken: accesstoken,
+                caseId: $stateParams.id
+            }
+
+            collection.save({}, colMsg, function (col) {
+
+                if (col.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '成功提示',
+                        template: '收藏成功'
+                    })
+                } else {
+                    $ionicPopup.alert({
+                        title: '错误提示',
+                        template: col.error
+                    })
+                }
+            })
         }
 
 
