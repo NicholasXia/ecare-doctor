@@ -1,5 +1,6 @@
-<ion-view view-title="修改头像" cache-view="false">
+<ion-view view-title="修改头像-乐柏医" cache-view="false">
     <ion-header-bar class="bar-balanced">
+        <a class="button icon ion-chevron-left" href="javascript:history.go(-1)"></a>
         <h1 class="title">修改头像</h1>
 
     </ion-header-bar>
@@ -21,4 +22,3 @@
         <img  ng-repeat="img in publishphoto"  width="100px" height="100px" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
     </ion-content>
 </ion-view>
-
