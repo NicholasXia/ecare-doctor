@@ -20,7 +20,13 @@
                         {{item.content}}
                     <p>
                     <p>
-                         <span ng-repeat="img in item.imageList"><img ng-src="{{img.imageUrl}}" width="100" alt=""/></span>
+                      <!-- <img class="img-responsive ng-class:{'col25':(item.imageList.length>1)}" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList"> -->
+                          <span ng-repeat="img in item.imageList"><img style="display: inline-block;
+    float: left;
+    height: 64px;
+    padding: 5px;
+    text-align: center;
+    width: 64px;" ng-src="{{img.imageUrl}}" width="50px" alt=""/></span>
                     </p>
                 </div>
 

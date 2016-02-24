@@ -912,10 +912,13 @@ angular.module('medicine.controllers', [])
                 console.log(getbase64arr())
             }
             var formData = new FormData()
-            formData.append('content', $scope.xinxueg.content)
-            if (getbase64arr) {
-                formData.append('imageBase64s', getbase64arr())
+            formData.append('content', $scope.xinxueg.content);
+            var imgs=getbase64arr();
+            for(var i=0;i<imgs.length;i++){
+              formData.append('imageBase64s', imgs[i]);
             }
+
+
             formData.append('accessToken', currentUser.getAuthToken())
 
             $http.post('http://work.e-care365.com/hospital/doctor/heartcircle/add', formData, {
@@ -1188,4 +1191,3 @@ angular.module('medicine.controllers', [])
             // cordova.plugins.Keyboard.close();
         };
     }]);
-
