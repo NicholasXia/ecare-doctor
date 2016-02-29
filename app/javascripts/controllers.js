@@ -1013,7 +1013,7 @@ angular.module('medicine.controllers', [])
             } else {
                 $ionicPopup.alert({
                     title: '提示',
-                    template: '请你上传完整信息'
+                    template: '请上传医师证件'
                 })
 
             }
