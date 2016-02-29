@@ -760,7 +760,9 @@ angular.module('medicine.controllers', [])
         $scope.delPatient = function (userid) {
             $ionicPopup.confirm({
                 title: '友情提示',
-                template: '您确定要解绑患者：<span class="textcolor">' + $scope.data.name + '</span> 吗？'
+                template: '您确定要解绑患者：<span class="textcolor">' + $scope.data.name + '</span> 吗？',
+                cancelText: '关闭',
+                okText: '确定'
 
             }).then(function (res) {
                 if (res == true) {
@@ -854,7 +856,9 @@ angular.module('medicine.controllers', [])
             }
             $ionicPopup.confirm({
                 title: '友情提示',
-                template: $scope.invite.mobile
+                template: $scope.invite.mobile,
+                cancelText: '关闭',
+                okText: '确定'
 
             }).then(function (res) {
                 if (res == true) {
