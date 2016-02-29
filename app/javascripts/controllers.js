@@ -130,7 +130,8 @@ angular.module('medicine.controllers', [])
     }])
 //医生登陆
     .controller('doctorSignInCtrl', ['$scope', 'signUp', '$window', '$ionicPopup', '$timeout', 'currentUser', function ($scope, signUp, $window, $ionicPopup, $timeout, currentUser) {
-        $scope.signInMsg = {'username': '', 'password': ''}
+        $scope.signInMsg = {'username': '', 'password': '',type:1};//医生登陆
+
         $scope.signIn = function () {
             signUp.save({}, $scope.signInMsg, function (data) {
                 currentUser.setAuthToken(data.accessToken)
