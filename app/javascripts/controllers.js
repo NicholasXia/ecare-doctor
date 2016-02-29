@@ -329,14 +329,14 @@ angular.module('medicine.controllers', [])
 
             updateMsg.save(saveMsg, function (data) {
                 if (data.status == 'suc') {
-                    var popup = $ionicPopup.alert({
-                        title: '您的信息修改成功',
-                        template: '3秒后自动返回'
-                    })
-                    $timeout(function () {
-                        popup.close()
+                    // var popup = $ionicPopup.alert({
+                    //     title: '您的信息修改成功',
+                    //     template: '3秒后自动返回'
+                    // })
+                    // $timeout(function () {
+                    //     popup.close()
                         $window.history.back();
-                    }, 3000)
+                    // }, 3000)
                 } else {
                     var popup = $ionicPopup.alert({
                         title: '错误信息',
@@ -962,14 +962,14 @@ angular.module('medicine.controllers', [])
             resetPwd.save({}, newMsg, function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
-                    var popup = $ionicPopup.alert({
-                        title: '密码修改成功',
-                        template: '3秒后进入登陆界面'
-                    })
-                    $timeout(function () {
-                        popup.close()
+                    // var popup = $ionicPopup.alert({
+                    //     title: '密码修改成功',
+                    //     template: '3秒后进入登陆界面'
+                    // })
+                    // $timeout(function () {
+                    //     popup.close()
                         $window.location.href = '#/sign_in'
-                    }, 3000)
+                    // }, 3000)
                 }
             })
         }
@@ -984,14 +984,32 @@ angular.module('medicine.controllers', [])
         };
 
         $scope.uploadVerify = function (crtWithPhoto, crtWithName) {
-            $ionicLoading.show({
-                template: ionicLoadingConfig.template,
-            });
+
             console.log(crtWithPhoto)
             console.log(crtWithName)
             if (crtWithPhoto || crtWithName) {
+                $ionicLoading.show({
+                    template: ionicLoadingConfig.template,
+                });
                 $scope.verifyimage.crtWithPhoto = crtWithPhoto[0].dataURL
                 $scope.verifyimage.crtWithName = crtWithName[0].dataURL
+                var formData = new FormData();
+                formData.append('crtWithPhoto', $scope.verifyimage.crtWithPhoto);
+                formData.append('crtWithName', $scope.verifyimage.crtWithName);
+                formData.append('accessToken', currentUser.getAuthToken());
+                $http.post('http://work.e-care365.com/hospital/doctor/verify/upload', formData, {
+                    headers: {'Content-Type': undefined},
+                    transformRequest: angular.identity
+                }).success(function (data) {
+                    if (data.status == 'suc') {
+                        $ionicLoading.hide();
+                        $ionicPopup.alert({
+                            title: '提示',
+                            template: '上传认证信息成功'
+                        })
+                        $window.history.back()
+                    }
+                });
             } else {
                 $ionicPopup.alert({
                     title: '提示',
@@ -999,24 +1017,9 @@ angular.module('medicine.controllers', [])
                 })
 
             }
-            var formData = new FormData()
-            formData.append('crtWithPhoto', $scope.verifyimage.crtWithPhoto)
-            formData.append('crtWithName', $scope.verifyimage.crtWithName)
-            formData.append('accessToken', currentUser.getAuthToken())
 
-            $http.post('http://work.e-care365.com/hospital/doctor/verify/upload', formData, {
-                headers: {'Content-Type': undefined},
-                transformRequest: angular.identity
-            }).success(function (data) {
-                if (data.status == 'suc') {
-                    $ionicLoading.hide();
-                    $ionicPopup.alert({
-                        title: '提示',
-                        template: '上传认证信息成功'
-                    })
-                    $window.history.back()
-                }
-            })
+
+
         }
     }])
     .controller('forgotPwdCtrl', ['$scope', '$window', '$ionicPopup', 'forgotpwd', 'forgotReturn', 'currentUser', function ($scope, $window, $ionicPopup, forgotpwd, forgotReturn, currentUser) {
@@ -1090,14 +1093,14 @@ angular.module('medicine.controllers', [])
             addillHistory.save({}, Msg, function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
-                    var popup = $ionicPopup.alert({
-                        title: '添加成功',
-                        template: '3秒后返回'
-                    })
-                    $timeout(function () {
-                        popup.close()
+                    // var popup = $ionicPopup.alert({
+                    //     title: '添加成功',
+                    //     template: '3秒后返回'
+                    // })
+                    // $timeout(function () {
+                    //     popup.close()
                         $window.history.back()
-                    }, 3000)
+                    // }, 3000)
                 }
             })
         }
@@ -1116,14 +1119,14 @@ angular.module('medicine.controllers', [])
             addbeizhu.save({}, Msg, function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
-                    var popup = $ionicPopup.alert({
-                        title: '添加成功',
-                        template: '3秒后返回'
-                    })
-                    $timeout(function () {
-                        popup.close()
+                    // var popup = $ionicPopup.alert({
+                    //     title: '添加成功',
+                    //     template: '3秒后返回'
+                    // })
+                    // $timeout(function () {
+                    //  popup.close()
                         $window.history.back()
-                    }, 3000)
+                    // }, 3000)
 
                 }
             })
