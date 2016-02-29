@@ -896,7 +896,7 @@ angular.module('medicine.controllers', [])
 
 
         $scope.xinxuegRelease = function (publishphoto) {
-
+            var imgs=[];
             if (publishphoto) {
                 var getbase64arr = function () {
                     var temp = []
@@ -913,11 +913,12 @@ angular.module('medicine.controllers', [])
                     }
                     return temp
                 }
-                console.log(getbase64arr())
+                console.log(getbase64arr());
+                imgs=getbase64arr();
             }
             var formData = new FormData()
             formData.append('content', $scope.xinxueg.content);
-            var imgs=getbase64arr();
+
             for(var i=0;i<imgs.length;i++){
               formData.append('imageBase64s', imgs[i]);
             }
