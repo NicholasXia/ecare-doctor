@@ -15,8 +15,8 @@
                     <input type="text" required ng-model="account.verCode" placeholder="输入短信验证码"/>
                 </div>
 
-                <button class="button button-small button-balanced" ng-click="getCode()">
-                    获取验证码
+                <button class="button button-small button-balanced" ng-click="getCode()" ng-disabled="hasSend">
+                  <span ng-hide='hasSend'>获取验证码</span>    <span ng-show='hasSend'>{{second}}秒</span>
                 </button>
             </div>
 

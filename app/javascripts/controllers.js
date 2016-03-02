@@ -63,10 +63,12 @@ angular.module('medicine.controllers', [])
     }])
 
 //医生注册
-    .controller('doctorSignUpCtrl', ['$scope', '$ionicPopup', 'getVerificationCode', 'createUser', '$timeout', '$window', 'currentUser', function ($scope, $ionicPopup, getVerificationCode, createUser, $timeout, $window, currentUser) {
+    .controller('doctorSignUpCtrl', ['$scope', '$ionicPopup', 'getVerificationCode', 'createUser', '$timeout', '$window', 'currentUser','$interval', function ($scope, $ionicPopup, getVerificationCode, createUser, $timeout, $window, currentUser,$interval) {
         //用户注册模块
         var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/
         $scope.account = {phoneNum: '', verCode: '', password: ''}
+        $scope.hasSend=false;//没有发送
+        $scope.second=60;//默认60s
         $scope.getCode = function () {
             getVerificationCode.query({mobile: $scope.account.phoneNum}, function (data) {
                 if (data.error || $scope.account.phoneNum.length == 0 || $scope.account.phoneNum.length < 11 || !reg.test($scope.account.phoneNum)) {
@@ -79,6 +81,17 @@ angular.module('medicine.controllers', [])
                         title: '成功提示',
                         template: '验证码已经发送，请稍后'
                     });
+                    $scope.hasSend=true;//已发送
+                    var timer=$interval(function(){
+                      var _self=this;
+                      if($scope.second==0){
+                        console.log('clear timer');
+                        $interval.cancel(timer);
+                        $scope.hasSend=false;
+                      }
+                      $scope.second=$scope.second-1;
+                    },1000);
+
                 }
             })
         }
