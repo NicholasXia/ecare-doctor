@@ -97,8 +97,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             })
             .state('sign_up', {
                 url: "/sign_up",
-                templateUrl: "templates/sign_up.html",
-                controller: 'doctorSignUpCtrl'
+                templateUrl: "templates/sign_up_flow.html",
+                controller: 'doctorSignUpCtrlFlow'
             })
             .state('forgot_pwd', {
                 url: "/forgot_pwd",
@@ -281,4 +281,11 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             })
 
         $urlRouterProvider.otherwise("/tab/home");
-    })
+    }).run(['$rootScope',function($rootScope){
+      $rootScope.$on('$stateChangeSuccess',
+          function(event, toState, toParams, fromState, fromParams){
+            console.log(_hmt);
+             _hmt.push(['_trackPageview', toState.url]);
+
+          });
+    }]);

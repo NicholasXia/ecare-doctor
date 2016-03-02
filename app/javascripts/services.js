@@ -78,7 +78,7 @@ angular.module('medicine.services', ['ngResource'])
         currentUser.getDoctorCode = function () {
             return localStorageService.get(DOCTOR_CODE)
         }
-        return currentUser
+        return currentUser;
     }])
 
 
@@ -108,6 +108,9 @@ angular.module('medicine.services', ['ngResource'])
             mobile: "@mobile",
             weight: "@weight",
             hospital: "@hospital",
+            sheng:"@sheng",
+            shi:"@shi",
+            xian:"@xian",
             technicalTitle: "@technicalTitle",
             department: "@department",
             teachingTitle: "@teachingTitle"

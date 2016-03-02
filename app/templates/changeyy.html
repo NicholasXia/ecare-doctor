@@ -20,13 +20,14 @@
                         {{shi.name}}
                     </option>
                 </select>
-                <select  ng-model="selectxian" ng-change="showSelectyy(selectxian)" class="item col padding">
+                <select  ng-model="selectxian" ng-change="showSelectyy(selectxian)"  class="item col padding">
 
                     <option value="" selected="selected">请选择区县</option>
                     <option ng-repeat="xian in xianlist" value="{{xian.id}}">
                         {{xian.name}}
                     </option>
                 </select>
+            
             </div>
             <ion-list ng-repeat="item in yylist">
                 <ion-radio ng-model="patientData.yy" ng-value="'{{item.hospital}}'">{{item.hospital}}</ion-radio>

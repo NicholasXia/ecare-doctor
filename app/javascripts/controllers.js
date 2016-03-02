@@ -14,6 +14,7 @@ angular.module('medicine.controllers', [])
         getCountAsk.query({accessToken: accesstoken}, function (data) {
             $scope.askCount = data.askCount
         })
+        console.log(currentUser);
         $scope.doctorCode = currentUser.getDoctorCode()
         $scope.goToActivity = function (activity) {
             $window.location.href = activity
@@ -137,6 +138,84 @@ angular.module('medicine.controllers', [])
                 }else{
 
 
+                }
+            })
+        }
+    }])
+
+    .controller('doctorSignUpCtrlFlow', ['$scope', '$ionicPopup', 'getVerificationCode', 'createUser', '$timeout', '$window', 'currentUser','$interval', function ($scope, $ionicPopup, getVerificationCode, createUser, $timeout, $window, currentUser,$interval) {
+        //用户注册模块
+        var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/
+        $scope.account = {phoneNum: '', verCode: '', password: ''}
+        $scope.hasSend=false;//没有发送
+        $scope.second=60;//默认60s
+        $scope.getCode = function () {
+            getVerificationCode.query({mobile: $scope.account.phoneNum}, function (data) {
+                if (data.error || $scope.account.phoneNum.length == 0 || $scope.account.phoneNum.length < 11 || !reg.test($scope.account.phoneNum)) {
+                    $ionicPopup.alert({
+                        title: '提示',
+                        template: data.error
+                    });
+                } else {
+                    $ionicPopup.alert({
+                        title: '成功提示',
+                        template: '验证码已经发送，请稍后'
+                    });
+                    $scope.hasSend=true;//已发送
+                    var timer=$interval(function(){
+                      var _self=this;
+                      if($scope.second==0){
+                        console.log('clear timer');
+                        $interval.cancel(timer);
+                        $scope.hasSend=false;
+                      }
+                      $scope.second=$scope.second-1;
+                    },1000);
+
+                }
+            })
+        }
+
+
+        $scope.signUp = function () {
+            var user = {
+                registerType: 1,
+                mobile: $scope.account.phoneNum,
+                password: $scope.account.password,
+                verifycode: $scope.account.verCode
+            }
+            if ($scope.account.verCode.length !== 4 ) {
+                $ionicPopup.alert({
+                    title: '提示',
+                    template: '验证码位数错误'
+                })
+                return
+            }
+            if( $scope.account.password.length == 0){
+              $ionicPopup.alert({
+                  title: '提示',
+                  template: '请填写密码'
+              })
+              return
+            }
+            console.log(user)
+            createUser.save({}, user, function (data) {
+
+                if(data.status == 'suc'){
+                    currentUser.setAuthToken(data.accessToken)
+                    var popup = $ionicPopup.alert({
+                        title: '账号注册成功',
+                        template: '赶快去完善下个人信息吧！'
+                    })
+                    // $timeout(function () {
+                    //     popup.close()
+                        $window.location.href = '#/mine_info'
+                    // }, 3000)
+                }else{
+                    $ionicPopup.alert({
+                        'title' : '提示',
+                        'template' : data.error
+                    })
                 }
             })
         }
@@ -310,6 +389,7 @@ angular.module('medicine.controllers', [])
             })
             $scope.shiId = select
 
+
         }
         $scope.showSelectyy = function (select) {
             console.log(select)
@@ -323,6 +403,7 @@ angular.module('medicine.controllers', [])
                 console.log(data)
                 $scope.yylist = data
             })
+            $scope.xianId = select
 
         }
         mineInfo.query({accessToken: currentUser.getAuthToken()}, function (data) {
@@ -336,11 +417,14 @@ angular.module('medicine.controllers', [])
                 birthday: $scope.patientData.birthday,
                 agender: $scope.patientData.agender,
                 hospital: $scope.patientData.yy,
+                sheng:$scope.shengId,
+                shi:$scope.shiId,
+                xian:$scope.xianId,
                 technicalTitle: $scope.patientData.zc,
                 department: $scope.patientData.ks,
                 teachingTitle: $scope.patientData.jszc
             }
-
+            console.log(saveMsg);
             updateMsg.save(saveMsg, function (data) {
                 if (data.status == 'suc') {
                     // var popup = $ionicPopup.alert({
