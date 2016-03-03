@@ -9,7 +9,14 @@
     <ion-content>
         <div class="list">
             <div class="item news-from">
+              <p>
                 <span class="item-text-wrap">{{relaxed.title}}</span> <span class="fr">{{relaxed.postTime}}</span>
+              </p>
+
+                <p >
+                  <button ng-click='shareWeibo()'>分享到微博</button>
+                  <button ng-click='shareQzone()'>分享到QQ空间</button>
+                </p>
             </div>
             <div class="item item-text-wrap home">
                 <!--<img ng-src="{{relaxed.coverImageUrl}}" alt=""/>-->

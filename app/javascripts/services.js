@@ -1,6 +1,25 @@
 angular.module('medicine.services', ['ngResource'])
     .constant('CURRENT_USER', 'currentUser')
     .constant('DOCTOR_CODE', 'doctorCode')
+    .constant('SHARE_APP','1009643115684')
+    .service('share',function(){
+      this.s=function(){
+      //   mobShare.config( {
+      //
+      //   debug: true, // 开启调试，将在浏览器的控制台输出调试信息
+      //
+      //   appkey: '1009643115684', // appkey
+      //
+      //   params: {
+      //       title: data.title, // 分享标题
+      //
+      //
+      //   }
+      // });
+      return '';
+    }
+    })
+
     /*轮播*/
     .factory('getCarouselList', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/patient/article/list/:type/:illType', {}, {

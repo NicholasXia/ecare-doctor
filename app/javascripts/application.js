@@ -97,7 +97,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             })
             .state('sign_up', {
                 url: "/sign_up",
-                templateUrl: "templates/sign_up_flow.html",
+                templateUrl: "templates/sign_up.html",
                 controller: 'doctorSignUpCtrlFlow'
             })
             .state('forgot_pwd', {
@@ -140,7 +140,27 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             .state('analysis_detail', {
                 url: "/analysis_detail/:id",
                 templateUrl: "templates/analysis_detail.html",
-                controller: 'analysisDetailCtrl'
+                controller: 'analysisDetailCtrl',
+                resolve:{
+                  delay: function($q) {
+                  //   console.log('delay');
+                  //  var deferred = $q.defer(),
+                  //  load = function(){
+                  //      console.log('load');
+                  //      $q.getScript('http://f1.webshare.mob.com/code/mob-share.js?appkey=1009643115684',function(data, textStatus, jqxhr){
+                  //        console.log(data);
+                  //        deferred.resolve();
+                  //      });
+                  //  };
+                  //  load();
+                  //  return deferred.promise;
+                  // $q.getScript('/a.js',function(){
+                  //
+                  //     return 'aa';
+                  // });
+                  return 'bb';
+                 }
+                }
 
             })
 

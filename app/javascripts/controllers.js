@@ -456,17 +456,31 @@ angular.module('medicine.controllers', [])
     .controller('analysisCtrl', ['$scope', '$window', 'analysisList', 'currentUser', function ($scope, $window, analysisList, currentUser) {
         var accesstoken = currentUser.getAuthToken()
         analysisList.query({accessToken: accesstoken}, function (data) {
-            $scope.analysislist = data
+            $scope.analysislist = data;
+
             console.log(data)
         })
 
     }])
-    .controller('analysisDetailCtrl', ['$scope', '$window', '$stateParams', '$ionicPopup', 'analysisDetail', 'analysisRemark', 'currentUser', 'collection', '$timeout', function ($scope, $window, $stateParams, $ionicPopup, analysisDetail, analysisRemark, currentUser, collection, $timeout) {
+    .controller('analysisDetailCtrl', ['$scope', '$window', '$stateParams', '$ionicPopup', 'analysisDetail', 'analysisRemark', 'currentUser', 'collection', '$timeout','delay','SHARE_APP', function ($scope, $window, $stateParams, $ionicPopup, analysisDetail, analysisRemark, currentUser, collection, $timeout,SHARE_APP) {
         var accesstoken = currentUser.getAuthToken()
         analysisDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
             $scope.analysisdetail = data
+            console.log(data);
+            mobShare.config({
+              appkey: SHARE_APP,
+            });
+            $scope.shareWeibo=function(){
+              var weibo = mobShare( 'weibo' );
+               weibo.send();
+            }
+            $scope.shareQzone=function(){
+              var qzone = mobShare( 'qzone' );
+              qzone.send();
+            }
         })
         $scope.detailMsg = {'acomment': ''}
+
         $scope.aComment = function () {
             var msg = {
                 accessToken: accesstoken,
@@ -583,10 +597,23 @@ angular.module('medicine.controllers', [])
 
     }])
 
-    .controller('relaxedDetailCtrl', ['$scope', 'Detail', '$stateParams','collection','$ionicPopup','currentUser', function ($scope, Detail, $stateParams,collection,$ionicPopup,currentUser) {
+    .controller('relaxedDetailCtrl', ['$scope', 'Detail', '$stateParams','collection','$ionicPopup','currentUser','SHARE_APP',function ($scope, Detail, $stateParams,collection,$ionicPopup,currentUser,SHARE_APP) {
         var accesstoken =currentUser.getAuthToken()
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.relaxed = data
+            mobShare.config({
+              appkey: SHARE_APP,
+              params:{title:data.title}
+            });
+            $scope.shareWeibo=function(){
+              var weibo = mobShare( 'weibo' );
+               weibo.send();
+            }
+            $scope.shareQzone=function(){
+              var qzone = mobShare( 'qzone' );
+              qzone.send();
+            }
+
         })
 
         $scope.addCollection = function () {
@@ -620,9 +647,24 @@ angular.module('medicine.controllers', [])
         })
     }])
 
-    .controller('medicalDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup','collection', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup,collection) {
+    .controller('medicalDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup','collection','SHARE_APP', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup,collection,SHARE_APP) {
+
+
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.medicaldetail = data
+            mobShare.config({
+              appkey: SHARE_APP,
+              params:{title:data.title}
+            });
+            $scope.shareWeibo=function(){
+              var weibo = mobShare( 'weibo' );
+               weibo.send();
+            }
+            $scope.shareQzone=function(){
+              var qzone = mobShare( 'qzone' );
+              qzone.send();
+            }
+
             console.log(data)
         })
 

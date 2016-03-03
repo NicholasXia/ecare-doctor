@@ -1,6 +1,6 @@
-<ion-view view-title="医疗动态详情-乐柏医" cache-view="false">
+<ion-view view-title='{{medicaldetail.title}}' cache-view="false">
     <ion-header-bar class="bar-balanced">
-        <h1 class="title">医疗动态详情</h1>
+        <h1 class="title">{{medicaldetail.title}}</h1>
         <a class="button icon ion-chevron-left" href="javascript:history.go(-1)"></a>
         <div class="buttons">
             <!--<div class="ion-plus icon-size" ng-click="addCollection()"></div>-->
@@ -13,7 +13,15 @@
 
                 <p>来源:
                     <span>{{medicaldetail.resource}}</span>
+
                     <span class="fr">{{medicaldetail.postTime}}</span>
+                </p>
+
+                <p>
+                  <button ng-click='shareWeibo()'>分享到微博</button>
+                  <button ng-click='shareQzone()'>分享到QQ空间</button>
+
+
                 </p>
             </div>
             <div class='item  item-text-wrap'>

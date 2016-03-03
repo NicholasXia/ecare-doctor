@@ -18,4 +18,3 @@ angular.module('medicine.filters', [])
             return $sce.trustAsHtml(html);
         }
     }])
-

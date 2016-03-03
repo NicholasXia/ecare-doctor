@@ -14,6 +14,11 @@
                 <p>{{analysisdetail.hospital}} {{analysisdetail.doctorName}}</p>
 
                 <p>{{analysisdetail.postTime}}</p>
+                <p>
+                <button ng-click='shareWeibo()'>分享到微博</button>
+                <button ng-click='shareQzone()'>分享到QQ空间</button>
+
+                </p>
             </div>
             <div class='item home item-text-wrap'>
                 <p class="padding"> <img ng-src="{{analysisdetail.illCaseImage}}" alt=""/></p>
