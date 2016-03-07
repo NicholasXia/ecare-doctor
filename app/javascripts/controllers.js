@@ -677,8 +677,18 @@ angular.module('medicine.controllers', [])
                 articleId: $stateParams.id,
                 remark: $scope.markinfo.remak
             }
+            if ($scope.markinfo.remak.length ==0) {
+              $ionicPopup.alert({
+                  title: '提示',
+                  template: '请填写评论'
+              })
+              return
+            }
+
             Remark.save({}, msg, function (data) {
                 $scope.markinfo.remak = ''
+
+
                 if (data.status == 'suc') {
                     Detail.query({id: $stateParams.id}, function (data) {
                         $scope.medicaldetail = data
