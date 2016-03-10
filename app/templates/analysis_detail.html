@@ -2,10 +2,10 @@
     <ion-header-bar class="bar-balanced">
       <a class="button icon ion-chevron-left" href="javascript:history.go(-1)"></a>
         <h1 class="title">病例精析详情</h1>
-
-        <div class="buttons">
+        <button class="button ion-navicon icon" ng-click="showAction()"></button>
+        <!-- <div class="buttons">
             <div class="ion-plus icon-size" ng-click="addCollection()"></div>
-        </div>
+        </div> -->
     </ion-header-bar>
     <ion-content>
         <div class="list">
@@ -14,11 +14,11 @@
                 <p>{{analysisdetail.hospital}} {{analysisdetail.doctorName}}</p>
 
                 <p>{{analysisdetail.postTime}}</p>
-                <p>
+                <!-- <p>
                 <button ng-click='shareWeibo()'>分享到微博</button>
                 <button ng-click='shareQzone()'>分享到QQ空间</button>
 
-                </p>
+                </p> -->
             </div>
             <div class='item home item-text-wrap'>
                 <p class="padding"> <img ng-src="{{analysisdetail.illCaseImage}}" alt=""/></p>

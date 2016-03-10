@@ -2,9 +2,10 @@
     <ion-header-bar class="bar-balanced">
         <h1 class="title">{{medicaldetail.title}}</h1>
         <a class="button icon ion-chevron-left" href="javascript:history.go(-1)"></a>
-        <div class="buttons">
-            <!--<div class="ion-plus icon-size" ng-click="addCollection()"></div>-->
-        </div>
+          <button class="button ion-navicon icon" ng-click="showAction()"></button>
+        <!-- <div class="buttons">
+            <div class="ion-plus icon-size on-chevron-right" ng-click="addCollection()"></div>
+        </div> -->
     </ion-header-bar>
     <ion-content>
         <div class="list">
@@ -17,12 +18,12 @@
                     <span class="fr">{{medicaldetail.postTime}}</span>
                 </p>
 
-                <p>
+                <!-- <p>
                   <button ng-click='shareWeibo()'>分享到微博</button>
                   <button ng-click='shareQzone()'>分享到QQ空间</button>
 
 
-                </p>
+                </p> -->
             </div>
             <div class='item  item-text-wrap'>
                 <!-- <p class="home"><img ng-src="{{medicaldetail.coverImageUrl}}"/></p> -->

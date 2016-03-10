@@ -462,8 +462,32 @@ angular.module('medicine.controllers', [])
         })
 
     }])
-    .controller('analysisDetailCtrl', ['$scope', '$window', '$stateParams', '$ionicPopup', 'analysisDetail', 'analysisRemark', 'currentUser', 'collection', '$timeout','delay','SHARE_APP', function ($scope, $window, $stateParams, $ionicPopup, analysisDetail, analysisRemark, currentUser, collection, $timeout,SHARE_APP) {
-        var accesstoken = currentUser.getAuthToken()
+    .controller('analysisDetailCtrl', ['$scope', '$window', '$stateParams', '$ionicPopup', 'analysisDetail', 'analysisRemark', 'currentUser', 'collection', '$timeout','delay','SHARE_APP', '$ionicActionSheet',function ($scope, $window, $stateParams, $ionicPopup, analysisDetail, analysisRemark, currentUser, collection, $timeout,delay,SHARE_APP,$ionicActionSheet) {
+
+        console.log($ionicActionSheet);
+        var accesstoken = currentUser.getAuthToken();
+        $scope.showAction=function(){
+        var hideSheet=$ionicActionSheet.show({
+          buttons:[
+            {text:'<b>分享到新浪微博</b>'},
+            {text:'<b>分享到QQ空间</b>'},
+            {text:'<b>收藏</b>'}
+          ],
+          buttonClicked:function(index){
+            if(index==0){
+              $scope.shareWeibo();
+            }else if(index==1){
+              $scope.shareQzone();
+            }else if(index==2){
+              $scope.saveIt();
+            }
+            return true;
+          },
+          cancelText:'关闭'
+        });
+      }
+
+
         analysisDetail.query({id: $stateParams.id, accessToken: accesstoken}, function (data) {
             $scope.analysisdetail = data
             console.log(data);
@@ -502,7 +526,7 @@ angular.module('medicine.controllers', [])
         }
 
 
-        $scope.addCollection = function () {
+        $scope.saveIt = function () {
 
             var colMsg = {
                 accessToken: accesstoken,
@@ -597,8 +621,31 @@ angular.module('medicine.controllers', [])
 
     }])
 
-    .controller('relaxedDetailCtrl', ['$scope', 'Detail', '$stateParams','collection','$ionicPopup','currentUser','SHARE_APP',function ($scope, Detail, $stateParams,collection,$ionicPopup,currentUser,SHARE_APP) {
-        var accesstoken =currentUser.getAuthToken()
+    .controller('relaxedDetailCtrl', ['$scope', 'Detail', '$stateParams','collection','$ionicPopup','currentUser','SHARE_APP','$ionicActionSheet',function ($scope, Detail, $stateParams,collection,$ionicPopup,currentUser,SHARE_APP,$ionicActionSheet) {
+        var accesstoken =currentUser.getAuthToken();
+        $scope.showAction=function(){
+
+        var hideSheet=$ionicActionSheet.show({
+          buttons:[
+            {text:'<b>分享到新浪微博</b>'},
+            {text:'<b>分享到QQ空间</b>'},
+            {text:'<b>收藏</b>'}
+          ],
+          buttonClicked:function(index){
+            if(index==0){
+              $scope.shareWeibo();
+            }else if(index==1){
+              $scope.shareQzone();
+            }else if(index==2){
+              $scope.saveIt();
+            }
+            return true;
+          },
+          cancelText:'关闭'
+        });
+      }
+
+
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.relaxed = data
             mobShare.config({
@@ -616,7 +663,7 @@ angular.module('medicine.controllers', [])
 
         })
 
-        $scope.addCollection = function () {
+        $scope.saveIt = function () {
 
             var colMsg = {
                 accessToken: accesstoken,
@@ -647,8 +694,30 @@ angular.module('medicine.controllers', [])
         })
     }])
 
-    .controller('medicalDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup','collection','SHARE_APP', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup,collection,SHARE_APP) {
+    .controller('medicalDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup','collection','SHARE_APP','$ionicActionSheet', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup,collection,SHARE_APP,$ionicActionSheet) {
+      console.log(SHARE_APP);
+      console.log($ionicActionSheet);
+      $scope.showAction=function(){
 
+      var hideSheet=$ionicActionSheet.show({
+        buttons:[
+          {text:'<b>分享到新浪微博</b>'},
+          {text:'<b>分享到QQ空间</b>'},
+          {text:'<b>收藏</b>'}
+        ],
+        buttonClicked:function(index){
+          if(index==0){
+            $scope.shareWeibo();
+          }else if(index==1){
+            $scope.shareQzone();
+          }else if(index==2){
+            $scope.saveIt();
+          }
+          return true;
+        },
+        cancelText:'关闭'
+      });
+    }
 
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.medicaldetail = data
@@ -704,7 +773,7 @@ angular.module('medicine.controllers', [])
             })
 
         }
-        $scope.addCollection = function () {
+        $scope.saveIt = function () {
 
             var colMsg = {
                 accessToken: accesstoken,
