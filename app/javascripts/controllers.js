@@ -1351,6 +1351,93 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
+    .controller('xueshuCtrl',['$scope','xueshu',function($scope,xueshu){
+      var params={
+        start:0,
+        limit:10
+      }
+      $scope.data=[];
+      xueshu.list(params,function(err,data){
+        console.log(data);
+        $scope.data=data;
+      });
+    }])
+    .controller('xueshuDetailCtrl',['$window','$scope','xueshu','$stateParams','currentUser','$ionicPopup',function($window,$scope,xueshu,$stateParams,currentUser,$ionicPopup){
+      $scope.data={};
+      var params={
+        id:$stateParams.id,
+        accessToken:currentUser.getAuthToken()
+      }
+      xueshu.get(params,function(err,data){
+        console.log(data);
+        $scope.data=data;
+      });
+      $scope.baoming=function(){
+        $window.location.href='#/xueshu_baoming';
+      }
+
+
+    }])
+    .controller('xueshuBaomingCtrl',['$window','$scope','xueshu','$stateParams','currentUser','$ionicPopup','mineInfo','$stateParams',function($window,$scope,xueshu,$stateParams,currentUser,$ionicPopup,mineInfo,$stateParams){
+      $scope.form={
+        name:'',
+        mobile:''
+      };
+      if(currentUser.getAuthToken()){
+        mineInfo.query({accessToken: currentUser.getAuthToken()}, function (data) {
+          $scope.form={
+            name:data.name,
+            mobile:data.username
+          }
+        });
+      }
+
+
+
+      $scope.take=function(){
+
+        console.log($scope.form);
+        if($scope.form.name!=''&&$scope.form.mobile!=''){
+          var params={
+            name:$scope.form.name,
+            mobile:$scope.form.mobile,
+            address:$scope.form.address,
+            id:$stateParams.id
+          }
+          if(currentUser.getAuthToken()){
+            params.accessToken=currentUser.getAuthToken();
+          }
+          xueshu.take(params,function(err,data){
+            console.log(data);
+            if(data.error){
+              $ionicPopup.alert({
+                  title: '错误',
+                  template: data.error
+              });
+              return;
+            }
+            if(data.status='suc'){
+              $ionicPopup.alert({
+                  title: '提示',
+                  template: '报名成功'
+              });
+              $window.location.href='#/xueshu';
+              return;
+            }
+          });
+        }else{
+          $ionicPopup.alert({
+              title: '提示',
+              template: '请填写完整的信息'
+          });
+        }
+
+      }
+
+
+    }])
+
+
 
     .controller('Messages', ['$scope', '$timeout', '$interval', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart', '$stateParams', '$window', function ($scope, $timeout, $interval, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart, $stateParams, $window) {
 

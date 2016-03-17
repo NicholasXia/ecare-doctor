@@ -578,3 +578,29 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('xueshu',['$http','SERVER',function($http,SERVER){
+      var fa={};
+      fa.list=function(params,cb){
+        $http({method:'GET',params:params,url:SERVER+'/doctor/academicSupport/list'}).then(function success(res){
+          return cb(null,res.data);
+        },function error(){
+          return cb(res.status,null);//ERROR
+        });
+      }
+      fa.get=function(params,cb){
+        $http({method:'GET',params:params,url:SERVER+'/doctor/academicSupport/detail'}).then(function success(res){
+          return cb(null,res.data);
+        },function error(){
+          return cb(res.status,null);//ERROR
+        });
+      }
+      fa.take=function(params,cb){
+        $http({method:'POST',params:params,url:SERVER+'/doctor/academicSupport/takepart'}).then(function success(res){
+          return cb(null,res.data);
+        },function error(){
+          return cb(res.status,null);//ERROR
+        });
+      }
+      return fa;
+
+    }]);

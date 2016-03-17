@@ -1,0 +1,25 @@
+<ion-view view-title="学术会议-乐柏医" cache-view="false">
+  <ion-header-bar class="bar-balanced">
+    <a class="button icon ion-chevron-left" href="javascript:history.go(-1)"></a>
+    <h1 class="title">学术会议</h1>
+  </ion-header-bar>
+  <ion-content  class="backcolormine">
+    <a  class="list card" ng-repeat="x in data" ui-sref='xueshu_detail({id:x.id})'>
+      <div  class="item item-body" >
+        <h2 style="margin-top:25px">{{x.title}}</h2>
+        <div style="position:absolute;top:10px;right:10px;background-color:green;color:white;border-radius:5px;padding:5px 5px;" ng-if="x.type==0">
+          近期学术会议
+        </div>
+        <div style="position:absolute;top:10px;right:10px;background-color:red;color:white;border-radius:5px;padding:5px 5px" ng-if="x.type==1">
+          往期学术会议
+        </div>
+        <p>
+          {{x.creTime}}
+        </p>
+
+        <img ng-if="x.promoteImage" class="full-image" src={{x.promoteImage}}>
+      </div>
+
+    </a>
+  </ion-content>
+</ion-view>

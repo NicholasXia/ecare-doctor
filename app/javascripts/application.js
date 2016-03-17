@@ -299,6 +299,21 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/chart.html",
                 controller: "Messages"
             })
+            .state('xueshu', {
+                url: "/xueshu",
+                templateUrl: "templates/xueshu.html",
+                controller: "xueshuCtrl"
+            })
+            .state('xueshu_detail',{
+              url: "/xueshu_detail/:id",
+              templateUrl: "templates/xueshu_detail.html",
+              controller: "xueshuDetailCtrl"
+            })
+            .state('xueshu_baoming',{
+              url: "/xueshu_baoming/:id",
+              templateUrl: "templates/xueshu_baoming.html",
+              controller: "xueshuBaomingCtrl"
+            })
 
         $urlRouterProvider.otherwise("/tab/home");
     }).run(['$rootScope',function($rootScope){

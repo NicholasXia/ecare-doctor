@@ -1,0 +1,25 @@
+<ion-view view-title="学术报名-乐柏医" cache-view="false">
+  <ion-header-bar class="bar-balanced">
+    <a class="button icon ion-chevron-left" href="javascript:history.go(-1)"></a>
+    <h1 class="title">学术报名</h1>
+  </ion-header-bar>
+  <ion-content has-bouncing="true" class="padding">
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">姓名</span>
+        <input type="text" placeholder="姓名" ng-model='form.name'>
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">电话</span>
+        <input type="text" placeholder="电话" ng-model='form.mobile'>
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">地址</span>
+        <input type="text" placeholder="地址" ng-model='form.address'>
+      </label>
+
+    </div>
+    <button class="button button-full button-positive" ng-click="take()">
+      报名 </button>
+  </ion-content>
+</ion-view>
