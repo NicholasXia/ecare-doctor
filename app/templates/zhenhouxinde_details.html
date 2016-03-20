@@ -1,0 +1,57 @@
+<ion-view view-title="诊后心得-乐柏医" cache-view="false">
+  <ion-header-bar class="bar-balanced">
+    <a class="button icon ion-chevron-left" href="#/zhenhouxinde"></a>
+    <h1 class="title">诊后心得</h1>
+  </ion-header-bar>
+  <ion-content class="backcolormine">
+
+
+
+
+    <ion-item style="margin-top:25px">
+      <div class="">
+        <div class="">
+          <span ng-if="e.doctorName!='匿名发表'&&e.technicalTitle">{{data.technicalTitle}}：</span><span>{{data.doctorName}}</span><span style="float:right">{{data.creTime}}</span>
+        </div>
+        <div style="margin-top:15px">
+          <div class="">
+            <span style="font-size:20px;color:#2CCD8F;font-weight:bold">患者类型：<span>{{data.illType}}</span></span>
+          </div>
+        </div>
+        <div style="margin-top:15px" class="">
+          <span>病情描述：</span><span>{{data.illDesc}}</span>
+        </div>
+        <div class="" style="margin-top:15px;overflow:hidden;margin-left:2px;float:left;width:100px;" ng-repeat="image in data.diagnoseExpImgList">
+          <img style="" src="{{image.imageUrl}}" width="100%" alt="" />
+        </div>
+      </div>
+    </ion-item>
+    <ion-item>
+      <div class="">
+        心得：
+      </div>
+      <div class="">
+        <p>
+          {{data.experience}}
+        </p>
+        <p style="margin-top:20px;">
+          <div style="">我的积分：{{myscore}}</div>
+          <div style="margin-top:20px">
+            <div style="color:#EE6868;float:left;font-size:20px;border:1px solid #CFCFCF;padding:5px 10px;" ng-click="add_score(-10)">-</div>
+            <div style="color:#EE6868;margin-left:20px;float:left;border:1px solid #CFCFCF;padding:5px 10px">{{addscore}}</div>
+            <div style="color:#EE6868;margin-left:20px;float:left;border:1px solid #CFCFCF;padding:5px 10px" ng-click="add_score(10)">+</div>
+            <div ng-click='reward()' style="color:white;background-color:#EE6868;margin-left:20px;float:left;border:1px solid #CFCFCF;padding:5px 10px">确定</div>
+          </div>
+
+        </p>
+      </div>
+    </ion-item>
+   <ion-item style="">
+        <div style="float:left;width:35%;border-right:1px solid #DEDFE0;">鼓励：{{data.reward}}积分</div>
+        <div style="float:left;width:25%;border-right:1px solid #DEDFE0;text-align:center">评论：{{data.remarkCount}}</div>
+        <div style="float:right;width:30%;margin-left:30px">阅读：{{data.readCount}}</div>
+      </ion-item>
+
+
+  </ion-content>
+</ion-view>

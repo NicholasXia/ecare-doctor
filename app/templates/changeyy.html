@@ -1,38 +1,49 @@
 <ion-view view-title="修改姓名-乐柏医" cache-view="false">
-    <ion-header-bar class="bar-balanced">
-        <a class="button icon ion-chevron-left" href="javascript:history.go(-1)"></a>
-        <h1 class="title">修改医院</h1>
-        <button class="button" ng-click="saveMsg()">确认修改</button>
-    </ion-header-bar>
-    <ion-content has-bouncing="true">
-        <div class="list padding">
-            <div class="row" style="padding:0px">
-                <select ng-model="selectsheng" ng-change='showSelectSheng(selectsheng)' class="item col col-33 padding">
-                    <option value="" selected="selected">请选择省份</option>
-                    <option ng-repeat="sheng in shenglist" value="{{sheng.id}}">
-                        {{sheng.name}}
-                    </option>
-                </select>
-                <select ng-model="selectshi" ng-change="showSelectShi(selectshi)" class="item col col-33 padding">
+  <ion-header-bar class="bar-balanced">
+    <a class="button icon ion-chevron-left" href="javascript:history.go(-1)"></a>
+    <h1 class="title">修改医院</h1>
+    <button class="button" ng-click="saveMsg()">确认修改</button>
+  </ion-header-bar>
+  <ion-content  padding="true">
+    <d iv class="list padding">
+      <div class="row" style="padding:0px">
+        <select ng-model="selectsheng" ng-change='showSelectSheng(selectsheng)' class="item col col-33 padding">
+          <option value="" selected="selected">请选择省份</option>
+          <option ng-repeat="sheng in shenglist" value="{{sheng.id}}">
+            {{sheng.name}}
+          </option>
+        </select>
+        <select ng-model="selectshi" ng-change="showSelectShi(selectshi)" class="item col col-33 padding">
 
-                    <option value="" selected="selected">请选择市</option>
-                    <option ng-repeat="shi in shilist" value="{{shi.id}}">
-                        {{shi.name}}
-                    </option>
-                </select>
-                <select  ng-model="selectxian" ng-change="showSelectyy(selectxian)"  class="item col padding">
+          <option value="" selected="selected">请选择市</option>
+          <option ng-repeat="shi in shilist" value="{{shi.id}}">
+            {{shi.name}}
+          </option>
+        </select>
+        <select ng-model="selectxian" ng-change="showSelectyy(selectxian)" class="item col padding">
 
-                    <option value="" selected="selected">请选择区县</option>
-                    <option ng-repeat="xian in xianlist" value="{{xian.id}}">
-                        {{xian.name}}
-                    </option>
-                </select>
-            
-            </div>
-            <ion-list ng-repeat="item in yylist">
-                <ion-radio ng-model="patientData.yy" ng-value="'{{item.hospital}}'">{{item.hospital}}</ion-radio>
-            </ion-list>
+          <option value="" selected="selected">请选择区县</option>
+          <option ng-repeat="xian in xianlist" value="{{xian.id}}">
+            {{xian.name}}
+          </option>
+        </select>
+
+      </div>
+      <ion-list ng-repeat="item in yylist">
+        <ion-radio ng-model="patientData.yy" ng-value="'{{item.hospital}}'">{{item.hospital}}</ion-radio>
+      </ion-list>
+
+
+        <div style="margin-top:20px" class="list">
+          <label  class="item item-input item-floating-label">
+            <span class="input-label">没有找到医院？请填写</span>
+            <input type="text" ng-model="patientData.yy"  placeholder="没有找到医院？请填写">
+          </label>
+
         </div>
 
-    </ion-content>
+
+      </div>
+
+  </ion-content>
 </ion-view>

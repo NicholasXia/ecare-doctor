@@ -578,6 +578,67 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('xinde', ['$resource', 'SERVER','$http', function ($resource, SERVER,$http) {
+      var fa={};
+      fa.add=function(formData,cb){
+        $http.post(SERVER+'/doctor/diagnose_experience/add', formData, {
+          headers: {
+            'Content-Type': undefined
+          },
+          transformRequest: angular.identity
+        }).success(cb);
+      }
+      fa.update=function(formData,cb){
+        $http.post(SERVER+'/doctor/diagnose_experience/update', formData, {
+          headers: {
+            'Content-Type': undefined
+          },
+          transformRequest: angular.identity
+        }).success(cb);
+      }
+
+
+
+
+      fa.list=function(params,cb){
+        $http({method:'GET',params:params,url:SERVER+'/doctor/diagnose_experience/list'}).then(function success(res){
+          return cb(null,res.data);
+        },function error(){
+          return cb(res.status,null);//ERROR
+        });
+      }
+      fa.mylist=function(params,cb){
+        $http({method:'GET',params:params,url:SERVER+'/doctor/diagnose_experience/mylist'}).then(function success(res){
+          return cb(null,res.data);
+        },function error(){
+          return cb(res.status,null);//ERROR
+        });
+      }
+      fa.get=function(params,cb){
+        $http({method:'GET',params:params,url:SERVER+'/doctor/diagnose_experience/detail/'+params.id}).then(function success(res){
+          return cb(null,res.data);
+        },function error(){
+          return cb(res.status,null);//ERROR
+        });
+      }
+      fa.reward=function(formData,cb){
+        // $http({method:'POST',data:params,url:SERVER+'/doctor/diaexp/reward'}).then(function success(res){
+        //   return cb(null,res.data);
+        // },function error(){
+        //   return cb(res.status,null);//ERROR
+        // });
+        $http.post(SERVER+'/doctor/diaexp/reward', formData, {
+          headers: {
+            'Content-Type': undefined
+          },
+          transformRequest: angular.identity
+        }).success(function(data) {
+          cb(data);
+        })
+
+      }
+      return fa;
+    }])
     .factory('xueshu',['$http','SERVER',function($http,SERVER){
       var fa={};
       fa.list=function(params,cb){
@@ -594,6 +655,7 @@ angular.module('medicine.services', ['ngResource'])
           return cb(res.status,null);//ERROR
         });
       }
+
       fa.take=function(params,cb){
         $http({method:'POST',params:params,url:SERVER+'/doctor/academicSupport/takepart'}).then(function success(res){
           return cb(null,res.data);

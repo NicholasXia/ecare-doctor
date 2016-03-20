@@ -314,6 +314,31 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
               templateUrl: "templates/xueshu_baoming.html",
               controller: "xueshuBaomingCtrl"
             })
+            .state('zhenhouxinde',{
+              url: "/zhenhouxinde",
+              templateUrl: "templates/zhenhouxinde.html",
+              controller: "zhenhouxindeCtrl"
+            })
+            .state('zhenhouxinde_wode',{
+              url: "/zhenhouxinde_wode",
+              templateUrl: "templates/zhenhouxinde_wode.html",
+              controller: "zhenhouxindeWodeCtrl"
+            })
+            .state('zhenhouxinde_fabiao',{
+              url: "/zhenhouxinde_fabiao",
+              templateUrl: "templates/zhenhouxinde_fabiao.html",
+              controller: "zhenhouxindefabiaoCtrl"
+            })
+            .state('zhenhouxinde_bianji',{
+              url: "/zhenhouxinde_bianji/:id",
+              templateUrl: "templates/zhenhouxinde_bianji.html",
+              controller: "zhenhouxindeBianjiCtrl"
+            })
+            .state('zhenhouxinde_details',{
+              url: "/zhenhouxinde_details/:id",
+              templateUrl: "templates/zhenhouxinde_details.html",
+              controller: "zhenhouxindeDetailsCtrl"
+            })
 
         $urlRouterProvider.otherwise("/tab/home");
     }).run(['$rootScope',function($rootScope){
