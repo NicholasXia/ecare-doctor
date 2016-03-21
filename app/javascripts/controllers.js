@@ -444,7 +444,9 @@ angular.module('medicine.controllers', [])
     $scope.saveYY=function(){
       var saveMsg = {
         accessToken: currentUser.getAuthToken(),
-
+        sheng: $scope.shengId,
+        shi: $scope.shiId,
+        xian: $scope.xianId,
         hospital: $scope.patientData.yy
 
       }
