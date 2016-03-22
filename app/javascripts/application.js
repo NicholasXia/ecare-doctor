@@ -341,11 +341,32 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             })
 
         $urlRouterProvider.otherwise("/tab/home");
-    }).run(['$rootScope',function($rootScope){
+    }).run(function($rootScope,currentUser,$ionicPopup,$window,$timeout){
       $rootScope.$on('$stateChangeSuccess',
           function(event, toState, toParams, fromState, fromParams){
+            var forbit=['xueshu','zhenhouxinde'];
+            for(i in forbit){
+              console.log(forbit[i]);
+              if(forbit[i]==toState.name){
+                if(currentUser.getAuthToken()==null){
+                  var popup = $ionicPopup.alert({
+                      title: '错误提示',
+                      template: '没有登录'
+                  });
+                  $timeout(function(){
+                    popup.close();
+                    $window.location.href="#/sign_in";
+                  }, 1500);
+
+                }
+                break;
+              }
+            }
+
+
+
             console.log(_hmt);
              _hmt.push(['_trackPageview', toState.url]);
 
           });
-    }]);
+    });
