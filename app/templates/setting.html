@@ -4,8 +4,8 @@
         <h1 class="title">设置</h1>
     </ion-header-bar>
     <ion-content class="backcolormine">
-        <div class="list" ng-if="isLogin">
-            <a ui-sref="changepwd" class='item  home-feature-in  justify-center-lr'>
+        <div class="list" >
+            <a ng-if="isLogin" ui-sref="changepwd" class='item  home-feature-in  justify-center-lr'>
                 <div class='justify-lr my-span'><span class='commenter'>修改密码</span></div>
                 <div class="fl-div-right"><img src="./images/shouyejinrujian.png" alt=""></div>
             </a>
@@ -20,7 +20,7 @@
                 </a>
 
 
-            <button class="button button-full button-balanced" ng-click="destroyU()">
+            <button  ng-if="isLogin" class="button button-full button-balanced" ng-click="destroyU()">
                 退出登陆
             </button>
         </div>
