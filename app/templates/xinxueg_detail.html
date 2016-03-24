@@ -6,10 +6,11 @@
     <ion-content>
         <div class="list">
             <div class="item item-avatar">
-                <img ng-if="xinxuegdetail.profileImage" ng-src="{{xinxuegdetail.profileImage}}" onerror="this.src='./images/yisheng.png'">
+                <img ng-if="xinxuegdetail.profileImage" ng-src="{{xinxuegdetail.profileImage}}" onerror="this.src='./images/touxiang.png'">
                 <!-- <img  ng-if="!xinxuegdetail.profileImage" class="yisheng" src="./images/yisheng.png"> -->
 
                 <div style='padding-top:10px'>
+                  <p ng-if="xinxuegdetail.doctorName==null">医康世纪</p>
                     <p>{{xinxuegdetail.doctorName}}</p>
                 </div>
                 <div class='item-body pad-replate home ' style="padding-bottom: 20px">
