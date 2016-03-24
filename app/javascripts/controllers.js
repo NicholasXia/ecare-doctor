@@ -341,6 +341,8 @@ angular.module('medicine.controllers', [])
 
   }])
   .controller('changeCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', 'districtGet', 'getYy', 'mineInfo', function($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile, districtGet, getYy, mineInfo) {
+
+
     $scope.patientData = {
       birthday: '',
       weight: '',
@@ -391,6 +393,9 @@ angular.module('medicine.controllers', [])
     districtGet.query(select, function(data) {
       $scope.shenglist = data
     })
+
+
+    console.log($scope.selectsheng);
     $scope.showSelectSheng = function(select) {
       var shi = {
         accessToken: currentUser.getAuthToken(),
@@ -400,7 +405,10 @@ angular.module('medicine.controllers', [])
       districtGet.query(shi, function(data) {
         $scope.shilist = data
       })
+      $scope.selectxian=0;
+      $scope.xianlist=null;
       $scope.shengId = select
+      $scope.yylist=null;
 
     }
     $scope.showSelectShi = function(select) {
@@ -442,6 +450,14 @@ angular.module('medicine.controllers', [])
       console.log(data)
     })
     $scope.saveYY=function(){
+      if($scope.shengId&&(!$scope.shiId||!$scope.xianId)){
+          var popup = $ionicPopup.alert({
+              title: '错误提示',
+              template: '请选择完整的地域信息'
+          })
+          return;
+      }
+
       var saveMsg = {
         accessToken: currentUser.getAuthToken(),
         sheng: $scope.shengId,
@@ -450,11 +466,18 @@ angular.module('medicine.controllers', [])
         hospital: $scope.patientData.yy
 
       }
+        // if(!$scope.shengId){
+        //   delete saveMsg.sheng;
+        //   delete saveMsg.shi;
+        //   delete saveMsg.xian;
+        // }
+      console.log(saveMsg.hospital);
       if(!saveMsg.hospital){
         var popup = $ionicPopup.alert({
             title: '错误提示',
             template: '请选择医院'
         })
+        return;
       }
 
       updateMsg.save(saveMsg, function(data) {

@@ -578,6 +578,27 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('webUtils', ['$document','$window','$resource', 'SERVER', function ($document,$window,$resource, SERVER) {
+      function isWeiXin(){
+          var ua = $window.navigator.userAgent.toLowerCase();
+          if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+            return true;
+            }else{
+            return false;
+          }
+        }
+        var fa={};
+        fa.isWeiXin=isWeiXin;
+        fa.goHistory=function(){
+          if(!isWeiXin()){
+            console.log($window.history);
+            $window.history.back();
+          }else{
+            $window.location.href='/#/tab/home';
+          }
+        }
+        return fa;
+    }])
     .factory('xinde', ['$resource', 'SERVER','$http', function ($resource, SERVER,$http) {
       var fa={};
       fa.add=function(formData,cb){
