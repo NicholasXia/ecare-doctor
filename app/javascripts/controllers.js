@@ -475,7 +475,7 @@ angular.module('medicine.controllers', [])
       if(!saveMsg.hospital){
         var popup = $ionicPopup.alert({
             title: '错误提示',
-            template: '请选择医院'
+            template: '请选择/输入医院'
         })
         return;
       }
