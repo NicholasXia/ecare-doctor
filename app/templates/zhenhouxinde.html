@@ -24,18 +24,18 @@
       <div class="" ui-sref='zhenhouxinde_details({id:e.id})'>
 
 
-        <ion-item style="margin-top:25px">
+        <ion-item style="margin-top:25px;">
           <div class="">
             <div class="">
               <span ng-if="e.doctorName!='匿名发表'&&e.technicalTitle">{{e.technicalTitle}}：</span><span>{{e.doctorName}}</span><span style="float:right">{{e.creTime}}</span>
             </div>
             <div style="margin-top:15px;">
-              <div class="">
-                <span style="font-size:20px;color:#2CCD8F;font-weight:bold">患者类型：<span>{{e.illType}}</span></span>
-              </div>
+              <div style="" class="">
+                <p style="white-space:normal;font-size:20px;color:#2CCD8F;font-weight:bold">患者类型：{{e.illType}}</div>
+              </p>
             </div>
-            <div style="margin-top:15px" class="">
-              <span>病情描述：</span><span>{{e.illDesc}}</span>
+            <div style="width:100%;margin-top:15px" class="">
+              <span>病情描述：</span><p style="">{{e.illDesc}}</p>
             </div>
             <div class="" style="margin-top:15px;overflow:hidden;margin-left:2px;float:left;width:100px;" ng-repeat="image in e.diagnoseExpImgList">
               <img style="" src="{{image.imageUrl}}" width="100%" alt="" />
@@ -47,7 +47,7 @@
             心得：
           </div>
           <div class="">
-            <p>
+            <p style="">
               {{e.experience}}
             </p>
           </div>
@@ -55,7 +55,7 @@
         <ion-item style="">
           <div style="float:left;width:35%;border-right:1px solid #DEDFE0;">鼓励：{{e.reward}}积分</div>
           <div style="float:left;width:25%;border-right:1px solid #DEDFE0;text-align:center">评论：{{e.remarkCount}}</div>
-          <div style="float:right;width:30%;margin-left:30px">阅读：{{e.readCount}}</div>
+          <div style="float:right;width:30%;margin-left:25px">阅读：{{e.readCount}}</div>
         </ion-item>
       </div>
     </div>
