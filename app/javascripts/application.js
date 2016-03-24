@@ -364,9 +364,14 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             }
 
 
+          if(toParams.id){
+            // console.log(toState.url.replace(":id",toParams.id));
+            _hmt.push(['_trackPageview', toState.url.replace(":id",toParams.id)]);
+          }else{
+            _hmt.push(['_trackPageview', toState.url]);
+          }
 
-            console.log(_hmt);
-             _hmt.push(['_trackPageview', toState.url]);
+
 
           });
     });
