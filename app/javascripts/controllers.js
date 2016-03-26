@@ -556,7 +556,7 @@ angular.module('medicine.controllers', [])
     })
 
   }])
-  .controller('analysisDetailCtrl', ['$scope', '$window', '$stateParams', '$ionicPopup', 'analysisDetail', 'analysisRemark', 'currentUser', 'collection', '$timeout', 'delay', 'SHARE_APP', '$ionicActionSheet', function($scope, $window, $stateParams, $ionicPopup, analysisDetail, analysisRemark, currentUser, collection, $timeout, delay, SHARE_APP, $ionicActionSheet) {
+  .controller('analysisDetailCtrl', ['$document','$scope', '$window', '$stateParams', '$ionicPopup', 'analysisDetail', 'analysisRemark', 'currentUser', 'collection', '$timeout', 'delay', 'SHARE_APP', '$ionicActionSheet', function($document,$scope, $window, $stateParams, $ionicPopup, analysisDetail, analysisRemark, currentUser, collection, $timeout, delay, SHARE_APP, $ionicActionSheet) {
 
     console.log($ionicActionSheet);
     var accesstoken = currentUser.getAuthToken();
@@ -583,25 +583,28 @@ angular.module('medicine.controllers', [])
       });
     }
 
+    $scope.$on('$ionicView.enter',function(e,d){
+      analysisDetail.query({
+        id: $stateParams.id,
+        accessToken: accesstoken
+      }, function(data) {
+        $scope.analysisdetail = data
+        console.log(data);
+        $document[0].title="病例分享:"+" 主讲人:"+data.doctorName+" 来自:"+data.hospital;
+        mobShare.config({
+          appkey: SHARE_APP,
+        });
+        $scope.shareWeibo = function() {
+          var weibo = mobShare('weibo');
+          weibo.send();
+        }
+        $scope.shareQzone = function() {
+          var qzone = mobShare('qzone');
+          qzone.send();
+        }
+      })
+    });
 
-    analysisDetail.query({
-      id: $stateParams.id,
-      accessToken: accesstoken
-    }, function(data) {
-      $scope.analysisdetail = data
-      console.log(data);
-      mobShare.config({
-        appkey: SHARE_APP,
-      });
-      $scope.shareWeibo = function() {
-        var weibo = mobShare('weibo');
-        weibo.send();
-      }
-      $scope.shareQzone = function() {
-        var qzone = mobShare('qzone');
-        qzone.send();
-      }
-    })
     $scope.detailMsg = {
       'acomment': ''
     }
@@ -817,7 +820,7 @@ angular.module('medicine.controllers', [])
   })
 }])
 
-.controller('medicalDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'collection', 'SHARE_APP', '$ionicActionSheet', function($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, collection, SHARE_APP, $ionicActionSheet) {
+.controller('medicalDetailCtrl', ['$document','$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'collection', 'SHARE_APP', '$ionicActionSheet', function($document,$scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, collection, SHARE_APP, $ionicActionSheet) {
     console.log(SHARE_APP);
     console.log($ionicActionSheet);
     $scope.showAction = function() {
@@ -843,28 +846,31 @@ angular.module('medicine.controllers', [])
         cancelText: '关闭'
       });
     }
-
-    Detail.query({
-      id: $stateParams.id
-    }, function(data) {
-      $scope.medicaldetail = data
-      mobShare.config({
-        appkey: SHARE_APP,
-        params: {
-          title: data.title
+    $scope.$on('$ionicView.enter',function(e,d){
+      Detail.query({
+        id: $stateParams.id
+      }, function(data) {
+        $document[0].title=data.title;
+        $scope.medicaldetail = data
+        mobShare.config({
+          appkey: SHARE_APP,
+          params: {
+            title: data.title
+          }
+        });
+        $scope.shareWeibo = function() {
+          var weibo = mobShare('weibo');
+          weibo.send();
         }
-      });
-      $scope.shareWeibo = function() {
-        var weibo = mobShare('weibo');
-        weibo.send();
-      }
-      $scope.shareQzone = function() {
-        var qzone = mobShare('qzone');
-        qzone.send();
-      }
+        $scope.shareQzone = function() {
+          var qzone = mobShare('qzone');
+          qzone.send();
+        }
 
-      console.log(data)
-    })
+        console.log(data)
+      })
+    });
+
 
     var accesstoken = currentUser.getAuthToken()
     $scope.markinfo = {
