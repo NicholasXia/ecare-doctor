@@ -47,10 +47,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 }
             })
 
-            .state('patienttabs', {
-                url: "/pat",
-                templateUrl: "templates/patient.html"
-            })
+
 
             .state('msgtab', {
                 url: "/msgtab",
@@ -80,7 +77,10 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                     }
                 }
             })
-
+            .state('patienttabs', {
+                url: "/pat",
+                templateUrl: "templates/patient.html"
+            })
             .state('patienttabs.patientlist', {
                 url: "/patientlist",
                 views: {

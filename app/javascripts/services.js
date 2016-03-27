@@ -617,8 +617,22 @@ angular.module('medicine.services', ['ngResource'])
           transformRequest: angular.identity
         }).success(cb);
       }
+      fa.addRemark=function(formData,cb){
 
-
+        $http.post(SERVER+'/doctor/diagnose_experience/remark', formData,{
+          headers: {
+            'Content-Type': undefined
+          },
+          transformRequest: angular.identity
+        }).
+        success(cb).
+        error(cb);
+        // $http({method:'POST',params:formData,url:SERVER+'/doctor/diagnose_experience/remark'}).then(function success(res){
+        //   return cb(null,res.data);
+        // },function error(){
+        //   return cb(res.status,null);//ERROR
+        // });
+      }
 
 
       fa.list=function(params,cb){

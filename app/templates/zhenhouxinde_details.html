@@ -19,7 +19,8 @@
           </div>
         </div>
         <div style="margin-top:15px" class="">
-          <span>病情描述：</span><p>{{data.illDesc}}</p>
+          <span>病情描述：</span>
+          <p>{{data.illDesc}}</p>
         </div>
         <div class="" style="margin-top:15px;overflow:hidden;margin-left:2px;float:left;width:100px;" ng-repeat="image in data.diagnoseExpImgList">
           <img style="" src="{{image.imageUrl}}" width="100%" alt="" />
@@ -46,12 +47,35 @@
         </p>
       </div>
     </ion-item>
-   <ion-item style="">
-        <div style="float:left;width:35%;border-right:1px solid #DEDFE0;">鼓励：{{data.reward}}积分</div>
-        <div style="float:left;width:25%;border-right:1px solid #DEDFE0;text-align:center">评论：{{data.remarkCount}}</div>
-        <div style="float:right;width:30%;margin-left:25px">阅读：{{data.readCount}}</div>
-      </ion-item>
+    <ion-item style="">
+      <div style="float:left;width:35%;border-right:1px solid #DEDFE0;">鼓励：{{data.reward}}积分</div>
+      <div style="float:left;width:25%;border-right:1px solid #DEDFE0;text-align:center">评论：{{data.remarkCount}}</div>
+      <div style="float:right;width:30%;margin-left:25px">阅读：{{data.readCount}}</div>
+    </ion-item>
 
+    <div class="bar bar-header item-input-inset">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="我也说两句吧" ng-model="markinfo.remak">
+      </label>
+      <button class="button button-clear" ng-click="remark()">
+        发表
+      </button>
+
+    </div>
+
+    <div class="item item-avatar" ng-repeat="item in data.remarkList">
+        <img ng-if="item.profileImage" class="yisheng"  ng-src="{{item.profileImage}}" >
+
+        <img ng-if="!item.profileImage" class="yisheng"  src="./images/yisheng.png">
+
+        <div class='commenter'>
+            <span>{{item.name}}</span>
+            <span>{{item.creTime}}</span>
+        </div>
+        <div class="item-body pad-replate">
+            {{item.content}}
+        </div>
+    </div>
 
   </ion-content>
 </ion-view>

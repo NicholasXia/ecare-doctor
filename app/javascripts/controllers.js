@@ -333,7 +333,7 @@ angular.module('medicine.controllers', [])
   }])
 
 .controller('doctorEndMineCtrl', ['$timeout','$scope', 'mineInfo', 'currentUser', 'checkLogin', '$window', '$ionicPopup', function($timeout,$scope, mineInfo, currentUser, checkLogin, $window, $ionicPopup) {
-
+  console.log('doctorEndMineCtrl');
     $scope.ischeck = !!checkLogin.check()
 
     var accesstoken = currentUser.getAuthToken()
@@ -713,6 +713,7 @@ angular.module('medicine.controllers', [])
   //消息记录
   .controller('msgRecordCtrl', ['$scope', 'gonggaolist', 'getPatientAsk', 'currentUser', 'mineInfo', function($scope, gonggaolist, getPatientAsk, currentUser, mineInfo) {
     var accesstoken = currentUser.getAuthToken()
+    console.log('msgRecordCtrl');
     mineInfo.query({
       accessToken: accesstoken
     }, function(data) {
@@ -1109,9 +1110,16 @@ angular.module('medicine.controllers', [])
     }
 
   }])
+
+  .controller('patientListCtrl1',function(){
+    console.log('patientListCtrl11');
+  })
+
   .controller('patientListCtrl', ['$scope', 'dayIncrease', 'patientBindList', 'patientCheckBindList', 'currentUser', 'mineInfo', 'bindinfo', '$ionicPopup', '$window', '$timeout', function($scope, dayIncrease, patientBindList, patientCheckBindList, currentUser, mineInfo, bindinfo, $ionicPopup, $window, $timeout) {
+    console.log('patientListCtrl');
     var accesstoken = currentUser.getAuthToken()
     if (!accesstoken) {
+
       var popup = $ionicPopup.alert({
         title: '提示',
         template: '登陆才能查看哟！！'
@@ -1119,6 +1127,7 @@ angular.module('medicine.controllers', [])
       $timeout(function() {
         popup.close()
       }, 2000)
+      $window.location.href="#/sign_in";
       return
     }
     patientCheckBindList.query({
@@ -1819,6 +1828,49 @@ angular.module('medicine.controllers', [])
       if ($scope.addscore < 10) {
         $scope.addscore = 10;
       }
+    }
+    $scope.markinfo={remak:''};
+    $scope.remark = function() {
+      var accessToken=currentUser.getAuthToken();
+
+
+      if ($scope.markinfo.remak.length == 0) {
+        var popup=$ionicPopup.alert({
+          title: '提示',
+          template: '请填写评论'
+        })
+        $timeout(function () {
+            popup.close()
+       }, 3000)
+        return
+      }
+      var formData = new FormData();
+      formData.append('diaExpId', $stateParams.id);
+      formData.append('accessToken', currentUser.getAuthToken());
+      formData.append('content',$scope.markinfo.remak);
+      xinde.addRemark(formData, function(data) {
+        $scope.markinfo.remak = ''
+
+
+        if (data.status == 'suc') {
+          xinde.get({
+            id: $stateParams.id
+          }, function(err, data) {
+            console.log(data);
+            $scope.data = data;
+          });
+        } else {
+          var popup=$ionicPopup.alert({
+            title: '错误提示',
+            template: '您还未登陆不能进行评论'
+          });
+          $timeout(function () {
+              popup.close()
+         }, 3000)
+          $window.location.href = '#/sign_in'
+        }
+      })
+
     }
 
     $scope.reward = function() {
