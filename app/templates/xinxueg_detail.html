@@ -18,6 +18,9 @@
                         {{xinxuegdetail.content | trustHtml}}
 
                     </p>
+                    <div ng-click="link(xinxuegdetail)" ng-if="xinxuegdetail.url!=null" class="" style="font-size:14px;color:#737373;margin-top:10px">
+                      <span style="" class="ion-link"></span><span style="margin-left:5px;">网页链接</span>
+                    </div>
                     <img ng-repeat="item in xinxuegdetail.imageList" ng-src="{{item.imageUrl}}"/>
                 </div>
                 <p>{{xinxuegdetail.creTime}}</p>

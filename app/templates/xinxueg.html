@@ -1,45 +1,47 @@
 <ion-view view-title="心血管圈-乐柏医" cache-view="false">
-    <ion-header-bar class="bar-balanced">
-        <a class="button icon ion-chevron-left" href="/#/tab/home"></a>
-        <h1 class="title">心血管圈</h1>
+  <ion-header-bar class="bar-balanced">
+    <a class="button icon ion-chevron-left" href="/#/tab/home"></a>
+    <h1 class="title">心血管圈</h1>
 
-        <div class="buttons">
-            <div ng-click="goPublish()" class="ion-compose icon-size"></div>
-        </div>
-    </ion-header-bar>
-    <ion-content>
-        <div class="list">
-            <a class="item item-avatar item-text-wrap"  ng-repeat="item in xinlist"
-               ui-sref='xinxueg_detail({id:item.id})'>
-                <img ng-if="item.profileImage" ng-src="{{item.profileImage}}" onerror="this.src='./images/tongxiang.png'"/>
-                <h2 ng-if="item.doctorName==null">医康世纪</h2>
-                <h2>{{item.doctorName}}</h2>
+    <div class="buttons">
+      <div ng-click="goPublish()" class="ion-compose icon-size"></div>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <a class="item item-avatar item-text-wrap" ng-repeat="item in xinlist" ui-sref='xinxueg_detail({id:item.id})'>
+        <img ng-if="item.profileImage" ng-src="{{item.profileImage}}" onerror="this.src='./images/tongxiang.png'" />
+        <h2 ng-if="item.doctorName==null">医康世纪</h2>
+        <h2>{{item.doctorName}}</h2>
 
-                <div class='home'>
-                    <p>
-                        {{item.content}}
-                    <p>
-                    <p>
-                      <!-- <img class="img-responsive ng-class:{'col25':(item.imageList.length>1)}" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList"> -->
-                          <span ng-repeat="img in item.imageList"><img style="display: inline-block;
+        <div class='home'>
+          <p>
+            {{item.content}}
+            <p>
+              <div ng-click="link(item)" ng-if="item.url!=null" class="" style="font-size:14px;color:#737373;margin-top:10px">
+                <span style="" class="ion-link"></span><span style="margin-left:5px;">网页链接</span>
+              </div>
+              <p>
+                <!-- <img class="img-responsive ng-class:{'col25':(item.imageList.length>1)}" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList"> -->
+                <span ng-repeat="img in item.imageList"><img style="display: inline-block;
     float: left;
     padding: 5px;
     text-align: center;
     width:64px;
     height:64px;" ng-src="{{img.imageUrl}}"  alt=""/></span>
-                    </p>
-                </div>
-
-                <p class="home">
-                    <img ng-src="{{item.image}}" />
-                </p>
-                <div class='news-from row'>
-                    <span class="col col-80">{{item.creTime}}</span>
-                    <span class="col col-20"><i class="ion-chatbubble-working"
-                             style='font-size:20px'></i> {{item.remarkCount}}</span>
-                </div>
-            </a>
-
+              </p>
         </div>
-    </ion-content>
+
+        <p class="home">
+          <img ng-src="{{item.image}}" />
+        </p>
+        <div class='news-from row'>
+          <span class="col col-80">{{item.creTime}}</span>
+          <span class="col col-20"><i class="ion-chatbubble-working"
+                             style='font-size:20px'></i> {{item.remarkCount}}</span>
+        </div>
+      </a>
+
+    </div>
+  </ion-content>
 </ion-view>

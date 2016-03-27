@@ -405,10 +405,10 @@ angular.module('medicine.controllers', [])
       districtGet.query(shi, function(data) {
         $scope.shilist = data
       })
-      $scope.selectxian=0;
-      $scope.xianlist=null;
+      $scope.selectxian = 0;
+      $scope.xianlist = null;
       $scope.shengId = select
-      $scope.yylist=null;
+      $scope.yylist = null;
 
     }
     $scope.showSelectShi = function(select) {
@@ -446,36 +446,36 @@ angular.module('medicine.controllers', [])
     }, function(data) {
       console.log('mainInfo')
       $scope.infodata = data;
-      $scope.patientData.yy=data.hospital;
+      $scope.patientData.yy = data.hospital;
       console.log(data)
     })
-    $scope.saveYY=function(){
-      if($scope.shengId&&(!$scope.shiId||!$scope.xianId)){
-          var popup = $ionicPopup.alert({
-              title: '错误提示',
-              template: '请选择完整的地域信息'
-          })
-          return;
+    $scope.saveYY = function() {
+      if ($scope.shengId && (!$scope.shiId || !$scope.xianId)) {
+        var popup = $ionicPopup.alert({
+          title: '错误提示',
+          template: '请选择完整的地域信息'
+        })
+        return;
       }
 
       var saveMsg = {
-        accessToken: currentUser.getAuthToken(),
-        sheng: $scope.shengId,
-        shi: $scope.shiId,
-        xian: $scope.xianId,
-        hospital: $scope.patientData.yy
+          accessToken: currentUser.getAuthToken(),
+          sheng: $scope.shengId,
+          shi: $scope.shiId,
+          xian: $scope.xianId,
+          hospital: $scope.patientData.yy
 
-      }
+        }
         // if(!$scope.shengId){
         //   delete saveMsg.sheng;
         //   delete saveMsg.shi;
         //   delete saveMsg.xian;
         // }
       console.log(saveMsg.hospital);
-      if(!saveMsg.hospital){
+      if (!saveMsg.hospital) {
         var popup = $ionicPopup.alert({
-            title: '错误提示',
-            template: '请选择/输入医院'
+          title: '错误提示',
+          template: '请选择/输入医院'
         })
         return;
       }
@@ -556,7 +556,7 @@ angular.module('medicine.controllers', [])
     })
 
   }])
-  .controller('analysisDetailCtrl', ['$document','$scope', '$window', '$stateParams', '$ionicPopup', 'analysisDetail', 'analysisRemark', 'currentUser', 'collection', '$timeout', 'delay', 'SHARE_APP', '$ionicActionSheet', function($document,$scope, $window, $stateParams, $ionicPopup, analysisDetail, analysisRemark, currentUser, collection, $timeout, delay, SHARE_APP, $ionicActionSheet) {
+  .controller('analysisDetailCtrl', ['$document', '$scope', '$window', '$stateParams', '$ionicPopup', 'analysisDetail', 'analysisRemark', 'currentUser', 'collection', '$timeout', 'delay', 'SHARE_APP', '$ionicActionSheet', function($document, $scope, $window, $stateParams, $ionicPopup, analysisDetail, analysisRemark, currentUser, collection, $timeout, delay, SHARE_APP, $ionicActionSheet) {
 
     console.log($ionicActionSheet);
     var accesstoken = currentUser.getAuthToken();
@@ -583,14 +583,14 @@ angular.module('medicine.controllers', [])
       });
     }
 
-    $scope.$on('$ionicView.enter',function(e,d){
+    $scope.$on('$ionicView.enter', function(e, d) {
       analysisDetail.query({
         id: $stateParams.id,
         accessToken: accesstoken
       }, function(data) {
         $scope.analysisdetail = data
         console.log(data);
-        $document[0].title="病例分享:"+" 主讲人:"+data.doctorName+" 来自:"+data.hospital;
+        $document[0].title = "病例分享:" + " 主讲人:" + data.doctorName + " 来自:" + data.hospital;
         mobShare.config({
           appkey: SHARE_APP,
         });
@@ -820,7 +820,7 @@ angular.module('medicine.controllers', [])
   })
 }])
 
-.controller('medicalDetailCtrl', ['$document','$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'collection', 'SHARE_APP', '$ionicActionSheet', function($document,$scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, collection, SHARE_APP, $ionicActionSheet) {
+.controller('medicalDetailCtrl', ['$document', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'collection', 'SHARE_APP', '$ionicActionSheet', function($document, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, collection, SHARE_APP, $ionicActionSheet) {
     console.log(SHARE_APP);
     console.log($ionicActionSheet);
     $scope.showAction = function() {
@@ -846,11 +846,11 @@ angular.module('medicine.controllers', [])
         cancelText: '关闭'
       });
     }
-    $scope.$on('$ionicView.enter',function(e,d){
+    $scope.$on('$ionicView.enter', function(e, d) {
       Detail.query({
         id: $stateParams.id
       }, function(data) {
-        $document[0].title=data.title;
+        $document[0].title = data.title;
         $scope.medicaldetail = data
         mobShare.config({
           appkey: SHARE_APP,
@@ -942,6 +942,10 @@ angular.module('medicine.controllers', [])
       $scope.xinlist = data
       console.log(data)
     })
+    $scope.link = function(discovery) {
+      console.log('link');
+      $window.location.href = discovery.url;
+    }
     $scope.isLogin = currentUser.hasAuthToken()
     $scope.goPublish = function() {
       if (!$scope.isLogin) {
@@ -958,6 +962,10 @@ angular.module('medicine.controllers', [])
 
 .controller('xinxuegDetailCtrl', ['$scope', 'xinxuegDetail', '$stateParams', 'currentUser', '$window', '$ionicPopup', 'xinxuegMyRemark', function($scope, xinxuegDetail, $stateParams, currentUser, $window, $ionicPopup, xinxuegMyRemark) {
     var accesstoken = currentUser.getAuthToken()
+    $scope.link = function(discovery) {
+      console.log('link');
+      $window.location.href = discovery.url;
+    }
     if (accesstoken) {
       xinxuegDetail.query({
         id: $stateParams.id,
@@ -1611,64 +1619,70 @@ angular.module('medicine.controllers', [])
 
   }])
 
-  .controller('zhenhouxindeCtrl',['$scope','xinde','currentUser',function($scope,xinde,currentUser) {
-    $scope.data=[];
-    xinde.list({accessToken:currentUser.getAuthToken},function(err,data){
+.controller('zhenhouxindeCtrl', ['$scope', 'xinde', 'currentUser', function($scope, xinde, currentUser) {
+    $scope.data = [];
+    xinde.list({
+      accessToken: currentUser.getAuthToken
+    }, function(err, data) {
       console.log(data);
-      $scope.data=data;
+      $scope.data = data;
     });
   }])
-  .controller('zhenhouxindeWodeCtrl',['$window','$ionicPopup','$scope','xinde','currentUser',function($window,$ionicPopup,$scope,xinde,currentUser) {
-    $scope.data=[];
-    xinde.mylist({accessToken:currentUser.getAuthToken()},function(err,data){
+  .controller('zhenhouxindeWodeCtrl', ['$window', '$ionicPopup', '$scope', 'xinde', 'currentUser', function($window, $ionicPopup, $scope, xinde, currentUser) {
+    $scope.data = [];
+    xinde.mylist({
+      accessToken: currentUser.getAuthToken()
+    }, function(err, data) {
       console.log(data);
       if (data.error) {
         $ionicPopup.alert({
           title: '错误',
           template: data.error
         });
-        $window.location.href="#/sign_in"
+        $window.location.href = "#/sign_in"
         return;
       }
 
-      $scope.data=data;
+      $scope.data = data;
     });
   }])
 
 
-  .controller('zhenhouxindeDetailsCtrl',['$window','$ionicPopup','patientProfile','$stateParams','$scope','xinde','currentUser',function($window,$ionicPopup,patientProfile,$stateParams,$scope,xinde,currentUser) {
+.controller('zhenhouxindeDetailsCtrl', ['$window', '$ionicPopup', 'patientProfile', '$stateParams', '$scope', 'xinde', 'currentUser', function($window, $ionicPopup, patientProfile, $stateParams, $scope, xinde, currentUser) {
 
     patientProfile.query({
       accessToken: currentUser.getAuthToken()
     }, function(data) {
-      if(data.error_code){
+      if (data.error_code) {
         $ionicPopup.alert({
           title: '错误',
           template: data.error
         });
-        $window.location.href="#/sign_in"
+        $window.location.href = "#/sign_in"
         return;
       }
-      $scope.myscore=data.score;
+      $scope.myscore = data.score;
     })
 
-    $scope.data=[];
-    $scope.addscore=10;
-    xinde.get({id: $stateParams.id},function(err,data){
+    $scope.data = [];
+    $scope.addscore = 10;
+    xinde.get({
+      id: $stateParams.id
+    }, function(err, data) {
       console.log(data);
-      $scope.data=data;
+      $scope.data = data;
     });
 
-    $scope.add_score=function(score){
-      $scope.addscore+=score;
-      if($scope.addscore<10){
-        $scope.addscore=10;
+    $scope.add_score = function(score) {
+      $scope.addscore += score;
+      if ($scope.addscore < 10) {
+        $scope.addscore = 10;
       }
     }
 
-    $scope.reward=function(){
+    $scope.reward = function() {
 
-      if($scope.myscore-$scope.addscore<0){
+      if ($scope.myscore - $scope.addscore < 0) {
         $ionicPopup.alert({
           title: '错误',
           template: '您的积分不够打赏'
@@ -1678,15 +1692,15 @@ angular.module('medicine.controllers', [])
         return;
       }
       var formData = new FormData();
-      formData.append('diaExpId',$stateParams.id);
-      formData.append('accessToken',currentUser.getAuthToken());
-      formData.append('score',$scope.addscore);
-      xinde.reward(formData,function(data){
+      formData.append('diaExpId', $stateParams.id);
+      formData.append('accessToken', currentUser.getAuthToken());
+      formData.append('score', $scope.addscore);
+      xinde.reward(formData, function(data) {
         console.log(data);
-        if(data.error_code){
+        if (data.error_code) {
           $ionicPopup.alert({
             title: '错误',
-            template:data.error
+            template: data.error
           });
           return
         }
@@ -1694,27 +1708,29 @@ angular.module('medicine.controllers', [])
           title: '打赏',
           template: '打赏成功'
         });
-        $window.location.href="#/zhenhouxinde";
+        $window.location.href = "#/zhenhouxinde";
         return;
       });
     }
   }])
-  .controller('zhenhouxindeBianjiCtrl',['$window','$ionicPopup','patientProfile','$stateParams','$scope','xinde','currentUser',function($window,$ionicPopup,patientProfile,$stateParams,$scope,xinde,currentUser) {
-    $scope.xinde={};
-    xinde.get({id: $stateParams.id},function(err,data){
+  .controller('zhenhouxindeBianjiCtrl', ['$window', '$ionicPopup', 'patientProfile', '$stateParams', '$scope', 'xinde', 'currentUser', function($window, $ionicPopup, patientProfile, $stateParams, $scope, xinde, currentUser) {
+    $scope.xinde = {};
+    xinde.get({
+      id: $stateParams.id
+    }, function(err, data) {
       console.log(data);
-      $scope.xinde=data;
+      $scope.xinde = data;
     });
 
-    $scope.$watch('publishphoto',function(newValue,oldValue){
-      console.log('newValue '+newValue);
+    $scope.$watch('publishphoto', function(newValue, oldValue) {
+      console.log('newValue ' + newValue);
 
 
     });
-    $scope.fabu = function(publishphoto,status) {
+    $scope.fabu = function(publishphoto, status) {
       var imgs = [];
       if (publishphoto) {
-        if(publishphoto.length>3){
+        if (publishphoto.length > 3) {
           $ionicPopup.alert({
             title: '错误',
             template: '最多只能上传三张心得照片'
@@ -1732,19 +1748,19 @@ angular.module('medicine.controllers', [])
         imgs = getbase64arr();
       }
       var formData = new FormData()
-      if(!$scope.xinde.illType||!$scope.xinde.illDesc||!$scope.xinde.experience){
+      if (!$scope.xinde.illType || !$scope.xinde.illDesc || !$scope.xinde.experience) {
         $ionicPopup.alert({
           title: '错误',
           template: '请填写完整的心得信息'
         });
         return;
       }
-      formData.append('id',$stateParams.id);
-      formData.append('status',status);
+      formData.append('id', $stateParams.id);
+      formData.append('status', status);
       formData.append('illType', $scope.xinde.illType);
       formData.append('illDesc', $scope.xinde.illDesc);
       formData.append('experience', $scope.xinde.experience);
-      formData.append('isAnonymous',$scope.xinde.isAnonymous);
+      formData.append('isAnonymous', $scope.xinde.isAnonymous);
       for (var i = 0; i < imgs.length; i++) {
         formData.append('imageBase64s', imgs[i]);
       }
@@ -1752,85 +1768,85 @@ angular.module('medicine.controllers', [])
 
       formData.append('accessToken', currentUser.getAuthToken())
       console.log(formData);
-      xinde.update(formData,function(data){
-        if(data.error_code){
+      xinde.update(formData, function(data) {
+        if (data.error_code) {
           $ionicPopup.alert({
             title: '错误',
             template: data.error
           });
-        }else{
+        } else {
           $ionicPopup.alert({
             title: '成功',
             template: '发布心得成功'
           });
-          $window.location.href='#/zhenhouxinde_wode'
+          $window.location.href = '#/zhenhouxinde_wode'
         }
       });
     }
   }])
 
 
-  .controller('zhenhouxindefabiaoCtrl', ['$scope','currentUser','xinde','$ionicPopup','$window',function($scope,currentUser,xinde,$ionicPopup,$window) {
-    $scope.xinde={
-      isAnonymous:1
-    };
-    $scope.fabu = function(publishphoto,status) {
-      var imgs = [];
-      if (publishphoto) {
-        if(publishphoto.length>3){
-          $ionicPopup.alert({
-            title: '错误',
-            template: '最多只能上传三张心得照片'
-          });
-          return;
-        }
-        var getbase64arr = function() {
-          var temp = []
-          for (var i = 0, len = publishphoto.length; i < len; i++) {
-            temp[i] = publishphoto[i].dataURL
-          }
-          return temp
-        }
-        console.log(getbase64arr());
-        imgs = getbase64arr();
-      }
-      var formData = new FormData()
-      if(!$scope.xinde.illType||!$scope.xinde.illDesc||!$scope.xinde.experience){
+.controller('zhenhouxindefabiaoCtrl', ['$scope', 'currentUser', 'xinde', '$ionicPopup', '$window', function($scope, currentUser, xinde, $ionicPopup, $window) {
+  $scope.xinde = {
+    isAnonymous: 1
+  };
+  $scope.fabu = function(publishphoto, status) {
+    var imgs = [];
+    if (publishphoto) {
+      if (publishphoto.length > 3) {
         $ionicPopup.alert({
           title: '错误',
-          template: '请填写完整的心得信息'
+          template: '最多只能上传三张心得照片'
         });
         return;
       }
-
-      formData.append('status',status);
-      formData.append('illType', $scope.xinde.illType);
-      formData.append('illDesc', $scope.xinde.illDesc);
-      formData.append('experience', $scope.xinde.experience);
-      formData.append('isAnonymous',$scope.xinde.isAnonymous);
-      for (var i = 0; i < imgs.length; i++) {
-        formData.append('imageBase64s', imgs[i]);
-      }
-
-
-      formData.append('accessToken', currentUser.getAuthToken())
-      console.log(formData);
-      xinde.add(formData,function(data){
-        if(data.error_code){
-          $ionicPopup.alert({
-            title: '错误',
-            template: data.error
-          });
-        }else{
-          $ionicPopup.alert({
-            title: '成功',
-            template: '发布心得成功'
-          });
-          $window.location.href='#/zhenhouxinde'
+      var getbase64arr = function() {
+        var temp = []
+        for (var i = 0, len = publishphoto.length; i < len; i++) {
+          temp[i] = publishphoto[i].dataURL
         }
-      });
+        return temp
+      }
+      console.log(getbase64arr());
+      imgs = getbase64arr();
     }
-  }])
+    var formData = new FormData()
+    if (!$scope.xinde.illType || !$scope.xinde.illDesc || !$scope.xinde.experience) {
+      $ionicPopup.alert({
+        title: '错误',
+        template: '请填写完整的心得信息'
+      });
+      return;
+    }
+
+    formData.append('status', status);
+    formData.append('illType', $scope.xinde.illType);
+    formData.append('illDesc', $scope.xinde.illDesc);
+    formData.append('experience', $scope.xinde.experience);
+    formData.append('isAnonymous', $scope.xinde.isAnonymous);
+    for (var i = 0; i < imgs.length; i++) {
+      formData.append('imageBase64s', imgs[i]);
+    }
+
+
+    formData.append('accessToken', currentUser.getAuthToken())
+    console.log(formData);
+    xinde.add(formData, function(data) {
+      if (data.error_code) {
+        $ionicPopup.alert({
+          title: '错误',
+          template: data.error
+        });
+      } else {
+        $ionicPopup.alert({
+          title: '成功',
+          template: '发布心得成功'
+        });
+        $window.location.href = '#/zhenhouxinde'
+      }
+    });
+  }
+}])
 
 .controller('Messages', ['$scope', '$timeout', '$interval', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart', '$stateParams', '$window', function($scope, $timeout, $interval, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart, $stateParams, $window) {
 
