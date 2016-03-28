@@ -1133,19 +1133,22 @@ angular.module('medicine.controllers', [])
 })
 
 .controller('patientListCtrl', ['$scope', 'dayIncrease', 'patientBindList', 'patientCheckBindList', 'currentUser', 'mineInfo', 'bindinfo', '$ionicPopup', '$window', '$timeout', function($scope, dayIncrease, patientBindList, patientCheckBindList, currentUser, mineInfo, bindinfo, $ionicPopup, $window, $timeout) {
-  console.log('patientListCtrl');
   var accesstoken = currentUser.getAuthToken()
   if (!accesstoken) {
+    if(!currentUser.already){
 
-    var popup = $ionicPopup.alert({
-      title: '提示',
-      template: '登陆才能查看哟！！'
-    })
-    $timeout(function() {
-      popup.close()
-    }, 2000)
-    $window.location.href = "#/sign_in";
-    return
+      console.log(currentUser.already);
+      // var popup = $ionicPopup.alert({
+      //   title: '提示',
+      //   template: '登陆才能查看哟！！'
+      // })
+      // $timeout(function() {
+      //   popup.close()
+      // }, 2000)
+      $window.location.href = "#/sign_in";
+      return
+    }
+
   }
   patientCheckBindList.query({
     accessToken: accesstoken

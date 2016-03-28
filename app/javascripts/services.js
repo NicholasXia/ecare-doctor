@@ -78,7 +78,7 @@ angular.module('medicine.services', ['ngResource'])
         })
     }])
     .factory('currentUser', ['localStorageService', 'CURRENT_USER', 'DOCTOR_CODE', function (localStorageService, CURRENT_USER, DOCTOR_CODE) {
-        var currentUser = {}
+        var currentUser = {alreay:false}
         currentUser.getAuthToken = function () {
             return localStorageService.get(CURRENT_USER)
         }
@@ -97,6 +97,7 @@ angular.module('medicine.services', ['ngResource'])
         currentUser.getDoctorCode = function () {
             return localStorageService.get(DOCTOR_CODE)
         }
+
         return currentUser;
     }])
 
