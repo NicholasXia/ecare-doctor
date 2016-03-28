@@ -10,9 +10,16 @@
   <ion-content>
     <div class="list">
       <a class="item item-avatar item-text-wrap" ng-repeat="item in xinlist" ui-sref='xinxueg_detail({id:item.id})'>
-        <img ng-if="item.profileImage" ng-src="{{item.profileImage}}" onerror="this.src='./images/tongxiang.png'" />
-        <h2 ng-if="item.doctorName==null">医康世纪</h2>
-        <h2>{{item.doctorName}}</h2>
+      <!-- 普通用户 -->
+          <img ng-if="item.type==2" ng-src="{{item.profileImage}}" onerror="this.src='./images/yisheng.png'" />
+          <h2 ng-if="item.type==2">{{item.doctorName}}</h2>
+
+        <!-- 后台用户-->
+
+          <img ng-if="item.type==1" ng-src="./images/tongxiang.png" />
+          <h2 ng-if="item.type==1">医康世纪</h2>
+
+
 
         <div class='home'>
           <p>
