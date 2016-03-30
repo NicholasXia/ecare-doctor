@@ -38,9 +38,11 @@
         <p style="margin-top:20px;">
           <div style="">我的积分：{{myscore}}</div>
           <div style="margin-top:20px">
-            <div style="color:#EE6868;float:left;font-size:20px;border:1px solid #CFCFCF;padding:5px 10px;" ng-click="add_score(-10)">-</div>
-            <div style="color:#EE6868;margin-left:18px;float:left;border:1px solid #CFCFCF;padding:5px 10px">{{addscore}}</div>
-            <div style="color:#EE6868;margin-left:18px;float:left;border:1px solid #CFCFCF;padding:5px 10px" ng-click="add_score(10)">+</div>
+            <div style="color:#EE6868;float:left;font-size:20px;border:1px solid #CFCFCF;padding:5px 10px;" ng-click="add_score(-5)">-</div>
+            <div style="color:#EE6868;margin-left:18px;float:left;border:1px solid #CFCFCF;padding:5px 10px;">{{addscore}}
+              <!-- <input style="color:#EE6868;margin-left:18px;float:left;border:1px solid #CFCFCF;padding:5px 10px;width:60px" type="number" ng-model="addscore" > -->
+            </div>
+            <div style="color:#EE6868;margin-left:18px;float:left;border:1px solid #CFCFCF;padding:5px 10px" ng-click="add_score(5)">+</div>
             <div ng-click='reward()' style="color:white;background-color:#EE6868;margin-left:20px;float:left;border:1px solid #CFCFCF;padding:5px 10px">确定</div>
           </div>
 

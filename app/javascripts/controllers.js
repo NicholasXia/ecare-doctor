@@ -1015,7 +1015,7 @@ angular.module('medicine.controllers', [])
           })
           $timeout(function() {
             popup.close()
-          }, 3000)
+          }, 2000)
         } else {
           var popup = $ionicPopup.alert({
             title: '错误提示',
@@ -1835,7 +1835,7 @@ angular.module('medicine.controllers', [])
     })
 
     $scope.data = [];
-    $scope.addscore = 10;
+    $scope.addscore = 5;
     xinde.get({
       id: $stateParams.id
     }, function(err, data) {
@@ -1845,8 +1845,8 @@ angular.module('medicine.controllers', [])
 
     $scope.add_score = function(score) {
       $scope.addscore += score;
-      if ($scope.addscore < 10) {
-        $scope.addscore = 10;
+      if ($scope.addscore < 5) {
+        $scope.addscore = 5;
       }
     }
     $scope.markinfo = {
