@@ -675,6 +675,17 @@ angular.module('medicine.services', ['ngResource'])
       }
       return fa;
     }])
+    .factory('jilu',['$http','SERVER',function($http,SERVER){
+      var fa={};
+      fa.queryPaitent=function(params,cb){
+        $http({method:'GET',params:params,url:SERVER+'/patient/jilu/queryPatient'}).then(function success(res){
+          return cb(null,res.data);
+        },function error(){
+          return cb(res.status,null);//ERROR
+        });
+      }
+      return fa;
+    }])
     .factory('xueshu',['$http','SERVER',function($http,SERVER){
       var fa={};
       fa.list=function(params,cb){

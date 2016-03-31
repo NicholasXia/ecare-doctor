@@ -73,7 +73,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/patientdata",
                 views: {
                     'patientdata-tab': {
-                        templateUrl: "templates/patientdata_tab.html"
+                        templateUrl: "templates/patientdata_tab.html",
+                        controller:'patientdataCtrl'
                     }
                 }
             })

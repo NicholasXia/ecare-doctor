@@ -37,7 +37,7 @@
 
 .row + .row{
     margin-top: -5px;
-    padding: 15px 0px;
+    /*padding: 15px 0px;*/
 }
 .mine_infomy div > a {padding:10px;}
 .mine-image {

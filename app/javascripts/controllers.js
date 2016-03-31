@@ -1813,6 +1813,35 @@ angular.module('medicine.controllers', [])
       $scope.data = data;
     });
   }])
+  .controller('patientdataCtrl', ['$window', '$ionicPopup', '$scope', 'jilu', 'currentUser', function($window, $ionicPopup, $scope, jilu, currentUser) {
+    $scope.p={
+      name:''
+    }
+    $scope.patientdata=[];
+    function initQuery(){
+      var params={
+        accessToken:currentUser.getAuthToken(),
+        name:$scope.p.name,
+        type:'all'
+      }
+      jilu.queryPaitent(params,function(err,data){
+        console.log(data);
+        $scope.patientdata=data;
+
+      });
+    }
+    initQuery();
+
+    $scope.queryPaitent=function(){
+      var params={
+        accessToken:currentUser.getAuthToken(),
+        name:$scope.p.name
+      }
+      jilu.queryPaitent(params,function(err,data){
+        $scope.patientdata=data;
+      });
+    }
+  }])
 
 
 .controller('zhenhouxindeDetailsCtrl', ['$timeout', '$window', '$ionicPopup', 'patientProfile', '$stateParams', '$scope', 'xinde', 'currentUser', function($timeout, $window, $ionicPopup, patientProfile, $stateParams, $scope, xinde, currentUser) {
