@@ -64,10 +64,10 @@
 
                 <div class='activity' ng-repeat="item in medicallist | limitTo:5"
                      ui-sref="medical_detail({id:item.id})">
-                    <div class="header clearfix padding">
-                        <div ng-if="item.category == 2 && $index == 0" style="padding:4px 10px" class="fl index padding">医疗动态</div>
+                    <div  ng-if="item.category == 2 && $index == 0" class="header clearfix padding">
+                        <div style="padding:4px 10px" class="fl index padding">医疗动态</div>
                     </div>
-                    <div class="content">
+                    <div class="content" style="margin-top:-10px">
                         <div class="padding">
                             <span>
                                 {{item.title}}
