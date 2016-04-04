@@ -3,7 +3,7 @@
         <div class="list mlist">
             <ion-slide-box ng-if="data.length > 0" auto-play="true" does-continue="true">
                 <ion-slide ng-repeat="item in data" ng-click="goToActivity(item.id, item.linkUrl)">
-                    <div class="box blue"><img ng-src={{item.coverImageUrl}} width="100%" height="200px"/></div>
+                    <div class="box blue"><img ng-src={{item.coverImageUrl}} width="100%" height="160px"/></div>
                 </ion-slide>
             </ion-slide-box>
              <!-- 用户登陆时显示-->
@@ -24,7 +24,7 @@
                     <a class="button" ui-sref='medical'><img src="./images/dongtai.png" alt="">
 
                         <p>医疗动态</p></a>
-                    <a class="button" ui-sref='zhenhouxinde'><img src="./images/zhxinde.png" alt="">
+                    <a class="button" ui-sref='zhenhouxinde'>
 
                         <p>诊后心得</p></a>
                     <a class="button" ng-click="gotLogin()">
@@ -65,7 +65,7 @@
                 <div class='activity' ng-repeat="item in medicallist | limitTo:5"
                      ui-sref="medical_detail({id:item.id})">
                     <div class="header clearfix padding">
-                        <div ng-if="item.category == 2 && $index == 0" class="fl index padding">医疗动态</div>
+                        <div ng-if="item.category == 2 && $index == 0" style="padding:4px 10px" class="fl index padding">医疗动态</div>
                     </div>
                     <div class="content">
                         <div class="padding">
