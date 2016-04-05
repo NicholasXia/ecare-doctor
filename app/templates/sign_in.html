@@ -1,7 +1,7 @@
-<ion-view view-title="登陆-乐柏医" cache-view="false">
+<ion-view view-title="登录-乐柏医" cache-view="false">
     <ion-header-bar class="bar-balanced">
         <a class="button icon ion-chevron-left" href="#/tab/home"></a>
-        <h1 class="title">登陆</h1>
+        <h1 class="title">登录</h1>
 
         <div class="buttons">
             <button ui-sref="sign_up" class="button button-balanced">注册</button>
@@ -9,19 +9,19 @@
 
 
     </ion-header-bar>
-    <ion-content>
+    <ion-content style="background-color:#e6e6e6" padding="true">
         <div class="list">
             <label class="item item-input">
                 <input type="text" ng-model="signInMsg.username" placeholder="手机号">
             </label>
             <div class="item item-input">
-                <label class="item-input-wrapper">
+                <label  style="background-color:#fff;margin-left:-6px;" class="item-input-wrapper">
                     <input type="password" ng-model="signInMsg.password" placeholder="密码">
                 </label>
                 <a ui-sref="forgot_pwd" class="button-pwd button button-small button-balanced">忘记密码? </a>
             </div>
             <button class="button button-block button-balanced" ng-click="signIn()">
-                登陆
+                登录
             </button>
         </div>
     </ion-content>
