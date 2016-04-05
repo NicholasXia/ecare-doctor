@@ -11,8 +11,8 @@ body {
   flex-wrap: wrap
 }
 .item.item-balanced {
-  border-color: #2bce84;
-  background-color: #2bce84;
+  border-color: #2CCD8F;
+  background-color: #2CCD8F;
   color: #fff;
 }
 .icon-size {
@@ -376,4 +376,8 @@ img.my-pictures {
   color: #33cd5f !important;
   border: 0 solid #33cd5f !important;
   border-bottom-width: 2px !important;
+}
+
+.bar.bar-balanced{
+  background-color: #2CCD8F !important;
 }
