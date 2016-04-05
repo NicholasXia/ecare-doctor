@@ -676,6 +676,17 @@ angular.module('medicine.controllers', [])
     }
 
     $scope.aComment = function() {
+      if ($scope.detailMsg.acomment.length == 0) {
+        var popup = $ionicPopup.alert({
+          title: '提示',
+          template: '请填写评论'
+        })
+        $timeout(function() {
+          popup.close()
+        }, 3000)
+        return
+      }
+
       var msg = {
         accessToken: accesstoken,
         caseId: $stateParams.id,
