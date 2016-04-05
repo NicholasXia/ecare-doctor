@@ -20,14 +20,11 @@
       </div>
     </ion-item> -->
     <div ng-repeat="e in data">
-
       <div class="" ui-sref='zhenhouxinde_details({id:e.id})'>
-
-
         <ion-item style="margin-top:25px;">
           <div class="">
             <div class="">
-              <span ng-if="e.doctorName!='匿名发表'&&e.technicalTitle">{{e.technicalTitle}}：</span><span>{{e.doctorName}}</span><span style="float:right">{{e.creTime}}</span>
+              <span ng-if="e.doctorName!='匿名发表'&&e.technicalTitle">{{e.technicalTitle}}：</span><span>{{e.doctorName}}</span><span style="color:#AEAFB0;float:right">{{e.creTime}}</span>
             </div>
             <div style="margin-top:15px;">
               <div style="" class="">
