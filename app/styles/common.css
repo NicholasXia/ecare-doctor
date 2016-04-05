@@ -381,3 +381,7 @@ img.my-pictures {
 .bar.bar-balanced{
   background-color: #2CCD8F !important;
 }
+
+.bar-balanced .button{
+  background-color: #2CCD8F !important;
+}
