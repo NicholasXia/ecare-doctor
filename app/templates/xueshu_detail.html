@@ -7,13 +7,13 @@
     <div class="list card">
 
       <div class="item ">
-        <div ng-if="data.type==0" style="position:absolute;top:10px;right:10px;background-color:green;color:white;border-radius:5px;padding:5px 5px;">
+        <div ng-if="data.type==0" class="xueshuJinqiTag">
           近期学术会议
         </div>
-        <div ng-if="data.type==1" style="position:absolute;top:10px;right:10px;background-color:red;color:white;border-radius:5px;padding:5px 5px;">
+        <div ng-if="data.type==1" class="xueshuWangqiTag">
           往期学术会议
         </div>
-        <h2 style="margin-top:30px">{{data.title}}</h2>
+        <h2 style="margin-top:10px">{{data.title}}</h2>
         <p>{{data.creTime}}</p>
       </div>
 
@@ -31,8 +31,8 @@
         </div>
         <div class="item">
           当前剩余积分：{{data.userScore}}
-          <button class="button button-full button-positive" ui-sref='xueshu_baoming({id:data.id})'>
-            兑换
+          <button style="padding:6px;background-color:#2CCD8F;border-radius:5px;font-size:20px;font-weight:bolder" class="button button-full button-positive" ui-sref='xueshu_baoming({id:data.id})'>
+            我要参加
           </button>
           <a style="" ui-sref='xueshu_baoming({id:data.id})'>没有积分或者不足也要参加</a>
         </div>

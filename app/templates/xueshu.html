@@ -1,22 +1,5 @@
 <style media="screen">
-  .xueshuJinqiTag {
-    width: 88px;
-    font-size: 12px;
-    color: #DF4D91;
-    border-radius: 10px;
-    padding: 1px 5px;
-    border: 1px solid #DF4D91;
-    margin-bottom: 10px;
-  }
-  .xueshuWangqiTag {
-    width: 88px;
-    font-size: 12px;
-    color: #6A6B6C;
-    border-radius: 10px;
-    padding: 1px 5px;
-    border: 1px solid #6A6B6C;
-    margin-bottom: 10px;
-  }
+  
 </style>
 <ion-view view-title="学术支持-乐柏医" cache-view="false">
   <ion-header-bar class="bar-balanced">
@@ -35,11 +18,12 @@
         </div>
         <h2 style="margin-top:25px">{{x.title}}</h2>
 
-        <p>
+
+        <img ng-if="x.promoteImage" class="full-image" src={{x.promoteImage}}>
+        <p style="color:#6A6B6C">
           {{x.creTime}}
         </p>
 
-        <img ng-if="x.promoteImage" class="full-image" src={{x.promoteImage}}>
       </div>
 
     </a>
