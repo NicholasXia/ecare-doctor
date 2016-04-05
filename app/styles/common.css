@@ -362,14 +362,15 @@ img.my-pictures {
   border: 1px solid #6A6B6C;
   margin-bottom: 10px;
 }
-.tab-title {
+#tabs-top .tab-title {
   font-size: 18px;
   font-weight: bolder;
 }
-.tab-nav {
+
+#tabs-top .tab-nav {
   background-color: #D3EFE0 !important;
 }
-.tab-item.tab-item-active {
+#tabs-top .tab-item.tab-item-active {
   padding-bottom: -1px;
   margin-top: -2px !important;
   color: #33cd5f !important;
