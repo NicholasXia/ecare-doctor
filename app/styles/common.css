@@ -1,324 +1,349 @@
-/*common.css*/
-.home{padding:10px 0px;}
-
-.wrap {
-    flex-wrap: wrap
+body {
+  font-family: '微软雅黑' !important;
 }
 
-.item.item-balanced{
-    border-color: #2bce84;
-    background-color: #2bce84;
-    color: #fff;
+/*common.css*/
+
+.home {
+  padding: 10px 0px;
+}
+.wrap {
+  flex-wrap: wrap
+}
+.item.item-balanced {
+  border-color: #2bce84;
+  background-color: #2bce84;
+  color: #fff;
 }
 .icon-size {
-    font-size: 30px;
+  font-size: 30px;
 }
-
 .textarea-height {
-    height: 300px;
-    width: 100%
+  height: 300px;
+  width: 100%
 }
-
 .row-align {
-    align-items: center;
+  align-items: center;
 }
-
 .button-pwd {
-    margin-right: 10px;
+  margin-right: 10px;
 }
-
 .ion-record {
-    font-size: 10px;
-    color: #ef473a;
+  font-size: 10px;
+  color: #ef473a;
 }
 .ion-recordl {
-    font-size: 10px;
-    color:rgba(0,0,0,.3);
+  font-size: 10px;
+  color: rgba(0, 0, 0, .3);
 }
 #tabs-top > div {
-    top: 43px;
+  top: 43px;
 }
-
 #tabs-top > .tab-nav.tabs {
-    background-color: rgba(40, 165, 76, .3);
-    color: #111;
+  background-color: rgba(40, 165, 76, .3);
+  color: #111;
 }
-
 .top-50 {
-    top: 48px;
+  top: 48px;
 }
-
 .features-button > .button {
-    background-color: #fff;
+  background-color: #fff;
 }
-.bw .button{color:#fff;}
-
+.bw .button {
+  color: #fff;
+}
 .nounderlines {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 /*.tab-item-active {*/
-    /*border-bottom: 2px solid #2bce84;*/
-    /*background-color: rgba(51, 205, 95, .2);*/
+
+
+/*border-bottom: 2px solid #2bce84;*/
+
+
+/*background-color: rgba(51, 205, 95, .2);*/
+
+
 /*}*/
 
 .patientdata-row > .row > .col {
-    border: 1px solid rgba(0, 0, 0, .4);
-    font-size: 10px;
+  border: 1px solid rgba(0, 0, 0, .4);
+  font-size: 10px;
 }
-
 .record-point-parent {
-    /*position: relative;*/
-    /*padding: 5px;*/
+  /*position: relative;*/
+  /*padding: 5px;*/
 }
-
 .record-point {
-    font-size: 10px;
-    color: #F9545E;
-    position: absolute;
-    top: 0px;
-    right: 0px;
+  font-size: 10px;
+  color: #F9545E;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
-
 .inputfile {
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: 99;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: 99;
 }
-
 .inputfile + label {
-    font-size: 1.25em;
-    font-weight: 700;
-    display: inline-block;
-    background-image: url("../images/xiangji.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 30px;
-    width: 100%;
+  font-size: 1.25em;
+  font-weight: 700;
+  display: inline-block;
+  background-image: url("../images/xiangji.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 30px;
+  width: 100%;
 }
-form .myicon{line-height: 60px;  width: 100%;}
-.inputfile:focus + label,
-.inputfile + label:hover {
-    background-color: red;
+form .myicon {
+  line-height: 60px;
+  width: 100%;
+}
+.inputfile:focus + label, .inputfile + label:hover {
+  background-color: red;
+}
+.mine_infomy .card {
+  margin: 20px 0px
+}
+.backcolormine {
+  background-color: rgb(245, 245, 245);
+  font-size: 20px;
+  color: rgba(0, 0, 0, .7);
+}
+.bordercar .row {
+  border-top: 1px solid rgb(245, 245, 245);
+  padding: 15px 0px 15px 5px;
+}
+.home-feature-in img {
+  padding-right: 10px
+}
+.addcolor {
+  height: 10px;
+  background: rgb(245, 245, 245);
+  border: none
+}
+.bordercar .row .col-20, .bordercar .row .col-40, .bordercar .row .col-10, .verify .col-20 {
+  color: rgba(0, 0, 0, .3)
+}
+.fl-div-right {
+  position: absolute;
+  top: 35%;
+  right: 10px;
+}
+.fl-center-text {
+  position: absolute;
+  top: 35%;
+}
+.fl-10 {
+  left: 10px;
+}
+.mlist .row {
+  padding: 0px
+}
+.button-sign {
+  position: absolute;
+  top: 26%;
+}
+.yisheng {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%
 }
 
-.mine_infomy .card{margin: 20px 0px}
-
-.backcolormine{background-color: rgb(245,245,245);
-    font-size: 20px; color:rgba(0,0,0,.7);
-}
-.bordercar .row{border-top:1px solid rgb(245,245,245);
-    padding: 15px 0px 15px 5px;}
-
-.home-feature-in img{padding-right: 10px}
-.addcolor{height:10px; background: rgb(245,245,245); border:none}
-
-.bordercar .row .col-20 ,.bordercar  .row .col-40 ,.bordercar .row .col-10 ,.verify .col-20 {color:rgba(0,0,0,.3)}
-.fl-div-right{
-    position: absolute;
-    top: 35%;
-    right: 10px;
-}
-.fl-center-text{
-    position: absolute;
-    top: 35%;
-}
-.fl-10{left: 10px;}
-.mlist .row{padding:0px}
-
-.button-sign{    position: absolute;
-    top: 26%;}
-
-
-.yisheng{width: 45px; height: 45px;border-radius: 50%}
 /*accent color text  强调色*/
+
 .item .accent-text-color {
-    color: #2bce84;
+  color: #2bce84;
 }
 
 /*强调数字颜色*/
+
 .accent-number-color {
-    color: #E25B99;
+  color: #E25B99;
 }
 
 /*item   text-indent首行缩进*/
+
 .item .text-indent {
-    text-indent: 30px;
+  text-indent: 30px;
 }
-.item .text-indent > div  {
-    padding: 10px;
+.item .text-indent > div {
+  padding: 10px;
 }
-
 .item .pad-replate {
-    padding: 0px;
-    font-size: 14px;
+  padding: 0px;
+  font-size: 14px;
 }
-
 .setting-footer {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-align-items: flex-end;
-    -ms-flex-align: end;
-    align-items: flex-end;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
 }
-
 .mine-info-my, .commenter, .news-from, .consent-agm {
-    color: rgba(0, 0, 0, .6);
+  color: rgba(0, 0, 0, .6);
 }
-.bb{border-bottom: 1px solid rgba(0,0,0,.2)}
+.bb {
+  border-bottom: 1px solid rgba(0, 0, 0, .2)
+}
+
 /*评论样式设置*/
+
 .commenter {
-    padding: 10px 0px;
-    font-size: 16px;
+  padding: 10px 0px;
+  font-size: 16px;
 }
-
 .commenter span, .new-from span {
-    margin-right: 10px;
+  margin-right: 10px;
 }
-
 .commenter span:last-child {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 /*新闻来源*/
+
 .news-from, .consent-agm {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 /*默认button的min-with 在苹果4\5中有问题  在这里修改最小宽度*/
+
 .button-min-width {
-    min-width: 100px;
+  min-width: 100px;
 }
+
 /*协议*/
+
 .consent-agm {
-    border: 0px;
+  border: 0px;
 }
 
 /*相机*/
+
 .ion-android-camera {
-    font-size: 36px;
-    padding: 10px;
+  font-size: 36px;
+  padding: 10px;
 }
 
 /*new_patient 按钮设置*/
+
 .patient-button > button {
-    min-width: 45px;
-    margin-right: 5px;
+  min-width: 45px;
+  margin-right: 5px;
 }
 
 /*image  min-width*/
+
 img.my-pictures {
-    width: 26px;
-    margin-right: 5px;
+  width: 26px;
+  margin-right: 5px;
 }
-
 .textent {
-    color: rgba(0, 0, 0, .5);
-    padding-bottom: 20px
+  color: rgba(0, 0, 0, .5);
+  padding-bottom: 20px
 }
-
 .textcolor {
-    color: rgba(0, 0, 0, .7);
+  color: rgba(0, 0, 0, .7);
 }
-.myimageIcon{
-    width: 60px;
+.myimageIcon {
+  width: 60px;
 }
-.padding-top20{
-    padding:20px 0px;
-    font-size: 15px;
+.padding-top20 {
+  padding: 20px 0px;
+  font-size: 15px;
 }
 
 /*************** chart ****************/
 
 #mock .scroll {
-    padding: 10px 0 50px !important;
+  padding: 10px 0 50px !important;
 }
-
 #mock .messages {
-    display: -webkit-box !important;
-    display: -moz-box !important;
-    display: -ms-flexbox !important;
-    display: -webkit-flex !important;
-    display: flex !important;
-    -webkit-align-content: center !important;
-    -ms-flex-line-pack: center !important;
-    align-content: center !important;
-    -webkit-box-align: center !important;
-    -moz-box-align: center !important;
-    -webkit-align-items: center !important;
-    -ms-flex-align: center !important;
-    align-items: center !important;
-    margin-bottom: 20px !important;
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-align-content: center !important;
+  -ms-flex-line-pack: center !important;
+  align-content: center !important;
+  -webkit-box-align: center !important;
+  -moz-box-align: center !important;
+  -webkit-align-items: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  margin-bottom: 20px !important;
 }
 #mock .messages .message {
-    -webkit-box-flex: 1 !important;
-    -moz-box-flex: 1 !important;
-    -webkit-flex: 1 1 auto !important;
-    -ms-flex: 1 1 auto !important;
-    flex: 1 1 auto !important;
-    padding: 10px !important;
-    -webkit-transition: all 250ms ease-in-out !important;
-    transition: all 250ms ease-in-out !important;
-    overflow: hidden !important;
-    text-align: left !important;
-    -webkit-transform: translate3d(0, 0, 0) !important;
-    -moz-transform: translate3d(0, 0, 0) !important;
-    transform: translate3d(0, 0, 0) !important;
+  -webkit-box-flex: 1 !important;
+  -moz-box-flex: 1 !important;
+  -webkit-flex: 1 1 auto !important;
+  -ms-flex: 1 1 auto !important;
+  flex: 1 1 auto !important;
+  padding: 10px !important;
+  -webkit-transition: all 250ms ease-in-out !important;
+  transition: all 250ms ease-in-out !important;
+  overflow: hidden !important;
+  text-align: left !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -moz-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
 }
-
 #mock .time {
-    -webkit-box-flex: 0 !important;
-    -moz-box-flex: 0 !important;
-    -webkit-flex: 0 1 auto !important;
-    -ms-flex: 0 1 auto !important;
-    flex: 0 1 auto !important;
-    -webkit-align-self: auto !important;
-    -ms-flex-item-align: auto !important;
-    align-self: auto !important;
-    width: 120px !important;
-    text-align: center !important;
-    padding: 0 0 0 0 !important;
-    -webkit-transition: all 250ms ease-in-out !important;
-    transition: all 250ms ease-in-out !important;
-    -webkit-transform: translate3d(10px, 0, 0) !important;
-    -moz-transform: translate3d(10px, 0, 0) !important;
-    transform: translate3d(10px, 0, 0) !important;
+  -webkit-box-flex: 0 !important;
+  -moz-box-flex: 0 !important;
+  -webkit-flex: 0 1 auto !important;
+  -ms-flex: 0 1 auto !important;
+  flex: 0 1 auto !important;
+  -webkit-align-self: auto !important;
+  -ms-flex-item-align: auto !important;
+  align-self: auto !important;
+  width: 120px !important;
+  text-align: center !important;
+  padding: 0 0 0 0 !important;
+  -webkit-transition: all 250ms ease-in-out !important;
+  transition: all 250ms ease-in-out !important;
+  -webkit-transform: translate3d(10px, 0, 0) !important;
+  -moz-transform: translate3d(10px, 0, 0) !important;
+  transform: translate3d(10px, 0, 0) !important;
 }
 #mock .time.slide-right {
-    -webkit-transform: translate3d(130px, 0, 0) !important;
-    -moz-transform: translate3d(130px, 0, 0) !important;
-    transform: translate3d(130px, 0, 0) !important;
+  -webkit-transform: translate3d(130px, 0, 0) !important;
+  -moz-transform: translate3d(130px, 0, 0) !important;
+  transform: translate3d(130px, 0, 0) !important;
 }
-
 #mock .messages.other .message {
-    -webkit-transform: translate3d(0, 0, 0) !important;
-    -moz-transform: translate3d(0, 0, 0) !important;
-    transform: translate3d(0, 0, 0) !important;
-    text-align: right !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -moz-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  text-align: right !important;
 }
 #mock .messages.other .message.slide-right {
-    -webkit-transform: translate3d(120px, 0, 0) !important;
-    -moz-transform: translate3d(120px, 0, 0) !important;
-    transform: translate3d(120px, 0, 0) !important;
+  -webkit-transform: translate3d(120px, 0, 0) !important;
+  -moz-transform: translate3d(120px, 0, 0) !important;
+  transform: translate3d(120px, 0, 0) !important;
 }
 #mock .messages.other span {
-    color: black !important;
-    background-color: #C7C7CC !important;
+  color: black !important;
+  background-color: #C7C7CC !important;
 }
-
 #mock span {
-    background: #007AFF !important;
-    display: inline-block !important;
-    color: white !important;
-    padding: 10px !important;
-    border-radius: 10px !important;
-    text-align: left !important;
-    max-width: 240px !important;
+  background: #007AFF !important;
+  display: inline-block !important;
+  color: white !important;
+  padding: 10px !important;
+  border-radius: 10px !important;
+  text-align: left !important;
+  max-width: 240px !important;
 }
 
 /* 学术会议 */
+
 .xueshuJinqiTag {
   width: 88px;
   font-size: 12px;
@@ -336,4 +361,18 @@ img.my-pictures {
   padding: 1px 5px;
   border: 1px solid #6A6B6C;
   margin-bottom: 10px;
+}
+.tab-title {
+  font-size: 18px;
+  font-weight: bolder;
+}
+.tab-nav {
+  background-color: #D3EFE0 !important;
+}
+.tab-item.tab-item-active {
+  padding-bottom: -1px;
+  margin-top: -2px !important;
+  color: #33cd5f !important;
+  border: 0 solid #33cd5f !important;
+  border-bottom-width: 2px !important;
 }
