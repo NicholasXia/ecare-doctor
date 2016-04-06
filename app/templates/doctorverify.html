@@ -4,34 +4,75 @@
         <h1 class="title">医生认证</h1>
     </ion-header-bar>
     <ion-content has-bouncing="true" class="padding">
-        <form id="crtWithPhoto" enctype="multipart/form-data" method="post" >
-            <button class="button button-block button-balanced myicon">
-                <input id="verifydoctor"
-                       type="file"
-                       accept="image/*"
-                       multiple
-                       image="verifydoctor"
-                       class="inputfile"
-                        />
-                上传医师证件正面
-            </button>
-            <img ng-repeat="img in verifydoctor"  width="100%" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
-        </form>
-        <form id="crtWithName" enctype=multipart/form-data" method="post" >
-            <button class="button button-block button-balanced myicon">
-                <input id="verifyname"
-                       type="file"
-                       accept="image/*"
-                       multiple
-                       image="verifyname"
-                       class="inputfile"
-                        />
-                上传医师证件背面
-            </button>
-            <img ng-repeat="img in verifyname"   width="100%" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
-        </form>
+        <div style="text-align:center;font-size:18px;margin:15px;">
+          <div class="">
+            请上传您的医生资格证书
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col col-50">
+            <img width="100%" src="../images/verify_zhengmian.jpg" alt="" />
+          </div>
+          <div class="col col-50">
+            <img width="100%"  src="../images/verify_fanmian.jpg" alt="" />
+          </div>
+        </div>
+        <div class="row">
+          <div style="margin-left:25px" class="col col-50">
+            <form id="crtWithPhoto" enctype="multipart/form-data" method="post" >
+                <!-- <button class="button button-block button-balanced myicon"> -->
+                    <input style="width:100%;height:200px;" id="verifydoctor"
+                           type="file"
+                           accept="image/*"
+                           multiple
+                           image="verifydoctor"
+                           class="inputfile"
+                            />
+                    <div class="">
+                      <p>
+                        上传有照片页
+                      </p>
+                      <img src="../images/shangchuan.jpg" alt=""/>
+                    </div>
+
+                <!-- </button> -->
+
+            </form>
+          </div>
+          <div class="col col-50">
+            <form id="crtWithName" enctype=multipart/form-data" method="post" >
+
+                    <input style="width:100%;height:200px;" id="verifyname"
+                           type="file"
+                           accept="image/*"
+                           multiple
+                           image="verifyname"
+                           class="inputfile"
+                            />
+                            <div class="">
+                              <p>
+                                上传有姓名页
+                              </p>
+                              <img src="../images/shangchuan.jpg" alt=""/>
+                            </div>
+
+
+            </form>
+          </div>
+        </div>
+        <div class="row" style="height:200px">
+          <img ng-repeat="img in verifydoctor" width="100%"  title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
+        </div>
+
+        <div class="row" style="height:200px">
+          <img ng-repeat="img in verifyname"  width="100%"  title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
+          </div>
+
+
+
         <div class="text-center">
-            <button class="button button-balanced "  ng-click="uploadVerify(verifydoctor,verifyname)" >上传认证</button>
+            <button class="button button-block button-balanced "  ng-click="uploadVerify(verifydoctor,verifyname)" >提交</button>
         </div>
     </ion-content>
 
