@@ -6,18 +6,18 @@
     <ion-content class="backcolormine">
         <div class="list">
             <div class="item item-avatar" ng-repeat="item in data">
-                <img class="yisheng" src="./images/yisheng.png">
+                <img class="yisheng" ng-src="{{item.profileImageUrl}}" onerror="./images/yisheng.png">
 
-                <div class='new_patient row'>
-                    <div class="col col-50">
-                        <p>{{item.patientName}}</p>
-                        <p>向您发送了验证请求</p>
+                <div style="margin-top:-10px;" class='new_patient row'>
+                    <div style="margin-left:-12px;"  class="col col-60">
+                        <p style="font-size:14px">{{item.patientName}}</p>
+                        <p style="font-size:12px">向您发送了验证请求</p>
                     </div>
                     <div class='col col-50 patient-button'>
-                        <button class="button button-small button-assertive" ng-click="accept(0)" ng-if="item.checked == 0">
+                        <button style="margin-left:-10px;font-size:14px;padding:4px 6px;background-color:#EE6869" class="button button-small button-assertive" ng-click="accept(0)" ng-if="item.checked == 0">
                             不允许
                         </button>
-                        <button class="button button-small button-balanced" ng-click="accept(1)" ng-if="item.checked == 0">
+                        <button style="margin-left:5px;font-size:14px;padding:5px 10px;background-color:#2CCD8F" class="button button-small button-balanced" ng-click="accept(1)" ng-if="item.checked == 0">
                             允许
                         </button>
                         <button class="button button-small button-balanced" ng-if="item.checked == 1">
