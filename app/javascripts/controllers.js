@@ -1178,7 +1178,7 @@ angular.module('medicine.controllers', [])
     accessToken: accesstoken
   }, function(data) {
     $scope.data = data
-    console.log($scope.data)
+    console.log(data)
   })
   mineInfo.query({
     accessToken: accesstoken

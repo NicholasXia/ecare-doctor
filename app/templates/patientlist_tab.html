@@ -36,12 +36,13 @@
                 <div class='new_patient row' >
                     <div class="col">
                         <span>{{item.patientName}}</span>
-                        <span class="button button-small button-assertive disabled" style="margin-left: 10px">
+                        <span style="color:white;padding:0 5px;background-color:#D36B95;margin-left: 10px;display:inline-block" class="">
                             已绑定
                         </span>
                     </div>
-                    <div class='patient-button col col-20' ng-if="item.age">
-                        <span>{{item.age}} 岁</span>
+                    <div style="margin-left:50px"  class='patient-button col ' >
+                        <span ng-if="item.age">{{item.age}} 岁</span>
+                        <span ng-if="!item.age">不详</span>
                         <span> | </span>
                         <span ng-if="item.agender == 2">女</span>
                         <span ng-if="item.agender == 1">男</span>
