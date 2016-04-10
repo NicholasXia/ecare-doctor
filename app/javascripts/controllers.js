@@ -277,7 +277,8 @@ angular.module('medicine.controllers', [])
     }
   }])
   //医生登陆
-  .controller('doctorSignInCtrl', ['$scope', 'signUp', '$window', '$ionicPopup', '$timeout', 'currentUser', function($scope, signUp, $window, $ionicPopup, $timeout, currentUser) {
+  .controller('doctorSignInCtrl', ['huanxin', '$scope', 'signUp', '$window', '$ionicPopup', '$timeout', 'currentUser', function(huanxin, $scope, signUp, $window, $ionicPopup, $timeout, currentUser) {
+
     $scope.signInMsg = {
       'username': '',
       'password': '',
@@ -286,8 +287,28 @@ angular.module('medicine.controllers', [])
 
     $scope.signIn = function() {
       signUp.save({}, $scope.signInMsg, function(data) {
-        currentUser.setAuthToken(data.accessToken)
+        currentUser.setAuthToken(data.accessToken);
+        currentUser.setUser($scope.signInMsg.username, $scope.signInMsg.password);
         if (data.status == "suc") {
+          //登陆成功 注入环信
+          huanxin.registerUser({
+            username: $scope.signInMsg.username,
+            password: $scope.signInMsg.password,
+            success: function(result) {
+              console.log('环信注册成功');
+              huanxin.connect($scope.signInMsg.username, $scope.signInMsg.password, function() {
+                console.log('IM连接成功');
+              });
+            },
+            error: function(e) {
+              console.log(e);
+              console.log('环信注册失败');
+              huanxin.connect($scope.signInMsg.username, $scope.signInMsg.password, function() {
+                console.log('IM连接成功');
+              });
+            }
+          });
+
           currentUser.setDoctorCode(data.user.doctorNo);
           var popup = $ionicPopup.alert({
             title: '登陆成功',
@@ -1146,7 +1167,7 @@ angular.module('medicine.controllers', [])
 .controller('patientListCtrl', ['$scope', 'dayIncrease', 'patientBindList', 'patientCheckBindList', 'currentUser', 'mineInfo', 'bindinfo', '$ionicPopup', '$window', '$timeout', function($scope, dayIncrease, patientBindList, patientCheckBindList, currentUser, mineInfo, bindinfo, $ionicPopup, $window, $timeout) {
   var accesstoken = currentUser.getAuthToken()
   if (!accesstoken) {
-    if(!currentUser.already){
+    if (!currentUser.already) {
 
       console.log(currentUser.already);
       // var popup = $ionicPopup.alert({
@@ -1825,31 +1846,32 @@ angular.module('medicine.controllers', [])
     });
   }])
   .controller('patientdataCtrl', ['$window', '$ionicPopup', '$scope', 'jilu', 'currentUser', function($window, $ionicPopup, $scope, jilu, currentUser) {
-    $scope.p={
-      name:''
+    $scope.p = {
+      name: ''
     }
-    $scope.patientdata=[];
-    function initQuery(){
-      var params={
-        accessToken:currentUser.getAuthToken(),
-        name:$scope.p.name,
-        type:'all'
+    $scope.patientdata = [];
+
+    function initQuery() {
+      var params = {
+        accessToken: currentUser.getAuthToken(),
+        name: $scope.p.name,
+        type: 'all'
       }
-      jilu.queryPaitent(params,function(err,data){
+      jilu.queryPaitent(params, function(err, data) {
         console.log(data);
-        $scope.patientdata=data;
+        $scope.patientdata = data;
 
       });
     }
     initQuery();
 
-    $scope.queryPaitent=function(){
-      var params={
-        accessToken:currentUser.getAuthToken(),
-        name:$scope.p.name
+    $scope.queryPaitent = function() {
+      var params = {
+        accessToken: currentUser.getAuthToken(),
+        name: $scope.p.name
       }
-      jilu.queryPaitent(params,function(err,data){
-        $scope.patientdata=data;
+      jilu.queryPaitent(params, function(err, data) {
+        $scope.patientdata = data;
       });
     }
   }])
@@ -2135,36 +2157,59 @@ angular.module('medicine.controllers', [])
   }
 }])
 
-.controller('Messages', ['$scope', '$timeout', '$interval', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart', '$stateParams', '$window', function($scope, $timeout, $interval, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart, $stateParams, $window) {
+.controller('Messages', ['patientDetail', 'huanxin', '$scope', '$timeout', '$interval', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart', '$stateParams', '$window', function(patientDetail, huanxin, $scope, $timeout, $interval, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart, $stateParams, $window) {
 
   $scope.hideTime = true;
   var isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
-  var patientId = $stateParams.userId
+  var patientId = $stateParams.userId;
+  var patientMobile = '';
+
+  //查询患者
+  var params = {
+    id: patientId,
+    accessToken: currentUser.getAuthToken(),
+    patientId: patientId
+  }
+  patientDetail.query(params, function(data) {
+    $scope.patient = data
+    console.log(data)
+  })
+  huanxin.onReceive(function(message) { //收取消息处理
+    console.log(message);
+    $scope.$apply(function() {
+      $scope.messages.push({
+        userId: patientId,
+        text: message.data
+      })
+    });
+  });
+
   patientProfile.query({
     accessToken: currentUser.getAuthToken()
   }, function(data) {
+    // console.log(data);
     $scope.myId = data.id
+    $scope.telephone = data.mobile;
     var doctorId = data.id
-    $interval(
-      function() {
-        //console.log(patientId+'----'+ doctorId)
-        getChart.query({
-            accessToken: currentUser.getAuthToken(),
-            fromUserId: patientId,
-            toUserID: doctorId
-          },
-          function(data) {
-            console.log(data)
-            if (data[0]) {
-              $scope.toChar = data[0].fromChat
-              $scope.messages.push({
-                userId: patientId,
-                text: $scope.toChar
-              })
-            }
-
-          })
-      }, 2000)
+      // $interval(
+      //   function() {
+      //     //console.log(patientId+'----'+ doctorId)
+          getChart.query({
+              accessToken: currentUser.getAuthToken(),
+              fromUserId: patientId,
+              toUserID: doctorId
+            },
+            function(data) {
+              console.log(data);
+              for(var i=0;i<data.length;i++){
+                // $scope.toChar = data[0].fromChat
+                $scope.messages.push({
+                  userId: patientId,
+                  text: data[i].fromChat
+                })
+              }
+            });
+      //   }, 2000)
   })
 
   $scope.data = {};
@@ -2183,13 +2228,14 @@ angular.module('medicine.controllers', [])
       fromUserId: patientId,
       toUserID: $scope.myId
     }
+
+    huanxin.sendText(msg.toChat, $scope.patient.mobile);
     chart.save({}, msg, function(data) {
       console.log(data)
     })
 
     delete $scope.data.message;
     $ionicScrollDelegate.scrollBottom(true);
-
   };
 
   $scope.inputUp = function() {
@@ -2197,7 +2243,6 @@ angular.module('medicine.controllers', [])
     $timeout(function() {
       $ionicScrollDelegate.scrollBottom(true);
     }, 300);
-
   };
 
   $scope.inputDown = function() {

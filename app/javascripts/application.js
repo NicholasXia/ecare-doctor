@@ -342,7 +342,14 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             })
 
         $urlRouterProvider.otherwise("/tab/home");
-    }).run(function($rootScope,currentUser,$ionicPopup,$window,$timeout){
+    }).run(function(huanxin,$rootScope,currentUser,$ionicPopup,$window,$timeout){
+      console.log('connect '+huanxin.getConnect());
+      if(currentUser.getUser().password){//登录
+        huanxin.connect(currentUser.getUser().username,currentUser.getUser().password,function(){
+          console.log('IM conn连接');
+        });
+
+      }
       $rootScope.$on('$stateChangeSuccess',
           function(event, toState, toParams, fromState, fromParams){
             var forbit=['xueshu','zhenhouxinde'];
