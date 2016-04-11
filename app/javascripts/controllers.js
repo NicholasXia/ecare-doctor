@@ -366,14 +366,14 @@ angular.module('medicine.controllers', [])
         accessToken: accesstoken
       }, function(data) {
         if (data.error) {
-          //   var popup = $ionicPopup.alert({
-          //     title: '错误',
-          //     template: data.error
-          //   })
-          //   $timeout(function () {
-          //       popup.close()
-          //  }, 3000)
-          // $window.location.href = '#/sign_in'
+            var popup = $ionicPopup.alert({
+              title: '错误',
+              template: data.error
+            })
+            $timeout(function () {
+                popup.close()
+           }, 3000)
+          $window.location.href = '#/sign_in'
           return;
         }
 
@@ -1165,7 +1165,7 @@ angular.module('medicine.controllers', [])
 })
 
 .controller('patientListCtrl', ['$scope', 'dayIncrease', 'patientBindList', 'patientCheckBindList', 'currentUser', 'mineInfo', 'bindinfo', '$ionicPopup', '$window', '$timeout', function($scope, dayIncrease, patientBindList, patientCheckBindList, currentUser, mineInfo, bindinfo, $ionicPopup, $window, $timeout) {
-  var accesstoken = currentUser.getAuthToken()
+  var accesstoken = currentUser.getAuthToken();
   if (!accesstoken) {
     if (!currentUser.already) {
 
@@ -1181,10 +1181,31 @@ angular.module('medicine.controllers', [])
       return
     }
 
+  }else{
+    mineInfo.query({
+      accessToken: accesstoken
+    }, function(data) {
+      if (data.error) {
+        //   var popup = $ionicPopup.alert({
+        //     title: '错误',
+        //     template: data.error
+        //   })
+        //   $timeout(function () {
+        //       popup.close()
+        //  }, 3000)
+        $window.location.href = '#/sign_in'
+        return;
+      }
+
+      $scope.infodata = data
+
+      console.log(data)
+    })
   }
   patientCheckBindList.query({
     accessToken: accesstoken
   }, function(data) {
+    console.log(data);
     $scope.datacheck = data
     var num = 0
     for (var i = 0; i < data.length; i++) {
