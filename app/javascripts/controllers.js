@@ -2179,7 +2179,7 @@ angular.module('medicine.controllers', [])
 }])
 
 .controller('Messages', ['patientDetail', 'huanxin', '$scope', '$timeout', '$interval', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart', '$stateParams', '$window', function(patientDetail, huanxin, $scope, $timeout, $interval, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart, $stateParams, $window) {
-
+  var limit=5;//默认5条
   $scope.hideTime = true;
   var isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
   var patientId = $stateParams.userId;
@@ -2202,43 +2202,92 @@ angular.module('medicine.controllers', [])
         userId: patientId,
         text: message.data
       })
+      $ionicScrollDelegate.scrollBottom(true);
     });
   });
-
+  var doctorId ="";
   patientProfile.query({
     accessToken: currentUser.getAuthToken()
   }, function(data) {
     // console.log(data);
     $scope.myId = data.id
     $scope.telephone = data.mobile;
-    var doctorId = data.id
+    doctorId = data.id
       // $interval(
       //   function() {
       //     //console.log(patientId+'----'+ doctorId)
           getChart.query({
               accessToken: currentUser.getAuthToken(),
               fromUserId: patientId,
-              toUserID: doctorId
+              toUserID: doctorId,
+              limit:limit
             },
             function(data) {
               console.log(data);
               for(var i=0;i<data.length;i++){
-                // $scope.toChar = data[0].fromChat
-                $scope.messages.push({
-                  userId: patientId,
-                  text: data[i].fromChat
-                })
+                if(data[i].toChat!=null){
+                    $scope.messages.push({
+                      time:data[i].timePointStr,
+                      userId: doctorId,
+                      text: data[i].toChat
+                    })
+                  }else{
+
+                    $scope.messages.push({
+                      time:data[i].timePointStr,
+                      userId:data.fromUserId,
+                      text: data[i].fromChat
+                    })
+                  }
               }
             });
       //   }, 2000)
   })
+  $scope.doRefreshChat=function(){
+      $scope.messages=[];
+      limit=limit+5;
+      console.log(limit);
+      getChart.query({
+          accessToken: currentUser.getAuthToken(),
+          fromUserId: patientId,
+          toUserID: doctorId,
+          limit:limit,
+        },
+        function(data) {
+          for(var i=0 ;i<data.length;i++){
+            // $scope.toChar = data[i].toChat
+            if(data[i].toChat!=null){
+              $scope.messages.push({
+                time:data[i].timePointStr,
+                userId:doctorId,
+                text: data[i].toChat
+              })
+            }else{
+
+              $scope.messages.push({
+                time:data[i].timePointStr,
+                userId:data.fromUserId,
+                text: data[i].fromChat
+              })
+            }
+
+          }
+
+
+        })
+
+      $scope.$broadcast('scroll.refreshComplete');
+    }
 
   $scope.data = {};
   $scope.messages = [];
 
   $scope.sendMessage = function() {
+    var date=new Date();
+      var timeStr=date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日 "+date.getHours()+":"+date.getMinutes();
 
     $scope.messages.push({
+      time:timeStr,
       userId: $scope.myId,
       text: $scope.data.message
     });
