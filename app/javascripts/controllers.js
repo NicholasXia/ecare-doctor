@@ -2240,6 +2240,7 @@ angular.module('medicine.controllers', [])
                     })
                   }
               }
+              $ionicScrollDelegate.scrollBottom(true);
             });
       //   }, 2000)
   })
