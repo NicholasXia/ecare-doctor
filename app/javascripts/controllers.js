@@ -2200,7 +2200,6 @@ angular.module('medicine.controllers', [])
     $scope.$apply(function() {
       var timeStr=date.getHours()+":"+date.getMinutes();
       $scope.messages.push({
-        isSameDay:true,
         userId: patientId,
         text: message.data
       })
