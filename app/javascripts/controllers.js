@@ -768,7 +768,7 @@ angular.module('medicine.controllers', [])
     }, function(data) {
       var msg = {
         id: data.id,
-        accessToken: accesstokenisSameDay:true,
+        accessToken: accesstoken,
       }
       gonggaolist.query(msg, function(info) {
         $scope.gonggao = info
