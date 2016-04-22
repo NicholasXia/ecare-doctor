@@ -768,7 +768,7 @@ angular.module('medicine.controllers', [])
     }, function(data) {
       var msg = {
         id: data.id,
-        accessToken: accesstoken
+        accessToken: accesstokenisSameDay:true,
       }
       gonggaolist.query(msg, function(info) {
         $scope.gonggao = info
@@ -2200,7 +2200,7 @@ angular.module('medicine.controllers', [])
     $scope.$apply(function() {
       var timeStr=date.getHours()+":"+date.getMinutes();
       $scope.messages.push({
-        isSameDay:false,
+        isSameDay:true,
         userId: patientId,
         text: message.data
       })
