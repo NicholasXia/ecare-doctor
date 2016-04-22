@@ -2223,10 +2223,13 @@ angular.module('medicine.controllers', [])
               limit:limit
             },
             function(data) {
-              console.log(data);
+              var lastDay=null;
               for(var i=0;i<data.length;i++){
+                var isSameDay=moment(lastDay).isSame(moment(data[i].timePoint),'day');
+                lastDay=moment(data[i].timePoint);
                 if(data[i].toChat!=null){
                     $scope.messages.push({
+                      isSameDay:isSameDay,
                       time:data[i].timePointStr,
                       userId: doctorId,
                       text: data[i].toChat
@@ -2234,6 +2237,7 @@ angular.module('medicine.controllers', [])
                   }else{
 
                     $scope.messages.push({
+                      isSameDay:isSameDay,
                       time:data[i].timePointStr,
                       userId:data.fromUserId,
                       text: data[i].fromChat
@@ -2255,10 +2259,13 @@ angular.module('medicine.controllers', [])
           limit:limit,
         },
         function(data) {
+          var lastDay=null;
           for(var i=0 ;i<data.length;i++){
-            // $scope.toChar = data[i].toChat
+            var isSameDay=moment(lastDay).isSame(moment(data[i].timePoint),'day');
+            lastDay=moment(data[i].timePoint);
             if(data[i].toChat!=null){
               $scope.messages.push({
+                isSameDay:isSameDay,
                 time:data[i].timePointStr,
                 userId:doctorId,
                 text: data[i].toChat
@@ -2266,6 +2273,7 @@ angular.module('medicine.controllers', [])
             }else{
 
               $scope.messages.push({
+                isSameDay:isSameDay,
                 time:data[i].timePointStr,
                 userId:data.fromUserId,
                 text: data[i].fromChat
@@ -2285,8 +2293,8 @@ angular.module('medicine.controllers', [])
 
   $scope.sendMessage = function() {
     var date=new Date();
-      var timeStr=date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日 "+date.getHours()+":"+date.getMinutes();
-
+      // var timeStr=date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日 "+date.getHours()+":"+date.getMinutes();
+    var timeStr=date.getHours()+":"+date.getMinutes();
     $scope.messages.push({
       time:timeStr,
       userId: $scope.myId,
