@@ -2198,8 +2198,9 @@ angular.module('medicine.controllers', [])
   huanxin.onReceive(function(message) { //收取消息处理
     console.log(message);
     $scope.$apply(function() {
-      var timeStr=date.getHours()+":"+date.getMinutes();
+      // var timeStr=date.getHours()+":"+date.getMinutes();
       $scope.messages.push({
+        isSameDay:true,
         userId: patientId,
         text: message.data
       })
