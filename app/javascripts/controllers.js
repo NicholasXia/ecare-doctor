@@ -2198,7 +2198,9 @@ angular.module('medicine.controllers', [])
   huanxin.onReceive(function(message) { //收取消息处理
     console.log(message);
     $scope.$apply(function() {
+      var timeStr=date.getHours()+":"+date.getMinutes();
       $scope.messages.push({
+        isSameDay:false,
         userId: patientId,
         text: message.data
       })
@@ -2235,7 +2237,6 @@ angular.module('medicine.controllers', [])
                       text: data[i].toChat
                     })
                   }else{
-
                     $scope.messages.push({
                       isSameDay:isSameDay,
                       time:data[i].timePointStr,
@@ -2295,26 +2296,29 @@ angular.module('medicine.controllers', [])
     var date=new Date();
       // var timeStr=date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日 "+date.getHours()+":"+date.getMinutes();
     var timeStr=date.getHours()+":"+date.getMinutes();
-    $scope.messages.push({
-      time:timeStr,
-      userId: $scope.myId,
-      text: $scope.data.message
-    });
+    if($scope.data.message){
+      $scope.messages.push({
+        isSameDay:false,
+        time:timeStr,
+        userId: $scope.myId,
+        text: $scope.data.message
+      });
 
-    var msg = {
-      accessToken: currentUser.getAuthToken(),
-      toChat: $scope.data.message,
-      fromUserId: patientId,
-      toUserID: $scope.myId
+      var msg = {
+        accessToken: currentUser.getAuthToken(),
+        toChat: $scope.data.message,
+        fromUserId: patientId,
+        toUserID: $scope.myId
+      }
+
+      huanxin.sendText(msg.toChat, $scope.patient.mobile);
+      chart.save({}, msg, function(data) {
+        console.log(data)
+      })
+
+      delete $scope.data.message;
+      $ionicScrollDelegate.scrollBottom(true);
     }
-
-    huanxin.sendText(msg.toChat, $scope.patient.mobile);
-    chart.save({}, msg, function(data) {
-      console.log(data)
-    })
-
-    delete $scope.data.message;
-    $ionicScrollDelegate.scrollBottom(true);
   };
 
   $scope.inputUp = function() {
