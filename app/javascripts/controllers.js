@@ -783,7 +783,7 @@ angular.module('medicine.controllers', [])
     })
   }])
 
-.controller('gongGaoListCtrl', ['$timeout', '$scope', 'gonggaolist', 'mineInfo', 'currentUser', function($timeout, $scope, gonggaolist, mineInfo, currentUser) {
+.controller('gongGaoListCtrl', ['gonggaoDel','$timeout', '$scope', 'gonggaolist', 'mineInfo', 'currentUser', function(gonggaoDel,$timeout, $scope, gonggaolist, mineInfo, currentUser) {
   var accesstoken = currentUser.getAuthToken()
   mineInfo.query({
     accessToken: accesstoken
@@ -797,6 +797,27 @@ angular.module('medicine.controllers', [])
     })
 
   })
+  $scope.del=function(id){
+    var msg={
+      id: id,
+      accessToken: accesstoken
+    }
+    console.log(msg);
+    gonggaoDel.save(msg,function(){
+      mineInfo.query({
+        accessToken: accesstoken
+      }, function(data) {
+        var msg = {
+          id: data.id,
+          accessToken: accesstoken
+        }
+        gonggaolist.query(msg, function(info) {
+          $scope.gonggao = info
+        })
+
+      })
+    });
+  }
 
 }])
 

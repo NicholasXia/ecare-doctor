@@ -56,16 +56,14 @@ body {
   text-decoration: none;
 }
 
-/*.tab-item-active {*/
+#tabs-top .tab-item-active .tab-title {
 
 
 /*border-bottom: 2px solid #2bce84;*/
-
+color: #2bce84 !important;
 
 /*background-color: rgba(51, 205, 95, .2);*/
-
-
-/*}*/
+}
 
 .patientdata-row > .row > .col {
   border: 1px solid rgba(0, 0, 0, .4);
@@ -363,7 +361,8 @@ img.my-pictures {
   margin-bottom: 10px;
 }
 #tabs-top .tab-title {
-  font-size: 18px;
+  font-size: 16px;
+  color:#8B9891;
   font-weight: bolder;
 }
 

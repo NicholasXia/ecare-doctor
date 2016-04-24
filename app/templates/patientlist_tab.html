@@ -33,17 +33,17 @@
             <a class="item item-avatar" ng-repeat="item in data" href="#/patient_detail/{{item.patientId}}"  >
                 <img class="yisheng" src="{{item.profileImageUrl}}">
 
-                <div class='new_patient row' >
-                    <div class="col">
+                <div class='new_patient' style="overflow:hidden">
+                    <div style="float:left;width:80px">
                         <span>{{item.patientName}}</span>
-                        <span style="color:white;padding:0 5px;background-color:#D36B95;margin-left: 10px;display:inline-block" class="">
+                        <span style="font-size:10px;color:white;padding:0 2px;background-color:#D36B95;margin-left: 5px;display:inline-block" class="">
                             已绑定
                         </span>
                     </div>
-                    <div style="margin-left:30px"  class='patient-button col ' >
+                    <div style="margin-left:40px;float:right;width:100px"  class='patient-button col' >
                         <span ng-if="item.age">{{item.age}} 岁</span>
-                        <span ng-if="!item.age">不详</span>
-                        <span> | </span>
+                        <!-- <span ng-if="!item.age">不详</span> -->
+                        <span ng-if="item.age"> | </span>
                         <span ng-if="item.agender == 2">女</span>
                         <span ng-if="item.agender == 1">男</span>
                     </div>

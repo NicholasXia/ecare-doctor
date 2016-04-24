@@ -337,6 +337,30 @@ angular.module('medicine.services', ['ngResource'])
       }
     })
   }])
+  .factory('gonggaoDel', ['$http','$resource', 'SERVER', function($http,$resource, SERVER) {
+    return $resource(SERVER + '/doctor/announcement/delete/:id', {
+      id: "@id",
+      accessToken: "@accessToken"
+    }, {
+      save: {
+        method: 'POST'
+      }
+    })
+    // var fa={
+    //
+    // }
+    // fa.delete=function(params,cb){
+    //   $http({
+    //     method: 'POST',
+    //     params: params,
+    //     url: SERVER + '/doctor/academicSupport/takepart'
+    //   }).then(function success(res) {
+    //     return cb(null, res.data);
+    //   }, function error() {
+    //     return cb(res.status, null); //ERROR
+    //   });
+    // }
+  }])
   .factory('patientCheckBindList', ['$resource', 'SERVER', function($resource, SERVER) {
     return $resource(SERVER + '/doctor/bind/list', {}, {
       query: {

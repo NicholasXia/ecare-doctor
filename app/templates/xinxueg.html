@@ -29,13 +29,14 @@
                 <span style="" class="ion-link"></span><span style="margin-left:5px;">网页链接</span>
               </div>
               <p>
-                <!-- <img class="img-responsive ng-class:{'col25':(item.imageList.length>1)}" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList"> -->
-                <span ng-repeat="img in item.imageList"><img style="display: inline-block;
-    float: left;
-    padding: 5px;
-    text-align: center;
-    width:64px;
-    height:64px;" ng-src="{{img.imageUrl}}"  alt=""/></span>
+                 <img ng-if="item.imageList.length==1" class="img-responsive" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
+
+                <span  ng-if="item.imageList.length>1" ng-repeat="img in item.imageList"><img  style="display: inline-block;
+                  float: left;
+                  padding: 5px;
+                  text-align: center;
+                  width:64px;
+                  height:64px;" ng-src="{{img.imageUrl}}"  alt=""/></span>
               </p>
         </div>
 
@@ -44,8 +45,7 @@
         </p>
         <div class='news-from row'>
           <span class="col col-80">{{item.creTime}}</span>
-          <span class="col col-20"><i class="ion-chatbubble-working"
-                             style='font-size:20px'></i> {{item.remarkCount}}</span>
+          <span class="col col-20" > <div style="height:20px;background-image: url('../images/comment.jpg');background-repeat: no-repeat;display:block;padding-left:25px">{{item.remarkCount}}</div></span>
         </div>
       </a>
 
