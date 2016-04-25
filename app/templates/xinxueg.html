@@ -1,3 +1,10 @@
+<style media="screen">
+.img-responsive50 {
+display: block;
+max-width: 75%;
+height: auto;
+}
+</style>
 <ion-view view-title="心血管圈-乐柏医" cache-view="false">
   <ion-header-bar class="bar-balanced">
     <a class="button icon ion-chevron-left" href="/#/tab/home"></a>
@@ -29,7 +36,7 @@
                 <span style="" class="ion-link"></span><span style="margin-left:5px;">网页链接</span>
               </div>
               <p>
-                 <img ng-if="item.imageList.length==1" class="img-responsive" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
+                 <img ng-if="item.imageList.length==1" class="img-responsive50" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
 
                 <span  ng-if="item.imageList.length>1" ng-repeat="img in item.imageList"><img  style="display: inline-block;
                   float: left;

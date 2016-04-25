@@ -113,6 +113,7 @@ angular.module('medicine.services', ['ngResource'])
         password: localStorageService.get('password')
       }
     }
+    currentUser.hasFinish=false;
     return currentUser;
   }])
 
@@ -248,7 +249,7 @@ angular.module('medicine.services', ['ngResource'])
   }])
 
 //收藏
-.factory('collection', ['$resource', 'SERVER', function($resource, SERVER) {
+  .factory('collection', ['$resource', 'SERVER', function($resource, SERVER) {
     return $resource(SERVER + '/doctor/caseAnalysis/collection', {
       accessToken: "@accessToken",
       caseId: "@caseId",
@@ -270,6 +271,37 @@ angular.module('medicine.services', ['ngResource'])
       }
     })
   }])
+
+  //文章收藏
+  .factory('articleCollect', ['$resource', 'SERVER', function($resource, SERVER) {
+    return $resource(SERVER + '/patient/article/collect', {
+      accessToken: '@accessToken',
+      articleId: '@articleId'
+    }, {
+      save: {
+        method: 'POST'
+      }
+    })
+  }])
+  .factory('articleCollectList', ['$resource', 'SERVER', function($resource, SERVER) {
+    return $resource(SERVER + '/patient/article/collect/list', {
+      accessToken: '@accessToken',
+    }, {
+      get: {
+        method: 'GET',
+      }
+    })
+  }])
+  .factory('deleteArticle', ['$resource', 'SERVER', function($resource, SERVER) {
+  return $resource(SERVER + '/patient/article/collect/del', {
+    accessToken: '@accessToken',
+    articleId: '@articleId'
+  }, {
+    save: {
+      method: 'POST'
+    }
+  })
+}])
 
 
 .factory('Detail', ['$resource', 'SERVER', function($resource, SERVER) {

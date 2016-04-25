@@ -954,7 +954,7 @@ angular.module('medicine.controllers', [])
   })
 }])
 
-.controller('medicalDetailCtrl', ['$timeout', '$document', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'collection', 'SHARE_APP', '$ionicActionSheet', function($timeout, $document, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, collection, SHARE_APP, $ionicActionSheet) {
+.controller('medicalDetailCtrl', ['articleCollect','$timeout', '$document', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'collection', 'SHARE_APP', '$ionicActionSheet', function(articleCollect,$timeout, $document, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, collection, SHARE_APP, $ionicActionSheet) {
     console.log(SHARE_APP);
     console.log($ionicActionSheet);
     $scope.showAction = function() {
@@ -1056,28 +1056,49 @@ angular.module('medicine.controllers', [])
 
       var colMsg = {
         accessToken: accesstoken,
-        caseId: $stateParams.id
+        articleId: $stateParams.id
       }
 
-      collection.save({}, colMsg, function(col) {
+      // collection.save({}, colMsg, function(col) {
+      //
+      //   if (col.status == 'suc') {
+      //     var popup = $ionicPopup.alert({
+      //       title: '成功提示',
+      //       template: '收藏成功'
+      //     })
+      //     $timeout(function() {
+      //       popup.close()
+      //     }, 2000)
+      //   } else {
+      //     var popup = $ionicPopup.alert({
+      //       title: '错误提示',
+      //       template: col.error
+      //     })
+      //     $timeout(function() {
+      //       popup.close()
+      //     }, 3000)
+      //   }
+      // })
 
-        if (col.status == 'suc') {
+      articleCollect.save({}, colMsg, function(data) {
+        if (data.status == 'suc') {
           var popup = $ionicPopup.alert({
-            title: '成功提示',
+            title: '提示',
             template: '收藏成功'
           })
           $timeout(function() {
             popup.close()
-          }, 2000)
+          }, 3000)
         } else {
           var popup = $ionicPopup.alert({
-            title: '错误提示',
-            template: col.error
+            title: '提示',
+            template: data.error
           })
           $timeout(function() {
             popup.close()
           }, 3000)
         }
+
       })
     }
 
@@ -1263,7 +1284,7 @@ angular.module('medicine.controllers', [])
 
 
 //我的收藏列表
-.controller('myCollectionListCtrl', ['$timeout', '$scope', 'collectionList', 'collectionDel', 'currentUser', function($timeout, $scope, collectionList, collectionDel, currentUser) {
+.controller('myCollectionListCtrl', ['deleteArticle','articleCollectList','$timeout', '$scope', 'collectionList', 'collectionDel', 'currentUser', function(deleteArticle,articleCollectList,$timeout, $scope, collectionList, collectionDel, currentUser) {
     var accesstoken = currentUser.getAuthToken()
     collectionList.query({
       accessToken: accesstoken
@@ -1288,6 +1309,26 @@ angular.module('medicine.controllers', [])
         } else {
           console.log(data.error)
         }
+      })
+    }
+
+    articleCollectList.query({
+      accessToken: currentUser.getAuthToken()
+    }, function(data) {
+      $scope.articlediscover = data
+      console.log(data)
+    })
+    $scope.deleteArticle = function(item) {
+      var msg = {
+        accessToken: currentUser.getAuthToken(),
+        articleId: item
+      }
+      deleteArticle.save({}, msg, function() {
+        articleCollectList.query({
+          accessToken: currentUser.getAuthToken()
+        }, function(data) {
+          $scope.articlediscover = data
+        })
       })
     }
 
