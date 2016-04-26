@@ -6,14 +6,17 @@
     <ion-content class="backcolormine">
         <div class="list">
             <div class="item item-avatar">
-                <img ng-src="{{data.profileImageUrl}}" onerror="this.src='./images/yisheng.png'" />
+                <img ng-if="data.profileImageUrl!=null" ng-src="{{data.profileImageUrl}}" onerror="this.src='./images/1.pic.jpg'" />
+                  <img ng-if="data.profileImageUrl==null" ng-src="./images/1.pic.jpg"  />
                 <div class='analysis-list-title '>
                     <div>
-                        <p>{{data.name}}</p>
+                        <p ng-if="data.name!=null">{{data.name}} </p>
+                        <p ng-if="data.name==null">ID{{data.userId}} </p>
+
 
                         <p>联系电话：<span>{{data.mobile}}</span></p>
 
-                        <p><span>{{data.age}}</span>岁 <span>|</span> <span>{{data.agender}}</span></p>
+                        <p><span ng-if="data.age!=null">{{data.age}}岁 |</span> <span>{{data.agender}}</span></p>
                     </div>
                 </div>
             </div>

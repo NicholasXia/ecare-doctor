@@ -35,7 +35,8 @@
 
                 <div class='new_patient' style="overflow:hidden">
                     <div style="float:left;width:80px">
-                        <span>{{item.patientName}}</span>
+                        <span ng-if="item.patientName!=null">{{item.patientName}}</span>
+                        <span ng-if="item.patientName==null">ID{{item.patientId}}</span>
                         <span style="font-size:10px;color:white;padding:0 2px;background-color:#D36B95;margin-left: 5px;display:inline-block" class="">
                             已绑定
                         </span>
