@@ -1901,7 +1901,7 @@ angular.module('medicine.controllers', [])
 .controller('zhenhouxindeCtrl', ['$timeout', '$scope', 'xinde', 'currentUser', function($timeout, $scope, xinde, currentUser) {
     $scope.data = [];
     xinde.list({
-      accessToken: currentUser.getAuthToken
+      accessToken: currentUser.getAuthToken()
     }, function(err, data) {
       console.log(data);
       $scope.data = data;
