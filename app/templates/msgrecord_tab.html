@@ -30,17 +30,19 @@
 
             <a class="item row" ng-repeat="item in mynews" href="#/chart/{{item.fromUserId}}">
                 <div class="record-point-parent col col-20">
-                    <i ng-if="item.isRead==0" class="ion-record record-point"></i>
+                    <i ng-if="item.isRead==0&&item.fromChat!=null" class="ion-record record-point"></i>
                     <img ng-if="item.durl!=null" class="yisheng" ng-src="{{item.durl}}" onerror="this.src='./images/1.pic.jpg'">
                     <img ng-if="item.durl==null" class="yisheng" ng-src="./images/1.pic.jpg" >
                 </div>
                 <div class="row-align col col-50">
                     <div>
                         <h2>{{item.name}}</h2>
-                        <p>{{item.fromChat}}</p>
+                        <p ng-if="item.fromChat!=null">{{item.fromChat}}</p>
+                        <p ng-if="item.toChat!=null">{{item.toChat}}</p>
                     </div>
                 </div>
                 <div class="col col-30 ion-recordl">{{item.timePointStr}}</div>
+
             </a>
 
         </div>
