@@ -1420,7 +1420,7 @@ angular.module('medicine.controllers', [])
   }
 }])
 
-.controller('myIconChangeCtrl', ['$scope', '$http', 'updateIcon', 'currentUser', '$ionicPopup', '$window', '$timeout', '$ionicLoading', function($scope, $http, updateIcon, currentUser, $ionicPopup, $window, $timeout, $ionicLoading) {
+.controller('myIconChangeCtrl', ['SERVER','$scope', '$http', 'updateIcon', 'currentUser', '$ionicPopup', '$window', '$timeout', '$ionicLoading', function(SERVER,$scope, $http, updateIcon, currentUser, $ionicPopup, $window, $timeout, $ionicLoading) {
 
   $scope.xinxuegimage = {
     imageBase64s: '',
@@ -1455,7 +1455,7 @@ angular.module('medicine.controllers', [])
     formData.append('imageBase64s', getbase64arr())
     formData.append('accessToken', currentUser.getAuthToken())
 
-    $http.post('http://work.e-care365.com/hospital/doctor/profile/update', formData, {
+    $http.post(SERVER+'/doctor/profile/update', formData, {
       headers: {
         'Content-Type': undefined
       },
@@ -1529,7 +1529,7 @@ angular.module('medicine.controllers', [])
   }
 }])
 
-.controller('xinxuegRemarkCtrl', ['$scope', '$window', '$http', '$ionicPopup', 'xinxuegRemark', 'currentUser', '$timeout', function($scope, $window, $http, $ionicPopup, xinxuegRemark, currentUser, $timeout) {
+.controller('xinxuegRemarkCtrl', ['SERVER','$scope', '$window', '$http', '$ionicPopup', 'xinxuegRemark', 'currentUser', '$timeout', function(SERVER,$scope, $window, $http, $ionicPopup, xinxuegRemark, currentUser, $timeout) {
   $scope.xinxueg = {
     content: ''
   }
@@ -1562,7 +1562,7 @@ angular.module('medicine.controllers', [])
 
     formData.append('accessToken', currentUser.getAuthToken())
 
-    $http.post('http://work.e-care365.com/hospital/doctor/heartcircle/add', formData, {
+    $http.post(SERVER+'/doctor/heartcircle/add', formData, {
       headers: {
         'Content-Type': undefined
       },
@@ -1624,7 +1624,7 @@ angular.module('medicine.controllers', [])
 }])
 
 
-.controller('doctorVerifyCtrl', ['$timeout', '$scope', '$window', '$http', '$ionicPopup', 'doctorVerifyUpload', 'currentUser', 'ionicLoadingConfig', '$ionicLoading', function($timeout, $scope, $window, $http, $ionicPopup, doctorVerifyUpload, currentUser, ionicLoadingConfig, $ionicLoading) {
+.controller('doctorVerifyCtrl', ['SERVER','$timeout', '$scope', '$window', '$http', '$ionicPopup', 'doctorVerifyUpload', 'currentUser', 'ionicLoadingConfig', '$ionicLoading', function(SERVER,$timeout, $scope, $window, $http, $ionicPopup, doctorVerifyUpload, currentUser, ionicLoadingConfig, $ionicLoading) {
 
     $scope.verifyimage = {
       crtWithPhoto: "",
@@ -1645,7 +1645,7 @@ angular.module('medicine.controllers', [])
         formData.append('crtWithPhoto', $scope.verifyimage.crtWithPhoto);
         formData.append('crtWithName', $scope.verifyimage.crtWithName);
         formData.append('accessToken', currentUser.getAuthToken());
-        $http.post('http://work.e-care365.com/hospital/doctor/verify/upload', formData, {
+        $http.post(SERVER+'/hospital/doctor/verify/upload', formData, {
           headers: {
             'Content-Type': undefined
           },
