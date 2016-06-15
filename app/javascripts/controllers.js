@@ -24,9 +24,9 @@ angular.module('medicine.controllers', [])
     })
     console.log(currentUser);
     $scope.doctorCode = currentUser.getDoctorCode()
-    $scope.goToActivity = function(activity) {
-      $window.location.href = activity
-    }
+    // $scope.goToActivity = function(activity) {
+    //   $window.location.href = activity
+    // }
     $scope.isLogin = currentUser.hasAuthToken()
 
 
@@ -40,11 +40,13 @@ angular.module('medicine.controllers', [])
         $scope.count = count
       })
     })
-    $scope.goToActivity = function(artiacleid, linkUrl) {
-      if (linkUrl) {
-        $window.location.href = linkUrl
+    $scope.goToActivity = function(item) {
+      console.log('ggggg');
+      console.log(item);
+      if (item.linkUrl) {
+        $window.location.href = item.linkUrl
       } else {
-        $window.location.href = '#/medical_detail/' + artiacleid
+        $window.location.href = '#/medical_detail/' + item.id
       }
     }
     $scope.gotLogin = function() {
@@ -944,7 +946,7 @@ angular.module('medicine.controllers', [])
   }
 }])
 
-.controller('medicalCtrl', ['$timeout', '$scope', 'getCarouselList', function($timeout, $scope, getCarouselList) {
+.controller('medicalCtrl', ['$window','$timeout', '$scope', 'getCarouselList', function($window,$timeout, $scope, getCarouselList) {
   getCarouselList.query({
     type: 1,
     illType: 2
@@ -952,6 +954,15 @@ angular.module('medicine.controllers', [])
     $scope.data = data
     console.log(data)
   })
+  $scope.goToActivity = function(item) {
+    console.log('ggggg');
+    console.log(item);
+    if (item.linkUrl) {
+      $window.location.href = item.linkUrl
+    } else {
+      $window.location.href = '#/medical_detail/' + item.id
+    }
+  }
 }])
 
 .controller('medicalDetailCtrl', ['articleCollect','$timeout', '$document', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'collection', 'SHARE_APP', '$ionicActionSheet', function(articleCollect,$timeout, $document, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, collection, SHARE_APP, $ionicActionSheet) {

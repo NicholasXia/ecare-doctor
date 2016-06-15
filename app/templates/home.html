@@ -63,7 +63,7 @@
             <div class='item pad-replate'>
 
                 <div class='activity' ng-repeat="item in medicallist | limitTo:5"
-                     ui-sref="medical_detail({id:item.id})">
+                     ng-click="goToActivity(item)">
                     <div  ng-if="item.category == 2 && $index == 0" class="header clearfix padding">
                         <div style="padding:4px 10px" class="fl index padding">医疗动态</div>
                     </div>

@@ -5,7 +5,7 @@
     </ion-header-bar>
     <ion-content>
         <div class="list">
-            <a class="item" ng-repeat="item in data" ui-sref='medical_detail({id:item.id})'>
+            <a class="item" ng-repeat="item in data" ng-click="goToActivity(item)">
 
                 <div class="item-text-wrap">
                     <h2>{{item.title}}</h2>
