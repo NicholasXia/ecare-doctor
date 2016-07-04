@@ -13,8 +13,8 @@
             <div class="item item-text-wrap">
                 <p>{{medicaldetail.title}}</p>
 
-                <p>来源:
-                    <span>{{medicaldetail.resource}}</span>
+                <p>
+                    <span ng-if="medicaldetail.resource!=''">来源:{{medicaldetail.resource}}</span>
 
                     <span class="fr">{{medicaldetail.postTime}}</span>
                 </p>
