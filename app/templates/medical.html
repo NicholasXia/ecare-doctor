@@ -6,8 +6,17 @@
     <ion-content>
         <div class="list">
             <a class="item" ng-repeat="item in data" ng-click="goToActivity(item)">
+              <div class="item-thumbnail-left ">
+                <img style="margin-top:10px;max-width:90px;max-height:65px" ng-src={{item.coverImageUrl}}>
 
-                <div class="item-text-wrap">
+                <h2 style="white-space:normal;margin-top:10px">{{item.title}}</h2>
+                <p style="font-size:12px;margin-top:50px;margin-right:10px;float:right;"> {{item.postTime}}</p>
+                <div style="margin-top:50px;margin-left:-112px;font-size:12px;width:10px;text-overflow:ellipsis">
+                  <span>来源 :</span>
+                  <span> {{item.resource}} </span>
+                </div>
+              </div>
+                <!-- <div class="item-text-wrap">
                     <h2>{{item.title}}</h2>
                 </div>
                 <div class="item-thumbnail-right item-text-wrap">
@@ -17,7 +26,7 @@
                 <div class='news-from' style="font-size: 12px;color:rgba(0,0,0,.3)">
                     <span class="button-pwd">来源: <i>{{item.resource}}</i></span>
                     <span>{{item.postTime}}</span>
-                </div>
+                </div> -->
 
             </a>
         </div>

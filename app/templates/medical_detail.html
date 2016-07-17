@@ -13,7 +13,7 @@
             <div class="item item-text-wrap">
                 <p>{{medicaldetail.title}}</p>
 
-                <p>
+                <p ng-if="medicaldetail.category!=1">
                     <span ng-if="medicaldetail.resource!=''">来源:{{medicaldetail.resource}}</span>
 
                     <span class="fr">{{medicaldetail.postTime}}</span>

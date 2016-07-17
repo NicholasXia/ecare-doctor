@@ -1,107 +1,93 @@
 <ion-view view-title="首页-乐柏医" cache-view='false' hide-nav-bar="isNavBarHide">
-    <ion-content has-bouncing="true" class="backcolormine">
-        <div class="list mlist">
-            <ion-slide-box ng-if="data.length > 0" auto-play="true" does-continue="true">
-                <ion-slide ng-repeat="item in data" ng-click="goToActivity(item)">
-                    <div class="box blue"><img ng-src={{item.coverImageUrl}} width="100%" height="160px"/></div>
-                </ion-slide>
-            </ion-slide-box>
-             <!-- 用户登陆时显示-->
+  <ion-content has-bouncing="true" class="backcolormine">
+    <div class="list mlist">
+      <ion-slide-box ng-if="data.length > 0" auto-play="true" does-continue="true">
+        <ion-slide ng-repeat="item in data" ng-click="goToActivity(item)">
+          <div class="box blue"><img ng-src={{item.coverImageUrl}} width="100%" height="160px" /></div>
+        </ion-slide>
+      </ion-slide-box>
+      <!-- 用户登陆时显示-->
 
-            <div ng-if="isLogin" class="addcolor"></div>
-            <a href="#/pat/patientlist" class="item padding" ng-if="isLogin">
-                <div class="home-feature-text text-center row">
-                    <div class="col col-33">今日新增患者<span class="new-bander-count">{{count.bindCountToday+0}}</span>人</div>
-                    <div class="col col-33">绑定患者日活<span class="new-bander-count">{{count.dayLiveTotal+0}}</span>人</div>
-                    <div class="col col-33">总绑定患者数<span class="new-bander-count">{{count.bindCountTotal+0}}</span>人</div>
-                </div>
-            </a>
+      <div ng-if="isLogin" class="addcolor"></div>
+      <a href="#/pat/patientlist" class="item padding" ng-if="isLogin">
+        <div class="home-feature-text text-center row">
+          <div class="col col-33">今日新增患者<span class="new-bander-count">{{count.bindCountToday+0}}</span>人</div>
+          <div class="col col-33">绑定患者日活<span class="new-bander-count">{{count.dayLiveTotal+0}}</span>人</div>
+          <div class="col col-33">总绑定患者数<span class="new-bander-count">{{count.bindCountTotal+0}}</span>人</div>
+        </div>
+      </a>
 
-            <div  ng-if="isLogin" class="addcolor"></div>
-            <div class="item pad-replate">
+      <div ng-if="isLogin" class="addcolor"></div>
+      <div class="item pad-replate">
 
-                <div class="button-bar  features-button">
-                    <a class="button" ui-sref='medical'><img src="./images/dongtai.png" alt="">
+        <div class="button-bar  features-button">
+          <a class="button" ui-sref='medical'><img src="./images/dongtai.png" alt="">
 
-                        <p>医疗动态</p></a>
-                    <a class="button" ui-sref='zhenhouxinde'>
-                      <img src="./images/zhxinde.png" alt="">
-                        <p>诊后心得</p></a>
-                    <a class="button" ng-click="gotLogin()">
-                        <img src="./images/jingxi.png" alt="">
+            <p>医疗动态</p>
+          </a>
+          <a class="button" ui-sref='zhenhouxinde'>
+            <img src="./images/zhxinde.png" alt="">
+            <p>诊后心得</p>
+          </a>
+          <a class="button" ng-click="gotLogin()">
+            <img src="./images/jingxi.png" alt="">
 
-                        <p>病历精析</p>
-                    </a>
-                </div>
-                <div class="button-bar  features-button">
-                    <a class="button" ui-sref='relaxed'><img src="./images/yke.png" alt="">
-
-                        <p>轻松一刻</p></a>
-                    <a class="button" ui-sref='xueshu'><img src="./images/zhichi.png" alt="">
-
-                        <p>学术支持</p></a>
-                    <a class="button" ui-sref="xinxueg"><img src="./images/quan.png" alt="">
-
-                        <p>心血管圈</p></a>
-                </div>
-
-            </div>
-
-            <!-- 用户登陆时显示-->
-            <div ng-if="isLogin"   class="addcolor"></div>
-            <div class='item padding ' ng-if="isLogin">
-                <a href="#/msgtab/msgrecord" class='home-feature-text  nounderlines'>
-
-                    <div>你有<span class="new-bander-count">{{askCount}}</span>患者向你咨询,请查看</div>
-                    <div class="fl-div-right"><img src="./images/shouyejinrujian.png" alt=""></div>
-                </a>
-
-            </div>
-
-
-            <div ng-if="isLogin"  class="addcolor"></div>
-            <div class=' pad-replate'>
-
-                <div class='activity' ng-repeat="item in medicallist | limitTo:5"
-                     ng-click="goToActivity(item)">
-                     <div class="item item-thumbnail-left"  >
-          <img style="margin-top:10px;max-width:90px;max-height:65px" ng-src={{item.coverImageUrl}}>
-          <h2 style="white-space:normal;margin-top:10px">{{item.title}}</h2>
-          <p style="margin-top:10px;margin-left:5px"> {{item.postTime}}</p>
-          <a ng-if="item.category!=6" class="fr gray">
-              <i class="icon ion-chatbubble-working">
-              </i>
-              <span class="verticalbt">{{item.remarkCount}}</span>
+            <p>病历精析</p>
           </a>
         </div>
-        <div class="divider"></div>
+        <div class="button-bar  features-button">
+          <a class="button" ui-sref='relaxed'><img src="./images/yke.png" alt="">
 
-                    <!-- <div  ng-if="item.category == 2 && $index == 0" class="header clearfix padding">
-                        <div style="padding:4px 10px" class="fl index padding">医疗动态</div>
-                    </div>
-                    <div class="content" style="margin-top:-10px">
-                        <div class="padding">
-                            <span>
-                                {{item.title}}
-                            <p class="fr">{{item.postTime}}</p>
-                            </span>
-                        </div>
+            <p>轻松一刻</p>
+          </a>
+          <a class="button" ui-sref='xueshu'><img src="./images/zhichi.png" alt="">
 
-                        <p class="init home"><img ng-src="{{item.coverImageUrl}}" /> </p>
-                    </div>
-                    <div class="footer clearfix">
-                        <span class="fl">来源 :</span>
-                        <span> {{item.resource}} </span>
-                    </div>
-                    <div style="height:10px; background: rgb(245,245,245); margin:0 -15px;"></div> -->
-                </div>
+            <p>学术支持</p>
+          </a>
+          <a class="button" ui-sref="xinxueg"><img src="./images/quan.png" alt="">
+
+            <p>心血管圈</p>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- 用户登陆时显示-->
+      <div ng-if="isLogin" class="addcolor"></div>
+      <div class='item padding ' ng-if="isLogin">
+        <a href="#/msgtab/msgrecord" class='home-feature-text  nounderlines'>
+
+          <div>你有<span class="new-bander-count">{{askCount}}</span>患者向你咨询,请查看</div>
+          <div class="fl-div-right"><img src="./images/shouyejinrujian.png" alt=""></div>
+        </a>
+
+      </div>
+
+
+      <div ng-if="isLogin" class="addcolor"></div>
+      <div class='pad-replate'>
+
+        <div class='activity' ng-repeat="item in medicallist | limitTo:5" ng-click="goToActivity(item)">
+          <div class="item item-thumbnail-left ">
+            <img style="margin-top:10px;max-width:90px;max-height:65px" ng-src={{item.coverImageUrl}}>
+
+            <h2 style="white-space:normal;margin-top:10px">{{item.title}}</h2>
+            <p style="font-size:12px;margin-top:50px;margin-right:10px;float:right;"> {{item.postTime}}</p>
+            <div style="margin-top:50px;margin-left:-100px;font-size:12px;width:10px;text-overflow:ellipsis">
+              <span>来源 :</span>
+              <span> {{item.resource}} </span>
             </div>
-            <div class='item home-qrcode'>
-                <div>
-                    <h1>{{doctorCode.substr(0,4)}}  {{doctorCode.substr(4,8)}}</h1>
-                </div>
-            </div>
+          </div>
+          <div class="divider"></div>
+
 
         </div>
-    </ion-content>
+        <div class='item home-qrcode'>
+          <div>
+            <h1>{{doctorCode.substr(0,4)}}  {{doctorCode.substr(4,8)}}</h1>
+          </div>
+        </div>
+
+      </div>
+  </ion-content>
 </ion-view>

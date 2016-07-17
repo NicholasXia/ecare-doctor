@@ -15,6 +15,11 @@ angular.module('medicine.controllers', [])
       type: 1,
       illType: 2
     }, function(data) {
+      for(var i=0;i<data.length;i++){
+        if(data[i].resource.length>1){
+          data[i].resource=data[i].resource.substring(0,15)+'...';
+        }
+      }
       $scope.medicallist = data
     })
     getCountAsk.query({
@@ -951,6 +956,11 @@ angular.module('medicine.controllers', [])
     type: 1,
     illType: 2
   }, function(data) {
+    for(var i=0;i<data.length;i++){
+      if(data[i].resource.length>1){
+        data[i].resource=data[i].resource.substring(0,15)+'...';
+      }
+    }
     $scope.data = data
     console.log(data)
   })
